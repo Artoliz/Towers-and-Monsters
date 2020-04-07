@@ -8,7 +8,8 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="Grid" t="Include">
-            <e p="CustomGrid.cs" t="Include" />
+            <e p="Builder.cs" t="Include" />
+            <e p="Grid.cs" t="Include" />
           </e>
         </e>
       </e>
