@@ -144,6 +144,8 @@ MonoBehaviour:
   gridSizeX: 32
   gridSizeZ: 32
   gridSpacingOffset: 1
+  blockedPositions:
+  - {x: 0, y: 0}
   gridCellToPickFrom:
   - {fileID: 2810712296353738753, guid: e15e585d381a94a41ba91a3167fe9860, type: 3}
   - {fileID: 202480616562910925, guid: b296b1d2c2df19a4bbbc95d875d0ba18, type: 3}
@@ -190,7 +192,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0525e2494c9eed94e8fbe53647935f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tower: {fileID: 1322669272433006302, guid: 6d7e4d4879a7c3d458f567ae67da8ad9, type: 3}
+  buildingsPrefab:
+  - {fileID: 4171413074625168150, guid: fbb836b8f04fba540a64f69db2442d37, type: 3}
+  - {fileID: 1322669272433006302, guid: 6d7e4d4879a7c3d458f567ae67da8ad9, type: 3}
+  - {fileID: 2949763514454009152, guid: 2dcdb1d9c8fe996408d3a0375d8470bb, type: 3}
+  - {fileID: 1512406644766363040, guid: ad157804c87879447b2b30238fd18eb8, type: 3}
 --- !u!4 &522272206
 Transform:
   m_ObjectHideFlags: 0

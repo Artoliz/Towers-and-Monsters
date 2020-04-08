@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Grid : MonoBehaviour
     
     public float gridSpacingOffset = 1f;
 
+    public List<Vector2Int> blockedPositions;
+    
     public GameObject[] gridCellToPickFrom;
 
     #endregion
@@ -40,6 +43,10 @@ public class Grid : MonoBehaviour
         {
             for (int z = 0; z < gridSizeZ; z++)
             {
+                if (blockedPositions.Contains(new Vector2Int(x, z)))
+                {
+                    _grid[x, z] = gameObject;
+                }
                 Vector3 spawnPosition = new Vector3(x * gridSpacingOffset, -0.5f, z * gridSpacingOffset) + _gridOrigin;
                 PickAndSpawnGridCase(spawnPosition, Quaternion.identity);
             }
