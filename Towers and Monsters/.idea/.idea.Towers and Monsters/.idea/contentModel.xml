@@ -11,6 +11,11 @@
             <e p="Builder.cs" t="Include" />
             <e p="Buildings.cs" t="Include" />
           </e>
+          <e p="Enemies" t="Include">
+            <e p="Waves" t="Include">
+              <e p="EnemiesSpawner.cs" t="Include" />
+            </e>
+          </e>
           <e p="Grid" t="Include">
             <e p="Grid.cs" t="Include" />
           </e>

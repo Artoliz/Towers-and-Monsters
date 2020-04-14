@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Builder : MonoBehaviour
@@ -58,12 +57,14 @@ public class Builder : MonoBehaviour
 
     private void InitBuildings()
     {
-        buildings = new Dictionary<Buildings, GameObject>();
-        
-        buildings[Buildings.Wall] = buildingsPrefab[0];
-        buildings[Buildings.TowerRed] = buildingsPrefab[1];
-        buildings[Buildings.TowerBlue] = buildingsPrefab[2];
-        buildings[Buildings.TowerWhite] = buildingsPrefab[3];
+        buildings = new Dictionary<Buildings, GameObject>
+        {
+            [Buildings.Wall] = buildingsPrefab[0],
+            [Buildings.TowerRed] = buildingsPrefab[1],
+            [Buildings.TowerBlue] = buildingsPrefab[2],
+            [Buildings.TowerWhite] = buildingsPrefab[3]
+        };
+
     }
 
     private void SelectedBuilding()
@@ -93,7 +94,7 @@ public class Builder : MonoBehaviour
             var xCount = Mathf.RoundToInt(clickPoint.x / gridSpacingOffset);
             var zCount = Mathf.RoundToInt(clickPoint.z / gridSpacingOffset);
 
-            Vector3 result = new Vector3(
+            var result = new Vector3(
                 xCount * gridSpacingOffset,
                 1,
                 zCount * gridSpacingOffset);

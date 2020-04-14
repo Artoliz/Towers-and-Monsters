@@ -11,15 +11,11 @@ public class Grid : MonoBehaviour
     public float gridSpacingOffset = 1f;
 
     public List<Vector2Int> blockedPositions;
-    
-    public GameObject[] gridCellToPickFrom;
 
     #endregion
 
     #region PrivateVariables
 
-    private readonly Vector3 _gridOrigin = Vector3.zero;
-    
     private GameObject[,] _grid;
 
     #endregion
@@ -30,34 +26,25 @@ public class Grid : MonoBehaviour
     {
         _grid = new GameObject[gridSizeX, gridSizeZ];
 
-        SpawnGrid();
+        BlockPositions();
     }
 
     #endregion
 
     #region PrivateFunctions
 
-    private void SpawnGrid()
+    private void BlockPositions()
     {
-        for (int x = 0; x < gridSizeX; x++)
+        for (var x = 0; x < gridSizeX; x++)
         {
-            for (int z = 0; z < gridSizeZ; z++)
+            for (var z = 0; z < gridSizeZ; z++)
             {
                 if (blockedPositions.Contains(new Vector2Int(x, z)))
                 {
                     _grid[x, z] = gameObject;
                 }
-                Vector3 spawnPosition = new Vector3(x * gridSpacingOffset, -0.5f, z * gridSpacingOffset) + _gridOrigin;
-                PickAndSpawnGridCase(spawnPosition, Quaternion.identity);
             }
         }
-    }
-
-    private void PickAndSpawnGridCase(Vector3 positionToSpawn, Quaternion rotationToSpawn)
-    {
-        int randomIndex = Random.Range(0, gridCellToPickFrom.Length);
-
-        Instantiate(gridCellToPickFrom[randomIndex], positionToSpawn, rotationToSpawn);
     }
 
     #endregion
