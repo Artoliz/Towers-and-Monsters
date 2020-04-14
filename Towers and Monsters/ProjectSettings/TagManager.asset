@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Tower
   - Ground
+  - Enemy
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -16,10 +18,10 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - Tower
+  - Wall
+  - Ground
   - 
   - 
   - 

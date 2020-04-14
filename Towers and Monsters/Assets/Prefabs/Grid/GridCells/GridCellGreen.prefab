@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 202480616562910912}
   - component: {fileID: 202480616562910927}
   - component: {fileID: 202480616562910926}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GridCellGreen
   m_TagString: Ground
   m_Icon: {fileID: 0}
