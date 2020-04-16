@@ -37,6 +37,9 @@
             <e p="Spawner" t="Include">
               <e p="EnemiesSpawner.cs" t="Include" />
             </e>
+            <e p="Waves" t="Include">
+              <e p="WavesManager.cs" t="Include" />
+            </e>
           </e>
           <e p="Grid" t="Include">
             <e p="Grid.cs" t="Include" />
