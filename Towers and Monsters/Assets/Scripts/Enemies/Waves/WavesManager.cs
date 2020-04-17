@@ -10,6 +10,8 @@ public class WavesManager : MonoBehaviour
     
     private float _timeBetweenWaves;
     
+    //_firstWave explanations: if it's the first wave we don't reset the values so that:
+    // -> wave's weight and number are not increased.
     private bool _firstWave = true;
     private bool _timerBetweenWavesIsRunning;
 
@@ -21,8 +23,8 @@ public class WavesManager : MonoBehaviour
     
     public float setTimeBetweenWaves = 60.0f;
 
-    public static bool GameIsBetweenWaves;
-    
+    public static bool gameIsBetweenWaves;
+
     public Text timeBetweenWavesText;
 
     #endregion
@@ -31,7 +33,7 @@ public class WavesManager : MonoBehaviour
 
     private void Awake()
     {
-        SetGame(0, true);
+        SetGameStatus(true);
     }
 
     private void Start()
@@ -41,11 +43,11 @@ public class WavesManager : MonoBehaviour
 
     private void Update()
     {
-        if (_timerBetweenWavesIsRunning)
+        if (!PauseMenu.gameIsPaused && _timerBetweenWavesIsRunning)
         {
             if (_timeBetweenWaves > 0)
             {
-                _timeBetweenWaves -= Time.unscaledDeltaTime;
+                _timeBetweenWaves -= Time.deltaTime;
                 DisplayTimeBetweenWaves(_timeBetweenWaves);
             }
             else
@@ -53,7 +55,7 @@ public class WavesManager : MonoBehaviour
                 RunWave();
             }
         }
-        else if (GameIsBetweenWaves && !_firstWave) //If it's the first wave we don't reset the data
+        else if (!PauseMenu.gameIsPaused && gameIsBetweenWaves && !_firstWave)
         {
             SetNextWave();
         }
@@ -65,7 +67,7 @@ public class WavesManager : MonoBehaviour
 
     private IEnumerator LaunchTimerWhenSceneIsLoaded()
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSeconds(0.5f);
         SetTimeBetweenWaves(true, setTimeBetweenWaves);
     }
     
@@ -85,23 +87,22 @@ public class WavesManager : MonoBehaviour
         _timeBetweenWaves = timeBetweenWaves;
     }
 
-    private static void SetGame(int timeScale, bool isBetweenWaves)
+    private static void SetGameStatus(bool isBetweenWaves)
     {
-        Time.timeScale = timeScale;
-        GameIsBetweenWaves = isBetweenWaves;
+        gameIsBetweenWaves = isBetweenWaves;
     }
 
     private void RunWave()
     {
         _firstWave = false;
         
-        SetGame(1, false);
+        SetGameStatus(false);
         SetTimeBetweenWaves(false, 0);
     }
 
     private void SetNextWave()
     {
-        SetGame(0, true);
+        SetGameStatus(true);
         SetTimeBetweenWaves(true, setTimeBetweenWaves);
         waveNumber += 1;
         _waveWeight += waveNumber;

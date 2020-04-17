@@ -24,7 +24,15 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        _agent.SetDestination(destination.transform.position);
+        if (PauseMenu.gameIsPaused)
+        {
+            _agent.isStopped = true;
+        }
+        else
+        {
+            _agent.isStopped = false;
+            _agent.SetDestination(destination.transform.position);
+        }
     }
 
     #endregion

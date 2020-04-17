@@ -35,17 +35,20 @@ public class Builder : MonoBehaviour
 
     private void Update()
     {
-        SelectedBuilding();
-
-        if (Input.GetMouseButtonDown(0) && _buildingEnum != Buildings.None)
+        if (!PauseMenu.gameIsPaused)
         {
-            if (_isCameraNotNull)
-            {
-                var ray = _camera.ScreenPointToRay(Input.mousePosition);
+            SelectedBuilding();
 
-                if (Physics.Raycast(ray, out var click))
+            if (Input.GetMouseButtonDown(0) && _buildingEnum != Buildings.None)
+            {
+                if (_isCameraNotNull)
                 {
-                    PlaceBuildingOnGrid(click.point);
+                    var ray = _camera.ScreenPointToRay(Input.mousePosition);
+
+                    if (Physics.Raycast(ray, out var click))
+                    {
+                        PlaceBuildingOnGrid(click.point);
+                    }
                 }
             }
         }
@@ -80,9 +83,6 @@ public class Builder : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
             _buildingEnum = _buildingEnum == Buildings.TowerWhite ? Buildings.None : Buildings.TowerWhite;
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-            _buildingEnum = Buildings.None;
     }
 
     private void PlaceBuildingOnGrid(Vector3 clickPoint)
