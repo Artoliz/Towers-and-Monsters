@@ -1,17 +1,16 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class WavesManager : MonoBehaviour
 {
     #region PrivateVariables
 
-    private int _waveWeight;
+    private int _waveWeight = 10;
     
     private float _timeBetweenWaves;
     
     //_firstWave explanations: if it's the first wave we don't reset the values so that:
-    // -> wave's weight and number are not increased.
+    // -> Wave weight and number are not increased.
     private bool _firstWave = true;
     private bool _timerBetweenWavesIsRunning;
 
@@ -27,6 +26,8 @@ public class WavesManager : MonoBehaviour
 
     public Text timeBetweenWavesText;
 
+    public EnemiesSpawns enemiesSpawns;
+
     #endregion
 
     #region MonoBehavior
@@ -38,7 +39,7 @@ public class WavesManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(LaunchTimerWhenSceneIsLoaded());
+        SetTimeBetweenWaves(true, setTimeBetweenWaves);
     }
 
     private void Update()
@@ -65,12 +66,6 @@ public class WavesManager : MonoBehaviour
 
     #region PrivateMethods
 
-    private IEnumerator LaunchTimerWhenSceneIsLoaded()
-    {
-        yield return new WaitForSeconds(0.5f);
-        SetTimeBetweenWaves(true, setTimeBetweenWaves);
-    }
-    
     void DisplayTimeBetweenWaves(float timeToDisplay)
     {
         timeToDisplay += 1;
@@ -87,34 +82,38 @@ public class WavesManager : MonoBehaviour
         _timeBetweenWaves = timeBetweenWaves;
     }
 
-    private static void SetGameStatus(bool isBetweenWaves)
-    {
-        gameIsBetweenWaves = isBetweenWaves;
-    }
-
     private void RunWave()
     {
-        _firstWave = false;
+        if (_firstWave)
+            _firstWave = false;
         
         SetGameStatus(false);
         SetTimeBetweenWaves(false, 0);
+        
+        enemiesSpawns.LaunchSpawns(_waveWeight);
+    }
+
+    private void CalculateNewWaveWeight()
+    {
+        _waveWeight *= waveNumber;
     }
 
     private void SetNextWave()
     {
         SetGameStatus(true);
         SetTimeBetweenWaves(true, setTimeBetweenWaves);
+        
         waveNumber += 1;
-        _waveWeight += waveNumber;
+        CalculateNewWaveWeight();
     }
 
     #endregion
 
-    #region PublicMethods
+    #region PublicVariables
 
-    public int GetWaveWeight()
+    public static void SetGameStatus(bool isBetweenWaves)
     {
-        return _waveWeight;
+        gameIsBetweenWaves = isBetweenWaves;
     }
 
     #endregion

@@ -1338,6 +1338,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716981985}
   m_CullTransparentMesh: 0
+--- !u!114 &1846799962 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7020819536287090970, guid: e3cff184a71abe742a9ae8d89ff214f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 148002191}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aeea183a54b28f43839e8950eae9855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &207642299419130731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1361,6 +1373,16 @@ PrefabInstance:
       propertyPath: timeBetweenWavesText
       value: 
       objectReference: {fileID: 886018794}
+    - target: {fileID: 5607200183127252714, guid: 4956c2ddb40a462408a2b6c0b112cef1,
+        type: 3}
+      propertyPath: enemiesSpawns
+      value: 
+      objectReference: {fileID: 1846799962}
+    - target: {fileID: 5607200183127252714, guid: 4956c2ddb40a462408a2b6c0b112cef1,
+        type: 3}
+      propertyPath: setTimeBetweenWaves
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7375135406234783197, guid: 4956c2ddb40a462408a2b6c0b112cef1,
         type: 3}
       propertyPath: m_LocalPosition.x
