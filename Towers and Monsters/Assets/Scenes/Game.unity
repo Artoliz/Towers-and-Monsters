@@ -179,43 +179,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map1
       objectReference: {fileID: 0}
-    - target: {fileID: 7020819536287090970, guid: e3cff184a71abe742a9ae8d89ff214f0,
-        type: 3}
-      propertyPath: enemiesPrefab.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020819536287090970, guid: e3cff184a71abe742a9ae8d89ff214f0,
-        type: 3}
-      propertyPath: enemyPrefab
-      value: 
-      objectReference: {fileID: 4856959218363332854, guid: 054633062a84b9c42b84d71afbed72cb,
-        type: 3}
-    - target: {fileID: 7020819536287090970, guid: e3cff184a71abe742a9ae8d89ff214f0,
-        type: 3}
-      propertyPath: enemiesPrefab.Array.data[0]
-      value: 
-      objectReference: {fileID: 4856959218363332854, guid: 054633062a84b9c42b84d71afbed72cb,
-        type: 3}
-    - target: {fileID: 7020819536287090970, guid: e3cff184a71abe742a9ae8d89ff214f0,
-        type: 3}
-      propertyPath: enemiesPrefab.Array.data[1]
-      value: 
-      objectReference: {fileID: 184653733232548315, guid: 824cd428a740d60479fd67c7ae4bf616,
-        type: 3}
-    - target: {fileID: 7020819536287090970, guid: e3cff184a71abe742a9ae8d89ff214f0,
-        type: 3}
-      propertyPath: enemiesPrefab.Array.data[2]
-      value: 
-      objectReference: {fileID: 7321963342691907810, guid: 97803355f92e35a498e68986d7bda251,
-        type: 3}
-    - target: {fileID: 9037634122657208286, guid: e3cff184a71abe742a9ae8d89ff214f0,
-        type: 3}
-      propertyPath: health
-      value: 1000
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 969380197318310616, guid: e3cff184a71abe742a9ae8d89ff214f0, type: 3}
-    - {fileID: 3567452103809948823, guid: e3cff184a71abe742a9ae8d89ff214f0, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3cff184a71abe742a9ae8d89ff214f0, type: 3}
 --- !u!114 &267698422 stripped
 MonoBehaviour:
@@ -800,11 +764,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 626605188}
-    - target: {fileID: 4422533800676170488, guid: c1eddb1ad400bcb4dbfcd3a1186ef9ec,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SkipBetweenWaves
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1eddb1ad400bcb4dbfcd3a1186ef9ec, type: 3}
 --- !u!1001 &6177750131705216520
@@ -819,17 +778,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NavMesh
       objectReference: {fileID: 0}
-    - target: {fileID: 2695001006181012501, guid: a995947593d8e9e468c629c64cdfea20,
-        type: 3}
-      propertyPath: m_AgentTypeID
-      value: -1372625422
-      objectReference: {fileID: 0}
-    - target: {fileID: 2695001006181012501, guid: a995947593d8e9e468c629c64cdfea20,
-        type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: 3530a435a2c963c458952e8e6b20612a,
-        type: 2}
     - target: {fileID: 6014466692570039583, guid: a995947593d8e9e468c629c64cdfea20,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -954,11 +902,6 @@ PrefabInstance:
       propertyPath: playerBase
       value: 
       objectReference: {fileID: 345179490}
-    - target: {fileID: 7013651086503724498, guid: c71620a87f665b3469f3f6a68adf8e02,
-        type: 3}
-      propertyPath: agentCheckPath
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7013651086503724499, guid: c71620a87f665b3469f3f6a68adf8e02,
         type: 3}
       propertyPath: m_Name
