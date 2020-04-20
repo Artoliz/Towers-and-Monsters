@@ -116,7 +116,7 @@ public class WavesManager : MonoBehaviour
         SetGameStatus(false);
         SetTimeBetweenWaves(false, 0);
         
-        enemiesSpawns.LaunchSpawns(_waveWeight);
+        enemiesSpawns.LaunchSpawns(_waveWeight, waveNumber);
     }
 
     private void CalculateNewWaveWeight()

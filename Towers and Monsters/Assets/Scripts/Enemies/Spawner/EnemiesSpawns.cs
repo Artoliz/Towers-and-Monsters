@@ -4,19 +4,26 @@ using UnityEngine;
 public class EnemiesSpawns : MonoBehaviour
 {
     #region PrivateVariables
+
+    private int _enemiesNumber;
     
-    private int _enemiesToSpawn;
-    private int _enemiesAlive;
+    private readonly List<Transform> _spawns = new List<Transform>();
+    
+    private readonly List<GameObject> _enemiesToSpawn = new List<GameObject>();
+    private readonly List<GameObject> _enemies = new List<GameObject>();
 
-    private Transform[] _spawns;
+    #endregion
 
-    private List<GameObject> _enemies;
+    #region SerializableVariables
+
+    [SerializeField] private float timeBeforeBeginToSpawn = 2.0f;
+    [SerializeField] private float repeatTimeToSpawn = 2.0f;
 
     #endregion
 
     #region PublicVariables
 
-    public GameObject enemyPrefab;
+    public GameObject[] enemiesPrefab;
     public GameObject playerBase;
 
     public static EnemiesSpawns instance;
@@ -29,26 +36,20 @@ public class EnemiesSpawns : MonoBehaviour
     {
         instance = this;
 
-        _enemies = new List<GameObject>();
-
-        var i = 0;
-        _spawns = new Transform[transform.childCount];
-
         foreach (Transform child in transform)
         {
-            _spawns[i] = child;
-            i++;
+            _spawns.Add(child);
         }
     }
 
     private void Start()
     {
-        InvokeRepeating(nameof(SpawnEnemy), 2.0f, 2.0f);
+        InvokeRepeating(nameof(SpawnEnemy), timeBeforeBeginToSpawn, repeatTimeToSpawn);
     }
 
     private void Update()
     {
-        if (_enemiesAlive == 0)
+        if (_enemiesNumber == 0)
         {
             //Go to the next wave
             WavesManager.SetGameStatus(true);
@@ -61,22 +62,21 @@ public class EnemiesSpawns : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        if (!PauseMenu.gameIsPaused && !WavesManager.gameIsBetweenWaves && _enemiesToSpawn > 0)
+        if (!PauseMenu.gameIsPaused && !WavesManager.gameIsBetweenWaves && _enemiesToSpawn.Count > 0)
         {
-            var enemy = Instantiate(enemyPrefab, PositionOfSpawn(), Quaternion.identity);
+            var enemy = Instantiate(_enemiesToSpawn[0], PositionOfSpawn(), Quaternion.identity);
             _enemies.Add(enemy);
 
-            var enemyController = enemy.GetComponent<EnemyController>();
+            var enemyController = enemy.GetComponent<Enemy>();
             enemyController.SetDestination(playerBase);
 
-            //Decrease number of enemies to spawn
-            _enemiesToSpawn--;
+            _enemiesToSpawn.Remove(_enemiesToSpawn[0]);
         }
     }
 
     private Vector3 PositionOfSpawn()
     {
-        var spawn = _spawns[Random.Range(0, _spawns.Length)];
+        var spawn = _spawns[Random.Range(0, _spawns.Count)];
         var position = spawn.transform.position;
 
         if (spawn.transform.position.x < 0)
@@ -98,20 +98,53 @@ public class EnemiesSpawns : MonoBehaviour
 
         return position;
     }
+
+    private List<GameObject> GetEnemiesPossibleInWave(int waveNumber)
+    {
+        var possibleEnemies = new List<GameObject>();
+        
+        foreach (var enemyPrefab in enemiesPrefab)
+        {
+            var enemy = enemyPrefab.GetComponent<Enemy>();
+            
+            if (enemy.GetEnemyWaveNumberApparition() <= waveNumber)
+                possibleEnemies.Add(enemyPrefab);
+        }
+
+        return possibleEnemies;
+    }
     
     #endregion
 
     #region PublicMethods
 
-    public void LaunchSpawns(int waveWeight)
+    public void LaunchSpawns(int waveWeight, int waveNumber)
     {
-        _enemiesToSpawn = waveWeight;
-        _enemiesAlive = _enemiesToSpawn;
+        var possibleEnemies = GetEnemiesPossibleInWave(waveNumber);
+        
+        while (waveWeight > 0)
+        {
+            var enemyPrefab = possibleEnemies[Random.Range(0, possibleEnemies.Count)];
+            var enemy = enemyPrefab.GetComponent<Enemy>();
+            var enemyWeight = enemy.GetEnemyWeight();
+            
+            if (enemyWeight > waveWeight)
+            {
+                possibleEnemies.Remove(enemyPrefab);
+            }
+            else
+            {
+                waveWeight -= enemyWeight;
+                _enemiesToSpawn.Add(enemyPrefab);
+            }
+        }
+
+        _enemiesNumber = _enemiesToSpawn.Count;
     }
 
     public void RemoveEnemy(GameObject enemy)
     {
-        _enemiesAlive--;
+        _enemiesNumber--;
         _enemies.Remove(enemy);
         Destroy(enemy);
     }

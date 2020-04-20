@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     #region PrivateVariables
 
@@ -13,8 +13,10 @@ public class EnemyController : MonoBehaviour
 
     #region SerializableVariables
 
+    [SerializeField] private int enemyWeight = 1;
+    [SerializeField] private int waveNumberApparition = 1;
     [SerializeField] private int damageToBase = 100;
-    
+
     [SerializeField] private float destinationReachedPadding = 1.5f;
 
     #endregion
@@ -59,6 +61,16 @@ public class EnemyController : MonoBehaviour
 
     #region PublicMethods
 
+    public int GetEnemyWaveNumberApparition()
+    {
+        return waveNumberApparition;
+    }
+
+    public int GetEnemyWeight()
+    {
+        return enemyWeight;
+    }
+    
     public void DestroyEnemy()
     {
         EnemiesSpawns.instance.RemoveEnemy(gameObject);

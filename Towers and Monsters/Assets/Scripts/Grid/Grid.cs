@@ -10,7 +10,7 @@ public class Grid : MonoBehaviour
     
     [SerializeField] private float gridSpacingOffset = 1f;
 
-    [SerializeField] private List<Vector2Int> blockedPositions;
+    [SerializeField] private List<Vector2Int> blockedPositions = new List<Vector2Int>();
 
     #endregion
 
