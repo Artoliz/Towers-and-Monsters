@@ -5,16 +5,20 @@ public class EnemyController : MonoBehaviour
 {
     #region PrivateVariables
 
-    [SerializeField] private int damageToBase;
-    
-    [SerializeField] private float destinationReachedPadding;
-
     private GameObject _base;
 
     private NavMeshAgent _agent;
 
     #endregion
 
+    #region SerializableVariables
+
+    [SerializeField] private int damageToBase = 100;
+    
+    [SerializeField] private float destinationReachedPadding = 1.5f;
+
+    #endregion
+    
     #region MonoBehavior
 
     private void Awake()

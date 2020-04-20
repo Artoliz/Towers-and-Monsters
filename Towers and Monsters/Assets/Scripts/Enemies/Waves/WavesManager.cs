@@ -5,22 +5,25 @@ public class WavesManager : MonoBehaviour
 {
     #region PrivateVariables
 
-    private int _waveWeight = 10;
+    private int _waveWeight;
     
     private float _timeBetweenWaves;
     
-    //_firstWave explanations: if it's the first wave we don't reset the values so that:
-    // -> Wave weight and number are not increased.
     private bool _firstWave = true;
     private bool _timerBetweenWavesIsRunning;
 
     #endregion
 
-    #region PublicVariables
+    #region SerializableVariables
 
-    public int waveNumber = 1;
+    [SerializeField] private int waveNumber = 1;
+    [SerializeField] private int weightMultiplier = 10;
     
-    public float setTimeBetweenWaves = 60.0f;
+    [SerializeField] private float setTimeBetweenWaves = 60.0f;
+
+    #endregion
+
+    #region PublicVariables
 
     public static bool gameIsBetweenWaves;
 
@@ -37,11 +40,6 @@ public class WavesManager : MonoBehaviour
         SetGameStatus(true);
     }
 
-    private void Start()
-    {
-        SetTimeBetweenWaves(true, setTimeBetweenWaves);
-    }
-
     private void Update()
     {
         if (!PauseMenu.gameIsPaused && _timerBetweenWavesIsRunning)
@@ -56,7 +54,7 @@ public class WavesManager : MonoBehaviour
                 RunWave();
             }
         }
-        else if (!PauseMenu.gameIsPaused && gameIsBetweenWaves && !_firstWave)
+        else if (!PauseMenu.gameIsPaused && gameIsBetweenWaves)
         {
             SetNextWave();
         }
@@ -86,7 +84,7 @@ public class WavesManager : MonoBehaviour
     {
         if (_firstWave)
             _firstWave = false;
-        
+
         SetGameStatus(false);
         SetTimeBetweenWaves(false, 0);
         
@@ -95,15 +93,15 @@ public class WavesManager : MonoBehaviour
 
     private void CalculateNewWaveWeight()
     {
-        _waveWeight *= waveNumber;
+        _waveWeight = weightMultiplier * waveNumber;
     }
 
     private void SetNextWave()
     {
-        SetGameStatus(true);
         SetTimeBetweenWaves(true, setTimeBetweenWaves);
         
-        waveNumber += 1;
+        if (!_firstWave)
+            waveNumber += 1;
         CalculateNewWaveWeight();
     }
 

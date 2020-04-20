@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    #region PublicVariables
+    #region SerializableVariables
 
-    public int gridSizeX;
-    public int gridSizeZ;
+    [SerializeField] private int gridSizeX = 32;
+    [SerializeField] private int gridSizeZ = 32;
     
-    public float gridSpacingOffset = 1f;
+    [SerializeField] private float gridSpacingOffset = 1f;
 
-    public List<Vector2Int> blockedPositions;
+    [SerializeField] private List<Vector2Int> blockedPositions;
 
     #endregion
 
@@ -53,11 +53,11 @@ public class Grid : MonoBehaviour
 
     #region Getter/Setter
 
-    public GameObject[,] GetGrid()
+    public float GetGridSpacingOffset()
     {
-        return _grid;
+        return gridSpacingOffset;
     }
-
+    
     #endregion
     
     public bool AppendElementInGrid(Vector3 clickPoint, GameObject obj)

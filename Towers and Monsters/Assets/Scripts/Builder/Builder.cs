@@ -13,11 +13,12 @@ public class Builder : MonoBehaviour
     private Buildings _buildingEnum = Buildings.None;
 
     #endregion
-    
-    public GameObject[] buildingsPrefab;
-    public Dictionary<Buildings, GameObject> buildings;
-    
+
     #region PublicVariables
+
+    public GameObject[] buildingsPrefab;
+    
+    public Dictionary<Buildings, GameObject> buildings;
 
     #endregion
 
@@ -87,7 +88,7 @@ public class Builder : MonoBehaviour
 
     private void PlaceBuildingOnGrid(Vector3 clickPoint)
     {
-        var gridSpacingOffset = _gridObject.gridSpacingOffset;
+        var gridSpacingOffset = _gridObject.GetGridSpacingOffset();
 
         if (_gridObject.AppendElementInGrid(clickPoint, buildings[_buildingEnum]))
         {

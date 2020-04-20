@@ -1389,6 +1389,11 @@ PrefabInstance:
       propertyPath: setTimeBetweenWaves
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5607200183127252714, guid: 4956c2ddb40a462408a2b6c0b112cef1,
+        type: 3}
+      propertyPath: weightMultiplier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7375135406234783197, guid: 4956c2ddb40a462408a2b6c0b112cef1,
         type: 3}
       propertyPath: m_LocalPosition.x

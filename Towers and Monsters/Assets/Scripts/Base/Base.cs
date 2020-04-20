@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Base : MonoBehaviour
 {
-    #region PrivateVariables
+    #region SerializableVariables
 
     [SerializeField] private int health = 1000;
 
@@ -28,13 +28,13 @@ public class Base : MonoBehaviour
 
     public void LoseHealth(int damage)
     {
-        if (health > 0)
+        if (health <= 0)
         {
-            health -= damage;
+            SceneManager.LoadScene("Menu");
         }
         else
         {
-            SceneManager.LoadScene("Menu");
+            health -= damage;
         }
     }
 

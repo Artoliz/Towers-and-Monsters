@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemiesSpawns : MonoBehaviour
@@ -29,7 +28,7 @@ public class EnemiesSpawns : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        
+
         _enemies = new List<GameObject>();
 
         var i = 0;
@@ -42,17 +41,14 @@ public class EnemiesSpawns : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        InvokeRepeating(nameof(SpawnEnemy), 2.0f, 2.0f);
+    }
+
     private void Update()
     {
-        if (!WavesManager.gameIsBetweenWaves && _enemiesToSpawn > 0)
-        {
-            if (_enemiesToSpawn > 0)
-            {
-                _enemiesToSpawn--;
-                StartCoroutine(SpawnEnemy());
-            }
-        }
-        else if (_enemiesAlive == 0)
+        if (_enemiesAlive == 0)
         {
             //Go to the next wave
             WavesManager.SetGameStatus(true);
@@ -63,15 +59,18 @@ public class EnemiesSpawns : MonoBehaviour
 
     #region PrivateVariables
 
-    private IEnumerator SpawnEnemy()
+    private void SpawnEnemy()
     {
-        yield return new WaitForSeconds(2.0f);
+        if (!PauseMenu.gameIsPaused && !WavesManager.gameIsBetweenWaves && _enemiesToSpawn > 0)
+        {
+            _enemiesToSpawn--;
 
-        var enemy = Instantiate(enemyPrefab);
-        _enemies.Add(enemy);
+            var enemy = Instantiate(enemyPrefab);
+            _enemies.Add(enemy);
 
-        var enemyController = enemy.GetComponent<EnemyController>();
-        enemyController.SetDestination(playerBase);
+            var enemyController = enemy.GetComponent<EnemyController>();
+            enemyController.SetDestination(playerBase);
+        }
     }
 
     #endregion
