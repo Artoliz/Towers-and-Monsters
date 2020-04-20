@@ -27,7 +27,10 @@ public class WavesManager : MonoBehaviour
 
     public static bool gameIsBetweenWaves;
 
-    public Text timeBetweenWavesText;
+    public Text timeBetweenNextWaveText;
+    public Text waveNumberText;
+
+    public Button skipBetweenWavesButton;
 
     public EnemiesSpawns enemiesSpawns;
 
@@ -37,11 +40,18 @@ public class WavesManager : MonoBehaviour
 
     private void Awake()
     {
+        skipBetweenWavesButton.gameObject.SetActive(false);
+        timeBetweenNextWaveText.gameObject.SetActive(false);
+        waveNumberText.gameObject.SetActive(false);
+
         SetGameStatus(true);
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+            SkipBetweenWaves();
+
         if (!PauseMenu.gameIsPaused && _timerBetweenWavesIsRunning)
         {
             if (_timeBetweenWaves > 0)
@@ -51,11 +61,13 @@ public class WavesManager : MonoBehaviour
             }
             else
             {
+                EnableUiDuringWave();
                 RunWave();
             }
         }
         else if (!PauseMenu.gameIsPaused && gameIsBetweenWaves)
         {
+            EnableUiBetweenWaves();
             SetNextWave();
         }
     }
@@ -64,14 +76,14 @@ public class WavesManager : MonoBehaviour
 
     #region PrivateMethods
 
-    void DisplayTimeBetweenWaves(float timeToDisplay)
+    private void DisplayTimeBetweenWaves(float timeToDisplay)
     {
         timeToDisplay += 1;
         
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);  
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
-        timeBetweenWavesText.text = $"Time before wave {waveNumber} : {minutes:00}:{seconds:00}";
+        timeBetweenNextWaveText.text = $"Time before next wave : {minutes:00}:{seconds:00}";
     }
 
     private void SetTimeBetweenWaves(bool timerBetweenIsRunning, float timeBetweenWaves)
@@ -80,6 +92,22 @@ public class WavesManager : MonoBehaviour
         _timeBetweenWaves = timeBetweenWaves;
     }
 
+    private void EnableUiBetweenWaves()
+    {
+        skipBetweenWavesButton.gameObject.SetActive(true);
+        timeBetweenNextWaveText.gameObject.SetActive(true);
+        waveNumberText.gameObject.SetActive(false);
+    }
+
+    private void EnableUiDuringWave()
+    {
+        skipBetweenWavesButton.gameObject.SetActive(false);
+        waveNumberText.gameObject.SetActive(true);
+        timeBetweenNextWaveText.gameObject.SetActive(false);
+        
+        waveNumberText.text = $"Wave : {waveNumber}";
+    }
+    
     private void RunWave()
     {
         if (_firstWave)
@@ -112,6 +140,15 @@ public class WavesManager : MonoBehaviour
     public static void SetGameStatus(bool isBetweenWaves)
     {
         gameIsBetweenWaves = isBetweenWaves;
+    }
+
+    public void SkipBetweenWaves()
+    {
+        if (!PauseMenu.gameIsPaused && _timerBetweenWavesIsRunning)
+        {
+            _timeBetweenWaves = -1;
+            DisplayTimeBetweenWaves(_timeBetweenWaves);
+        }
     }
 
     #endregion

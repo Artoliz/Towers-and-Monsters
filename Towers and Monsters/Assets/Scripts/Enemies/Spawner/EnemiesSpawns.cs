@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemiesSpawns : MonoBehaviour
 {
     #region PrivateVariables
-
+    
     private int _enemiesToSpawn;
     private int _enemiesAlive;
 
@@ -63,16 +63,42 @@ public class EnemiesSpawns : MonoBehaviour
     {
         if (!PauseMenu.gameIsPaused && !WavesManager.gameIsBetweenWaves && _enemiesToSpawn > 0)
         {
-            _enemiesToSpawn--;
-
-            var enemy = Instantiate(enemyPrefab);
+            var enemy = Instantiate(enemyPrefab, PositionOfSpawn(), Quaternion.identity);
             _enemies.Add(enemy);
 
             var enemyController = enemy.GetComponent<EnemyController>();
             enemyController.SetDestination(playerBase);
+
+            //Decrease number of enemies to spawn
+            _enemiesToSpawn--;
         }
     }
 
+    private Vector3 PositionOfSpawn()
+    {
+        var spawn = _spawns[Random.Range(0, _spawns.Length)];
+        var position = spawn.transform.position;
+
+        if (spawn.transform.position.x < 0)
+        {
+            position.x = 0;
+        }
+        if (spawn.transform.position.x > 31)
+        {
+            position.x = 31;
+        }
+        if (spawn.transform.position.z < 0)
+        {
+            position.z = 0;
+        }
+        if (spawn.transform.position.z > 31)
+        {
+            position.z = 31;
+        }
+
+        return position;
+    }
+    
     #endregion
 
     #region PublicMethods

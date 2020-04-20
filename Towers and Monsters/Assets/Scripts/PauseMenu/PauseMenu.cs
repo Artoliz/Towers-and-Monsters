@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class PauseMenu : MonoBehaviour
 
     public static bool gameIsPaused;
 
+    public Button pauseButton;
+    
     public GameObject pauseMenuUi;
 
     #endregion
@@ -16,6 +19,7 @@ public class PauseMenu : MonoBehaviour
     private void Awake()
     {
         pauseMenuUi.SetActive(false);
+        pauseButton.gameObject.SetActive(true);
     }
 
     private void Update()
@@ -35,14 +39,18 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        pauseButton.gameObject.SetActive(false);
         pauseMenuUi.SetActive(true);
+
         Time.timeScale = 0;
         gameIsPaused = true;
     }
 
     public void ResumeGame()
     {
+        pauseButton.gameObject.SetActive(true);
         pauseMenuUi.SetActive(false);
+
         Time.timeScale = 1;
         gameIsPaused = false;
     }
