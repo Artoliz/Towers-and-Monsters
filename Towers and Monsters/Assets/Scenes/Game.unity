@@ -229,6 +229,12 @@ MonoBehaviour:
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &345179490 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7433581315189947227, guid: e3cff184a71abe742a9ae8d89ff214f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 148002191}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &626605188 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1522936577711989746, guid: 4956c2ddb40a462408a2b6c0b112cef1,
@@ -813,6 +819,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: NavMesh
       objectReference: {fileID: 0}
+    - target: {fileID: 2695001006181012501, guid: a995947593d8e9e468c629c64cdfea20,
+        type: 3}
+      propertyPath: m_AgentTypeID
+      value: -1372625422
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695001006181012501, guid: a995947593d8e9e468c629c64cdfea20,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 3530a435a2c963c458952e8e6b20612a,
+        type: 2}
     - target: {fileID: 6014466692570039583, guid: a995947593d8e9e468c629c64cdfea20,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -931,6 +948,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013651086503724498, guid: c71620a87f665b3469f3f6a68adf8e02,
+        type: 3}
+      propertyPath: playerBase
+      value: 
+      objectReference: {fileID: 345179490}
+    - target: {fileID: 7013651086503724498, guid: c71620a87f665b3469f3f6a68adf8e02,
+        type: 3}
+      propertyPath: agentCheckPath
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7013651086503724499, guid: c71620a87f665b3469f3f6a68adf8e02,
         type: 3}

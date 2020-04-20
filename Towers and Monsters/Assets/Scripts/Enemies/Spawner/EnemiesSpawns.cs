@@ -6,9 +6,9 @@ public class EnemiesSpawns : MonoBehaviour
     #region PrivateVariables
 
     private int _enemiesNumber;
-    
+
     private readonly List<Transform> _spawns = new List<Transform>();
-    
+
     private readonly List<GameObject> _enemiesToSpawn = new List<GameObject>();
     private readonly List<GameObject> _enemies = new List<GameObject>();
 
@@ -39,6 +39,7 @@ public class EnemiesSpawns : MonoBehaviour
         foreach (Transform child in transform)
         {
             _spawns.Add(child);
+            child.position = AdjustPositionOfSpawns(child.position);
         }
     }
 
@@ -60,6 +61,28 @@ public class EnemiesSpawns : MonoBehaviour
 
     #region PrivateVariables
 
+    private static Vector3 AdjustPositionOfSpawns(Vector3 spawn)
+    {
+        if (spawn.x < 0)
+        {
+            spawn.x = 0;
+        }
+        if (spawn.x > 31)
+        {
+            spawn.x = 31;
+        }
+        if (spawn.z < 0)
+        {
+            spawn.z = 0;
+        }
+        if (spawn.z > 31)
+        {
+            spawn.z = 31;
+        }
+
+        return spawn;
+    }
+
     private void SpawnEnemy()
     {
         if (!PauseMenu.gameIsPaused && !WavesManager.gameIsBetweenWaves && _enemiesToSpawn.Count > 0)
@@ -76,58 +99,43 @@ public class EnemiesSpawns : MonoBehaviour
 
     private Vector3 PositionOfSpawn()
     {
-        var spawn = _spawns[Random.Range(0, _spawns.Count)];
-        var position = spawn.transform.position;
-
-        if (spawn.transform.position.x < 0)
-        {
-            position.x = 0;
-        }
-        if (spawn.transform.position.x > 31)
-        {
-            position.x = 31;
-        }
-        if (spawn.transform.position.z < 0)
-        {
-            position.z = 0;
-        }
-        if (spawn.transform.position.z > 31)
-        {
-            position.z = 31;
-        }
-
-        return position;
+        return _spawns[Random.Range(0, _spawns.Count)].position;
     }
 
     private List<GameObject> GetEnemiesPossibleInWave(int waveNumber)
     {
         var possibleEnemies = new List<GameObject>();
-        
+
         foreach (var enemyPrefab in enemiesPrefab)
         {
             var enemy = enemyPrefab.GetComponent<Enemy>();
-            
+
             if (enemy.GetEnemyWaveNumberApparition() <= waveNumber)
                 possibleEnemies.Add(enemyPrefab);
         }
 
         return possibleEnemies;
     }
-    
+
     #endregion
 
     #region PublicMethods
 
+    public List<Transform> GetEnemiesSpawns()
+    {
+        return _spawns;
+    }
+
     public void LaunchSpawns(int waveWeight, int waveNumber)
     {
         var possibleEnemies = GetEnemiesPossibleInWave(waveNumber);
-        
+
         while (waveWeight > 0)
         {
             var enemyPrefab = possibleEnemies[Random.Range(0, possibleEnemies.Count)];
             var enemy = enemyPrefab.GetComponent<Enemy>();
             var enemyWeight = enemy.GetEnemyWeight();
-            
+
             if (enemyWeight > waveWeight)
             {
                 possibleEnemies.Remove(enemyPrefab);

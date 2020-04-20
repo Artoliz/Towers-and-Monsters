@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Builder : MonoBehaviour
 {
@@ -8,6 +11,12 @@ public class Builder : MonoBehaviour
     private Camera _camera;
     private bool _isCameraNotNull;
 
+    private Vector3 _playerBasePosition;
+
+    private NavMeshPath _path;
+    
+    private List<Transform> _spawns = new List<Transform>();
+    
     private Grid _gridObject;
 
     private Buildings _buildingEnum = Buildings.None;
@@ -16,6 +25,8 @@ public class Builder : MonoBehaviour
 
     #region PublicVariables
 
+    public GameObject playerBase;
+    
     public GameObject[] buildingsPrefab;
     
     public Dictionary<Buildings, GameObject> buildings;
@@ -29,9 +40,18 @@ public class Builder : MonoBehaviour
         _camera = Camera.main;
         _isCameraNotNull = _camera != null;
 
+        _path = new NavMeshPath();
+
+        _playerBasePosition = AdjustPositionOfPlayerBase(playerBase.transform.position);
+        
         _gridObject = FindObjectOfType<Grid>();
 
         InitBuildings();
+    }
+
+    private void Start()
+    {
+        _spawns = EnemiesSpawns.instance.GetEnemiesSpawns();
     }
 
     private void Update()
@@ -58,6 +78,28 @@ public class Builder : MonoBehaviour
     #endregion
 
     #region PrivateFunctions
+
+    private static Vector3 AdjustPositionOfPlayerBase(Vector3 spawn)
+    {
+        if (spawn.x < 0)
+        {
+            spawn.x = 0;
+        }
+        if (spawn.x > 31)
+        {
+            spawn.x = 31;
+        }
+        if (spawn.z < 0)
+        {
+            spawn.z = 0;
+        }
+        if (spawn.z > 31)
+        {
+            spawn.z = 31;
+        }
+
+        return spawn;
+    }
 
     private void InitBuildings()
     {
@@ -100,9 +142,34 @@ public class Builder : MonoBehaviour
                 1,
                 zCount * gridSpacingOffset);
 
-            Instantiate(buildings[_buildingEnum]).transform.position = result;
+            var tmpBuilding = Instantiate(buildings[_buildingEnum], result, Quaternion.identity);
+            tmpBuilding.GetComponent<MeshRenderer>().enabled = false;
+
+            StartCoroutine(CheckPathBeforeBuild(tmpBuilding));
         }
     }
 
+    private IEnumerator CheckPathBeforeBuild(GameObject tmpBuilding)
+    {
+        yield return new WaitForSeconds(0);
+
+        foreach (var spawn in _spawns)
+        {
+            NavMesh.CalculatePath(spawn.position, _playerBasePosition, NavMesh.AllAreas, _path);
+             
+            if (_path.status == NavMeshPathStatus.PathInvalid || _path.status == NavMeshPathStatus.PathPartial)
+            {
+                //When you can't place a tower, do something
+                Debug.Log("You can't build a building here.");
+                
+                _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
+                Destroy(tmpBuilding);
+                break;
+            }
+        }
+
+        tmpBuilding.GetComponent<MeshRenderer>().enabled = true;
+    }
+    
     #endregion
 }

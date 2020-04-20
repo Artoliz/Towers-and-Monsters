@@ -59,6 +59,14 @@ public class Grid : MonoBehaviour
     }
     
     #endregion
+
+    public void RemoveElementInGrid(Vector3 clickPoint)
+    {
+        var xCount = Mathf.RoundToInt(clickPoint.x / gridSpacingOffset);
+        var zCount = Mathf.RoundToInt(clickPoint.z / gridSpacingOffset);
+
+        _grid[xCount, zCount] = null;
+    }
     
     public bool AppendElementInGrid(Vector3 clickPoint, GameObject obj)
     {

@@ -128,5 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb12be6211b0d9e4bb7e020f117679c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyWeight: 1
+  waveNumberApparition: 1
   damageToBase: 100
   destinationReachedPadding: 1.5
