@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0525e2494c9eed94e8fbe53647935f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBase: {fileID: 0}
   buildingsPrefab:
   - {fileID: 4171413074625168150, guid: fbb836b8f04fba540a64f69db2442d37, type: 3}
   - {fileID: 1322669272433006302, guid: 6d7e4d4879a7c3d458f567ae67da8ad9, type: 3}
