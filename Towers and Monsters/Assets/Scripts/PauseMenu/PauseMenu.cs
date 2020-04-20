@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -8,7 +7,7 @@ public class PauseMenu : MonoBehaviour
 
     public static bool gameIsPaused;
 
-    public Button pauseButton;
+    public GameObject gameUi;
     
     public GameObject pauseMenuUi;
 
@@ -19,7 +18,7 @@ public class PauseMenu : MonoBehaviour
     private void Awake()
     {
         pauseMenuUi.SetActive(false);
-        pauseButton.gameObject.SetActive(true);
+        gameUi.SetActive(true);
     }
 
     private void Update()
@@ -39,7 +38,7 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        pauseButton.gameObject.SetActive(false);
+        gameUi.SetActive(false);
         pauseMenuUi.SetActive(true);
 
         Time.timeScale = 0;
@@ -48,7 +47,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
-        pauseButton.gameObject.SetActive(true);
+        gameUi.SetActive(true);
         pauseMenuUi.SetActive(false);
 
         Time.timeScale = 1;
