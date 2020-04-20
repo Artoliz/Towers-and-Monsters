@@ -5,8 +5,12 @@ public class EnemyController : MonoBehaviour
 {
     #region PrivateVariables
 
-    private GameObject _destination;
+    [SerializeField] private int damageToBase;
     
+    [SerializeField] private float destinationReachedPadding;
+
+    private GameObject _base;
+
     private NavMeshAgent _agent;
 
     #endregion
@@ -24,25 +28,41 @@ public class EnemyController : MonoBehaviour
         {
             _agent.isStopped = true;
         }
+        else if (HasReachedBase())
+        {
+            Base.instance.LoseHealth(damageToBase);
+            DestroyEnemy();
+        }
         else
         {
             _agent.isStopped = false;
-            _agent.SetDestination(_destination.transform.position);
+            _agent.SetDestination(_base.transform.position);
         }
+    }
+
+    #endregion
+
+    #region PrivateMethods
+
+    private bool HasReachedBase()
+    {
+        var distanceToTarget = Vector3.Distance(transform.position, _base.transform.position);
+        
+        return distanceToTarget < destinationReachedPadding;
     }
 
     #endregion
 
     #region PublicMethods
 
-    public NavMeshAgent GetAgent()
+    public void DestroyEnemy()
     {
-        return _agent;
+        EnemiesSpawns.instance.RemoveEnemy(gameObject);
     }
-    
+
     public void SetDestination(GameObject destination)
     {
-        _destination = destination;
+        _base = destination;
     }
 
     #endregion

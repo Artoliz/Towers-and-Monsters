@@ -1,17 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class EnemiesSpawns : MonoBehaviour
 {
     #region PrivateVariables
 
-    private int _enemiesNumber;
+    private int _enemiesToSpawn;
+    private int _enemiesAlive;
 
     private Transform[] _spawns;
 
-    private List<EnemyController> _enemies;
+    private List<GameObject> _enemies;
 
     #endregion
 
@@ -20,14 +20,18 @@ public class EnemiesSpawns : MonoBehaviour
     public GameObject enemyPrefab;
     public GameObject playerBase;
 
+    public static EnemiesSpawns instance;
+
     #endregion
 
     #region MonoBehavior
 
     private void Awake()
     {
-        _enemies = new List<EnemyController>();
+        instance = this;
         
+        _enemies = new List<GameObject>();
+
         var i = 0;
         _spawns = new Transform[transform.childCount];
 
@@ -40,20 +44,17 @@ public class EnemiesSpawns : MonoBehaviour
 
     private void Update()
     {
-        if (!WavesManager.gameIsBetweenWaves && _enemiesNumber > 0)
+        if (!WavesManager.gameIsBetweenWaves && _enemiesToSpawn > 0)
         {
-            /*foreach (var spawn in _spawns)
+            if (_enemiesToSpawn > 0)
             {
-                if (_enemiesNumber > 0)
-                {
-                    _enemiesNumber--;
-                    StartCoroutine(SpawnEnemy());
-                }
-            }*/
+                _enemiesToSpawn--;
+                StartCoroutine(SpawnEnemy());
+            }
         }
-        else if (EnemiesAllArrived())
+        else if (_enemiesAlive == 0)
         {
-            //Wave is finished, no more enemies
+            //Go to the next wave
             WavesManager.SetGameStatus(true);
         }
     }
@@ -65,31 +66,29 @@ public class EnemiesSpawns : MonoBehaviour
     private IEnumerator SpawnEnemy()
     {
         yield return new WaitForSeconds(2.0f);
-        
-        var obj = Instantiate(enemyPrefab);
-        
-        var enemy = obj.GetComponent<EnemyController>();
-        enemy.SetDestination(playerBase);
+
+        var enemy = Instantiate(enemyPrefab);
         _enemies.Add(enemy);
+
+        var enemyController = enemy.GetComponent<EnemyController>();
+        enemyController.SetDestination(playerBase);
     }
 
-    private bool EnemiesAllArrived()
-    {
-        foreach (var enemy in _enemies)
-        {
-            //Faire le reached destination
-        }
-        
-        return false;
-    }
-    
     #endregion
-    
+
     #region PublicMethods
 
     public void LaunchSpawns(int waveWeight)
     {
-        _enemiesNumber = waveWeight;
+        _enemiesToSpawn = waveWeight;
+        _enemiesAlive = _enemiesToSpawn;
+    }
+
+    public void RemoveEnemy(GameObject enemy)
+    {
+        _enemiesAlive--;
+        _enemies.Remove(enemy);
+        Destroy(enemy);
     }
 
     #endregion
