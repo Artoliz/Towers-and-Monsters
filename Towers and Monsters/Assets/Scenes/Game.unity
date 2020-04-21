@@ -778,6 +778,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: NavMesh
       objectReference: {fileID: 0}
+    - target: {fileID: 2695001006181012501, guid: a995947593d8e9e468c629c64cdfea20,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: fd3ff827433d7dd4687ed110d8e384f2,
+        type: 2}
     - target: {fileID: 6014466692570039583, guid: a995947593d8e9e468c629c64cdfea20,
         type: 3}
       propertyPath: m_LocalPosition.x
