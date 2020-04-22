@@ -12633,31 +12633,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1002669835517727016, guid: a651768eef45c6e44934af0de1bff2b8,
-        type: 3}
-      propertyPath: m_Carve
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059220815661862662, guid: a651768eef45c6e44934af0de1bff2b8,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1059220815661862662, guid: a651768eef45c6e44934af0de1bff2b8,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 3072150397505799666, guid: a651768eef45c6e44934af0de1bff2b8,
-        type: 3}
-      propertyPath: _test
-      value: 
-      objectReference: {fileID: 101894646}
-    - target: {fileID: 7451976426680336780, guid: a651768eef45c6e44934af0de1bff2b8,
-        type: 3}
-      propertyPath: m_Carve
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a651768eef45c6e44934af0de1bff2b8, type: 3}
 --- !u!4 &392645353 stripped
@@ -41508,6 +41483,21 @@ PrefabInstance:
       propertyPath: gridSpacingOffset
       value: 1.82
       objectReference: {fileID: 0}
+    - target: {fileID: 1333622152621270352, guid: 22105254bcb37a540a11895f92846dd6,
+        type: 3}
+      propertyPath: playerBase
+      value: 
+      objectReference: {fileID: 1780245108}
+    - target: {fileID: 1333622152621270352, guid: 22105254bcb37a540a11895f92846dd6,
+        type: 3}
+      propertyPath: spawns
+      value: 
+      objectReference: {fileID: 861931644}
+    - target: {fileID: 1333622152621270352, guid: 22105254bcb37a540a11895f92846dd6,
+        type: 3}
+      propertyPath: obstacles
+      value: 
+      objectReference: {fileID: 101894646}
     - target: {fileID: 1333622152621270353, guid: 22105254bcb37a540a11895f92846dd6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -60688,6 +60678,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4788002803363628, guid: 56b862b4aff92e245a05c662bf25772f,
     type: 3}
   m_PrefabInstance: {fileID: 1778978435}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1780245108 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1114270767557536, guid: a651768eef45c6e44934af0de1bff2b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 392645352}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1782769440
 PrefabInstance:
