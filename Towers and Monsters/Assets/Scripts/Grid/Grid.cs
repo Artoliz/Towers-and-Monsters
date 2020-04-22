@@ -56,7 +56,7 @@ public class Grid : MonoBehaviour
 
         foreach (var child in obstacles.GetComponentsInChildren<NavMeshObstacle>())
         {
-            var childPos = child.gameObject.transform.position;
+            var childPos = child.gameObject.transform.Find("Pivot").position;
             
             pos.x = Mathf.RoundToInt(childPos.x / gridSpacingOffset);
             pos.y = Mathf.RoundToInt(childPos.z / gridSpacingOffset);
