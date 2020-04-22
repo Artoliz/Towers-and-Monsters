@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4550849058370580}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flags_joints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4696061078495368}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: locator2 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4402196552115834}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint4 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 4610771097509320}
   - component: {fileID: 33193555861107706}
   - component: {fileID: 23498451494368588}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tubes_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4860344032915010}
   - component: {fileID: 137293917817251990}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flag_mesh_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,9 +266,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4995668684119280}
   - component: {fileID: 95526464585047132}
-  m_Layer: 0
+  - component: {fileID: 208437478535779892}
+  m_Layer: 10
   m_Name: HM_Castle_1
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -316,6 +317,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!208 &208437478535779892
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114270767557536}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1121474286941022
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +342,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4036911827301562}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster4Handle 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +374,7 @@ GameObject:
   - component: {fileID: 4438660543465188}
   - component: {fileID: 33847295450340284}
   - component: {fileID: 23530236976803634}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gate_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +449,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4784471375234844}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint4 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,7 +479,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4887921428475466}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: curve1 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,7 +509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4213077535904904}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: locator3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -522,7 +539,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4807529254574548}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint3 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +570,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4041403830208058}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: locator1 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,7 +600,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4211375756935910}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flag_grp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,7 +640,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4263247070696296}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -654,7 +671,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4904948380294160}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -685,7 +702,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4852218505595902}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: curve1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +732,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4845222682995360}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint3 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -746,7 +763,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4228482372787000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ikHandle1 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,7 +793,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4308457837390672}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flag_grp1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -816,7 +833,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4249135430512434}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: locator3 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -848,7 +865,7 @@ GameObject:
   - component: {fileID: 4764668045880420}
   - component: {fileID: 33113834924668794}
   - component: {fileID: 23778546437926964}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gate_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -924,7 +941,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4167362634154610}
   - component: {fileID: 137487651736558726}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flag_mesh_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1007,7 +1024,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4749175318275624}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: locator3 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1037,7 +1054,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4076175876380844}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1068,7 +1085,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4406873826210152}
   - component: {fileID: 137598200433113974}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flag_mesh_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1151,7 +1168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4397727232104642}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster2Handle 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1182,7 +1199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4058523120012944}
   - component: {fileID: 137658057284557998}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flag_mesh_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1265,7 +1282,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4188780540514042}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster1Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1296,7 +1313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4148968144186536}
   - component: {fileID: 137129005216493498}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flag_mesh_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1379,7 +1396,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4682696810322232}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: locator3 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1409,7 +1426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4854566294751998}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ikHandle1 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1439,7 +1456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4359422703563468}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flag_grp4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1479,7 +1496,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4122689406545124}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint3 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1510,7 +1527,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4877077578606280}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: locator1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1540,7 +1557,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4136301944902258}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint2 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1571,7 +1588,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4131918750487400}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster4Handle 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1601,7 +1618,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4320610433403988}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster3Handle 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1631,7 +1648,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4775941998370296}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: locator3 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1661,7 +1678,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4561710631638358}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster1Handle 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1691,7 +1708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4861020808259046}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint1 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1722,7 +1739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4767461331194868}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint1 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1753,7 +1770,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4771683242000820}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster2Handle 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1783,7 +1800,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4156628618675948}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint2 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1814,7 +1831,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4040767365105122}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: locator2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1844,7 +1861,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4021694534643856}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: locator1 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1874,7 +1891,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4629580639565194}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint2 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1905,7 +1922,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4168006647352622}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster3Handle 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1935,7 +1952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4413339529688948}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flag_grp2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1975,7 +1992,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4513433695297404}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster3Handle 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2005,7 +2022,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4253018275448644}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: locator2 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2035,7 +2052,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4013197106703142}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint1 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2066,7 +2083,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4101821718042188}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster4Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2096,7 +2113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4798383929636424}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: locator2 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2126,7 +2143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4450366852810770}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint2 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2157,7 +2174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4279793121522510}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: curve1 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2187,7 +2204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4822078935064290}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: locator1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2217,7 +2234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4413766262195164}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster4Handle 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2247,7 +2264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4333496333142222}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ikHandle1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2277,7 +2294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4314007449372892}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster1Handle 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2307,7 +2324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4626554157282852}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint4 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2337,7 +2354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4143791829585496}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2368,7 +2385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4008701212534112}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster4Handle 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2398,7 +2415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4288949551613234}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: locator1 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2428,7 +2445,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4882032423240222}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: curve1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2458,7 +2475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4675739372798882}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster3Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2488,7 +2505,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4923186793843146}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flag_grp3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2528,7 +2545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4121258070737908}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ikHandle1 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2558,7 +2575,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4730085502644528}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster1Handle 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2588,7 +2605,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4072233799015144}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: curve1 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2618,7 +2635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4710241862011264}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: locator2 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2648,7 +2665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4271303703232646}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint3 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2679,7 +2696,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4166530045930524}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster2Handle 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2709,7 +2726,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4005777251620068}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint4 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2739,7 +2756,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4300686159016634}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster1Handle 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2771,7 +2788,7 @@ GameObject:
   - component: {fileID: 4902438429089356}
   - component: {fileID: 33892306480437578}
   - component: {fileID: 23542810817544132}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tube_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2846,7 +2863,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4779535899317698}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ikHandle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2876,7 +2893,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4492704708629176}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: joint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2907,7 +2924,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4251306634032972}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster2Handle 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2939,7 +2956,7 @@ GameObject:
   - component: {fileID: 4368169524291810}
   - component: {fileID: 33961339964175550}
   - component: {fileID: 23356032824291718}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Custle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3014,7 +3031,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4620243723367874}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster2Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3044,7 +3061,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4300086441095562}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cluster3Handle 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3074,7 +3091,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6260308862125427340}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}

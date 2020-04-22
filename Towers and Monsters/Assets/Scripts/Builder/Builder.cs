@@ -21,6 +21,8 @@ public class Builder : MonoBehaviour
 
     private Buildings _buildingEnum = Buildings.None;
 
+    private int layerBuildingMask = 1 << 12;
+
     #endregion
 
     #region PublicVariables
@@ -66,7 +68,7 @@ public class Builder : MonoBehaviour
                 {
                     var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
-                    if (Physics.Raycast(ray, out var click))
+                    if (Physics.Raycast(ray, out var click, 1000, layerBuildingMask))
                     {
                         PlaceBuildingOnGrid(click.point);
                     }
@@ -106,9 +108,10 @@ public class Builder : MonoBehaviour
         buildings = new Dictionary<Buildings, GameObject>
         {
             [Buildings.Wall] = buildingsPrefab[0],
-            [Buildings.TowerRed] = buildingsPrefab[1],
-            [Buildings.TowerBlue] = buildingsPrefab[2],
-            [Buildings.TowerWhite] = buildingsPrefab[3]
+            [Buildings.HeavyBullet] = buildingsPrefab[1],
+            [Buildings.LongRange] = buildingsPrefab[2],
+            [Buildings.EffectShot] = buildingsPrefab[3],
+            [Buildings.AOEShot] = buildingsPrefab[4]
         };
 
     }
@@ -119,13 +122,16 @@ public class Builder : MonoBehaviour
             _buildingEnum = _buildingEnum == Buildings.Wall ? Buildings.None : Buildings.Wall;
         
         if (Input.GetKeyDown(KeyCode.Alpha2))
-            _buildingEnum = _buildingEnum == Buildings.TowerRed ? Buildings.None : Buildings.TowerRed;
+            _buildingEnum = _buildingEnum == Buildings.HeavyBullet ? Buildings.None : Buildings.HeavyBullet;
         
         if (Input.GetKeyDown(KeyCode.Alpha3))
-            _buildingEnum = _buildingEnum == Buildings.TowerBlue ? Buildings.None : Buildings.TowerBlue;
+            _buildingEnum = _buildingEnum == Buildings.LongRange ? Buildings.None : Buildings.LongRange;
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
-            _buildingEnum = _buildingEnum == Buildings.TowerWhite ? Buildings.None : Buildings.TowerWhite;
+            _buildingEnum = _buildingEnum == Buildings.EffectShot ? Buildings.None : Buildings.EffectShot;
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+            _buildingEnum = _buildingEnum == Buildings.AOEShot ? Buildings.None : Buildings.AOEShot;
     }
 
     private void PlaceBuildingOnGrid(Vector3 clickPoint)
@@ -139,11 +145,13 @@ public class Builder : MonoBehaviour
 
             var result = new Vector3(
                 xCount * gridSpacingOffset,
-                1,
+                0,
                 zCount * gridSpacingOffset);
 
             var tmpBuilding = Instantiate(buildings[_buildingEnum], result, Quaternion.identity);
-            tmpBuilding.GetComponent<MeshRenderer>().enabled = false;
+
+            foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
+                mesh.enabled = false;
 
             StartCoroutine(CheckPathBeforeBuild(tmpBuilding));
         }
@@ -168,7 +176,8 @@ public class Builder : MonoBehaviour
             }
         }
 
-        tmpBuilding.GetComponent<MeshRenderer>().enabled = true;
+        foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
+            mesh.enabled = true;
     }
     
     #endregion

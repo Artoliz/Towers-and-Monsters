@@ -2,7 +2,8 @@
 {
     None,
     Wall,
-    TowerRed,
-    TowerBlue,
-    TowerWhite
+    HeavyBullet,
+    LongRange,
+    EffectShot,
+    AOEShot
 }
