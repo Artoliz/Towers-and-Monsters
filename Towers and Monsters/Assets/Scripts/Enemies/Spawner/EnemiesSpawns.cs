@@ -39,7 +39,6 @@ public class EnemiesSpawns : MonoBehaviour
         foreach (Transform child in transform)
         {
             _spawns.Add(child);
-            child.position = AdjustPositionOfSpawns(child.position);
         }
     }
 
@@ -60,28 +59,6 @@ public class EnemiesSpawns : MonoBehaviour
     #endregion
 
     #region PrivateVariables
-
-    private static Vector3 AdjustPositionOfSpawns(Vector3 spawn)
-    {
-        if (spawn.x < 0)
-        {
-            spawn.x = 0;
-        }
-        if (spawn.x > 31)
-        {
-            spawn.x = 31;
-        }
-        if (spawn.z < 0)
-        {
-            spawn.z = 0;
-        }
-        if (spawn.z > 31)
-        {
-            spawn.z = 31;
-        }
-
-        return spawn;
-    }
 
     private void SpawnEnemy()
     {

@@ -6,6 +6,19 @@
     <e p="C:\Users\akavi\Desktop\KMU_Projects\Game_Project_2\Towers-and-Monsters\Towers and Monsters" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Art By Kandles" t="Include">
+          <e p="Cute RPG UI Bundle" t="Include">
+            <e p="Cute RPG UI Kit" t="Include">
+              <e p="FOnts" t="Include">
+                <e p="Readme.txt" t="Include" />
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="UiDemoController.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Readme.txt" t="Include" />
+          </e>
+        </e>
         <e p="NavMeshComponents" t="Include">
           <e p="Editor" t="Include">
             <e p="NavMeshAssetManager.cs" t="Include" />
@@ -48,6 +61,26 @@
           </e>
           <e p="PauseMenu" t="Include">
             <e p="PauseMenu.cs" t="Include" />
+          </e>
+        </e>
+        <e p="TowerDefence_Vsquad" t="Include">
+          <e p="INFO" t="Include">
+            <e p="Info.txt" t="Include" />
+          </e>
+          <e p="Materials" t="Include">
+            <e p="Scene" t="Include">
+              <e p="sky.shader" t="Include" />
+            </e>
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="EnemyBullet.cs" t="Include" />
+            <e p="EnemyHp.cs" t="Include" />
+            <e p="EnemyVSquad.cs" t="Include" />
+            <e p="Tower.cs" t="Include" />
+            <e p="TowerBullet.cs" t="Include" />
+            <e p="TowerHP.cs" t="Include" />
+            <e p="TowerTrigger.cs" t="Include" />
+            <e p="WaveSpawn.cs" t="Include" />
           </e>
         </e>
       </e>
