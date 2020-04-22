@@ -1,8 +1,17 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Grid : MonoBehaviour
 {
+    #region PrivateVariables
+
+    private readonly List<Vector2Int> _blockedPositions = new List<Vector2Int>();
+    
+    private GameObject[,] _grid;
+
+    #endregion
+
     #region SerializableVariables
 
     [SerializeField] private int gridSizeX = 32;
@@ -10,13 +19,13 @@ public class Grid : MonoBehaviour
     
     [SerializeField] private float gridSpacingOffset = 1f;
 
-    [SerializeField] private List<Vector2Int> blockedPositions = new List<Vector2Int>();
-
     #endregion
 
-    #region PrivateVariables
+    #region PublicVariables
 
-    private GameObject[,] _grid;
+    public GameObject obstacles;
+    public GameObject playerBase;
+    public GameObject spawns;
 
     #endregion
     
@@ -26,6 +35,7 @@ public class Grid : MonoBehaviour
     {
         _grid = new GameObject[gridSizeX, gridSizeZ];
 
+        GetBlockedPositions();
         BlockPositions();
     }
 
@@ -33,13 +43,141 @@ public class Grid : MonoBehaviour
 
     #region PrivateFunctions
 
+    private void GetBlockedPositions()
+    {
+        GetBlockObstacles();
+        GetBlockSpawns();
+        GetBlockBase();
+    }
+
+    private void GetBlockObstacles()
+    {
+        var pos = new Vector2Int();
+
+        foreach (var child in obstacles.GetComponentsInChildren<NavMeshObstacle>())
+        {
+            var childPos = child.gameObject.transform.position;
+            
+            pos.x = Mathf.RoundToInt(childPos.x / gridSpacingOffset);
+            pos.y = Mathf.RoundToInt(childPos.z / gridSpacingOffset);
+            
+            _blockedPositions.Add(pos);
+        }
+    }
+
+    private void GetBlockSpawns()
+    {
+        var pos = new Vector2Int();
+
+        foreach (Transform spawn in spawns.transform)
+        {
+            var childPos = spawn.position;
+
+            pos.x = Mathf.RoundToInt(childPos.x / gridSpacingOffset);
+            pos.y = Mathf.RoundToInt(childPos.z / gridSpacingOffset);
+            _blockedPositions.Add(pos);
+
+            Vector2Int tmpPos;
+            if (pos.x + 1 < gridSizeX)
+            {
+                tmpPos = pos;
+                tmpPos.x += 1;
+                _blockedPositions.Add(tmpPos);
+            }
+            if (pos.x - 1 >= 0)
+            {
+                tmpPos = pos;
+                tmpPos.x -= 1;
+                _blockedPositions.Add(tmpPos);
+            }
+            if (pos.y + 1 < gridSizeZ)
+            {
+                tmpPos = pos;
+                tmpPos.y += 1;
+                _blockedPositions.Add(tmpPos);
+            }
+            if (pos.y - 1 >= 0)
+            {
+                tmpPos = pos;
+                tmpPos.y -= 1;
+                _blockedPositions.Add(tmpPos);
+            }
+        }
+    }
+
+    private void GetBlockBase()
+    {
+        var playerBasePos = playerBase.transform.position;
+        var pos = new Vector2Int
+        {
+            x = Mathf.RoundToInt(playerBasePos.x / gridSpacingOffset),
+            y = Mathf.RoundToInt(playerBasePos.z / gridSpacingOffset)
+        };
+
+        _blockedPositions.Add(pos);
+        
+        Vector2Int tmpPos;
+        if (pos.x + 1 < gridSizeX)
+        {
+            tmpPos = pos;
+            tmpPos.x += 1;
+            _blockedPositions.Add(tmpPos);
+        }
+        if (pos.x - 1 >= 0)
+        {
+            tmpPos = pos;
+            tmpPos.x -= 1;
+            _blockedPositions.Add(tmpPos);
+        }
+        if (pos.y + 1 < gridSizeZ)
+        {
+            tmpPos = pos;
+            tmpPos.y += 1;
+            _blockedPositions.Add(tmpPos);
+        }
+        if (pos.y - 1 >= 0)
+        {
+            tmpPos = pos;
+            tmpPos.y -= 1;
+            _blockedPositions.Add(tmpPos);
+        }
+        if (pos.x + 1 < gridSizeX && pos.y + 1 < gridSizeZ)
+        {
+            tmpPos = pos;
+            tmpPos.x += 1;
+            tmpPos.y += 1;
+            _blockedPositions.Add(tmpPos);
+        }
+        if (pos.x - 1 >= 0 && pos.y - 1 >= 0)
+        {
+            tmpPos = pos;
+            tmpPos.x -= 1;
+            tmpPos.y -= 1;
+            _blockedPositions.Add(tmpPos);
+        }
+        if (pos.x + 1 < gridSizeX && pos.y - 1 >= 0)
+        {
+            tmpPos = pos;
+            tmpPos.x += 1;
+            tmpPos.y -= 1;
+            _blockedPositions.Add(tmpPos);
+        }
+        if (pos.x - 1 >= 0 && pos.y + 1 < gridSizeZ)
+        {
+            tmpPos = pos;
+            tmpPos.x -= 1;
+            tmpPos.y += 1;
+            _blockedPositions.Add(tmpPos);
+        }
+    }
+    
     private void BlockPositions()
     {
         for (var x = 0; x < gridSizeX; x++)
         {
             for (var z = 0; z < gridSizeZ; z++)
             {
-                if (blockedPositions.Contains(new Vector2Int(x, z)))
+                if (_blockedPositions.Contains(new Vector2Int(x, z)))
                 {
                     _grid[x, z] = gameObject;
                 }
