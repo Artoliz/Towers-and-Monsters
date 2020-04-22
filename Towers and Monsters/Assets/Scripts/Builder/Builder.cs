@@ -163,7 +163,7 @@ public class Builder : MonoBehaviour
         foreach (var spawn in _spawns)
         {
             NavMesh.CalculatePath(spawn.position, _playerBasePosition, NavMesh.AllAreas, _path);
-             
+
             if (_path.status == NavMeshPathStatus.PathInvalid || _path.status == NavMeshPathStatus.PathPartial)
             {
                 //When you can't place a tower, do something
@@ -177,6 +177,12 @@ public class Builder : MonoBehaviour
 
         foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
             mesh.enabled = true;
+    }
+
+    private void DrawPathDebug()
+    {
+        for (int i = 0; i < _path.corners.Length - 1; i++)
+            Debug.DrawLine(_path.corners[i], _path.corners[i + 1], Color.red);
     }
     
     #endregion
