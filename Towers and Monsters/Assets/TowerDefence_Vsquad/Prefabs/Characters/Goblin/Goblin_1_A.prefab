@@ -677,7 +677,7 @@ Animator:
   m_GameObject: {fileID: 1642830748673524}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9ff0dd098e27dbd43bf0ef8859f73593, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 41b237aee868de1458848ecedd5a7811, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -732,7 +732,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1642830748673524}
   m_Enabled: 1
   m_AgentTypeID: -1372625422
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -760,7 +760,7 @@ MonoBehaviour:
   enemyWeight: 1
   waveNumberApparition: 1
   damageToBase: 100
-  destinationReachedPadding: 1.5
+  destinationReachedPadding: 0.5
 --- !u!1 &1751326796990134
 GameObject:
   m_ObjectHideFlags: 0

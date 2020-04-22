@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - Enemy
   - Wall
+  - Castle
+  - enemyBug
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - Wall
   - Ground
   - Obstacle
-  - 
+  - Castle
   - 
   - 
   - 
