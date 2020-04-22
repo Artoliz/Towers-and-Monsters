@@ -10,8 +10,6 @@ public class Builder : MonoBehaviour
     private Camera _camera;
     private bool _isCameraNotNull;
 
-    private Vector3 _playerBasePosition;
-
     private NavMeshPath _path;
     
     private List<Transform> _spawns = new List<Transform>();
@@ -43,8 +41,6 @@ public class Builder : MonoBehaviour
 
         _path = new NavMeshPath();
 
-        _playerBasePosition = AdjustPositionOfPlayerBase(playerBase.transform.position);
-        
         _gridObject = FindObjectOfType<Grid>();
 
         InitBuildings();
@@ -79,28 +75,6 @@ public class Builder : MonoBehaviour
     #endregion
 
     #region PrivateFunctions
-
-    private static Vector3 AdjustPositionOfPlayerBase(Vector3 spawn)
-    {
-        if (spawn.x < 0)
-        {
-            spawn.x = 0;
-        }
-        if (spawn.x > 31)
-        {
-            spawn.x = 31;
-        }
-        if (spawn.z < 0)
-        {
-            spawn.z = 0;
-        }
-        if (spawn.z > 31)
-        {
-            spawn.z = 31;
-        }
-
-        return spawn;
-    }
 
     private void InitBuildings()
     {
@@ -162,7 +136,7 @@ public class Builder : MonoBehaviour
 
         foreach (var spawn in _spawns)
         {
-            NavMesh.CalculatePath(spawn.position, _playerBasePosition, NavMesh.AllAreas, _path);
+            NavMesh.CalculatePath(spawn.position, playerBase.transform.position, NavMesh.AllAreas, _path);
 
             if (_path.status == NavMeshPathStatus.PathInvalid || _path.status == NavMeshPathStatus.PathPartial)
             {
