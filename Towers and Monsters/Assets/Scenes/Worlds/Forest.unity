@@ -12589,6 +12589,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Base
       objectReference: {fileID: 0}
+    - target: {fileID: 1114270767557536, guid: a651768eef45c6e44934af0de1bff2b8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4995668684119280, guid: a651768eef45c6e44934af0de1bff2b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.61
@@ -28969,7 +28973,7 @@ Transform:
   - {fileID: 1901185528}
   - {fileID: 1478731083}
   - {fileID: 2113073306}
-  - {fileID: 2056454351}
+  - {fileID: 4788002644832226}
   m_Father: {fileID: 97638112}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -70387,12 +70391,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56b862b4aff92e245a05c662bf25772f, type: 3}
---- !u!4 &2056454351 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4788002803363628, guid: 56b862b4aff92e245a05c662bf25772f,
-    type: 3}
-  m_PrefabInstance: {fileID: 2056454350}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2060286940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73152,3 +73150,9 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.91200006, y: 0.91200006, z: -0.91200006}
   m_TimeToStationary: 0.5
+--- !u!4 &4788002644832226 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4788002803363628, guid: 56b862b4aff92e245a05c662bf25772f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2056454350}
+  m_PrefabAsset: {fileID: 0}
