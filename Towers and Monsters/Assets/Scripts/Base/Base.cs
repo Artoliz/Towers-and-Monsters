@@ -8,9 +8,11 @@ public class Base : MonoBehaviour
 
     [SerializeField] private int health = 1000;
 
-    [SerializeField] private Transform _health;
+    [SerializeField] private Transform _health = null;
 
-    [SerializeField] private Transform _progress;
+    [SerializeField] private Transform _progress = null;
+
+    [SerializeField] private Transform _camera = null;
 
     #endregion
 
@@ -45,7 +47,7 @@ public class Base : MonoBehaviour
 
     private void Update()
     {
-        _health.LookAt(Camera.main.transform);
+        _health.LookAt(_camera);
     }
 
     #endregion
