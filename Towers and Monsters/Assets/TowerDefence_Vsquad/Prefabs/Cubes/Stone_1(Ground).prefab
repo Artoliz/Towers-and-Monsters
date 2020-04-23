@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4281532197718984}
   - component: {fileID: 33600947036461370}
   - component: {fileID: 23917889195461060}
+  - component: {fileID: 65327554723508324}
   m_Layer: 0
-  m_Name: Stone_1
-  m_TagString: Untagged
+  m_Name: Stone_1(Ground)
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 65
@@ -78,6 +79,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &65327554723508324
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499054874663590}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8240961, y: 1.8240957, z: 1.8241023}
+  m_Center: {x: 0.9120473, y: 0.91204786, z: -0.91205114}
 --- !u!1 &1376238864100663093
 GameObject:
   m_ObjectHideFlags: 0
