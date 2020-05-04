@@ -52,6 +52,9 @@
           <e p="Enemies" t="Include">
             <e p="Controller" t="Include">
               <e p="Enemy.cs" t="Include" />
+              <e p="EnemyBullet.cs" t="Include" />
+              <e p="EnemyHp.cs" t="Include" />
+              <e p="EnemyVSquad.cs" t="Include" />
             </e>
             <e p="Spawner" t="Include">
               <e p="EnemiesSpawns.cs" t="Include" />
@@ -69,6 +72,12 @@
           <e p="Player" t="Include">
             <e p="CameraController.cs" t="Include" />
           </e>
+          <e p="Towers" t="Include">
+            <e p="Tower.cs" t="Include" />
+            <e p="TowerBullet.cs" t="Include" />
+            <e p="TowerHP.cs" t="Include" />
+            <e p="TowerTrigger.cs" t="Include" />
+          </e>
         </e>
         <e p="TowerDefence_Vsquad" t="Include">
           <e p="INFO" t="Include">
@@ -78,16 +87,6 @@
             <e p="Scene" t="Include">
               <e p="sky.shader" t="Include" />
             </e>
-          </e>
-          <e p="Scripts" t="Include">
-            <e p="EnemyBullet.cs" t="Include" />
-            <e p="EnemyHp.cs" t="Include" />
-            <e p="EnemyVSquad.cs" t="Include" />
-            <e p="Tower.cs" t="Include" />
-            <e p="TowerBullet.cs" t="Include" />
-            <e p="TowerHP.cs" t="Include" />
-            <e p="TowerTrigger.cs" t="Include" />
-            <e p="WaveSpawn.cs" t="Include" />
           </e>
         </e>
       </e>
