@@ -65,6 +65,9 @@
           <e p="Grid" t="Include">
             <e p="Grid.cs" t="Include" />
           </e>
+          <e p="Menus" t="Include">
+            <e p="MainMenu.cs" t="Include" />
+          </e>
           <e p="PauseMenu" t="Include">
             <e p="PauseMenu.cs" t="Include" />
           </e>
