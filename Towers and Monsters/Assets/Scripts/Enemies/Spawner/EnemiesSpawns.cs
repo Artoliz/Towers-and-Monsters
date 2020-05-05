@@ -65,7 +65,8 @@ public class EnemiesSpawns : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        if (!PauseMenu.gameIsPaused && !WavesManager.gameIsBetweenWaves && _enemiesToSpawn.Count > 0)
+        if (!WavesManager.gameIsFinished && !PauseMenu.gameIsPaused && !WavesManager.gameIsBetweenWaves &&
+            _enemiesToSpawn.Count > 0)
         {
             var enemy = Instantiate(_enemiesToSpawn[0], PositionOfSpawn(), Quaternion.identity);
             _enemies.Add(enemy);

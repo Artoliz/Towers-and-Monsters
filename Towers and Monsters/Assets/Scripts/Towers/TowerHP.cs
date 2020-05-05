@@ -22,7 +22,7 @@ public class TowerHP : MonoBehaviour
     }
 
     #endregion
-    
+
     #region PublicMethods
 
     public void Dmg_2(int damage2)

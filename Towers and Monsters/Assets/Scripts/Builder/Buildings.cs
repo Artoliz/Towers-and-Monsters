@@ -5,5 +5,5 @@
     HeavyBullet,
     LongRange,
     EffectShot,
-    AOEShot
+    AoeShot
 }

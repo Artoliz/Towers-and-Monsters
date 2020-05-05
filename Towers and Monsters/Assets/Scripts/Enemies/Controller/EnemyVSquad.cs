@@ -7,13 +7,13 @@ public class EnemyVSquad : MonoBehaviour
     private int _curWayPointIndex;
 
     private Transform _target;
-    
+
     #endregion
-    
+
     #region PublicVariables
 
     public int creatureDamage = 10;
-    
+
     public float speed;
     public float previousSpeed;
 

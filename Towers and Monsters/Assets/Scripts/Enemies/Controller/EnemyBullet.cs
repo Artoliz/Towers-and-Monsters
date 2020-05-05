@@ -13,13 +13,13 @@ public class EnemyBullet : MonoBehaviour
     #region PublicVariables
 
     public float speed;
-    
+
     public Vector3 impactNormal;
-    
+
     public GameObject impactParticle;
 
     public Transform target;
-    
+
     public EnemyVSquad twr;
 
     #endregion

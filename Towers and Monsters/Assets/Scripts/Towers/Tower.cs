@@ -115,14 +115,14 @@ public class Tower : MonoBehaviour
             anim2.SetBool(Attack, true);
             anim2.SetBool(Pose, false);
         }
-        
+
         _isShoot = false;
     }
 
     private void StopCatcherAttack()
     {
         target = null;
-        
+
         anim2.SetBool(Attack, false);
         anim2.SetBool(Pose, true);
     }

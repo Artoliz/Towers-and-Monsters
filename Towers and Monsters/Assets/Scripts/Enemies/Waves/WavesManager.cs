@@ -7,9 +7,9 @@ public class WavesManager : MonoBehaviour
     #region PrivateVariables
 
     private int _waveWeight;
-    
+
     private float _timeBetweenWaves;
-    
+
     private bool _firstWave = true;
     private bool _timerBetweenWavesIsRunning;
 
@@ -19,7 +19,7 @@ public class WavesManager : MonoBehaviour
 
     [SerializeField] private int waveNumber = 1;
     [SerializeField] private int weightMultiplier = 10;
-    
+
     [SerializeField] private float setTimeBetweenWaves = 60.0f;
 
     #endregion
@@ -31,7 +31,7 @@ public class WavesManager : MonoBehaviour
 
     public GameObject gameUi;
     public GameObject gameOverUi;
-    
+
     public Text timeBetweenNextWaveText;
     public Text waveNumberText;
 
@@ -46,9 +46,9 @@ public class WavesManager : MonoBehaviour
     private void Awake()
     {
         gameIsFinished = false;
-        
+
         gameOverUi.SetActive(false);
-        
+
         skipBetweenWavesButton.gameObject.SetActive(false);
         timeBetweenNextWaveText.gameObject.SetActive(false);
         waveNumberText.gameObject.SetActive(false);
@@ -99,8 +99,8 @@ public class WavesManager : MonoBehaviour
     private void DisplayTimeBetweenWaves(float timeToDisplay)
     {
         timeToDisplay += 1;
-        
-        float minutes = Mathf.FloorToInt(timeToDisplay / 60);  
+
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         timeBetweenNextWaveText.text = $"Time before next wave : {minutes:00}:{seconds:00}";
@@ -124,10 +124,10 @@ public class WavesManager : MonoBehaviour
         skipBetweenWavesButton.gameObject.SetActive(false);
         timeBetweenNextWaveText.gameObject.SetActive(false);
         waveNumberText.gameObject.SetActive(true);
-        
+
         waveNumberText.text = $"Wave : {waveNumber}";
     }
-    
+
     private void RunWave()
     {
         if (_firstWave)
@@ -135,7 +135,7 @@ public class WavesManager : MonoBehaviour
 
         SetGameStatus(false);
         SetTimeBetweenWaves(false, 0);
-        
+
         enemiesSpawns.LaunchSpawns(_waveWeight, waveNumber);
     }
 
@@ -147,7 +147,7 @@ public class WavesManager : MonoBehaviour
     private void SetNextWave()
     {
         SetTimeBetweenWaves(true, setTimeBetweenWaves);
-        
+
         if (!_firstWave)
             waveNumber += 1;
         CalculateNewWaveWeight();

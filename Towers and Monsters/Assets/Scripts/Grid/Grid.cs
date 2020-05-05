@@ -7,7 +7,7 @@ public class Grid : MonoBehaviour
     #region PrivateVariables
 
     private readonly List<Vector2Int> _blockedPositions = new List<Vector2Int>();
-    
+
     private GameObject[,] _grid;
 
     #endregion
@@ -16,7 +16,7 @@ public class Grid : MonoBehaviour
 
     [SerializeField] private int gridSizeX = 32;
     [SerializeField] private int gridSizeZ = 32;
-    
+
     [SerializeField] private float gridSpacingOffset = 1f;
 
     #endregion
@@ -28,7 +28,7 @@ public class Grid : MonoBehaviour
     public GameObject spawns;
 
     #endregion
-    
+
     #region MonoBehavior
 
     private void Awake()
@@ -62,8 +62,9 @@ public class Grid : MonoBehaviour
                 Debug.LogWarning("Oops... This object has not 'Pivot' child: " + child.name);
                 continue;
             }
+
             var childPos = pivot.position;
-            
+
             pos.x = Mathf.RoundToInt(childPos.x / gridSpacingOffset);
             pos.y = Mathf.RoundToInt(childPos.z / gridSpacingOffset);
 
@@ -90,18 +91,21 @@ public class Grid : MonoBehaviour
                 tmpPos.x += 1;
                 _blockedPositions.Add(tmpPos);
             }
+
             if (pos.x - 1 >= 0)
             {
                 tmpPos = pos;
                 tmpPos.x -= 1;
                 _blockedPositions.Add(tmpPos);
             }
+
             if (pos.y + 1 < gridSizeZ)
             {
                 tmpPos = pos;
                 tmpPos.y += 1;
                 _blockedPositions.Add(tmpPos);
             }
+
             if (pos.y - 1 >= 0)
             {
                 tmpPos = pos;
@@ -121,7 +125,7 @@ public class Grid : MonoBehaviour
         };
 
         _blockedPositions.Add(pos);
-        
+
         Vector2Int tmpPos;
         if (pos.x + 1 < gridSizeX)
         {
@@ -129,24 +133,28 @@ public class Grid : MonoBehaviour
             tmpPos.x += 1;
             _blockedPositions.Add(tmpPos);
         }
+
         if (pos.x - 1 >= 0)
         {
             tmpPos = pos;
             tmpPos.x -= 1;
             _blockedPositions.Add(tmpPos);
         }
+
         if (pos.y + 1 < gridSizeZ)
         {
             tmpPos = pos;
             tmpPos.y += 1;
             _blockedPositions.Add(tmpPos);
         }
+
         if (pos.y - 1 >= 0)
         {
             tmpPos = pos;
             tmpPos.y -= 1;
             _blockedPositions.Add(tmpPos);
         }
+
         if (pos.x + 1 < gridSizeX && pos.y + 1 < gridSizeZ)
         {
             tmpPos = pos;
@@ -154,6 +162,7 @@ public class Grid : MonoBehaviour
             tmpPos.y += 1;
             _blockedPositions.Add(tmpPos);
         }
+
         if (pos.x - 1 >= 0 && pos.y - 1 >= 0)
         {
             tmpPos = pos;
@@ -161,6 +170,7 @@ public class Grid : MonoBehaviour
             tmpPos.y -= 1;
             _blockedPositions.Add(tmpPos);
         }
+
         if (pos.x + 1 < gridSizeX && pos.y - 1 >= 0)
         {
             tmpPos = pos;
@@ -168,6 +178,7 @@ public class Grid : MonoBehaviour
             tmpPos.y -= 1;
             _blockedPositions.Add(tmpPos);
         }
+
         if (pos.x - 1 >= 0 && pos.y + 1 < gridSizeZ)
         {
             tmpPos = pos;
@@ -176,7 +187,7 @@ public class Grid : MonoBehaviour
             _blockedPositions.Add(tmpPos);
         }
     }
-    
+
     private void BlockPositions()
     {
         for (var x = 0; x < gridSizeX; x++)
@@ -192,7 +203,7 @@ public class Grid : MonoBehaviour
     }
 
     #endregion
-    
+
     #region PublicFunctions
 
     #region Getter/Setter
@@ -201,7 +212,7 @@ public class Grid : MonoBehaviour
     {
         return gridSpacingOffset;
     }
-    
+
     #endregion
 
     public void RemoveElementInGrid(Vector3 clickPoint)
@@ -211,7 +222,7 @@ public class Grid : MonoBehaviour
 
         _grid[xCount, zCount] = null;
     }
-    
+
     public bool AppendElementInGrid(Vector3 clickPoint, GameObject obj)
     {
         var xCount = Mathf.RoundToInt(clickPoint.x / gridSpacingOffset);

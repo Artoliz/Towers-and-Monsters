@@ -49,7 +49,7 @@ public class Base : MonoBehaviour
     private void Update()
     {
         health.LookAt(mainCamera);
-        
+
         if (!WavesManager.gameIsFinished && baseHealth <= 0)
         {
             _isBaseDestroyed = true;
@@ -64,7 +64,7 @@ public class Base : MonoBehaviour
     {
         return _isBaseDestroyed;
     }
-    
+
     public void LoseHealth(int damage)
     {
         baseHealth -= damage;

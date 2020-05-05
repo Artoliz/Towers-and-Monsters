@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
@@ -9,9 +8,9 @@ public class Enemy : MonoBehaviour
     private GameObject _base;
 
     private NavMeshAgent _agent;
-    
+
     private Animator _anim;
-    
+
     private static readonly int Run = Animator.StringToHash("Run");
     private static readonly int Idle = Animator.StringToHash("Idle");
     private static readonly int Death = Animator.StringToHash("Death");
@@ -30,7 +29,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float destinationReachedPadding = 1.5f;
 
     #endregion
-    
+
     #region MonoBehavior
 
     private void Awake()
@@ -39,16 +38,12 @@ public class Enemy : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
     }
 
-    private void OnEnable()
-    {
-        _anim.SetBool(Run, true);
-    }
-
     private void Update()
     {
         if (PauseMenu.gameIsPaused)
         {
             _agent.isStopped = true;
+            _anim.SetBool(Idle, true);
         }
         else if (Base.instance.IsBaseDestroyed())
         {
@@ -71,6 +66,7 @@ public class Enemy : MonoBehaviour
         {
             _agent.isStopped = false;
             _agent.SetDestination(_base.transform.position);
+            _anim.SetBool(Run, true);
         }
     }
 
@@ -81,7 +77,7 @@ public class Enemy : MonoBehaviour
     private bool HasReachedBase()
     {
         var distanceToTarget = Vector3.Distance(transform.position, _base.transform.position);
-        
+
         return distanceToTarget < destinationReachedPadding;
     }
 
@@ -98,7 +94,7 @@ public class Enemy : MonoBehaviour
     {
         return enemyWeight;
     }
-    
+
     public void DestroyEnemy()
     {
         EnemiesSpawns.instance.RemoveEnemy(gameObject);
@@ -108,7 +104,7 @@ public class Enemy : MonoBehaviour
     {
         _base = destination;
     }
-    
+
     public void Damage(int damage)
     {
         enemyHp -= damage;

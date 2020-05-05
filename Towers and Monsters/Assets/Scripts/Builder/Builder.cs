@@ -84,7 +84,7 @@ public class Builder : MonoBehaviour
             [Buildings.HeavyBullet] = buildingsPrefab[1],
             [Buildings.LongRange] = buildingsPrefab[2],
             [Buildings.EffectShot] = buildingsPrefab[3],
-            [Buildings.AOEShot] = buildingsPrefab[4]
+            [Buildings.AoeShot] = buildingsPrefab[4]
         };
 
     }
@@ -104,7 +104,7 @@ public class Builder : MonoBehaviour
             _buildingEnum = _buildingEnum == Buildings.EffectShot ? Buildings.None : Buildings.EffectShot;
 
         if (Input.GetKeyDown(KeyCode.Alpha5))
-            _buildingEnum = _buildingEnum == Buildings.AOEShot ? Buildings.None : Buildings.AOEShot;
+            _buildingEnum = _buildingEnum == Buildings.AoeShot ? Buildings.None : Buildings.AoeShot;
     }
 
     private void PlaceBuildingOnGrid(Vector3 clickPoint)

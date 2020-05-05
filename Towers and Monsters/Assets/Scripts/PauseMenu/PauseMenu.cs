@@ -8,7 +8,7 @@ public class PauseMenu : MonoBehaviour
     public static bool gameIsPaused;
 
     public GameObject gameUi;
-    
+
     public GameObject pauseMenuUi;
 
     #endregion
@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour
     private void Awake()
     {
         gameIsPaused = false;
-        
+
         pauseMenuUi.SetActive(false);
         gameUi.SetActive(true);
     }
