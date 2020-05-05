@@ -46,6 +46,7 @@ MonoBehaviour:
   playerBase: {fileID: 0}
   buildingsPrefab:
   - {fileID: 4171413074625168150, guid: fbb836b8f04fba540a64f69db2442d37, type: 3}
-  - {fileID: 1322669272433006302, guid: 6d7e4d4879a7c3d458f567ae67da8ad9, type: 3}
-  - {fileID: 2949763514454009152, guid: 2dcdb1d9c8fe996408d3a0375d8470bb, type: 3}
-  - {fileID: 1512406644766363040, guid: ad157804c87879447b2b30238fd18eb8, type: 3}
+  - {fileID: 1674050128692650, guid: 997eda0f844715845a30121b4553e2fd, type: 3}
+  - {fileID: 1162075595987228, guid: a1beaea2123fae24798c8567dbe43d63, type: 3}
+  - {fileID: 1261893928371566, guid: 99ece9e9b0f569e47b4f7e25409c82d7, type: 3}
+  - {fileID: 1111581069580094, guid: 1ced8274635d6354e9da6572dcbb911d, type: 3}
