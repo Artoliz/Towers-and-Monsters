@@ -6,7 +6,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bandit
+  m_Name: Jack
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Attack
@@ -184,7 +184,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bandit_Death
+  m_Name: Jack_Death
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -197,7 +197,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400002, guid: 3d5daaaf22b5c5749905b4230774923d, type: 3}
+  m_Motion: {fileID: 7400002, guid: 8518f391adde4bb4594ce57c28790d2e, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -210,7 +210,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bandit_Victory
+  m_Name: Jack_Victory
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -223,7 +223,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400002, guid: 896cfd3543216b14b967f51a9286582c, type: 3}
+  m_Motion: {fileID: 7400002, guid: 860bb2c8d16496b4daeb83f04261306d, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -236,7 +236,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bandit_Run
+  m_Name: Jack_Run
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -252,7 +252,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400002, guid: 5ebbe689ffccfda4990d2a644c04e405, type: 3}
+  m_Motion: {fileID: 7400002, guid: 2df9d61f23ae75a49b04f06de01df1cf, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -265,7 +265,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bandit_Attack
+  m_Name: Jack_Attack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -280,7 +280,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400002, guid: 7701404ab3472b14e9086f76f540de25, type: 3}
+  m_Motion: {fileID: 7400002, guid: 35e7ab0abd3807c4d823c90e9e631a2b, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
