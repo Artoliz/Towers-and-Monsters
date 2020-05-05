@@ -457,9 +457,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4333980094273226}
   - component: {fileID: 95155773690750240}
-  - component: {fileID: 114631330746165496}
   - component: {fileID: 135555097868704816}
-  - component: {fileID: 54314909431860734}
+  - component: {fileID: 114700679645877402}
+  - component: {fileID: 195192194130499064}
   m_Layer: 0
   m_Name: Jack_D
   m_TagString: Untagged
@@ -502,24 +502,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114631330746165496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415162188089706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 153dd393b80768d4d8587c484df95783, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  creatureDamage: 10
-  speed: 0
-  previousSpeed: 0
-  bullet: {fileID: 1240887441953726, guid: c83fcb1db677f7c4e9b31b47f2c81db3, type: 3}
-  enemyTarget: {fileID: 0}
-  shootElement: {fileID: 4546478581731338}
 --- !u!135 &135555097868704816
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -531,24 +513,47 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3.5
-  m_Center: {x: 0, y: 0.8, z: 0}
---- !u!54 &54314909431860734
-Rigidbody:
+  m_Radius: 0.8
+  m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!114 &114700679645877402
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415162188089706}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb12be6211b0d9e4bb7e020f117679c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHp: 100
+  enemyWeight: 1
+  waveNumberApparition: 1
+  damageToBase: 100
+  destinationReachedPadding: 0.5
+--- !u!195 &195192194130499064
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415162188089706}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.3
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1504540062256152
 GameObject:
   m_ObjectHideFlags: 0
