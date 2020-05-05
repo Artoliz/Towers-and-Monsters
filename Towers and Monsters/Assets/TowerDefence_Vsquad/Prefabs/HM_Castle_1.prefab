@@ -349,9 +349,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a1274b7fe9dc2439a6968bf666e468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
-  _health: {fileID: 1853217193227794610}
-  _progress: {fileID: 2363442852181912368}
+  baseHealth: 1000
+  health: {fileID: 1853217193227794610}
+  progress: {fileID: 2363442852181912368}
+  mainCamera: {fileID: 0}
 --- !u!1 &1121474286941022
 GameObject:
   m_ObjectHideFlags: 0

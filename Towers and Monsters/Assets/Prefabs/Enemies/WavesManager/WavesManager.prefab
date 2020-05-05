@@ -46,6 +46,8 @@ MonoBehaviour:
   waveNumber: 1
   weightMultiplier: 10
   setTimeBetweenWaves: 60
+  gameUi: {fileID: 0}
+  gameOverUi: {fileID: 0}
   timeBetweenNextWaveText: {fileID: 0}
   waveNumberText: {fileID: 0}
   skipBetweenWavesButton: {fileID: 0}

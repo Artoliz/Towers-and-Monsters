@@ -17,13 +17,15 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
+        gameIsPaused = false;
+        
         pauseMenuUi.SetActive(false);
         gameUi.SetActive(true);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!WavesManager.gameIsFinished && Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameIsPaused)
                 ResumeGame();

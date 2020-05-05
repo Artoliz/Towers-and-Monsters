@@ -1,27 +1,26 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.SceneManagement;
 
 public class Base : MonoBehaviour
 {
-    #region SerializableVariables
+    #region PrivateVariables
 
-    [SerializeField] private int health = 1000;
+    private int _maxHealth;
 
-    [SerializeField] private Transform _health = null;
+    private float _maxSizeX;
 
-    [SerializeField] private Transform _progress = null;
+    private bool _isBaseDestroyed;
 
-    [SerializeField] private Transform _camera = null;
+    private Vector3 _size;
 
     #endregion
 
-    #region PrivateVariables
+    #region SerializableVariables
 
-    private float _maxSizeX;
-    private int _maxHealth;
+    [SerializeField] private int baseHealth = 1000;
 
-    private Vector3 _size;
+    [SerializeField] private Transform health;
+    [SerializeField] private Transform progress;
+    [SerializeField] private Transform mainCamera;
 
     #endregion
 
@@ -40,36 +39,41 @@ public class Base : MonoBehaviour
 
     private void Start()
     {
-        _maxHealth = health;
-        _maxSizeX = _progress.transform.localScale.x;
-        _size = _progress.transform.localScale;
+        var localScale = progress.transform.localScale;
+
+        _maxHealth = baseHealth;
+        _maxSizeX = localScale.x;
+        _size = localScale;
     }
 
     private void Update()
     {
-        _health.LookAt(_camera);
+        health.LookAt(mainCamera);
+        
+        if (!WavesManager.gameIsFinished && baseHealth <= 0)
+        {
+            _isBaseDestroyed = true;
+        }
     }
 
     #endregion
 
     #region PublicMethods
 
+    public bool IsBaseDestroyed()
+    {
+        return _isBaseDestroyed;
+    }
+    
     public void LoseHealth(int damage)
     {
-        if (health <= 0)
-        {
-            SceneManager.LoadScene("Menu");
-        }
-        else
-        {
-            health -= damage;
-        }
+        baseHealth -= damage;
 
-        float currentSizeX = (health * _maxSizeX) / _maxHealth;
-        _progress.localScale = new Vector3(currentSizeX, _size.y, _size.z);
+        float currentSizeX = (baseHealth * _maxSizeX) / _maxHealth;
+        progress.localScale = new Vector3(currentSizeX, _size.y, _size.z);
 
         float currentPosX = -((_maxSizeX - currentSizeX) / 2.0f);
-        _progress.localPosition = new Vector3(currentPosX, 0, 0);
+        progress.localPosition = new Vector3(currentPosX, 0, 0);
     }
 
     #endregion

@@ -94,7 +94,7 @@ public class Tower : MonoBehaviour
     {
         if (target)
         {
-            target.GetComponent<EnemyHp>().Dmg(dmg);
+            target.GetComponent<Enemy>().Damage(dmg);
         }
     }
 

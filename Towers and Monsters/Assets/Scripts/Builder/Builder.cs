@@ -18,7 +18,7 @@ public class Builder : MonoBehaviour
 
     private Buildings _buildingEnum = Buildings.None;
 
-    private int layerBuildingMask = 1 << 12;
+    private const int LayerBuildingMask = 1 << 12;
 
     #endregion
 
@@ -53,7 +53,7 @@ public class Builder : MonoBehaviour
 
     private void Update()
     {
-        if (!PauseMenu.gameIsPaused)
+        if (!WavesManager.gameIsFinished && !PauseMenu.gameIsPaused)
         {
             SelectedBuilding();
 
@@ -63,7 +63,7 @@ public class Builder : MonoBehaviour
                 {
                     var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
-                    if (Physics.Raycast(ray, out var click, 1000, layerBuildingMask))
+                    if (Physics.Raycast(ray, out var click, 1000, LayerBuildingMask))
                     {
                         PlaceBuildingOnGrid(click.point);
                     }

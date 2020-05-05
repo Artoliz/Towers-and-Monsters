@@ -49,10 +49,13 @@ public class EnemiesSpawns : MonoBehaviour
 
     private void Update()
     {
-        if (_enemiesNumber == 0)
+        if (!WavesManager.gameIsFinished && !PauseMenu.gameIsPaused && !WavesManager.gameIsBetweenWaves)
         {
-            //Go to the next wave
-            WavesManager.SetGameStatus(true);
+            if (_enemiesNumber == 0)
+            {
+                //Go to the next wave
+                WavesManager.SetGameStatus(true);
+            }
         }
     }
 

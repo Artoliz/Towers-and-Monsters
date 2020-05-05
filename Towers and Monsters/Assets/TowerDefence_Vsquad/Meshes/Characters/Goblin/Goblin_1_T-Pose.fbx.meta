@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 9ff0dd098e27dbd43bf0ef8859f73593
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Goblin1
     100002: //RootNode
@@ -31,6 +31,12 @@ ModelImporter:
     100050: mixamorig:Spine1
     100052: mixamorig:Spine2
     100054: Weapons:Goblin1_weapon
+    100056: Armature
+    100058: mixamorig:HeadTop_End_end
+    100060: mixamorig:LeftHand_end
+    100062: mixamorig:LeftToe_End_end
+    100064: mixamorig:RightHand_end
+    100066: mixamorig:RightToe_End_end
     400000: Goblin1
     400002: //RootNode
     400004: mixamorig:Head
@@ -59,12 +65,20 @@ ModelImporter:
     400050: mixamorig:Spine1
     400052: mixamorig:Spine2
     400054: Weapons:Goblin1_weapon
+    400056: Armature
+    400058: mixamorig:HeadTop_End_end
+    400060: mixamorig:LeftHand_end
+    400062: mixamorig:LeftToe_End_end
+    400064: mixamorig:RightHand_end
+    400066: mixamorig:RightToe_End_end
     2100000: lambert1
     2300000: Weapons:Goblin1_weapon
     3300000: Weapons:Goblin1_weapon
     4300000: Goblin1
     4300002: Weapons:Goblin1_weapon
     7400000: Goblin_1_T-Pose
+    7400002: Take 001
+    7400004: Goblin_1_T-Pose
     9500000: //RootNode
     13700000: Goblin1
   externalObjects: {}
@@ -97,7 +111,7 @@ ModelImporter:
     clipAnimations:
     - serializedVersion: 16
       name: Goblin_1_T-Pose
-      takeName: Take 001
+      takeName: Armature|Armature|Take 001|BaseLayer
       firstFrame: 0
       lastFrame: 1
       wrapMode: 0
@@ -129,6 +143,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -146,11 +161,16 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -165,7 +185,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

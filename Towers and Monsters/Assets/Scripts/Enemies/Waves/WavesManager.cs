@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class WavesManager : MonoBehaviour
@@ -26,7 +27,11 @@ public class WavesManager : MonoBehaviour
     #region PublicVariables
 
     public static bool gameIsBetweenWaves;
+    public static bool gameIsFinished;
 
+    public GameObject gameUi;
+    public GameObject gameOverUi;
+    
     public Text timeBetweenNextWaveText;
     public Text waveNumberText;
 
@@ -40,6 +45,10 @@ public class WavesManager : MonoBehaviour
 
     private void Awake()
     {
+        gameIsFinished = false;
+        
+        gameOverUi.SetActive(false);
+        
         skipBetweenWavesButton.gameObject.SetActive(false);
         timeBetweenNextWaveText.gameObject.SetActive(false);
         waveNumberText.gameObject.SetActive(false);
@@ -49,11 +58,11 @@ public class WavesManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            SkipBetweenWaves();
-
-        if (!PauseMenu.gameIsPaused && _timerBetweenWavesIsRunning)
+        if (!gameIsFinished && !PauseMenu.gameIsPaused && _timerBetweenWavesIsRunning)
         {
+            if (Input.GetKeyDown(KeyCode.Space))
+                SkipBetweenWaves();
+
             if (_timeBetweenWaves > 0)
             {
                 _timeBetweenWaves -= Time.deltaTime;
@@ -65,10 +74,21 @@ public class WavesManager : MonoBehaviour
                 RunWave();
             }
         }
-        else if (!PauseMenu.gameIsPaused && gameIsBetweenWaves)
+        else if (!gameIsFinished && !PauseMenu.gameIsPaused && gameIsBetweenWaves)
         {
             EnableUiBetweenWaves();
             SetNextWave();
+        }
+        else if (!gameIsFinished && Base.instance.IsBaseDestroyed())
+        {
+            gameIsFinished = true;
+            gameUi.SetActive(false);
+            gameOverUi.SetActive(true);
+        }
+        else if (gameIsFinished)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+                SceneManager.LoadScene("Menu");
         }
     }
 
@@ -102,8 +122,8 @@ public class WavesManager : MonoBehaviour
     private void EnableUiDuringWave()
     {
         skipBetweenWavesButton.gameObject.SetActive(false);
-        waveNumberText.gameObject.SetActive(true);
         timeBetweenNextWaveText.gameObject.SetActive(false);
+        waveNumberText.gameObject.SetActive(true);
         
         waveNumberText.text = $"Wave : {waveNumber}";
     }

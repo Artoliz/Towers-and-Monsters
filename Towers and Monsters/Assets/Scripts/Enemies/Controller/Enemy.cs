@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
@@ -8,11 +9,20 @@ public class Enemy : MonoBehaviour
     private GameObject _base;
 
     private NavMeshAgent _agent;
+    
+    private Animator _anim;
+    
+    private static readonly int Run = Animator.StringToHash("Run");
+    private static readonly int Idle = Animator.StringToHash("Idle");
+    private static readonly int Death = Animator.StringToHash("Death");
+    private static readonly int Attack = Animator.StringToHash("Attack");
+    private static readonly int Victory = Animator.StringToHash("Victory");
 
     #endregion
 
     #region SerializableVariables
 
+    [SerializeField] private int enemyHp = 100;
     [SerializeField] private int enemyWeight = 1;
     [SerializeField] private int waveNumberApparition = 1;
     [SerializeField] private int damageToBase = 100;
@@ -25,7 +35,13 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        _anim = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void OnEnable()
+    {
+        _anim.SetBool(Run, true);
     }
 
     private void Update()
@@ -33,6 +49,18 @@ public class Enemy : MonoBehaviour
         if (PauseMenu.gameIsPaused)
         {
             _agent.isStopped = true;
+        }
+        else if (Base.instance.IsBaseDestroyed())
+        {
+            _agent.isStopped = true;
+            _anim.SetBool(Victory, true);
+        }
+        else if (enemyHp <= 0)
+        {
+            _agent.isStopped = true;
+            gameObject.tag = "Dead";
+            _anim.SetBool(Death, true);
+            DestroyEnemy();
         }
         else if (HasReachedBase())
         {
@@ -79,6 +107,11 @@ public class Enemy : MonoBehaviour
     public void SetDestination(GameObject destination)
     {
         _base = destination;
+    }
+    
+    public void Damage(int damage)
+    {
+        enemyHp -= damage;
     }
 
     #endregion
