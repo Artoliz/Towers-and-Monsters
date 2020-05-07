@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveNumber: 1
   weightMultiplier: 10
-  setTimeBetweenWaves: 60
+  setTimeBetweenWaves: 45
   gameUi: {fileID: 0}
   gameOverUi: {fileID: 0}
   timeBetweenNextWaveText: {fileID: 0}
