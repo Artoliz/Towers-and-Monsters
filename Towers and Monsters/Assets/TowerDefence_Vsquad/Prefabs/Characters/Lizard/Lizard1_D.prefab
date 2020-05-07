@@ -321,8 +321,8 @@ GameObject:
   - component: {fileID: 4691820247472096}
   - component: {fileID: 95909412163832546}
   - component: {fileID: 135348666324764312}
-  - component: {fileID: 114777827926503770}
   - component: {fileID: 195797954136558262}
+  - component: {fileID: 114777827926503770}
   m_Layer: 9
   m_Name: Lizard1_D
   m_TagString: Enemy
@@ -379,6 +379,28 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.85
   m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!195 &195797954136558262
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443503913773770}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.3
+  m_Speed: 3
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &114777827926503770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,33 +413,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb12be6211b0d9e4bb7e020f117679c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHp: 100
-  enemyWeight: 1
-  waveNumberApparition: 1
-  damageToBase: 100
+  enemyHp: 200
+  enemyWeight: 5
+  waveNumberApparition: 5
+  damageToBase: 30
   destinationReachedPadding: 0.5
---- !u!195 &195797954136558262
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443503913773770}
-  m_Enabled: 1
-  m_AgentTypeID: -1372625422
-  m_Radius: 0.3
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &1457836373332186
 GameObject:
   m_ObjectHideFlags: 0

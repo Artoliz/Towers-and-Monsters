@@ -78,7 +78,7 @@ ModelImporter:
     4300000: Bandit_Weapon1
     4300002: Bandit2
     7400000: Armature|Armature|Take 001|BaseLayer
-    7400002: Bandit_Victory
+    7400002: Victory
     9500000: //RootNode
     13700000: Bandit2
   externalObjects: {}
@@ -110,7 +110,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Bandit_Victory
+      name: Victory
       takeName: mixamo.com
       firstFrame: 0
       lastFrame: 54

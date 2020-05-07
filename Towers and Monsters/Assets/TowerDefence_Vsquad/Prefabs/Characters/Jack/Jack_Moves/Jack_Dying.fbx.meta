@@ -71,7 +71,7 @@ ModelImporter:
     4300002: Jack_weapon
     4300004: Jack_shoulder
     7400000: Take 001
-    7400002: Jack_Dying
+    7400002: Dying
     9500000: //RootNode
     13700000: Jack_body
   externalObjects: {}
@@ -103,7 +103,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Jack_Dying
+      name: Dying
       takeName: mixamo.com
       firstFrame: 0
       lastFrame: 106

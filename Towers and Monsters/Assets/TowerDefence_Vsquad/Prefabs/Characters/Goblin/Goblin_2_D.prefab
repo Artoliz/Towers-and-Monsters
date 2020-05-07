@@ -78,7 +78,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 0.3
-  m_Speed: 3.5
+  m_Speed: 2.4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -102,10 +102,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb12be6211b0d9e4bb7e020f117679c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHp: 100
-  enemyWeight: 1
-  waveNumberApparition: 1
-  damageToBase: 100
+  enemyHp: 50
+  enemyWeight: 2
+  waveNumberApparition: 2
+  damageToBase: 15
   destinationReachedPadding: 0.5
 --- !u!1 &536208388333094709
 GameObject:

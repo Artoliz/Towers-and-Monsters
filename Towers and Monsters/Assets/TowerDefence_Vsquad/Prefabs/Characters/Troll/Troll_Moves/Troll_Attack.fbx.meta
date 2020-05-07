@@ -64,7 +64,7 @@ ModelImporter:
     3300000: 'Troll_club '
     4300000: 'Mesh (2) '
     4300002: 'Troll_club '
-    7400000: Troll_Attack
+    7400000: Attack
     9500000: //RootNode
     13700000: 'Mesh (2) '
   externalObjects: {}
@@ -96,7 +96,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Troll_Attack
+      name: Attack
       takeName: mixamo.com
       firstFrame: 0
       lastFrame: 68

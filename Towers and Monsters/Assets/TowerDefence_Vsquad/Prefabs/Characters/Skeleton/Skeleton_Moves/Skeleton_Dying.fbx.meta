@@ -71,7 +71,7 @@ ModelImporter:
     4300004: Skeleton_shoulder
     4300006: Skeleton_Helmet
     4300008: axe
-    7400000: Skeleton_Dying
+    7400000: Dying
     9500000: //RootNode
     13700000: axe
     13700002: shield
@@ -107,7 +107,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Skeleton_Dying
+      name: Dying
       takeName: mixamo.com
       firstFrame: 0
       lastFrame: 117

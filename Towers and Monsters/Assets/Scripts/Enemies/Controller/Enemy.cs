@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
     #region PrivateVariables
+
+    private float _dyingTime;
 
     private GameObject _base;
 
@@ -35,6 +38,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         _anim = GetComponent<Animator>();
+        SetAnimationsTimes();
         _agent = GetComponent<NavMeshAgent>();
     }
 
@@ -52,10 +56,7 @@ public class Enemy : MonoBehaviour
         }
         else if (enemyHp <= 0)
         {
-            _agent.isStopped = true;
-            gameObject.tag = "Dead";
-            _anim.SetBool(Death, true);
-            DestroyEnemy();
+            StartCoroutine(KillEnemy());
         }
         else if (HasReachedBase())
         {
@@ -74,6 +75,20 @@ public class Enemy : MonoBehaviour
 
     #region PrivateMethods
 
+    private void SetAnimationsTimes()
+    {
+        var clips = _anim.runtimeAnimatorController.animationClips;
+        foreach(var clip in clips)
+        {
+            switch(clip.name)
+            {
+                case "Dying":
+                    _dyingTime = clip.length;
+                    break;
+            }
+        }
+    }
+    
     private bool HasReachedBase()
     {
         var distanceToTarget = Vector3.Distance(transform.position, _base.transform.position);
@@ -93,6 +108,15 @@ public class Enemy : MonoBehaviour
     public int GetEnemyWeight()
     {
         return enemyWeight;
+    }
+
+    public IEnumerator KillEnemy()
+    {
+        _agent.isStopped = true;
+        gameObject.tag = "Dead";
+        _anim.SetBool(Death, true);
+        yield return new WaitForSeconds(_dyingTime);
+        DestroyEnemy();
     }
 
     public void DestroyEnemy()
