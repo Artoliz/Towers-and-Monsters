@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     private float _dyingTime;
 
     private GameObject _base;
+    private GameObject _target;
 
     private NavMeshAgent _agent;
 
@@ -30,6 +31,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int damageToBase = 100;
 
     [SerializeField] private float destinationReachedPadding = 1.5f;
+
+    #endregion
+
+    #region PublicVariables
+
+    public int damageToBuildings;
+    
+    public GameObject bullet;
+
+    public Transform shootElement;
 
     #endregion
 
@@ -66,7 +77,7 @@ public class Enemy : MonoBehaviour
         else
         {
             _agent.isStopped = false;
-            _agent.SetDestination(_base.transform.position);
+            _agent.SetDestination(_target.transform.position);
             _anim.SetBool(Run, true);
         }
     }
@@ -94,6 +105,18 @@ public class Enemy : MonoBehaviour
         var distanceToTarget = Vector3.Distance(transform.position, _base.transform.position);
 
         return distanceToTarget < destinationReachedPadding;
+    }
+
+    private void Attacking()
+    {
+        //Attack mechanism
+    }
+
+    private void Shooting()
+    {
+        //var с = Instantiate(bullet, shootElement.position, Quaternion.identity);
+        //с.GetComponent<EnemyBullet>().target = _target;
+        //с.GetComponent<EnemyBullet>().enemy = this;
     }
 
     #endregion
@@ -124,9 +147,10 @@ public class Enemy : MonoBehaviour
         EnemiesSpawns.instance.RemoveEnemy(gameObject);
     }
 
-    public void SetDestination(GameObject destination)
+    public void SetPlayerBase(GameObject playerBase)
     {
-        _base = destination;
+        _base = playerBase;
+        _target = _base;
     }
 
     public void Damage(int damage)

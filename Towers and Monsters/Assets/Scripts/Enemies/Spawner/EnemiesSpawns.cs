@@ -72,7 +72,7 @@ public class EnemiesSpawns : MonoBehaviour
             _enemies.Add(enemy);
 
             var enemyController = enemy.GetComponent<Enemy>();
-            enemyController.SetDestination(playerBase);
+            enemyController.SetPlayerBase(playerBase);
 
             _enemiesToSpawn.Remove(_enemiesToSpawn[0]);
         }

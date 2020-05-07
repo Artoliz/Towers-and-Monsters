@@ -1218,6 +1218,9 @@ MonoBehaviour:
   waveNumberApparition: 6
   damageToBase: 40
   destinationReachedPadding: 0.5
+  damageToBuildings: 11
+  bullet: {fileID: 0}
+  shootElement: {fileID: 0}
 --- !u!1 &1951824574939636
 GameObject:
   m_ObjectHideFlags: 0

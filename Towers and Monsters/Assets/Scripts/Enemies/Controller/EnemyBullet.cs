@@ -20,7 +20,7 @@ public class EnemyBullet : MonoBehaviour
 
     public Transform target;
 
-    public EnemyVSquad twr;
+    public Enemy enemy;
 
     #endregion
 
@@ -56,7 +56,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (other.gameObject.transform == target)
         {
-            target.GetComponent<TowerHP>().Dmg_2(twr.creatureDamage);
+            target.GetComponent<TowerHP>().Dmg_2(enemy.damageToBuildings);
             Destroy(gameObject, I);
             impactParticle =
                 Instantiate(impactParticle, transform.position,

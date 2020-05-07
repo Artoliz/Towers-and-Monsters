@@ -53,7 +53,6 @@
             <e p="Controller" t="Include">
               <e p="Enemy.cs" t="Include" />
               <e p="EnemyBullet.cs" t="Include" />
-              <e p="EnemyVSquad.cs" t="Include" />
             </e>
             <e p="Spawner" t="Include">
               <e p="EnemiesSpawns.cs" t="Include" />
