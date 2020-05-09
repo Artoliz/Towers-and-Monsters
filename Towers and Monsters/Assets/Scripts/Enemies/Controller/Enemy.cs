@@ -91,7 +91,6 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         if (other.CompareTag("Tower"))
         {
             _target = other.gameObject;
