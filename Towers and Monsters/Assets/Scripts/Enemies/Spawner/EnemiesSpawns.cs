@@ -26,7 +26,7 @@ public class EnemiesSpawns : MonoBehaviour
     public GameObject[] enemiesPrefab;
     public GameObject playerBase;
 
-    public static EnemiesSpawns instance;
+    public static EnemiesSpawns Instance;
 
     #endregion
 
@@ -34,7 +34,7 @@ public class EnemiesSpawns : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
 
         foreach (Transform child in transform)
         {
@@ -49,7 +49,7 @@ public class EnemiesSpawns : MonoBehaviour
 
     private void Update()
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.gameIsPaused && !WavesManager.gameIsBetweenWaves)
+        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused && !WavesManager.gameIsBetweenWaves)
         {
             if (_enemiesNumber == 0)
             {
@@ -65,7 +65,7 @@ public class EnemiesSpawns : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.gameIsPaused && !WavesManager.gameIsBetweenWaves &&
+        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused && !WavesManager.gameIsBetweenWaves &&
             _enemiesToSpawn.Count > 0)
         {
             var enemy = Instantiate(_enemiesToSpawn[0], PositionOfSpawn(), Quaternion.identity);

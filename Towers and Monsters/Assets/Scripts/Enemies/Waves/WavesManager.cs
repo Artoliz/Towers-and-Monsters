@@ -69,7 +69,7 @@ public class WavesManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
                 SceneManager.LoadScene("Menu");
         }
-        else if (!gameIsFinished && !PauseMenu.gameIsPaused && _timerBetweenWavesIsRunning)
+        else if (!gameIsFinished && !PauseMenu.GameIsPaused && _timerBetweenWavesIsRunning)
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 SkipBetweenWaves();
@@ -85,7 +85,7 @@ public class WavesManager : MonoBehaviour
                 RunWave();
             }
         }
-        else if (!gameIsFinished && !PauseMenu.gameIsPaused && gameIsBetweenWaves)
+        else if (!gameIsFinished && !PauseMenu.GameIsPaused && gameIsBetweenWaves)
         {
             EnableUiBetweenWaves();
             SetNextWave();
@@ -166,7 +166,7 @@ public class WavesManager : MonoBehaviour
 
     public void SkipBetweenWaves()
     {
-        if (!PauseMenu.gameIsPaused && _timerBetweenWavesIsRunning)
+        if (!PauseMenu.GameIsPaused && _timerBetweenWavesIsRunning)
         {
             _timeBetweenWaves = -1;
             DisplayTimeBetweenWaves(_timeBetweenWaves);

@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.gameIsPaused)
+        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
         {
             var position = transform.position;
 

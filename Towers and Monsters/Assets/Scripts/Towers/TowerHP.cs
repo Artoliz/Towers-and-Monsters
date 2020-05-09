@@ -25,7 +25,7 @@ public class TowerHP : MonoBehaviour
 
     #region PublicMethods
 
-    public void Dmg_2(int damage2)
+    public void Damage(int damage2)
     {
         castleHp -= damage2;
     }

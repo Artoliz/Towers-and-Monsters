@@ -4,9 +4,14 @@ public class TowerBullet : MonoBehaviour
 {
     #region PrivateVariables
 
-    private const float I = 0.05f;
-
     private Vector3 _lastBulletPosition;
+
+    #endregion
+
+    #region SeriazableVariables
+
+    [SerializeField] private float timeBeforeDestroyBullet = 0.05f;
+    [SerializeField] private float particleTime = 3;
 
     #endregion
 
@@ -31,11 +36,11 @@ public class TowerBullet : MonoBehaviour
         if (other.gameObject.transform == target)
         {
             target.GetComponent<Enemy>().Damage(twr.dmg);
-            Destroy(gameObject, I); // destroy bullet
+            Destroy(gameObject, timeBeforeDestroyBullet); // destroy bullet
             impactParticle = Instantiate(impactParticle, target.transform.position,
                 Quaternion.FromToRotation(Vector3.up, impactNormal));
             impactParticle.transform.parent = target.transform;
-            Destroy(impactParticle, 3);
+            Destroy(impactParticle, particleTime);
         }
     }
 
@@ -55,13 +60,13 @@ public class TowerBullet : MonoBehaviour
 
             if (transform.position == _lastBulletPosition)
             {
-                Destroy(gameObject, I);
+                Destroy(gameObject, timeBeforeDestroyBullet);
 
                 if (impactParticle != null)
                 {
                     impactParticle = Instantiate(impactParticle, transform.position,
                         Quaternion.FromToRotation(Vector3.up, impactNormal));
-                    Destroy(impactParticle, 3);
+                    Destroy(impactParticle, particleTime);
                 }
             }
         }

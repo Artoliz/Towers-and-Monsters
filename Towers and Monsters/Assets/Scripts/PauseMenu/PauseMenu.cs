@@ -5,7 +5,7 @@ public class PauseMenu : MonoBehaviour
 {
     #region PublicVariables
 
-    public static bool gameIsPaused;
+    public static bool GameIsPaused;
 
     public GameObject gameUi;
 
@@ -17,7 +17,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
-        gameIsPaused = false;
+        GameIsPaused = false;
 
         pauseMenuUi.SetActive(false);
         gameUi.SetActive(true);
@@ -27,7 +27,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (!WavesManager.gameIsFinished && Input.GetKeyDown(KeyCode.Escape))
         {
-            if (gameIsPaused)
+            if (GameIsPaused)
                 ResumeGame();
             else
                 PauseGame();
@@ -44,7 +44,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUi.SetActive(true);
 
         Time.timeScale = 0;
-        gameIsPaused = true;
+        GameIsPaused = true;
     }
 
     public void ResumeGame()
@@ -53,7 +53,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUi.SetActive(false);
 
         Time.timeScale = 1;
-        gameIsPaused = false;
+        GameIsPaused = false;
     }
 
     public void ReturnToMenu()

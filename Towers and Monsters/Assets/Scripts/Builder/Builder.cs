@@ -48,12 +48,12 @@ public class Builder : MonoBehaviour
 
     private void Start()
     {
-        _spawns = EnemiesSpawns.instance.GetEnemiesSpawns();
+        _spawns = EnemiesSpawns.Instance.GetEnemiesSpawns();
     }
 
     private void Update()
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.gameIsPaused)
+        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
         {
             SelectedBuilding();
 

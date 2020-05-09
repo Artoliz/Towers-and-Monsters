@@ -4,12 +4,21 @@ public class EnemyBullet : MonoBehaviour
 {
     #region PrivateVariables
 
-    private const float I = 0.05f;
+    private int _damage;
 
     private Vector3 _lastBulletPosition;
 
+    private Transform _target;
+
     #endregion
 
+    #region SeriazableVariables
+
+    [SerializeField] private float timeBeforeDestroyBullet = 0.05f;
+    [SerializeField] private float particleTime = 3;
+
+    #endregion
+    
     #region PublicVariables
 
     public float speed;
@@ -18,20 +27,18 @@ public class EnemyBullet : MonoBehaviour
 
     public GameObject impactParticle;
 
-    public Transform target;
-
-    public Enemy enemy;
-
     #endregion
+
+    #region MonoBehavior
 
     private void Update()
     {
-        if (target)
+        if (_target)
         {
             Transform transform1;
-            (transform1 = transform).LookAt(target);
-            transform.position = Vector3.MoveTowards(transform1.position, target.position, Time.deltaTime * speed);
-            _lastBulletPosition = target.transform.position;
+            (transform1 = transform).LookAt(_target);
+            transform.position = Vector3.MoveTowards(transform1.position, _target.position, Time.deltaTime * speed);
+            _lastBulletPosition = _target.transform.position;
         }
 
         else
@@ -40,13 +47,12 @@ public class EnemyBullet : MonoBehaviour
 
             if (transform.position == _lastBulletPosition)
             {
-                Destroy(gameObject, I);
+                Destroy(gameObject, timeBeforeDestroyBullet);
 
                 if (impactParticle != null)
                 {
-                    impactParticle = Instantiate(impactParticle, transform.position,
-                        Quaternion.FromToRotation(Vector3.up, impactNormal));
-                    Destroy(impactParticle, 3);
+                    impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal));
+                    Destroy(impactParticle, particleTime);
                 }
             }
         }
@@ -54,15 +60,30 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.transform == target)
+        if (other.gameObject.transform == _target)
         {
-            target.GetComponent<TowerHP>().Dmg_2(enemy.damageToBuildings);
-            Destroy(gameObject, I);
-            impactParticle =
-                Instantiate(impactParticle, transform.position,
-                    Quaternion.FromToRotation(Vector3.up, impactNormal));
-            impactParticle.transform.parent = target.transform;
-            Destroy(impactParticle, 3);
+            _target.GetComponent<TowerHP>().Damage(_damage);
+            Destroy(gameObject, timeBeforeDestroyBullet);
+            
+            impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal));
+            impactParticle.transform.parent = _target.transform;
+            Destroy(impactParticle, particleTime);
         }
     }
+
+    #endregion
+
+    #region PublicMethods
+
+    public void SetDamage(int damage)
+    {
+        _damage = damage;
+    }
+    
+    public void SetTarget(Transform target)
+    {
+        _target = target;
+    }
+
+    #endregion
 }

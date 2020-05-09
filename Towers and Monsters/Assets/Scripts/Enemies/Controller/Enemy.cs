@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
 
     private float _dyingTime;
 
+    private bool _isAttacking;
+
     private GameObject _base;
     private GameObject _target;
 
@@ -38,7 +40,7 @@ public class Enemy : MonoBehaviour
 
     public int damageToBuildings;
     
-    public GameObject bullet;
+    public GameObject bulletPrefab;
 
     public Transform shootElement;
 
@@ -50,12 +52,13 @@ public class Enemy : MonoBehaviour
     {
         _anim = GetComponent<Animator>();
         SetAnimationsTimes();
+        
         _agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
-        if (PauseMenu.gameIsPaused)
+        if (PauseMenu.GameIsPaused)
         {
             _agent.isStopped = true;
             _anim.SetBool(Idle, true);
@@ -74,11 +77,35 @@ public class Enemy : MonoBehaviour
             Base.instance.LoseHealth(damageToBase);
             DestroyEnemy();
         }
+        else if (_isAttacking)
+        {
+            Attacking();
+        }
         else
         {
             _agent.isStopped = false;
             _agent.SetDestination(_target.transform.position);
             _anim.SetBool(Run, true);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.name);
+        if (other.CompareTag("Tower"))
+        {
+            _target = other.gameObject;
+            _isAttacking = true;
+            _agent.isStopped = true;
+            _anim.SetBool(Attack, true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform == _target.transform)
+        {
+            _isAttacking = false;
         }
     }
 
@@ -109,14 +136,14 @@ public class Enemy : MonoBehaviour
 
     private void Attacking()
     {
-        //Attack mechanism
+        _target.GetComponent<TowerHP>().Damage(damageToBuildings);
     }
 
     private void Shooting()
     {
-        //var с = Instantiate(bullet, shootElement.position, Quaternion.identity);
-        //с.GetComponent<EnemyBullet>().target = _target;
-        //с.GetComponent<EnemyBullet>().enemy = this;
+        var bullet = Instantiate(bulletPrefab, shootElement.position, Quaternion.identity);
+        bullet.GetComponent<EnemyBullet>().SetTarget(_target.transform);
+        bullet.GetComponent<EnemyBullet>().SetDamage(damageToBuildings);
     }
 
     #endregion
@@ -144,7 +171,7 @@ public class Enemy : MonoBehaviour
 
     public void DestroyEnemy()
     {
-        EnemiesSpawns.instance.RemoveEnemy(gameObject);
+        EnemiesSpawns.Instance.RemoveEnemy(gameObject);
     }
 
     public void SetPlayerBase(GameObject playerBase)
