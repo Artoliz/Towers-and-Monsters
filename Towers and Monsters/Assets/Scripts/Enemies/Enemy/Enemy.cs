@@ -20,7 +20,6 @@ public class Enemy : MonoBehaviour
     private static readonly int Run = Animator.StringToHash("Run");
     private static readonly int Idle = Animator.StringToHash("Idle");
     private static readonly int Death = Animator.StringToHash("Death");
-    private static readonly int Attack = Animator.StringToHash("Attack");
     private static readonly int Victory = Animator.StringToHash("Victory");
 
     #endregion
@@ -89,25 +88,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Tower"))
-        {
-            _target = other.gameObject;
-            _isAttacking = true;
-            _agent.isStopped = true;
-            _anim.SetBool(Attack, true);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.transform == _target.transform)
-        {
-            _isAttacking = false;
-        }
-    }
-
     #endregion
 
     #region PrivateMethods
@@ -149,6 +129,8 @@ public class Enemy : MonoBehaviour
 
     #region PublicMethods
 
+    #region Getters
+
     public int GetEnemyWaveNumberApparition()
     {
         return waveNumberApparition;
@@ -159,6 +141,43 @@ public class Enemy : MonoBehaviour
         return enemyWeight;
     }
 
+    public GameObject GetTarget()
+    {
+        return _target;
+    }
+    
+    #endregion
+
+    #region Setters
+
+    public void SetPlayerBase(GameObject playerBase)
+    {
+        _base = playerBase;
+        _target = _base;
+    }
+
+    public void SetTarget(GameObject target)
+    {
+        _target = target;
+    }
+
+    public void SetIsAttacking(bool isAttacking)
+    {
+        _isAttacking = isAttacking;
+    }
+
+    public void SetIsStopped(bool isStopped)
+    {
+        _agent.isStopped = isStopped;
+    }
+
+    public void SetAnimation(int trigger, bool activate)
+    {
+        _anim.SetBool(trigger, activate);
+    }
+    
+    #endregion
+    
     public IEnumerator KillEnemy()
     {
         _agent.isStopped = true;
@@ -171,12 +190,6 @@ public class Enemy : MonoBehaviour
     public void DestroyEnemy()
     {
         EnemiesSpawns.Instance.RemoveEnemy(gameObject);
-    }
-
-    public void SetPlayerBase(GameObject playerBase)
-    {
-        _base = playerBase;
-        _target = _base;
     }
 
     public void Damage(int damage)

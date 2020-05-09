@@ -50,7 +50,8 @@
             <e p="Buildings.cs" t="Include" />
           </e>
           <e p="Enemies" t="Include">
-            <e p="Controller" t="Include">
+            <e p="Enemy" t="Include">
+              <e p="AttackRange.cs" t="Include" />
               <e p="Enemy.cs" t="Include" />
               <e p="EnemyBullet.cs" t="Include" />
             </e>
