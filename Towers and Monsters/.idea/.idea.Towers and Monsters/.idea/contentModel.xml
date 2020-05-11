@@ -78,7 +78,6 @@
           <e p="Towers" t="Include">
             <e p="Tower.cs" t="Include" />
             <e p="TowerBullet.cs" t="Include" />
-            <e p="TowerHP.cs" t="Include" />
             <e p="TowerTrigger.cs" t="Include" />
           </e>
         </e>

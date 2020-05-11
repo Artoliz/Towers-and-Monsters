@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 33509096554413960}
   - component: {fileID: 23779803829248420}
   - component: {fileID: 114682437863164732}
-  - component: {fileID: 114505777370227984}
   m_Layer: 10
   m_Name: GB_Crystal_3
   m_TagString: Tower
@@ -94,31 +93,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a682e4e961f99c0498ca12fad03ef8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 20
   dmg: 10
   shootDelay: 1
   catcher: 0
   impactNormal2: {x: 0, y: 0, z: 0}
   bullet: {fileID: 1733891647306646, guid: 76b40a1f779132c47b639525d8b00cac, type: 3}
-  towerBug: {fileID: 0}
-  destroyParticle: {fileID: 0}
+  destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
+    type: 3}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4720060757848974}
   anim2: {fileID: 0}
-  towerHp: {fileID: 0}
---- !u!114 &114505777370227984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1317207288422086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c38968fa289f83c4bb374de48ee8ef8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  castleHp: 20
 --- !u!1 &1373883934309634
 GameObject:
   m_ObjectHideFlags: 0

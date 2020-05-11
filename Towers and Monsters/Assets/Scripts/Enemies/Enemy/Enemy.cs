@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     #region PrivateVariables
 
     private float _dyingTime;
+    private float _attackTime;
 
     private bool _isAttacking;
 
@@ -76,14 +77,14 @@ public class Enemy : MonoBehaviour
             Base.instance.LoseHealth(damageToBase);
             DestroyEnemy();
         }
-        else if (_isAttacking)
+        else if (_isAttacking && _target != _base)
         {
             Attacking();
         }
         else
         {
             _agent.isStopped = false;
-            _agent.SetDestination(_target.transform.position);
+            _agent.SetDestination(_base.transform.position);
             _anim.SetBool(Run, true);
         }
     }
@@ -102,6 +103,9 @@ public class Enemy : MonoBehaviour
                 case "Dying":
                     _dyingTime = clip.length;
                     break;
+                case "Attack":
+                    _attackTime = clip.length;
+                    break;
             }
         }
     }
@@ -115,7 +119,7 @@ public class Enemy : MonoBehaviour
 
     private void Attacking()
     {
-        _target.GetComponent<TowerHP>().Damage(damageToBuildings);
+        _target.GetComponentInParent<Tower>().Damage(damageToBuildings);
     }
 
     private void Shooting()

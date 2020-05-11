@@ -9639,7 +9639,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4867317565504860}
   - component: {fileID: 114190370911040688}
-  - component: {fileID: 114125322123026276}
   m_Layer: 10
   m_Name: GB_Pyro_1
   m_TagString: Tower
@@ -9677,31 +9676,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a682e4e961f99c0498ca12fad03ef8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 20
   dmg: 10
   shootDelay: 1.5
   catcher: 0
   impactNormal2: {x: 0, y: 0, z: 0}
   bullet: {fileID: 1093651845529576, guid: fd738fb356ca7704faab1a8308cdefc5, type: 3}
-  towerBug: {fileID: 0}
-  destroyParticle: {fileID: 0}
+  destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
+    type: 3}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4644714918629256}
   anim2: {fileID: 0}
-  towerHp: {fileID: 0}
---- !u!114 &114125322123026276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609950830953208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c38968fa289f83c4bb374de48ee8ef8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  castleHp: 20
 --- !u!1 &1770681059626846
 GameObject:
   m_ObjectHideFlags: 0

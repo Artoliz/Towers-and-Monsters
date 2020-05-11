@@ -9409,7 +9409,6 @@ GameObject:
   - component: {fileID: 23035005301491386}
   - component: {fileID: 114388094878622656}
   - component: {fileID: 208762835755084288}
-  - component: {fileID: 114414527415512844}
   m_Layer: 10
   m_Name: HM_fire_1
   m_TagString: Tower
@@ -9487,23 +9486,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111581069580094}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a682e4e961f99c0498ca12fad03ef8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 20
   dmg: 10
   shootDelay: 1
   catcher: 0
   impactNormal2: {x: 0, y: 0, z: 0}
   bullet: {fileID: 1570095931659952, guid: 06bbf55df0b7f7c44a8396ab29b0c736, type: 3}
-  towerBug: {fileID: 0}
-  destroyParticle: {fileID: 0}
+  destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
+    type: 3}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4020519618356182}
   anim2: {fileID: 0}
-  towerHp: {fileID: 0}
 --- !u!208 &208762835755084288
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -9520,19 +9519,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 1.039, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &114414527415512844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1111581069580094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c38968fa289f83c4bb374de48ee8ef8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  castleHp: 20
 --- !u!1 &1426298329199646
 GameObject:
   m_ObjectHideFlags: 0

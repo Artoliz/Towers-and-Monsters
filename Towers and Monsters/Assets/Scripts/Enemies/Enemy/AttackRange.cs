@@ -5,6 +5,8 @@ public class AttackRange : MonoBehaviour
 
     #region PrivateVariables
 
+    private GameObject _tower;
+    
     private Enemy _enemy;
     
     private static readonly int Run = Animator.StringToHash("Run");
@@ -23,7 +25,9 @@ public class AttackRange : MonoBehaviour
     {
         if (other.CompareTag("Tower"))
         {
-            _enemy.SetTarget(other.gameObject);
+            _tower = other.gameObject;
+            
+            _enemy.SetTarget(_tower);
             _enemy.SetIsAttacking(true);
             _enemy.SetIsStopped(true);
             _enemy.SetAnimation(Run, false);
@@ -31,9 +35,9 @@ public class AttackRange : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void Update()
     {
-        if (other.transform == _enemy.GetTarget().transform)
+        if (!_tower)
         {
             _enemy.SetIsAttacking(false);
             _enemy.SetAnimation(Attack, false);

@@ -4790,18 +4790,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a682e4e961f99c0498ca12fad03ef8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 20
   dmg: 10
   shootDelay: 1.5
   catcher: 0
   impactNormal2: {x: 0, y: 0, z: 0}
   bullet: {fileID: 1786702500918196, guid: 28e372268bf82ac4b9ef5a831347bc61, type: 3}
-  towerBug: {fileID: 0}
-  destroyParticle: {fileID: 0}
+  destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
+    type: 3}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4526338810715026}
   anim2: {fileID: 0}
-  towerHp: {fileID: 0}
 --- !u!1 &1287339327333022
 GameObject:
   m_ObjectHideFlags: 0
