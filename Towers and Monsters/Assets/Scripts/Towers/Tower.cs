@@ -9,6 +9,8 @@ public class Tower : MonoBehaviour
 
     private bool _isShoot;
 
+    private GameObject _towerBug;
+    
     private static readonly int Attack = Animator.StringToHash("Attack");
     private static readonly int Pose = Animator.StringToHash("T_pose");
 
@@ -16,6 +18,7 @@ public class Tower : MonoBehaviour
 
     #region PublicVariables
 
+    public int hp = 20;
     public int dmg = 10;
 
     public float shootDelay;
@@ -25,7 +28,6 @@ public class Tower : MonoBehaviour
     public Vector3 impactNormal2;
 
     public GameObject bullet;
-    public GameObject towerBug;
     public GameObject destroyParticle;
 
     public Transform target;
@@ -34,8 +36,6 @@ public class Tower : MonoBehaviour
 
     public Animator anim2;
 
-    public TowerHP towerHp;
-
     #endregion
 
     #region MonoBehaviour
@@ -43,8 +43,13 @@ public class Tower : MonoBehaviour
     private void Start()
     {
         anim2 = GetComponent<Animator>();
+
+        _towerBug = transform.Find("Tower_Bug").gameObject;
+        
+        //Temporary assignement
+        lookAtObj = gameObject.transform;
+
         _homeY = lookAtObj.transform.localRotation.eulerAngles.y;
-        towerHp = towerBug.GetComponent<TowerHP>();
     }
 
     private void Update()
@@ -77,10 +82,10 @@ public class Tower : MonoBehaviour
             }
         }
 
-        if (towerHp.castleHp <= 0)
+        if (hp <= 0)
         {
             Destroy(gameObject);
-            destroyParticle = Instantiate(destroyParticle, towerBug.transform.position,
+            destroyParticle = Instantiate(destroyParticle, _towerBug.transform.position,
                 Quaternion.FromToRotation(Vector3.up, impactNormal2));
             Destroy(destroyParticle, 3);
         }
@@ -125,6 +130,15 @@ public class Tower : MonoBehaviour
 
         anim2.SetBool(Attack, false);
         anim2.SetBool(Pose, true);
+    }
+
+    #endregion
+
+    #region PublicMethods
+
+    public void Damage(int damage)
+    {
+        hp -= damage;
     }
 
     #endregion

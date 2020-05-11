@@ -62,7 +62,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (other.gameObject.transform == _target)
         {
-            _target.GetComponent<TowerHP>().Damage(_damage);
+            _target.GetComponent<Tower>().Damage(_damage);
             Destroy(gameObject, timeBeforeDestroyBullet);
             
             impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal));
