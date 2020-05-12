@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBeforeDestroyBullet: 0.05
-  particleTime: 3
+  particleTime: 1
   speed: 2
   impactNormal: {x: 0, y: 0, z: 0}
   impactParticle: {fileID: 1015959161999642, guid: 5bfd32998278cc44ea4a331c04bd5e45,
