@@ -3363,6 +3363,24 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114710388903682014, guid: 939f195fe52106341a700d56d2097482,
+        type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f9372942f6e811940b1fee4d7748f269,
+        type: 3}
+    - target: {fileID: 114710388903682014, guid: 939f195fe52106341a700d56d2097482,
+        type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 15bbc44ce3a9c714cb0eef1fef0e6b8a,
+        type: 3}
+    - target: {fileID: 114710388903682014, guid: 939f195fe52106341a700d56d2097482,
+        type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 18b1ba6d587b6a6489bc66e52b6821d0,
+        type: 3}
     - target: {fileID: 224306927807291752, guid: 939f195fe52106341a700d56d2097482,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3523,6 +3541,24 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 114721936059239414, guid: a08c44c62f698c74f94d95697f0b8f83,
+        type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bece6f9ec30ad754586db6d6214d46d8,
+        type: 3}
+    - target: {fileID: 114721936059239414, guid: a08c44c62f698c74f94d95697f0b8f83,
+        type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8ae80f4c1291ce842b9ebc6e400a702b,
+        type: 3}
+    - target: {fileID: 114721936059239414, guid: a08c44c62f698c74f94d95697f0b8f83,
+        type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 51b453c49c2ce6648a52988c29f6e217,
+        type: 3}
     - target: {fileID: 224993813805065734, guid: a08c44c62f698c74f94d95697f0b8f83,
         type: 3}
       propertyPath: m_LocalPosition.x
