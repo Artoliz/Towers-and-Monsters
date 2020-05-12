@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     private float _attackTime;
 
     private bool _isAttacking;
+    private bool _betweenAttack;
 
     private GameObject _base;
     private GameObject _target;
@@ -39,7 +40,7 @@ public class Enemy : MonoBehaviour
     #region PublicVariables
 
     public int damageToBuildings;
-    
+
     public GameObject bulletPrefab;
 
     public Transform shootElement;
@@ -52,8 +53,15 @@ public class Enemy : MonoBehaviour
     {
         _anim = GetComponent<Animator>();
         SetAnimationsTimes();
-        
+
         _agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Start()
+    {
+        _agent.isStopped = false;
+        _agent.SetDestination(_base.transform.position);
+        _anim.SetBool(Run, true);
     }
 
     private void Update()
@@ -77,15 +85,14 @@ public class Enemy : MonoBehaviour
             Base.instance.LoseHealth(damageToBase);
             DestroyEnemy();
         }
-        else if (_isAttacking && _target)
+        else if (_isAttacking)
         {
-            Attacking();
+            if (!_betweenAttack)
+                StartCoroutine(Attacking());
         }
         else
         {
-            _agent.isStopped = false;
-            _agent.SetDestination(_base.transform.position);
-            _anim.SetBool(Run, true);
+            _agent.SetDestination(_target.transform.position);
         }
     }
 
@@ -96,9 +103,9 @@ public class Enemy : MonoBehaviour
     private void SetAnimationsTimes()
     {
         var clips = _anim.runtimeAnimatorController.animationClips;
-        foreach(var clip in clips)
+        foreach (var clip in clips)
         {
-            switch(clip.name)
+            switch (clip.name)
             {
                 case "Dying":
                     _dyingTime = clip.length;
@@ -109,7 +116,7 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-    
+
     private bool HasReachedBase()
     {
         var distanceToTarget = Vector3.Distance(transform.position, _base.transform.position);
@@ -117,13 +124,20 @@ public class Enemy : MonoBehaviour
         return distanceToTarget < destinationReachedPadding;
     }
 
-    private void Attacking()
+    private IEnumerator Attacking()
     {
+        _betweenAttack = true;
+
         var look = _target.transform.position;
         look.y = 0;
         transform.LookAt(look);
 
-        _target.GetComponentInParent<Tower>().Damage(damageToBuildings);
+        yield return new WaitForSeconds(_attackTime);
+        if (_target && _target != _base)
+        {
+            _target.GetComponentInParent<Tower>().Damage(damageToBuildings);
+            _betweenAttack = false;
+        }
     }
 
     private void Shooting()
@@ -149,11 +163,11 @@ public class Enemy : MonoBehaviour
         return enemyWeight;
     }
 
-    public GameObject GetTarget()
+    public GameObject GetBase()
     {
-        return _target;
+        return _base;
     }
-    
+
     #endregion
 
     #region Setters
@@ -174,6 +188,11 @@ public class Enemy : MonoBehaviour
         _isAttacking = isAttacking;
     }
 
+    public void SetBetweenAttack(bool isBetweenAttack)
+    {
+        _betweenAttack = isBetweenAttack;
+    }
+
     public void SetIsStopped(bool isStopped)
     {
         _agent.isStopped = isStopped;
@@ -183,14 +202,15 @@ public class Enemy : MonoBehaviour
     {
         _anim.SetBool(trigger, activate);
     }
-    
+
     #endregion
-    
+
     public IEnumerator KillEnemy()
     {
         _agent.isStopped = true;
         gameObject.tag = "Dead";
         _anim.SetBool(Death, true);
+
         yield return new WaitForSeconds(_dyingTime);
         DestroyEnemy();
     }
