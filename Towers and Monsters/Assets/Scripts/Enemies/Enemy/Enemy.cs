@@ -85,14 +85,16 @@ public class Enemy : MonoBehaviour
             Base.instance.LoseHealth(damageToBase);
             DestroyEnemy();
         }
-        else if (_isAttacking)
+        else if (_isAttacking && _target && _target != _base)
         {
             if (!_betweenAttack)
-                StartCoroutine(Attacking());
+            {
+                StartCoroutine(shootElement ? Shooting() : Attacking());
+            }
         }
         else
         {
-            _agent.SetDestination(_target.transform.position);
+            _agent.SetDestination(_base.transform.position);
         }
     }
 
@@ -140,11 +142,24 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Shooting()
+    private IEnumerator Shooting()
     {
-        var bullet = Instantiate(bulletPrefab, shootElement.position, Quaternion.identity);
-        bullet.GetComponent<EnemyBullet>().SetTarget(_target.transform);
-        bullet.GetComponent<EnemyBullet>().SetDamage(damageToBuildings);
+        _betweenAttack = true;
+
+        var look = _target.transform.position;
+        look.y = 0;
+        transform.LookAt(look);
+
+        yield return new WaitForSeconds(_attackTime / 2);
+        if (_target && _target != _base)
+        {
+            var bullet = Instantiate(bulletPrefab, shootElement.position, Quaternion.identity);
+            bullet.GetComponent<EnemyBullet>().SetTarget(_target.transform);
+            bullet.GetComponent<EnemyBullet>().SetDamage(damageToBuildings);
+
+            yield return new WaitForSeconds(_attackTime / 2);
+            _betweenAttack = false;
+        }
     }
 
     #endregion
