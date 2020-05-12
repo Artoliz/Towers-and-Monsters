@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     
     private float _dyingTime;
 
-    private static readonly int Run = Animator.StringToHash("Run");
     private static readonly int Death = Animator.StringToHash("Death");
 
     #endregion
@@ -30,7 +29,8 @@ public class Enemy : MonoBehaviour
     protected NavMeshAgent Agent;
 
     protected Animator Anim;
-
+    
+    protected static readonly int Run = Animator.StringToHash("Run");
     protected static readonly int Idle = Animator.StringToHash("Idle");
     protected static readonly int Victory = Animator.StringToHash("Victory");
 
@@ -52,7 +52,6 @@ public class Enemy : MonoBehaviour
     {
         SetIsStopped(false);
         Agent.SetDestination(Base.transform.position);
-        SetAnimation(Run, true);
     }
 
     #endregion
@@ -65,6 +64,7 @@ public class Enemy : MonoBehaviour
         {
             SetIsStopped(true);
             SetAnimation(Idle, true);
+            SetAnimation(Run, false);
         }
         else if (global::Base.instance.IsBaseDestroyed())
         {
@@ -83,6 +83,8 @@ public class Enemy : MonoBehaviour
         else
         {
             SetIsStopped(false);
+            SetAnimation(Idle, false);
+            SetAnimation(Run, true);
             Agent.SetDestination(Base.transform.position);
         }
     }
