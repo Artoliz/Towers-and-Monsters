@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Builder : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class Builder : MonoBehaviour
     private Buildings _buildingEnum = Buildings.None;
 
     private const int LayerBuildingMask = 1 << 12;
+
+    [SerializeField] private Sprite[] _buildingImages = null;
+    [SerializeField] private Image _buildingSelected = null;
 
     #endregion
 
@@ -44,6 +48,8 @@ public class Builder : MonoBehaviour
         _gridObject = FindObjectOfType<Grid>();
 
         InitBuildings();
+
+        _buildingSelected.transform.localScale /= 6;
     }
 
     private void Start()
@@ -56,6 +62,8 @@ public class Builder : MonoBehaviour
         if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
         {
             SelectedBuilding();
+
+            DisplayBuildingSelected();
 
             if (Input.GetMouseButtonDown(0) && _buildingEnum != Buildings.None)
             {
@@ -76,6 +84,32 @@ public class Builder : MonoBehaviour
 
     #region PrivateFunctions
 
+    private void DisplayBuildingSelected()
+    {
+        if (_buildingEnum != Buildings.None)
+        {
+            if (_buildingSelected.sprite == null || !_buildingSelected.sprite.name.Contains(_buildingEnum.ToString()))
+            {
+                foreach (Sprite building in _buildingImages)
+                {
+                    if (building.name.Contains(_buildingEnum.ToString()))
+                    {
+                        _buildingSelected.gameObject.SetActive(true);
+                        _buildingSelected.sprite = building;
+                        _buildingSelected.SetNativeSize();
+                        _buildingSelected.color = new Color(1, 1, 1, 0.3f);
+                        break;
+                    }
+                }
+            }
+            _buildingSelected.transform.position = Input.mousePosition;
+        } else if (_buildingSelected.sprite != null)
+        {
+            _buildingSelected.sprite = null;
+            _buildingSelected.gameObject.SetActive(false);
+        }
+    }
+
     private void InitBuildings()
     {
         buildings = new Dictionary<Buildings, GameObject>
@@ -86,7 +120,30 @@ public class Builder : MonoBehaviour
             [Buildings.EffectShot] = buildingsPrefab[3],
             [Buildings.AoeShot] = buildingsPrefab[4]
         };
+    }
 
+    public void SelectedBuilding(string building)
+    {
+        if (building == Buildings.Wall.ToString())
+        {
+            _buildingEnum = _buildingEnum == Buildings.Wall ? Buildings.None : Buildings.Wall;
+        }
+        else if (building == Buildings.HeavyBullet.ToString())
+        {
+            _buildingEnum = _buildingEnum == Buildings.HeavyBullet ? Buildings.None : Buildings.HeavyBullet;
+        }
+        else if (building == Buildings.LongRange.ToString())
+        {
+            _buildingEnum = _buildingEnum == Buildings.LongRange ? Buildings.None : Buildings.LongRange;
+        }
+        else if (building == Buildings.EffectShot.ToString())
+        {
+            _buildingEnum = _buildingEnum == Buildings.EffectShot ? Buildings.None : Buildings.EffectShot;
+        }
+        else if (building == Buildings.AoeShot.ToString())
+        {
+            _buildingEnum = _buildingEnum == Buildings.AoeShot ? Buildings.None : Buildings.AoeShot;
+        }
     }
 
     private void SelectedBuilding()
