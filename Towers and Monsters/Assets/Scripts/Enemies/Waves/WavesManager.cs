@@ -98,13 +98,7 @@ public class WavesManager : MonoBehaviour
 
     private void DisplayTimeBetweenWaves(float timeToDisplay)
     {
-        timeToDisplay += 1;
-
-        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
-        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-
-        //timeBetweenNextWaveText.text = $"Time before next wave : {minutes:00}:{seconds:00}";
-        timeBetweenNextWaveText.text = seconds.ToString("00") + "s";
+        timeBetweenNextWaveText.text = timeToDisplay.ToString("00") + "s";
     }
 
     private void SetTimeBetweenWaves(bool timerBetweenIsRunning, float timeBetweenWaves)
@@ -126,7 +120,6 @@ public class WavesManager : MonoBehaviour
         timeBetweenNextWaveText.gameObject.SetActive(false);
         waveNumberText.gameObject.SetActive(true);
 
-        //waveNumberText.text = $"Wave : {waveNumber}";
         waveNumberText.text = $"Round {waveNumber}";
     }
 
