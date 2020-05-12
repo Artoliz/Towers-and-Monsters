@@ -13,13 +13,13 @@ public class EnemyBullet : MonoBehaviour
     #region SeriazableVariables
 
     [SerializeField] private float timeBeforeDestroyBullet = 0.05f;
-    [SerializeField] private float particleTime = 3;
+    [SerializeField] private float particleTime = 1f;
 
     #endregion
 
     #region PublicVariables
 
-    public float speed;
+    public float speed = 2f;
 
     public Vector3 impactNormal;
 

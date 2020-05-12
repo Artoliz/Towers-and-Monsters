@@ -673,7 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHp: 500
-  enemyWeight: 7
+  enemyWeight: 8
   waveNumberApparition: 8
   damageToBase: 300
   destinationReachedPadding: 0.5

@@ -89,7 +89,7 @@ public class Tower : MonoBehaviour
             Destroy(gameObject);
             destroyParticle = Instantiate(destroyParticle, _towerBug.transform.position,
                 Quaternion.FromToRotation(Vector3.up, impactNormal2));
-            Destroy(destroyParticle, 3);
+            Destroy(destroyParticle, 1);
         }
     }
 

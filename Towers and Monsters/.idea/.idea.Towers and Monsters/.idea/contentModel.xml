@@ -62,6 +62,7 @@
               <e p="WavesManager.cs" t="Include" />
             </e>
           </e>
+          <e p="GameManager.cs" t="Include" />
           <e p="Grid" t="Include">
             <e p="Grid.cs" t="Include" />
           </e>
