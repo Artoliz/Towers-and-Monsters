@@ -3332,6 +3332,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skip
       objectReference: {fileID: 0}
+    - target: {fileID: 114317205506647154, guid: 939f195fe52106341a700d56d2097482,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b29dc0c5e74048f4c91151aa6924d9f4,
+        type: 3}
     - target: {fileID: 114710388903682014, guid: 939f195fe52106341a700d56d2097482,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3481,6 +3487,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 114037168786247568, guid: a08c44c62f698c74f94d95697f0b8f83,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 910012d560c7a9544b76bd333be471d9,
+        type: 3}
     - target: {fileID: 114721936059239414, guid: a08c44c62f698c74f94d95697f0b8f83,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
