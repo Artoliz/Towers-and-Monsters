@@ -77,7 +77,7 @@ public class Enemy : MonoBehaviour
             Base.instance.LoseHealth(damageToBase);
             DestroyEnemy();
         }
-        else if (_isAttacking && _target != _base)
+        else if (_isAttacking && _target)
         {
             Attacking();
         }
@@ -119,6 +119,10 @@ public class Enemy : MonoBehaviour
 
     private void Attacking()
     {
+        var look = _target.transform.position;
+        look.y = 0;
+        transform.LookAt(look);
+
         _target.GetComponentInParent<Tower>().Damage(damageToBuildings);
     }
 
