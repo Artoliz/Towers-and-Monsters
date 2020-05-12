@@ -58,18 +58,7 @@ public class WavesManager : MonoBehaviour
 
     private void Update()
     {
-        if (!gameIsFinished && Base.instance.IsBaseDestroyed())
-        {
-            gameIsFinished = true;
-            gameUi.SetActive(false);
-            gameOverUi.SetActive(true);
-        }
-        else if (gameIsFinished)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-                SceneManager.LoadScene("Menu");
-        }
-        else if (!gameIsFinished && !PauseMenu.GameIsPaused && _timerBetweenWavesIsRunning)
+        if (!gameIsFinished && !PauseMenu.GameIsPaused && _timerBetweenWavesIsRunning)
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 SkipBetweenWaves();
@@ -84,6 +73,16 @@ public class WavesManager : MonoBehaviour
                 EnableUiDuringWave();
                 RunWave();
             }
+        } else if (!gameIsFinished && Base.instance.IsBaseDestroyed())
+        {
+            gameIsFinished = true;
+            gameUi.SetActive(false);
+            gameOverUi.SetActive(true);
+        }
+        else if (gameIsFinished)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+                SceneManager.LoadScene("Menu");
         }
         else if (!gameIsFinished && !PauseMenu.GameIsPaused && gameIsBetweenWaves)
         {
