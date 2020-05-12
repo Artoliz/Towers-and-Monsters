@@ -5,12 +5,14 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     #region PrivateVariables
-
+    
     [SerializeField] private int enemyWeight = 1;
     [SerializeField] private int waveNumberApparition = 1;
 
     [SerializeField] private float destinationReachedPadding = 1.5f;
 
+    private int _reward;
+    
     private float _dyingTime;
 
     private static readonly int Run = Animator.StringToHash("Run");
@@ -38,6 +40,8 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        _reward = enemyWeight * 10;
+        
         Anim = GetComponent<Animator>();
         SetAnimationsTimes();
 
@@ -67,7 +71,7 @@ public class Enemy : MonoBehaviour
             SetIsStopped(true);
             SetAnimation(Victory, true);
         }
-        else if (enemyHp <= 0)
+        else if (enemyHp <= 0 && !gameObject.CompareTag($"Dead"))
         {
             StartCoroutine(KillEnemy());
         }
@@ -153,8 +157,11 @@ public class Enemy : MonoBehaviour
     public IEnumerator KillEnemy()
     {
         SetIsStopped(true);
+        
         gameObject.tag = "Dead";
         SetAnimation(Death, true);
+
+        GameManager.Instance.AddGolds(_reward);
 
         yield return new WaitForSeconds(_dyingTime);
         DestroyEnemy();

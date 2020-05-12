@@ -593,6 +593,7 @@ GameObject:
   - component: {fileID: 4936340952122170}
   - component: {fileID: 95176672534087480}
   - component: {fileID: 195544227732862766}
+  - component: {fileID: 114092457329729948}
   m_Layer: 9
   m_Name: Troll_1_A
   m_TagString: Enemy
@@ -659,6 +660,24 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &114092457329729948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562289288557530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f426e34c736a6a44cac8fc48d01fb244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyWeight: 8
+  waveNumberApparition: 8
+  destinationReachedPadding: 0.5
+  enemyHp: 500
+  damageToBase: 300
+  damageToBuildings: 50
 --- !u!1 &1578170839671386
 GameObject:
   m_ObjectHideFlags: 0
