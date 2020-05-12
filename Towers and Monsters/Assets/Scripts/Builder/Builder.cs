@@ -183,6 +183,7 @@ public class Builder : MonoBehaviour
             //When you can't buy a tower, do something
             if (tmpBuilding.GetComponent<Tower>().cost > GameManager.Instance.GetGolds())
             {
+                Debug.Log("Not enough golds to build.");
                 _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
                 Destroy(tmpBuilding);
                 return;
