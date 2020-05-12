@@ -45,6 +45,7 @@ public class AttackUnit : Enemy
         {
             SetIsStopped(true);
             SetAnimation(Idle, true);
+            SetAnimation(Run, false);
         }
         else if (global::Base.instance.IsBaseDestroyed())
         {
@@ -68,6 +69,8 @@ public class AttackUnit : Enemy
         else
         {
             SetIsStopped(false);
+            SetAnimation(Idle, false);
+            SetAnimation(Run, true);
             Agent.SetDestination(Base.transform.position);
         }
     }
