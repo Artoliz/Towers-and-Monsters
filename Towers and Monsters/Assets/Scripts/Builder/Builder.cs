@@ -180,16 +180,6 @@ public class Builder : MonoBehaviour
 
             var tmpBuilding = Instantiate(buildings[_buildingEnum], result, Quaternion.identity);
 
-            //When you can't buy a tower, do something
-            if (tmpBuilding.GetComponent<Tower>().cost > GameManager.Instance.GetGolds())
-            {
-                Debug.Log("Not enough golds to build.");
-                _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
-                Destroy(tmpBuilding);
-                return;
-            } else
-                GameManager.Instance.RemoveGolds(tmpBuilding.GetComponent<Tower>().cost);
-
             foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
                 mesh.enabled = false;
 
@@ -216,8 +206,20 @@ public class Builder : MonoBehaviour
             }
         }
 
-        foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
-            mesh.enabled = true;
+        //When you can't buy a tower, do something
+        if (tmpBuilding.GetComponent<Tower>() != null && tmpBuilding.GetComponent<Tower>().cost > GameManager.Instance.GetGolds())
+        {
+            Debug.Log("Not enough golds to build.");
+            _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
+            Destroy(tmpBuilding);
+        }
+        else
+        {
+            if (tmpBuilding.GetComponent<Tower>() != null)
+                GameManager.Instance.RemoveGolds(tmpBuilding.GetComponent<Tower>().cost);
+            foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
+                mesh.enabled = true;
+        }
     }
 
     private void DrawPathDebug()
