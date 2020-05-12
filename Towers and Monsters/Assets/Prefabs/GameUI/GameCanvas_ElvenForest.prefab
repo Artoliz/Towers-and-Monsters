@@ -426,6 +426,7 @@ GameObject:
   - component: {fileID: 1963419051}
   - component: {fileID: 1963419053}
   - component: {fileID: 1963419052}
+  - component: {fileID: 6739438128427586730}
   m_Layer: 5
   m_Name: GameOverMenu
   m_TagString: Untagged
@@ -492,6 +493,20 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &6739438128427586730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963419050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d30cb38e1f34144a7454dcc45a20b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roundDone: {fileID: 2643033885588952442}
+  _enemiesKilled: {fileID: 3441758211826633634}
 --- !u!1 &88636957403276246
 GameObject:
   m_ObjectHideFlags: 0

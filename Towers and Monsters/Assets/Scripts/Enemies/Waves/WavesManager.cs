@@ -78,6 +78,8 @@ public class WavesManager : MonoBehaviour
             gameIsFinished = true;
             gameUi.SetActive(false);
             gameOverUi.SetActive(true);
+            gameOverUi.GetComponent<GameOver>().EndGame(waveNumber, 10);
+            GameManager.Instance.EndGame(waveNumber, 10);
         }
         else if (gameIsFinished)
         {

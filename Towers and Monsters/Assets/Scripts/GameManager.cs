@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int _golds = 200;
 
+    private int _roundEnded = 0;
+    private int _enemiesKilled = 0;
+
     #endregion
 
     #region MoboBehaviour
@@ -90,6 +93,14 @@ public class GameManager : MonoBehaviour
     public int GetGolds()
     {
         return _golds;
+    }
+
+    public void EndGame(int wave, int enemiesKilled)
+    {
+        _roundEnded = wave;
+        _enemiesKilled = enemiesKilled;
+
+        // Save Score in local
     }
 
     #endregion
