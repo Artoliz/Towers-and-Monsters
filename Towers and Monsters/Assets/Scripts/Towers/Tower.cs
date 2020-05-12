@@ -18,6 +18,8 @@ public class Tower : MonoBehaviour
 
     #region PublicVariables
 
+    public int cost = 100;
+
     public int hp = 20;
     public int dmg = 10;
 

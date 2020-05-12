@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Text _goldsText = null;
 
-    private int _golds = 0;
+    [SerializeField] private int _golds = 200;
 
     #endregion
 
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _timerSinceStart.text = "00:00:00";
-        _goldsText.text = "0";
+        _goldsText.text = _golds.ToString();
     }
 
     void Update()
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
     public void RemoveGolds(int golds)
     {
         _golds -= golds;
-        _goldsText.tag = _golds.ToString();
+        _goldsText.text = _golds.ToString();
     }
 
     public int GetGolds()

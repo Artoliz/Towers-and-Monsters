@@ -43,3 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6c38d21e6422749be59bd6b4d43ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timerSinceStart: {fileID: 0}
+  _goldsText: {fileID: 0}
+  _golds: 250

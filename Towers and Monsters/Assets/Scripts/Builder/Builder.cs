@@ -180,6 +180,15 @@ public class Builder : MonoBehaviour
 
             var tmpBuilding = Instantiate(buildings[_buildingEnum], result, Quaternion.identity);
 
+            //When you can't buy a tower, do something
+            if (tmpBuilding.GetComponent<Tower>().cost > GameManager.Instance.GetGolds())
+            {
+                _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
+                Destroy(tmpBuilding);
+                return;
+            } else
+                GameManager.Instance.RemoveGolds(tmpBuilding.GetComponent<Tower>().cost);
+
             foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
                 mesh.enabled = false;
 
