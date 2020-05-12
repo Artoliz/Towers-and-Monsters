@@ -50,13 +50,22 @@
             <e p="Buildings.cs" t="Include" />
           </e>
           <e p="Enemies" t="Include">
-            <e p="Enemy" t="Include">
-              <e p="AttackRange.cs" t="Include" />
-              <e p="Enemy.cs" t="Include" />
-              <e p="EnemyBullet.cs" t="Include" />
-            </e>
             <e p="Spawner" t="Include">
               <e p="EnemiesSpawns.cs" t="Include" />
+            </e>
+            <e p="Units" t="Include">
+              <e p="AttackUnits" t="Include">
+                <e p="AttackRange.cs" t="Include" />
+                <e p="AttackUnit.cs" t="Include" />
+                <e p="Melee" t="Include">
+                  <e p="MeleeUnit.cs" t="Include" />
+                </e>
+                <e p="Range" t="Include">
+                  <e p="RangeUnit.cs" t="Include" />
+                  <e p="RangeUnitBullet.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Enemy.cs" t="Include" />
             </e>
             <e p="Waves" t="Include">
               <e p="WavesManager.cs" t="Include" />

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EnemyBullet : MonoBehaviour
+public class RangeUnitBullet : MonoBehaviour
 {
     #region PrivateVariables
 
@@ -33,8 +33,10 @@ public class EnemyBullet : MonoBehaviour
     {
         if (_target)
         {
-            transform.LookAt(_target);
-            transform.position = Vector3.MoveTowards(transform.position, _target.position, Time.deltaTime * speed);
+            Transform transformSave;
+            
+            (transformSave = transform).LookAt(_target);
+            transform.position = Vector3.MoveTowards(transformSave.position, _target.position, Time.deltaTime * speed);
         }
         else
             Destroy(gameObject);

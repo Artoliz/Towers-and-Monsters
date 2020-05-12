@@ -10,7 +10,7 @@ public class AttackRange : MonoBehaviour
     private GameObject _base;
     private GameObject _tower;
 
-    private Enemy _enemy;
+    private AttackUnit _attackUnit;
 
     private static readonly int Run = Animator.StringToHash("Run");
     private static readonly int Attack = Animator.StringToHash("Attack");
@@ -21,12 +21,12 @@ public class AttackRange : MonoBehaviour
 
     private void Awake()
     {
-        _enemy = GetComponentInParent<Enemy>();
+        _attackUnit = GetComponentInParent<AttackUnit>();
     }
 
     private void Start()
     {
-        _base = _enemy.GetBase();
+        _base = _attackUnit.GetBase();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,11 +35,11 @@ public class AttackRange : MonoBehaviour
         {
             _tower = other.gameObject;
 
-            _enemy.SetTarget(_tower);
-            _enemy.SetIsAttacking(true);
-            _enemy.SetIsStopped(true);
-            _enemy.SetAnimation(Run, false);
-            _enemy.SetAnimation(Attack, true);
+            _attackUnit.SetTarget(_tower);
+            _attackUnit.SetIsAttacking(true);
+            _attackUnit.SetIsStopped(true);
+            _attackUnit.SetAnimation(Run, false);
+            _attackUnit.SetAnimation(Attack, true);
 
             //Reset update is done to be able to re-update the enemy
             _updateIsDone = false;
@@ -50,12 +50,12 @@ public class AttackRange : MonoBehaviour
     {
         if (!_tower && !_updateIsDone)
         {
-            _enemy.SetTarget(_base);
-            _enemy.SetBetweenAttack(false);
-            _enemy.SetIsAttacking(false);
-            _enemy.SetIsStopped(false);
-            _enemy.SetAnimation(Attack, false);
-            _enemy.SetAnimation(Run, true);
+            _attackUnit.SetTarget(_base);
+            _attackUnit.SetBetweenAttack(false);
+            _attackUnit.SetIsAttacking(false);
+            _attackUnit.SetIsStopped(false);
+            _attackUnit.SetAnimation(Attack, false);
+            _attackUnit.SetAnimation(Run, true);
 
             //Update is done stop doing it until the enemy stops again
             _updateIsDone = true;

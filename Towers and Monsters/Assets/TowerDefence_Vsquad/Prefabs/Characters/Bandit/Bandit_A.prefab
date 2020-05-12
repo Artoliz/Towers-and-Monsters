@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 9185623120719555735}
   - component: {fileID: 9185623120726999925}
   - component: {fileID: 9185623120719720624}
-  - component: {fileID: 9185623120719720630}
+  - component: {fileID: 114258538129030882}
   m_Layer: 9
   m_Name: Bandit_A
   m_TagString: Enemy
@@ -540,7 +540,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &9185623120719720630
+--- !u!114 &114258538129030882
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -552,14 +552,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb12be6211b0d9e4bb7e020f117679c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHp: 100
   enemyWeight: 7
   waveNumberApparition: 7
-  damageToBase: 20
   destinationReachedPadding: 0.5
-  damageToBuildings: 0
-  bulletPrefab: {fileID: 0}
-  shootElement: {fileID: 0}
+  enemyHp: 100
+  damageToBase: 20
 --- !u!1 &9185623120719720633
 GameObject:
   m_ObjectHideFlags: 0

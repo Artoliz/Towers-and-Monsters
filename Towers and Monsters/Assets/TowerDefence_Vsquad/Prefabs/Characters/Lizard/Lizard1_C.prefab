@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 4691820247472096}
   - component: {fileID: 95909412163832546}
   - component: {fileID: 195222660988324846}
-  - component: {fileID: 114464988549931944}
+  - component: {fileID: 114465737207598458}
   m_Layer: 9
   m_Name: Lizard1_C
   m_TagString: Enemy
@@ -389,7 +389,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &114464988549931944
+--- !u!114 &114465737207598458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -398,17 +398,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1443503913773770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb12be6211b0d9e4bb7e020f117679c4, type: 3}
+  m_Script: {fileID: 11500000, guid: f426e34c736a6a44cac8fc48d01fb244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHp: 200
   enemyWeight: 5
   waveNumberApparition: 5
-  damageToBase: 30
   destinationReachedPadding: 0.5
+  enemyHp: 200
+  damageToBase: 30
   damageToBuildings: 10
-  bulletPrefab: {fileID: 0}
-  shootElement: {fileID: 0}
 --- !u!1 &1457836373332186
 GameObject:
   m_ObjectHideFlags: 0

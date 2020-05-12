@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 4333980094273226}
   - component: {fileID: 95155773690750240}
   - component: {fileID: 195196223437610024}
-  - component: {fileID: 114094726341069268}
+  - component: {fileID: 114901981697209040}
   m_Layer: 9
   m_Name: Jack_B
   m_TagString: Enemy
@@ -525,7 +525,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &114094726341069268
+--- !u!114 &114901981697209040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -534,7 +534,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1415162188089706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb12be6211b0d9e4bb7e020f117679c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 521f005476310c143bb5a12ae012a578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHp: 100
@@ -543,9 +543,9 @@ MonoBehaviour:
   damageToBase: 20
   destinationReachedPadding: 0.5
   damageToBuildings: 8
+  shootElement: {fileID: 4546478581731338}
   bulletPrefab: {fileID: 1240887441953726, guid: c83fcb1db677f7c4e9b31b47f2c81db3,
     type: 3}
-  shootElement: {fileID: 4546478581731338}
 --- !u!1 &1504540062256152
 GameObject:
   m_ObjectHideFlags: 0
