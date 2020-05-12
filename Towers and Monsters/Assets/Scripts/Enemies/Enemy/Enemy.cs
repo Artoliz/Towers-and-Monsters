@@ -88,14 +88,10 @@ public class Enemy : MonoBehaviour
         else if (_isAttacking && _target && _target != _base)
         {
             if (!_betweenAttack)
-            {
-                StartCoroutine(shootElement ? Shooting() : Attacking());
-            }
+                StartCoroutine(Attacking());
         }
         else
-        {
             _agent.SetDestination(_base.transform.position);
-        }
     }
 
     #endregion
@@ -134,32 +130,24 @@ public class Enemy : MonoBehaviour
         look.y = 0;
         transform.LookAt(look);
 
-        yield return new WaitForSeconds(_attackTime);
-        if (_target && _target != _base)
-        {
-            _target.GetComponentInParent<Tower>().Damage(damageToBuildings);
-            _betweenAttack = false;
-        }
-    }
-
-    private IEnumerator Shooting()
-    {
-        _betweenAttack = true;
-
-        var look = _target.transform.position;
-        look.y = 0;
-        transform.LookAt(look);
-
         yield return new WaitForSeconds(_attackTime / 2);
         if (_target && _target != _base)
         {
-            var bullet = Instantiate(bulletPrefab, shootElement.position, Quaternion.identity);
-            bullet.GetComponent<EnemyBullet>().SetTarget(_target.transform);
-            bullet.GetComponent<EnemyBullet>().SetDamage(damageToBuildings);
+            if (shootElement)
+                Shoot();
+            else
+                _target.GetComponentInParent<Tower>().Damage(damageToBuildings);
 
             yield return new WaitForSeconds(_attackTime / 2);
             _betweenAttack = false;
         }
+    }
+
+    private void Shoot()
+    {
+        var bullet = Instantiate(bulletPrefab, shootElement.position, Quaternion.identity);
+        bullet.GetComponent<EnemyBullet>().SetTarget(_target.transform);
+        bullet.GetComponent<EnemyBullet>().SetDamage(damageToBuildings);
     }
 
     #endregion

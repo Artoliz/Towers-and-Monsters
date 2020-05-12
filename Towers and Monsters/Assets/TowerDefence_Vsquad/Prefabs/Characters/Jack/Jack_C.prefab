@@ -538,8 +538,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHp: 100
-  enemyWeight: 10
-  waveNumberApparition: 1
+  enemyWeight: 4
+  waveNumberApparition: 4
   damageToBase: 20
   destinationReachedPadding: 0.5
   damageToBuildings: 8
