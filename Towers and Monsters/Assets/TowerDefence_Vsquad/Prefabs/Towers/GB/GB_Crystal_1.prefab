@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 33307674736236114}
   - component: {fileID: 23008460107366940}
   - component: {fileID: 114334677306128932}
+  - component: {fileID: 208866192148383976}
   m_Layer: 10
   m_Name: GB_Crystal_1
   m_TagString: Tower
@@ -153,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a682e4e961f99c0498ca12fad03ef8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 100
   hp: 20
   dmg: 10
   shootDelay: 1
@@ -165,6 +167,22 @@ MonoBehaviour:
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4231576258298876}
   anim2: {fileID: 0}
+--- !u!208 &208866192148383976
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741313696085770}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1841433443981248
 GameObject:
   m_ObjectHideFlags: 0

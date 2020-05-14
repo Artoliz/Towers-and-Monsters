@@ -5,14 +5,14 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     #region PrivateVariables
-    
+
     [SerializeField] private int enemyWeight = 1;
     [SerializeField] private int waveNumberApparition = 1;
 
     [SerializeField] private float destinationReachedPadding = 1.5f;
 
     private int _reward;
-    
+
     private float _dyingTime;
 
     private static readonly int Death = Animator.StringToHash("Death");
@@ -25,28 +25,18 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected int damageToBase = 100;
 
     protected GameObject Base;
-    
+
     protected NavMeshAgent Agent;
 
     protected Animator Anim;
-    
+
     protected static readonly int Run = Animator.StringToHash("Run");
     protected static readonly int Idle = Animator.StringToHash("Idle");
     protected static readonly int Victory = Animator.StringToHash("Victory");
 
     #endregion
-    
+
     #region MonoBehavior
-
-    private void Awake()
-    {
-        _reward = enemyWeight * 10;
-        
-        Anim = GetComponent<Animator>();
-        SetAnimationsTimes();
-
-        Agent = GetComponent<NavMeshAgent>();
-    }
 
     private void Start()
     {
@@ -57,6 +47,16 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region VirtualMethods
+
+    protected virtual void Awake()
+    {
+        _reward = enemyWeight * 10;
+
+        Anim = GetComponent<Animator>();
+        SetAnimationsTimes();
+
+        Agent = GetComponent<NavMeshAgent>();
+    }
 
     protected virtual void Update()
     {
@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour
     }
 
     #endregion
-    
+
     #region PublicMethods
 
     #region Getters
@@ -159,7 +159,7 @@ public class Enemy : MonoBehaviour
     public IEnumerator KillEnemy()
     {
         SetIsStopped(true);
-        
+
         gameObject.tag = "Dead";
         SetAnimation(Death, true);
 

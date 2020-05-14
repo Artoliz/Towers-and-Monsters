@@ -147,6 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4837916651843334}
   - component: {fileID: 114923982967293962}
+  - component: {fileID: 208526326671893264}
   m_Layer: 10
   m_Name: FE_toothfish_2
   m_TagString: Tower
@@ -184,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a682e4e961f99c0498ca12fad03ef8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 100
   hp: 20
   dmg: 8
   shootDelay: 0.8
@@ -196,6 +198,22 @@ MonoBehaviour:
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4693656860922046}
   anim2: {fileID: 0}
+--- !u!208 &208526326671893264
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596152025925970}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1858226687314914
 GameObject:
   m_ObjectHideFlags: 0

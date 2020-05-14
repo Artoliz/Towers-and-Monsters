@@ -6,9 +6,11 @@ public class AttackRange : MonoBehaviour
 
     //Variable used to optimize and not call what update do to many times
     private bool _updateIsDone;
-    
+
+    private string _tagToAttack;
+
     private GameObject _base;
-    private GameObject _tower;
+    private GameObject _building;
 
     private AttackUnit _attackUnit;
 
@@ -22,6 +24,7 @@ public class AttackRange : MonoBehaviour
     private void Awake()
     {
         _attackUnit = GetComponentInParent<AttackUnit>();
+        _tagToAttack = _attackUnit.GetTagToAttack();
     }
 
     private void Start()
@@ -31,11 +34,11 @@ public class AttackRange : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Tower"))
+        if (other.CompareTag(_tagToAttack))
         {
-            _tower = other.gameObject;
+            _building = other.gameObject;
 
-            _attackUnit.SetTarget(_tower);
+            _attackUnit.SetTarget(_building);
             _attackUnit.SetIsAttacking(true);
             _attackUnit.SetIsStopped(true);
             _attackUnit.SetAnimation(Run, false);
@@ -48,7 +51,7 @@ public class AttackRange : MonoBehaviour
 
     private void Update()
     {
-        if (!_tower && !_updateIsDone)
+        if (!_building && !_updateIsDone)
         {
             _attackUnit.SetTarget(_base);
             _attackUnit.SetBetweenAttack(false);

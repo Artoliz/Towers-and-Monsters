@@ -9,7 +9,7 @@ public class RangeUnit : AttackUnit
     [SerializeField] private GameObject bulletPrefab;
 
     #endregion
-    
+
     #region PrivateMethods
 
     private void Shoot()
@@ -35,7 +35,7 @@ public class RangeUnit : AttackUnit
         if (Target && Target != Base)
         {
             Shoot();
-            
+
             yield return new WaitForSeconds(AttackTime / 2);
             BetweenAttack = false;
         }

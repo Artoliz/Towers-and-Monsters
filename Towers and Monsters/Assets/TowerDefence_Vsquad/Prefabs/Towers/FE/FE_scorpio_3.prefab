@@ -255,6 +255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4832035041760718}
   - component: {fileID: 114187854551061314}
+  - component: {fileID: 208407337147188840}
   m_Layer: 10
   m_Name: FE_scorpio_3
   m_TagString: Tower
@@ -292,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a682e4e961f99c0498ca12fad03ef8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 100
   hp: 20
   dmg: 8
   shootDelay: 1
@@ -304,6 +306,22 @@ MonoBehaviour:
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4203509598759192}
   anim2: {fileID: 0}
+--- !u!208 &208407337147188840
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730064022833628}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &3226961641713976535
 PrefabInstance:
   m_ObjectHideFlags: 0

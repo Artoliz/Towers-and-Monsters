@@ -15,7 +15,7 @@ public class MeleeUnit : AttackUnit
 
         yield return new WaitForSeconds(AttackTime / 2);
         if (Target && Target != Base)
-        { 
+        {
             Target.GetComponentInParent<Tower>().Damage(damageToBuildings);
 
             yield return new WaitForSeconds(AttackTime / 2);
