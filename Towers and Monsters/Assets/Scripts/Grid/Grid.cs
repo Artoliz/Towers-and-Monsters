@@ -23,6 +23,8 @@ public class Grid : MonoBehaviour
 
     #region PublicVariables
 
+    public static Grid Instance = null;
+
     public GameObject obstacles;
     public GameObject playerBase;
     public GameObject spawns;
@@ -37,6 +39,7 @@ public class Grid : MonoBehaviour
 
         GetBlockedPositions();
         BlockPositions();
+        Instance = this;
     }
 
     #endregion
@@ -235,6 +238,36 @@ public class Grid : MonoBehaviour
         }
 
         return false;
+    }
+
+    public bool IsElementInGrid(Vector3 position)
+    {
+        var xCount = Mathf.RoundToInt(position.x / gridSpacingOffset);
+        var zCount = Mathf.RoundToInt(position.z / gridSpacingOffset);
+
+        if (_grid[xCount, zCount] != null)
+            return true;
+
+        return false;
+    }
+
+    public bool IsElementInGrid(Vector2Int position)
+    {
+        if (_grid[position.x, position.y] != null)
+            return true;
+
+        return false;
+    }
+
+    public Vector2Int GetPositionInGrid(Vector3 position)
+    {
+        var xCount = Mathf.RoundToInt(position.x / gridSpacingOffset);
+        var zCount = Mathf.RoundToInt(position.z / gridSpacingOffset);
+
+        if (_grid[xCount, zCount] != null)
+            return new Vector2Int(xCount, zCount);
+
+        return new Vector2Int(-1, -1);
     }
 
     #endregion

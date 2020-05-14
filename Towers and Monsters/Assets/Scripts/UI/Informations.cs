@@ -81,9 +81,8 @@ public class Informations : MonoBehaviour
                 }
             }
             if (_unitType == Unit.Enemy && _enemy)
-            {
-                //_enemyInfo.SetInformations(_enemy.GetInformations());
-            } else if (_unitType == Unit.Tower && _tower)
+                _enemyInfo.SetInformations(_enemy.GetEnemyData());
+            else if (_unitType == Unit.Tower && _tower)
             {
                 //_towerInfo.SetInformations(_tower.GetInformations());
             }

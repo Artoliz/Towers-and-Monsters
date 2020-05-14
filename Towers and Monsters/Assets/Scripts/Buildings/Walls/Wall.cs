@@ -6,6 +6,8 @@ public class Wall : MonoBehaviour
 
     private GameObject _wallBug;
 
+    [SerializeField] private GameObject _wallIntersect = null;
+
     #endregion
 
     #region PublicVariables
@@ -25,6 +27,8 @@ public class Wall : MonoBehaviour
     private void Start()
     {
         _wallBug = transform.Find("Wall_Bug").gameObject;
+
+        PlaceWallIntersections();
     }
 
     private void Update()
@@ -35,6 +39,26 @@ public class Wall : MonoBehaviour
             destroyParticle = Instantiate(destroyParticle, _wallBug.transform.position,
                 Quaternion.FromToRotation(Vector3.up, impactNormal));
             Destroy(destroyParticle, 1);
+        }
+    }
+
+    #endregion
+
+    #region PrivateMethods
+
+    private void PlaceWallIntersections()
+    {
+        Vector2Int posInGrid = Grid.Instance.GetPositionInGrid(this.transform.position);
+
+        for (int y = posInGrid.y + 1; y < posInGrid.y - 1; y++)
+        {
+            for (int x = posInGrid.x - 1; x < posInGrid.x + 1; x++)
+            {
+                if (Grid.Instance.IsElementInGrid(new Vector2Int(x, y)))
+                {
+
+                }
+            }
         }
     }
 
