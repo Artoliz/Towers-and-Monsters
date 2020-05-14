@@ -261,6 +261,9 @@ public class Grid : MonoBehaviour
 
     public bool IsElementInGrid(Vector2Int position, string tag)
     {
+        if (position.x < 0 || position.x >= gridSizeX || position.y < 0 || position.y >= gridSizeZ)
+            return false;
+
         if (_grid[position.x, position.y] != null && _grid[position.x, position.y].tag == tag)
             return true;
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class Wall : MonoBehaviour
     private GameObject _wallBug;
 
     [SerializeField] private GameObject _wallIntersect = null;
+
+    private List<GameObject> _intersections = new List<GameObject>();
 
     #endregion
 
@@ -38,6 +41,13 @@ public class Wall : MonoBehaviour
                 Quaternion.FromToRotation(Vector3.up, impactNormal));
             Destroy(destroyParticle, 1);
         }
+    }
+
+    private void OnDestroy()
+    {
+        foreach (GameObject intersection in _intersections)
+            Destroy(intersection);
+        _intersections.Clear();
     }
 
     #endregion
@@ -72,6 +82,7 @@ public class Wall : MonoBehaviour
 
                     quat.eulerAngles = finalRot;
                     GameObject tmp = Instantiate(_wallIntersect, finalPos, quat);
+                    _intersections.Add(tmp);
                 }
             }
         }
