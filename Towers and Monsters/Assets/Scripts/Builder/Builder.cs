@@ -216,14 +216,20 @@ public class Builder : MonoBehaviour
         //When you can't buy a tower, do something
         if (tmpBuilding.GetComponent<Tower>() != null && tmpBuilding.GetComponent<Tower>().cost > GameManager.Instance.GetGolds())
         {
-            Debug.Log("Not enough golds to build.");
+            Debug.Log("Not enough golds to build tower.");
             _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
             Destroy(tmpBuilding);
-        }
-        else
+        } else if (tmpBuilding.GetComponent<Wall>() != null && tmpBuilding.GetComponent<Wall>().cost > GameManager.Instance.GetGolds())
+        {
+            Debug.Log("Not enough golds to build wall.");
+            _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
+            Destroy(tmpBuilding);
+        } else
         {
             if (tmpBuilding.GetComponent<Tower>() != null)
                 GameManager.Instance.RemoveGolds(tmpBuilding.GetComponent<Tower>().cost);
+            else if (tmpBuilding.GetComponent<Wall>() != null)
+                GameManager.Instance.RemoveGolds(tmpBuilding.GetComponent<Wall>().cost);
             foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
                 mesh.enabled = true;
         }
