@@ -30,6 +30,8 @@ public class Enemy : MonoBehaviour
 
     protected Animator Anim;
 
+    protected Informations.EnemyData EnemyData;
+    
     protected static readonly int Run = Animator.StringToHash("Run");
     protected static readonly int Idle = Animator.StringToHash("Idle");
     protected static readonly int Victory = Animator.StringToHash("Victory");
@@ -42,6 +44,8 @@ public class Enemy : MonoBehaviour
     {
         SetIsStopped(false);
         Agent.SetDestination(Base.transform.position);
+        
+        FillEnemyData();
     }
 
     #endregion
@@ -103,6 +107,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    protected virtual void FillEnemyData()
+    {
+        EnemyData._golds = _reward;
+        EnemyData._hp = enemyHp;
+        EnemyData._speed = Agent.speed;
+        EnemyData._damageToBase = damageToBase;
+    }
+    
     #endregion
 
     #region ProtectedMethods
@@ -119,6 +131,11 @@ public class Enemy : MonoBehaviour
     #region PublicMethods
 
     #region Getters
+
+    public Informations.EnemyData GetEnemyData()
+    {
+        return EnemyData;
+    }
 
     public int GetEnemyWaveNumberApparition()
     {

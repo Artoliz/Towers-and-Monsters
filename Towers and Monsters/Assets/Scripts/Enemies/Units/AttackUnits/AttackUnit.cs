@@ -25,22 +25,6 @@ public class AttackUnit : Enemy
 
     #region OverrideMethods
 
-    protected override void SetAnimationsTimes()
-    {
-        base.SetAnimationsTimes();
-
-        var clips = Anim.runtimeAnimatorController.animationClips;
-        foreach (var clip in clips)
-        {
-            switch (clip.name)
-            {
-                case "Attack":
-                    AttackTime = clip.length;
-                    break;
-            }
-        }
-    }
-
     protected override void Update()
     {
         if (PauseMenu.GameIsPaused)
@@ -75,6 +59,30 @@ public class AttackUnit : Enemy
             SetAnimation(Run, true);
             Agent.SetDestination(Base.transform.position);
         }
+    }
+
+    protected override void SetAnimationsTimes()
+    {
+        base.SetAnimationsTimes();
+
+        var clips = Anim.runtimeAnimatorController.animationClips;
+        foreach (var clip in clips)
+        {
+            switch (clip.name)
+            {
+                case "Attack":
+                    AttackTime = clip.length;
+                    break;
+            }
+        }
+    }
+
+    protected override void FillEnemyData()
+    {
+        EnemyData._speedAttack = AttackTime;
+        EnemyData._damageToTower = damageToBuildings;
+        
+        base.FillEnemyData();
     }
 
     #endregion
