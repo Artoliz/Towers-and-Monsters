@@ -259,6 +259,14 @@ public class Grid : MonoBehaviour
         return false;
     }
 
+    public bool IsElementInGrid(Vector2Int position, string tag)
+    {
+        if (_grid[position.x, position.y] != null && _grid[position.x, position.y].tag == tag)
+            return true;
+
+        return false;
+    }
+
     public Vector2Int GetPositionInGrid(Vector3 position)
     {
         var xCount = Mathf.RoundToInt(position.x / gridSpacingOffset);
@@ -268,6 +276,17 @@ public class Grid : MonoBehaviour
             return new Vector2Int(xCount, zCount);
 
         return new Vector2Int(-1, -1);
+    }
+
+    public Vector3 GetPositionFromGrid(Vector2Int position)
+    {
+        var xCount = Mathf.RoundToInt(position.x * gridSpacingOffset);
+        var zCount = Mathf.RoundToInt(position.y * gridSpacingOffset);
+
+        if (_grid[position.x, position.y] != null)
+            return new Vector3(xCount, 0, zCount);
+
+        return Vector3.zero;
     }
 
     #endregion

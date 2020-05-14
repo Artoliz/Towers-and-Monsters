@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wallIntersect: {fileID: 3214166699263150139, guid: f22badf9de03dba4cae5ca290527bee1,
     type: 3}
-  cost: 100
+  cost: 1
   hp: 20
   impactNormal: {x: 0, y: 0, z: 0}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
@@ -139,7 +139,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.067, y: 0.149, z: 0.051000003}
+  m_Extents: {x: 0.07, y: 0.15, z: 0.07}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
