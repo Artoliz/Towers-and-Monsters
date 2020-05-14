@@ -16,17 +16,19 @@ public class AttackUnit : Enemy
     protected float AttackTime;
 
     protected bool BetweenAttack;
-    
+
+    protected string TagToAttack = "Tower";
+
     protected GameObject Target;
 
     #endregion
-    
+
     #region OverrideMethods
 
     protected override void SetAnimationsTimes()
     {
         base.SetAnimationsTimes();
-        
+
         var clips = Anim.runtimeAnimatorController.animationClips;
         foreach (var clip in clips)
         {
@@ -89,6 +91,17 @@ public class AttackUnit : Enemy
 
     #region PublicMethods
 
+    #region Getters
+
+    public string GetTagToAttack()
+    {
+        return TagToAttack;
+    }
+
+    #endregion
+
+    #region Setters
+
     public void SetTarget(GameObject target)
     {
         Target = target;
@@ -98,11 +111,13 @@ public class AttackUnit : Enemy
     {
         _isAttacking = isAttacking;
     }
-    
+
     public void SetBetweenAttack(bool isBetweenAttack)
     {
         BetweenAttack = isBetweenAttack;
     }
+
+    #endregion
 
     #endregion
 }
