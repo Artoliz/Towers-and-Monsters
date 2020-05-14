@@ -34,6 +34,8 @@ public class Builder : MonoBehaviour
     
     public Dictionary<Buildings, GameObject> buildings;
 
+    public static bool isBuilding = false;
+
     #endregion
 
     #region MonoBehavior
@@ -62,6 +64,11 @@ public class Builder : MonoBehaviour
         if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
         {
             SelectedBuilding();
+
+            if (_buildingEnum != Buildings.None)
+                isBuilding = true;
+            else
+                isBuilding = false;
 
             DisplayBuildingSelected();
 
