@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1063382188404056998}
   - component: {fileID: 1676653221500021827}
   - component: {fileID: 6304268584845419730}
-  - component: {fileID: 4082267355027820164}
-  - component: {fileID: 880701680}
+  - component: {fileID: 759802523670420992}
+  - component: {fileID: 324067473040913999}
   m_Layer: 11
   m_Name: Wall
   m_TagString: Wall
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 234196207133584317}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 7}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -116,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &4082267355027820164
+--- !u!65 &759802523670420992
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,9 +127,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.13301697, y: 0.29828265, z: 0.10285259}
-  m_Center: {x: -0.015314233, y: 0.14914133, z: 0.0017882864}
---- !u!208 &880701680
+  m_Size: {x: 0.10030926, y: 0.29828265, z: 0.10040967}
+  m_Center: {x: 0.00000051781535, y: 0.14914133, z: -0.000000024214387}
+--- !u!208 &324067473040913999
 NavMeshObstacle:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,9 +139,9 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.07, y: 0.15, z: 0.07}
+  m_Extents: {x: 0.07, y: 0.149, z: 0.07}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: -0.015000001, y: 0.149, z: 0.002}
+  m_Center: {x: 0, y: 0.149, z: 0}
   m_TimeToStationary: 0.5
