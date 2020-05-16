@@ -101,6 +101,11 @@ public class AttackUnit : Enemy
 
     #region Getters
 
+    public int GetDamageToBuildings()
+    {
+        return damageToBuildings;
+    }
+
     public string GetTagToAttack()
     {
         return TagToAttack;
@@ -109,6 +114,11 @@ public class AttackUnit : Enemy
     #endregion
 
     #region Setters
+
+    public void SetDamageToBuildings(int damage)
+    {
+        damageToBuildings = damage;
+    }
 
     public void SetTarget(GameObject target)
     {

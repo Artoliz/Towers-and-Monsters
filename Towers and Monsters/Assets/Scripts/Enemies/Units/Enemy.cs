@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
 
     private float _dyingTime;
 
+    private bool _isBoosted;
+
     private static readonly int Death = Animator.StringToHash("Death");
 
     #endregion
@@ -147,6 +149,11 @@ public class Enemy : MonoBehaviour
         return enemyWeight;
     }
 
+    public bool IsBoosted()
+    {
+        return _isBoosted;
+    }
+    
     public GameObject GetBase()
     {
         return Base;
@@ -166,6 +173,11 @@ public class Enemy : MonoBehaviour
         Agent.isStopped = isStopped;
     }
 
+    public void SetIsBoosted(bool isBoosted)
+    {
+        _isBoosted = isBoosted;
+    }
+    
     public void SetAnimation(int trigger, bool activate)
     {
         Anim.SetBool(trigger, activate);

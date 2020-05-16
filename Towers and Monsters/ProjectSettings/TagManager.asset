@@ -9,7 +9,6 @@ TagManager:
   - Enemy
   - Wall
   - Castle
-  - enemyBug
   - Dead
   layers:
   - Default
