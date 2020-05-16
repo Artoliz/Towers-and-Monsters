@@ -600,6 +600,8 @@ MonoBehaviour:
   enemyWeight: 2
   waveNumberApparition: 2
   destinationReachedPadding: 0.5
+  effectOfDeath: {fileID: 229441864205929761, guid: 2dfdc358a980f034fbc554aa1eddf64a,
+    type: 3}
   enemyHp: 50
   damageToBase: 15
 --- !u!1 &2569831937529045734

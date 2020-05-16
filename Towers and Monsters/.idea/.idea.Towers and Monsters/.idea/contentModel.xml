@@ -80,7 +80,6 @@
               </e>
               <e p="Enemy.cs" t="Include" />
               <e p="EOD" t="Include">
-                <e p="BoostDamageToBuildings.cs" t="Include" />
                 <e p="EffectOfDeath.cs" t="Include" />
               </e>
             </e>

@@ -10,12 +10,17 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int waveNumberApparition = 1;
 
     [SerializeField] private float destinationReachedPadding = 1.5f;
+    
+    [SerializeField] private GameObject effectOfDeath;
 
     private int _reward;
+    private int _maxHp;
 
     private float _dyingTime;
 
-    private bool _isBoosted;
+    private bool _isSpeedBoosted;
+    private bool _isMaxHpBoosted;
+    private bool _isDamageToBaseBoosted;
 
     private static readonly int Death = Animator.StringToHash("Death");
 
@@ -33,7 +38,7 @@ public class Enemy : MonoBehaviour
     protected Animator Anim;
 
     protected Informations.EnemyData EnemyData;
-    
+
     protected static readonly int Run = Animator.StringToHash("Run");
     protected static readonly int Idle = Animator.StringToHash("Idle");
     protected static readonly int Victory = Animator.StringToHash("Victory");
@@ -44,9 +49,11 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        _maxHp = enemyHp;
+
         SetIsStopped(false);
         Agent.SetDestination(Base.transform.position);
-        
+
         FillEnemyData();
     }
 
@@ -66,32 +73,35 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (PauseMenu.GameIsPaused)
+        if (!gameObject.CompareTag($"Dead"))
         {
-            SetIsStopped(true);
-            SetAnimation(Idle, true);
-            SetAnimation(Run, false);
-        }
-        else if (global::Base.instance.IsBaseDestroyed())
-        {
-            SetIsStopped(true);
-            SetAnimation(Victory, true);
-        }
-        else if (enemyHp <= 0 && !gameObject.CompareTag($"Dead"))
-        {
-            StartCoroutine(KillEnemy());
-        }
-        else if (HasReachedBase())
-        {
-            global::Base.instance.LoseHealth(damageToBase);
-            DestroyEnemy();
-        }
-        else
-        {
-            SetIsStopped(false);
-            SetAnimation(Idle, false);
-            SetAnimation(Run, true);
-            Agent.SetDestination(Base.transform.position);
+            if (PauseMenu.GameIsPaused)
+            {
+                SetIsStopped(true);
+                SetAnimation(Idle, true);
+                SetAnimation(Run, false);
+            }
+            else if (global::Base.instance.IsBaseDestroyed())
+            {
+                SetIsStopped(true);
+                SetAnimation(Victory, true);
+            }
+            else if (enemyHp <= 0)
+            {
+                StartCoroutine(KillEnemy());
+            }
+            else if (HasReachedBase())
+            {
+                global::Base.instance.LoseHealth(damageToBase);
+                DestroyEnemy();
+            }
+            else
+            {
+                SetIsStopped(false);
+                SetAnimation(Idle, false);
+                SetAnimation(Run, true);
+                Agent.SetDestination(Base.transform.position);
+            }
         }
     }
 
@@ -116,7 +126,7 @@ public class Enemy : MonoBehaviour
         EnemyData._speed = Agent.speed;
         EnemyData._damageToBase = damageToBase;
     }
-    
+
     #endregion
 
     #region ProtectedMethods
@@ -139,9 +149,34 @@ public class Enemy : MonoBehaviour
         return EnemyData;
     }
 
+    public GameObject GetBase()
+    {
+        return Base;
+    }
+
     public int GetEnemyWaveNumberApparition()
     {
         return waveNumberApparition;
+    }
+
+    public float GetSpeed()
+    {
+        return Agent.speed;
+    }
+
+    public int GetMaxHp()
+    {
+        return _maxHp;
+    }
+
+    public int GetEnemyHp()
+    {
+        return enemyHp;
+    }
+
+    public int GetDamageToBase()
+    {
+        return damageToBase;
     }
 
     public int GetEnemyWeight()
@@ -149,23 +184,53 @@ public class Enemy : MonoBehaviour
         return enemyWeight;
     }
 
-    public bool IsBoosted()
+    public bool IsSpeedBoosted()
     {
-        return _isBoosted;
+        return _isSpeedBoosted;
     }
-    
-    public GameObject GetBase()
+
+    public bool IsMaxHpBoosted()
     {
-        return Base;
+        return _isMaxHpBoosted;
+    }
+
+    public bool IsDamageToBaseBoosted()
+    {
+        return _isDamageToBaseBoosted;
     }
 
     #endregion
 
     #region Setters
 
+    public void SetSpeed(float speed)
+    {
+        Agent.speed = speed;
+    }
+
+    public void SetMaxHp(int maxHp)
+    {
+        _maxHp = maxHp;
+    }
+
+    public void SetEnemyHp(int hp)
+    {
+        enemyHp = hp;
+    }
+
+    public void SetDamageToBase(int damage)
+    {
+        damageToBase = damage;
+    }
+
     public void SetPlayerBase(GameObject playerBase)
     {
         Base = playerBase;
+    }
+
+    public void SetAnimation(int trigger, bool activate)
+    {
+        Anim.SetBool(trigger, activate);
     }
 
     public void SetIsStopped(bool isStopped)
@@ -173,14 +238,19 @@ public class Enemy : MonoBehaviour
         Agent.isStopped = isStopped;
     }
 
-    public void SetIsBoosted(bool isBoosted)
+    public void SetIsSpeedBoosted(bool boosted)
     {
-        _isBoosted = isBoosted;
+        _isSpeedBoosted = boosted;
     }
-    
-    public void SetAnimation(int trigger, bool activate)
+
+    public void SetIsMaxHpBoosted(bool boosted)
     {
-        Anim.SetBool(trigger, activate);
+        _isMaxHpBoosted = boosted;
+    }
+
+    public void SetIsDamageToBaseBoosted(bool boosted)
+    {
+        _isDamageToBaseBoosted = boosted;
     }
 
     #endregion
@@ -194,6 +264,9 @@ public class Enemy : MonoBehaviour
 
         GameManager.Instance.AddGolds(_reward);
 
+        if (effectOfDeath)
+            Instantiate(effectOfDeath, transform.position, Quaternion.identity);
+        
         yield return new WaitForSeconds(_dyingTime);
         DestroyEnemy();
     }

@@ -6,6 +6,7 @@ public class AttackUnit : Enemy
     #region PrivateVariables
 
     private bool _isAttacking;
+    private bool _isDamageToBuildingsBoosted;
 
     #endregion
 
@@ -81,7 +82,7 @@ public class AttackUnit : Enemy
     {
         EnemyData._speedAttack = AttackTime;
         EnemyData._damageToTower = damageToBuildings;
-        
+
         base.FillEnemyData();
     }
 
@@ -113,6 +114,15 @@ public class AttackUnit : Enemy
 
     #endregion
 
+    #region Getters
+
+    public bool IsDamageToBuildingsBoosted()
+    {
+        return _isDamageToBuildingsBoosted;
+    }
+
+    #endregion
+
     #region Setters
 
     public void SetDamageToBuildings(int damage)
@@ -123,6 +133,11 @@ public class AttackUnit : Enemy
     public void SetTarget(GameObject target)
     {
         Target = target;
+    }
+
+    public void SetIsDamageToBuildingsBoosted(bool boosted)
+    {
+        _isDamageToBuildingsBoosted = boosted;
     }
 
     public void SetIsAttacking(bool isAttacking)
