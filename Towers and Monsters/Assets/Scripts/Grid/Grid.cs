@@ -283,11 +283,14 @@ public class Grid : MonoBehaviour
 
     public Vector3 GetPositionFromGrid(Vector2Int position)
     {
-        var xCount = Mathf.RoundToInt(position.x * gridSpacingOffset);
-        var zCount = Mathf.RoundToInt(position.y * gridSpacingOffset);
+        if (position.x < 0 || position.x >= gridSizeX || position.y < 0 || position.y >= gridSizeZ)
+            return Vector3.zero;
+
+        float x = position.x * gridSpacingOffset;
+        float z = position.y * gridSpacingOffset;
 
         if (_grid[position.x, position.y] != null)
-            return new Vector3(xCount, 0, zCount);
+            return new Vector3(x, 0, z);
 
         return Vector3.zero;
     }

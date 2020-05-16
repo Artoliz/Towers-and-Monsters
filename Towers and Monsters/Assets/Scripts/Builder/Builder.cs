@@ -200,13 +200,14 @@ public class Builder : MonoBehaviour
 
         foreach (var spawn in _spawns)
         {
+            
             NavMesh.CalculatePath(spawn.position, playerBase.transform.position, NavMesh.AllAreas, _path);
 
             if (_path.status == NavMeshPathStatus.PathInvalid || _path.status == NavMeshPathStatus.PathPartial)
             {
                 //When you can't place a tower, do something
                 Debug.Log("You can't build a building here.");
-                
+
                 _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
                 Destroy(tmpBuilding);
                 break;
@@ -214,14 +215,10 @@ public class Builder : MonoBehaviour
         }
 
         //When you can't buy a tower, do something
-        if (tmpBuilding.GetComponent<Tower>() != null && tmpBuilding.GetComponent<Tower>().cost > GameManager.Instance.GetGolds())
+        if ((tmpBuilding.GetComponent<Tower>() != null && tmpBuilding.GetComponent<Tower>().cost > GameManager.Instance.GetGolds()) ||
+            (tmpBuilding.GetComponent<Wall>() != null && tmpBuilding.GetComponent<Wall>().cost > GameManager.Instance.GetGolds()))
         {
-            Debug.Log("Not enough golds to build tower.");
-            _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
-            Destroy(tmpBuilding);
-        } else if (tmpBuilding.GetComponent<Wall>() != null && tmpBuilding.GetComponent<Wall>().cost > GameManager.Instance.GetGolds())
-        {
-            Debug.Log("Not enough golds to build wall.");
+            Debug.Log("Not enough golds to build.");
             _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
             Destroy(tmpBuilding);
         } else
@@ -229,7 +226,10 @@ public class Builder : MonoBehaviour
             if (tmpBuilding.GetComponent<Tower>() != null)
                 GameManager.Instance.RemoveGolds(tmpBuilding.GetComponent<Tower>().cost);
             else if (tmpBuilding.GetComponent<Wall>() != null)
+            {
                 GameManager.Instance.RemoveGolds(tmpBuilding.GetComponent<Wall>().cost);
+                tmpBuilding.GetComponent<Wall>().PlaceWallIntersections();
+            }
             foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
                 mesh.enabled = true;
         }

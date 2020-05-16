@@ -31,8 +31,6 @@ public class Wall : MonoBehaviour
     {
         _particleExplosionPosition = transform.position;
         _particleExplosionPosition.y = 1;
-
-        PlaceWallIntersections();
     }
 
     private void Update()
@@ -57,7 +55,24 @@ public class Wall : MonoBehaviour
 
     #region PrivateMethods
 
-    private void PlaceWallIntersections()
+    private bool IsAlreadyWallIntersect(Vector3 finalPos)
+    {
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("Wall");
+
+        foreach (GameObject go in gos)
+        {
+            if (go.name.Contains("Wall_Intersect") && go.transform.position == finalPos)
+                return true;
+        }
+
+        return false;
+    }
+
+    #endregion
+
+    #region PublicMethods
+
+    public void PlaceWallIntersections()
     {
         Vector2Int posInGrid = Grid.Instance.GetPositionInGrid(transform.position);
 
@@ -69,6 +84,10 @@ public class Wall : MonoBehaviour
                 if (posInGrid != gridPos && Grid.Instance.IsElementInGrid(gridPos, "Wall"))
                 {
                     Vector3 finalPos = (Grid.Instance.GetPositionFromGrid(gridPos) + transform.position) / 2;
+
+                    if (IsAlreadyWallIntersect(finalPos))
+                        continue;
+
                     Quaternion quat = Quaternion.identity;
                     Vector3 finalRot = new Vector3();
 
@@ -84,20 +103,20 @@ public class Wall : MonoBehaviour
                         finalRot.y = -45;
 
                     quat.eulerAngles = finalRot;
-                    GameObject tmp = Instantiate(wallIntersect, finalPos, quat);
-                    _intersections.Add(tmp);
+                    _intersections.Add(Instantiate(wallIntersect, finalPos, quat));
                 }
             }
         }
     }
 
-    #endregion
-
-    #region PublicMethods
-
     public void Damage(int damage)
     {
         hp -= damage;
+    }
+
+    public List<GameObject> GetIntersects()
+    {
+        return _intersections;
     }
 
     #endregion
