@@ -46,7 +46,7 @@ public class RangeUnitBullet : MonoBehaviour
     {
         if (other.gameObject.transform == _target)
         {
-            _target.GetComponentInParent<Tower>().Damage(_damage);
+            _target.GetComponent<Tower>().Damage(_damage);
             Destroy(gameObject, timeBeforeDestroyBullet);
 
             impactParticle = Instantiate(impactParticle, transform.position,

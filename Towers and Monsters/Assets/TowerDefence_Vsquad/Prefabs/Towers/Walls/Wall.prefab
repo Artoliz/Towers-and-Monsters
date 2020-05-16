@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e4cf9ca85d4aa409859cc5ad9874f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wallIntersect: {fileID: 3214166699263150139, guid: f22badf9de03dba4cae5ca290527bee1,
+  wallIntersect: {fileID: 3214166699263150139, guid: f22badf9de03dba4cae5ca290527bee1,
     type: 3}
   cost: 1
   hp: 20

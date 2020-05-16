@@ -8,9 +8,9 @@ public class Tower : MonoBehaviour
     private float _homeY;
 
     private bool _isShoot;
-
-    private GameObject _towerBug;
     
+    private Vector3 _particleExplosionPosition;
+
     private static readonly int Attack = Animator.StringToHash("Attack");
     private static readonly int Pose = Animator.StringToHash("T_pose");
 
@@ -27,7 +27,7 @@ public class Tower : MonoBehaviour
 
     public bool catcher;
 
-    public Vector3 impactNormal2;
+    public Vector3 impactNormal;
 
     public GameObject bullet;
     public GameObject destroyParticle;
@@ -36,7 +36,7 @@ public class Tower : MonoBehaviour
     public Transform lookAtObj;
     public Transform shootElement;
 
-    public Animator anim2;
+    public Animator anim;
 
     #endregion
 
@@ -44,10 +44,11 @@ public class Tower : MonoBehaviour
 
     private void Start()
     {
-        anim2 = GetComponent<Animator>();
+        _particleExplosionPosition = transform.position;
+        _particleExplosionPosition.y = 1;
 
-        _towerBug = transform.Find("Tower_Bug").gameObject;
-        
+        anim = GetComponent<Animator>();
+
         //Temporary assignement
         lookAtObj = gameObject.transform;
 
@@ -87,8 +88,8 @@ public class Tower : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(gameObject);
-            destroyParticle = Instantiate(destroyParticle, _towerBug.transform.position,
-                Quaternion.FromToRotation(Vector3.up, impactNormal2));
+            destroyParticle = Instantiate(destroyParticle, _particleExplosionPosition,
+                Quaternion.FromToRotation(Vector3.up, impactNormal));
             Destroy(destroyParticle, 1);
         }
     }
@@ -119,8 +120,8 @@ public class Tower : MonoBehaviour
 
         if (target && catcher)
         {
-            anim2.SetBool(Attack, true);
-            anim2.SetBool(Pose, false);
+            anim.SetBool(Attack, true);
+            anim.SetBool(Pose, false);
         }
 
         _isShoot = false;
@@ -130,8 +131,8 @@ public class Tower : MonoBehaviour
     {
         target = null;
 
-        anim2.SetBool(Attack, false);
-        anim2.SetBool(Pose, true);
+        anim.SetBool(Attack, false);
+        anim.SetBool(Pose, true);
     }
 
     #endregion

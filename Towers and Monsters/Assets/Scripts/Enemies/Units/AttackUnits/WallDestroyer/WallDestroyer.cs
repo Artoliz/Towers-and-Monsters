@@ -23,7 +23,7 @@ public class WallDestroyer : AttackUnit
         yield return new WaitForSeconds(AttackTime / 2);
         if (Target && Target != Base)
         {
-            Target.GetComponentInParent<Wall>().Damage(damageToBuildings);
+            Target.GetComponent<Wall>().Damage(damageToBuildings);
 
             yield return new WaitForSeconds(AttackTime / 2);
             BetweenAttack = false;

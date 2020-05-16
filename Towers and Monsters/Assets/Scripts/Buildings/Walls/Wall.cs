@@ -5,11 +5,11 @@ public class Wall : MonoBehaviour
 {
     #region PrivateVariables
 
-    private GameObject _wallBug;
+    private Vector3 _particleExplosionPosition;
+    
+    [SerializeField] private GameObject wallIntersect;
 
-    [SerializeField] private GameObject _wallIntersect = null;
-
-    private List<GameObject> _intersections = new List<GameObject>();
+    private readonly List<GameObject> _intersections = new List<GameObject>();
 
     #endregion
 
@@ -29,6 +29,9 @@ public class Wall : MonoBehaviour
 
     private void Start()
     {
+        _particleExplosionPosition = transform.position;
+        _particleExplosionPosition.y = 1;
+
         PlaceWallIntersections();
     }
 
@@ -37,7 +40,7 @@ public class Wall : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(gameObject);
-            destroyParticle = Instantiate(destroyParticle, _wallBug.transform.position,
+            destroyParticle = Instantiate(destroyParticle, _particleExplosionPosition, 
                 Quaternion.FromToRotation(Vector3.up, impactNormal));
             Destroy(destroyParticle, 1);
         }
@@ -56,7 +59,7 @@ public class Wall : MonoBehaviour
 
     private void PlaceWallIntersections()
     {
-        Vector2Int posInGrid = Grid.Instance.GetPositionInGrid(this.transform.position);
+        Vector2Int posInGrid = Grid.Instance.GetPositionInGrid(transform.position);
 
         for (int y = posInGrid.y + 1; y >= posInGrid.y - 1; y--)
         {
@@ -65,7 +68,7 @@ public class Wall : MonoBehaviour
                 Vector2Int gridPos = new Vector2Int(x, y);
                 if (posInGrid != gridPos && Grid.Instance.IsElementInGrid(gridPos, "Wall"))
                 {
-                    Vector3 finalPos = (Grid.Instance.GetPositionFromGrid(gridPos) + this.transform.position) / 2;
+                    Vector3 finalPos = (Grid.Instance.GetPositionFromGrid(gridPos) + transform.position) / 2;
                     Quaternion quat = Quaternion.identity;
                     Vector3 finalRot = new Vector3();
 
@@ -81,7 +84,7 @@ public class Wall : MonoBehaviour
                         finalRot.y = -45;
 
                     quat.eulerAngles = finalRot;
-                    GameObject tmp = Instantiate(_wallIntersect, finalPos, quat);
+                    GameObject tmp = Instantiate(wallIntersect, finalPos, quat);
                     _intersections.Add(tmp);
                 }
             }
