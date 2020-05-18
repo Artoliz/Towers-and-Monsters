@@ -295,5 +295,18 @@ public class Grid : MonoBehaviour
         return Vector3.zero;
     }
 
+    public bool IsPositionBlocked(Vector3 position)
+    {
+        var xCount = Mathf.RoundToInt(position.x / gridSpacingOffset);
+        var zCount = Mathf.RoundToInt(position.z / gridSpacingOffset);
+
+        return _blockedPositions.Contains(new Vector2Int(xCount, zCount));
+    }
+
+    public bool IsPositionBlocked(Vector2Int position)
+    {
+        return _blockedPositions.Contains(position);
+    }
+
     #endregion
 }
