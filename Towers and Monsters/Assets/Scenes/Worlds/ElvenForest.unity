@@ -33772,42 +33772,6 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1205235354}
-    - target: {fileID: 726964864, guid: ff1e0c9de16209c468d3e1c9c2878d2e, type: 3}
-      propertyPath: m_Carve
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1839347093, guid: ff1e0c9de16209c468d3e1c9c2878d2e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1839347093, guid: ff1e0c9de16209c468d3e1c9c2878d2e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 1839347093, guid: ff1e0c9de16209c468d3e1c9c2878d2e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1839347093, guid: ff1e0c9de16209c468d3e1c9c2878d2e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1839347093, guid: ff1e0c9de16209c468d3e1c9c2878d2e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1839347093, guid: ff1e0c9de16209c468d3e1c9c2878d2e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 1839347093, guid: ff1e0c9de16209c468d3e1c9c2878d2e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1839347093, guid: ff1e0c9de16209c468d3e1c9c2878d2e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1961893799004618, guid: ff1e0c9de16209c468d3e1c9c2878d2e, type: 3}
       propertyPath: m_Name
       value: EL_castle_1
@@ -75455,7 +75419,7 @@ MonoBehaviour:
   - {fileID: 1002359383922418, guid: 4c11a5dddbc146645b8f25cb797752f1, type: 3}
   - {fileID: 1002359383922418, guid: aadf227bc2401564582afe71a6c5ac1a, type: 3}
   - {fileID: 1562289288557530, guid: 7fbd801b0d4f8b6478edd91565dfb940, type: 3}
-  playerBase: {fileID: 0}
+  playerBase: {fileID: 554507584}
 --- !u!1 &1228183266
 GameObject:
   m_ObjectHideFlags: 0
