@@ -23,6 +23,8 @@ public class Builder : MonoBehaviour
 
     [SerializeField] private Sprite[] _buildingImages = null;
     [SerializeField] private Image _buildingSelected = null;
+    
+    [SerializeField] private GameObject noBuildingPossible;
 
     #endregion
 
@@ -205,8 +207,12 @@ public class Builder : MonoBehaviour
 
             if (_path.status == NavMeshPathStatus.PathInvalid || _path.status == NavMeshPathStatus.PathPartial)
             {
-                //When you can't place a tower, do something
-                Debug.Log("You can't build a building here.");
+                var spriteCannotBuild = tmpBuilding.transform.position;
+                spriteCannotBuild.y = 0.005f;
+                var cannotBuildRotation = Quaternion.Euler(90, 0, 0);
+
+                var spriteToDelete = Instantiate(noBuildingPossible, spriteCannotBuild, cannotBuildRotation);
+                Destroy(spriteToDelete, 2);
 
                 _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
                 Destroy(tmpBuilding);
