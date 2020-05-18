@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
             tmp.eulerAngles = new Vector3(0.0f, tmp.eulerAngles.y, tmp.eulerAngles.z);
 
             if (horizontal != 0.0f || vertical != 0.0f)
-                tmp.Translate(horizontal, 0, vertical, Space.Self);
+                tmp.Translate(horizontal * moveSpeed, 0, vertical * moveSpeed, Space.Self);
 
             transform.position = tmp.position;
             transform.eulerAngles = new Vector3(40.0f, tmp.eulerAngles.y, tmp.eulerAngles.z);
