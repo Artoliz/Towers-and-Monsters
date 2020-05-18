@@ -8,6 +8,7 @@ public class TowerInfo : MonoBehaviour
     [SerializeField] private GameObject _unitUpgrade = null;
     [SerializeField] private GameObject _unitDamageToEnemy = null;
     [SerializeField] private GameObject _unitSpeedAttack = null;
+    [SerializeField] private GameObject _unitDestroy = null;
 
     public void SetInformations(Informations.TowerData data)
     {
@@ -16,5 +17,12 @@ public class TowerInfo : MonoBehaviour
         _unitUpgrade.GetComponentInChildren<Text>().text = data._upgrade.ToString();
         _unitDamageToEnemy.GetComponentInChildren<Text>().text = data._damageToEnemy.ToString();
         _unitSpeedAttack.GetComponentInChildren<Text>().text = data._speedAttack.ToString() + "/s";
+    }
+
+    public void SetListener(UnityEngine.Events.UnityAction upgradeCall, UnityEngine.Events.UnityAction repairCall, UnityEngine.Events.UnityAction destroyCall)
+    {
+        _unitUpgrade.GetComponent<Button>().onClick.AddListener(upgradeCall);
+        _unitRepair.GetComponent<Button>().onClick.AddListener(repairCall);
+        _unitDestroy.GetComponent<Button>().onClick.AddListener(destroyCall);
     }
 }

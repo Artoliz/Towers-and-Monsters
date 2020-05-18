@@ -85,6 +85,7 @@ public class Informations : MonoBehaviour
             else if (_unitType == Unit.Tower && _tower)
             {
                 //_towerInfo.SetInformations(_tower.GetInformations());
+                //_towerInfo.SetListener(_tower.Upgrade(), _tower.Repair(), _tower.destroyParticle());
             }
         }
     }
