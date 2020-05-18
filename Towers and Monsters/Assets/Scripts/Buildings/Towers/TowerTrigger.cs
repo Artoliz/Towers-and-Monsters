@@ -16,7 +16,7 @@ public class TowerTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("enemyBug") && !lockE)
+        if (other.CompareTag("Enemy") && !lockE)
         {
             var o = other.gameObject;
 
@@ -45,7 +45,7 @@ public class TowerTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("enemyBug") && other.gameObject == curTarget)
+        if (other.CompareTag("Enemy") && other.gameObject == curTarget)
         {
             lockE = false;
             twr.target = null;
