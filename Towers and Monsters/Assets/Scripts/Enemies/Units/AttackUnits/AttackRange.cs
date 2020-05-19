@@ -35,7 +35,7 @@ public class AttackRange : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (other.CompareTag(_tagToAttack))
             {
@@ -60,7 +60,7 @@ public class AttackRange : MonoBehaviour
             _attackUnit.SetAnimation(Attack, false);
             _attackUnit.SetAnimation(Idle, true);
         }
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (!_building && !_updateIsDone)
             {

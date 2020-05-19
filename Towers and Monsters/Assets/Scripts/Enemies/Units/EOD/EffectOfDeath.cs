@@ -31,7 +31,7 @@ public class EffectOfDeath : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (other.CompareTag("Enemy"))
             {
@@ -118,7 +118,7 @@ public class EffectOfDeath : MonoBehaviour
     private void BoostDamageToBuildings()
     {
         var attackUnit = _enemyCollider.GetComponent<AttackUnit>();
-        if (attackUnit)
+        if (attackUnit && !attackUnit.IsDamageToBuildingsBoosted())
         {
             attackUnit.SetIsDamageToBuildingsBoosted(true);
             var damageToBuildings = attackUnit.GetDamageToBuildings();

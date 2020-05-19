@@ -51,7 +51,7 @@ public class Informations : MonoBehaviour
 
     private void Update()
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (Input.GetMouseButtonDown(0) && !Builder.isBuilding)
             {

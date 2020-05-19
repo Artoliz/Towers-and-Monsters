@@ -131,6 +131,22 @@ public class Enemy : MonoBehaviour
 
     #region ProtectedMethods
 
+    protected IEnumerator KillEnemy()
+    {
+        SetIsStopped(true);
+
+        gameObject.tag = "Dead";
+        SetAnimation(Death, true);
+
+        GameManager.Instance.AddGolds(reward);
+
+        if (effectOfDeath)
+            Instantiate(effectOfDeath, transform.position, Quaternion.identity);
+        
+        yield return new WaitForSeconds(_dyingTime);
+        DestroyEnemy();
+    }
+
     protected bool HasReachedBase()
     {
         var distanceToTarget = Vector3.Distance(transform.position, Base.transform.position);
@@ -254,22 +270,6 @@ public class Enemy : MonoBehaviour
     }
 
     #endregion
-
-    public IEnumerator KillEnemy()
-    {
-        SetIsStopped(true);
-
-        gameObject.tag = "Dead";
-        SetAnimation(Death, true);
-
-        GameManager.Instance.AddGolds(reward);
-
-        if (effectOfDeath)
-            Instantiate(effectOfDeath, transform.position, Quaternion.identity);
-        
-        yield return new WaitForSeconds(_dyingTime);
-        DestroyEnemy();
-    }
 
     public void DestroyEnemy()
     {

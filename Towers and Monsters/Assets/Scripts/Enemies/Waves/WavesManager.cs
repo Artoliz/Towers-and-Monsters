@@ -26,8 +26,8 @@ public class WavesManager : MonoBehaviour
 
     #region PublicVariables
 
-    public static bool gameIsBetweenWaves;
-    public static bool gameIsFinished;
+    public static bool GameIsBetweenWaves;
+    public static bool GameIsFinished;
 
     public GameObject gameUi;
     public GameObject gameOverUi;
@@ -45,7 +45,7 @@ public class WavesManager : MonoBehaviour
 
     private void Awake()
     {
-        gameIsFinished = false;
+        GameIsFinished = false;
 
         gameOverUi.SetActive(false);
 
@@ -58,7 +58,7 @@ public class WavesManager : MonoBehaviour
 
     private void Update()
     {
-        if (!gameIsFinished && !PauseMenu.GameIsPaused && _timerBetweenWavesIsRunning)
+        if (!GameIsFinished && !PauseMenu.GameIsPaused && _timerBetweenWavesIsRunning)
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 SkipBetweenWaves();
@@ -73,20 +73,20 @@ public class WavesManager : MonoBehaviour
                 EnableUiDuringWave();
                 RunWave();
             }
-        } else if (!gameIsFinished && !PauseMenu.GameIsPaused && Base.instance.IsBaseDestroyed())
+        } else if (!GameIsFinished && !PauseMenu.GameIsPaused && Base.instance.IsBaseDestroyed())
         {
-            gameIsFinished = true;
+            GameIsFinished = true;
             gameUi.SetActive(false);
             gameOverUi.SetActive(true);
             gameOverUi.GetComponent<GameOver>().EndGame(waveNumber, 10);
             GameManager.Instance.EndGame(waveNumber, 10);
         }
-        else if (gameIsFinished && !PauseMenu.GameIsPaused)
+        else if (GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
                 SceneManager.LoadScene("Menu");
         }
-        else if (!gameIsFinished && !PauseMenu.GameIsPaused && gameIsBetweenWaves)
+        else if (!GameIsFinished && !PauseMenu.GameIsPaused && GameIsBetweenWaves)
         {
             EnableUiBetweenWaves();
             SetNextWave();
@@ -155,7 +155,7 @@ public class WavesManager : MonoBehaviour
 
     public static void SetGameStatus(bool isBetweenWaves)
     {
-        gameIsBetweenWaves = isBetweenWaves;
+        GameIsBetweenWaves = isBetweenWaves;
     }
 
     public void SkipBetweenWaves()

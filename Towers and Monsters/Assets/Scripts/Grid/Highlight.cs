@@ -11,7 +11,7 @@ public class Highlight : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (Builder.isBuilding && !Grid.Instance.IsPositionBlocked(transform.position))
                 _renderer.material.shader = Shader.Find("Self-Illumin/Outlined Diffuse");
