@@ -132,7 +132,7 @@ public class Builder : MonoBehaviour
                     }
                 }
             }
-            _buildingSelected.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y + (_buildingSelected.sprite.rect.width / 6), 0);
+            _buildingSelected.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y + (_buildingSelected.sprite.rect.width / 8), 0);
         } else if (_buildingSelected.sprite != null)
         {
             _buildingSelected.sprite = null;
