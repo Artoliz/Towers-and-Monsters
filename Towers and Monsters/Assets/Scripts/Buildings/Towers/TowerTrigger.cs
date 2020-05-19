@@ -62,6 +62,5 @@ public class TowerTrigger : MonoBehaviour
         }
     }
 
-
     #endregion
 }
