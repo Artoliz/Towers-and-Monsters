@@ -5,7 +5,8 @@ public class Informations : MonoBehaviour
     [SerializeField] private EnemyInfo _enemyInfo = null;
     [SerializeField] private TowerInfo _towerInfo = null;
 
-    [SerializeField] private GameObject _selected = null;
+    [SerializeField] private GameObject _selectedEnemy = null;
+    [SerializeField] private GameObject _selectedTower = null;
 
     private Camera _camera;
 
@@ -60,36 +61,24 @@ public class Informations : MonoBehaviour
                 {
                     if (click.collider.gameObject.CompareTag("Enemy"))
                     {
-                        if (_enemy != null)
-                            _enemy.IsSelected(null);
+                        ResetSelected();
                         _unitType = Unit.Enemy;
                         _enemy = click.collider.gameObject.GetComponent<Enemy>();
-                        _enemy.IsSelected(_selected);
+                        _enemy.IsSelected(_selectedEnemy);
                         _enemyInfo.gameObject.SetActive(true);
                         _towerInfo.gameObject.SetActive(false);
                     }
                     else if (click.collider.gameObject.CompareTag("Tower"))
                     {
-                        //if (_tower != null)
-                        //    _tower.IsSelected(null);
+                        ResetSelected();
                         _unitType = Unit.Tower;
                         _tower = click.collider.gameObject.GetComponent<Tower>();
-                        //_tower.IsSelected(_selected);
+                        //_tower.IsSelected(_selectedTower);
                         _towerInfo.gameObject.SetActive(true);
                         _enemyInfo.gameObject.SetActive(false);
                     }
                     else
-                    {
-                        _unitType = Unit.None;
-                        if (_enemy != null)
-                            _enemy.IsSelected(null);
-                        //if (_tower != null)
-                        //    _tower.IsSelected(null);
-                        _enemy = null;
-                        _tower = null;
-                        _enemyInfo.gameObject.SetActive(false);
-                        _towerInfo.gameObject.SetActive(false);
-                    }
+                        ResetSelected();
                 }
             }
             if (_unitType == Unit.Enemy && _enemy)
@@ -100,5 +89,18 @@ public class Informations : MonoBehaviour
                 //_towerInfo.SetListener(_tower.Upgrade(), _tower.Repair(), _tower.destroyParticle());
             }
         }
+    }
+
+    private void ResetSelected()
+    {
+        _unitType = Unit.None;
+        if (_enemy != null)
+            _enemy.IsSelected(null);
+        //if (_tower != null)
+        //    _tower.IsSelected(null);
+        _enemy = null;
+        _tower = null;
+        _enemyInfo.gameObject.SetActive(false);
+        _towerInfo.gameObject.SetActive(false);
     }
 }

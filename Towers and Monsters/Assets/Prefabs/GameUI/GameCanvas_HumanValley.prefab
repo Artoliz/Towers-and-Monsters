@@ -2353,6 +2353,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyInfo: {fileID: 3147392767753960414}
   _towerInfo: {fileID: 6739031064508152771}
+  _selectedEnemy: {fileID: 8343837302131898317, guid: c629116138fcf154081aedcb4105be82,
+    type: 3}
+  _selectedTower: {fileID: 0}
 --- !u!1 &3334635977031069520
 GameObject:
   m_ObjectHideFlags: 0
