@@ -233,13 +233,13 @@ MonoBehaviour:
   type: 1
   cost: 0
   hp: 250
+  maxHp: 250
   dmg: 70
   upgradeCost: 600
   repairCost: 225
   effectDammage: 80
   shootDelay: 1.75
   catcher: 0
-  impactNormal: {x: 0, y: 0, z: 0}
   bullet: {fileID: 1399426437590312, guid: 39e16171cc8a97447bc6b6ec100503c1, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}

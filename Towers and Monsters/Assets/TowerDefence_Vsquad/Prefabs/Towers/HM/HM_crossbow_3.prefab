@@ -171,15 +171,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a682e4e961f99c0498ca12fad03ef8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   cost: 0
   hp: 300
+  maxHp: 300
   dmg: 100
   upgradeCost: 0
   repairCost: 150
   effectDammage: 0
   shootDelay: 0.5
   catcher: 0
-  impactNormal: {x: 0, y: 0, z: 0}
   bullet: {fileID: 1742592517029364, guid: ea4d9f0e26a38b0428a2800ab0e161bd, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}

@@ -26,6 +26,8 @@ public class Tower : MonoBehaviour
 
     public int hp;
 
+    public int maxHp;
+
     public int dmg;
 
     public int upgradeCost;
@@ -49,6 +51,13 @@ public class Tower : MonoBehaviour
 
     #endregion
 
+    
+    #region ProtectedVariables
+
+     protected Informations.TowerData TowerData;
+
+    #endregion
+
     #region MonoBehaviour
 
     private void Start()
@@ -62,6 +71,7 @@ public class Tower : MonoBehaviour
         lookAtObj = gameObject.transform;
 
         _homeY = lookAtObj.transform.localRotation.eulerAngles.y;
+        SetTowerData();
     }
 
     private void Update()
@@ -147,17 +157,44 @@ public class Tower : MonoBehaviour
         anim.SetBool(Pose, true);
     }
 
+    private void SetTowerData()
+    {
+        TowerData._hp = this.hp;
+        TowerData._repair = this.repairCost;
+        TowerData._upgrade = this.upgradeCost;
+        TowerData._damageToEnemy = this.dmg;
+        TowerData._speedAttack = this.shootDelay;
+
+    }
+
     #endregion
 
     #region PublicMethods
-     
-    void OnMouseDown()
-    {
+
+    public void Upgrade()
+    {   
         if (upgradePrefab != null) {
             Instantiate(upgradePrefab,transform.position,transform.rotation);
             Destroy(gameObject);
         }
     }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
+
+    public void Repair()
+    {
+        hp = maxHp;
+    }
+
+
+    public Informations.TowerData GetInformations()
+    {
+        return TowerData;
+    }
+
     public void Damage(int damage)
     {
         hp -= damage;

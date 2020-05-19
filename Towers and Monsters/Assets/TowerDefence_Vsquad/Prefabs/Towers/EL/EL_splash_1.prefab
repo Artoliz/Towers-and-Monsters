@@ -4837,19 +4837,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a682e4e961f99c0498ca12fad03ef8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 100
-  hp: 20
+  type: 2
+  cost: 150
+  hp: 150
+  maxHp: 150
   dmg: 10
-  shootDelay: 1.5
+  upgradeCost: 300
+  repairCost: 115
+  effectDammage: 5
+  shootDelay: 0
   catcher: 0
-  impactNormal2: {x: 0, y: 0, z: 0}
   bullet: {fileID: 1786702500918196, guid: 28e372268bf82ac4b9ef5a831347bc61, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4526338810715026}
-  anim2: {fileID: 0}
+  upgradePrefab: {fileID: 1876000774252790, guid: 4a30996bc5e869c4c9be8d9178531c4e,
+    type: 3}
+  anim: {fileID: 0}
 --- !u!1 &1287339327333022
 GameObject:
   m_ObjectHideFlags: 0
