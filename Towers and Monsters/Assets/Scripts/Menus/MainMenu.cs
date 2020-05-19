@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     public GameObject HighScoreMenuCanvas;
     public GameObject QuitGameConfirmationMenuCanvas;
 
+    public Texture2D _cursor = null;
+
     void Awake()
     {
         MainMenuCanvas.SetActive(true);
@@ -19,6 +21,9 @@ public class MainMenu : MonoBehaviour
         OptionMenuCanvas.SetActive(false);
 //        HighScoreMenuCanvas.SetActive(false);
         QuitGameConfirmationMenuCanvas.SetActive(false);
+
+        if (_cursor != null)
+            Cursor.SetCursor(_cursor, new Vector2(0, 0), CursorMode.ForceSoftware);
     }
 
     public void LaunchLevel(string levelName)

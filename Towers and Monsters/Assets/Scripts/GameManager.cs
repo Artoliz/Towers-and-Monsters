@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Text _timerSinceStart = null;
 
+    [SerializeField] private Texture2D _cursor = null;
+
     private float _hours = 0;
     private float _minutes = 0;
     private float _seconds = 0;
@@ -36,6 +38,9 @@ public class GameManager : MonoBehaviour
             Instance = null;
             Destroy(this);
         }
+
+        if (_cursor != null)
+            Cursor.SetCursor(_cursor, new Vector2(0, 0), CursorMode.ForceSoftware);
     }
 
     void Start()

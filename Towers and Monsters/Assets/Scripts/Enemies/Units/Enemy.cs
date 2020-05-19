@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
 
     private static readonly int Death = Animator.StringToHash("Death");
 
+    private GameObject _selected = null;
+
     #endregion
 
     #region ProtectedVariables
@@ -279,6 +281,17 @@ public class Enemy : MonoBehaviour
     public void Damage(int damage)
     {
         enemyHp -= damage;
+    }
+
+    public void IsSelected(GameObject selected)
+    {
+        if (selected == null)
+        {
+            Destroy(_selected);
+            _selected = null;
+        }
+        else
+            _selected = Instantiate(selected, this.transform);
     }
 
     #endregion
