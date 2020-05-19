@@ -60,6 +60,8 @@ public class Informations : MonoBehaviour
                 {
                     if (click.collider.gameObject.CompareTag("Enemy"))
                     {
+                        if (_enemy != null)
+                            _enemy.IsSelected(null);
                         _unitType = Unit.Enemy;
                         _enemy = click.collider.gameObject.GetComponent<Enemy>();
                         _enemy.IsSelected(_selected);
@@ -68,6 +70,8 @@ public class Informations : MonoBehaviour
                     }
                     else if (click.collider.gameObject.CompareTag("Tower"))
                     {
+                        //if (_tower != null)
+                        //    _tower.IsSelected(null);
                         _unitType = Unit.Tower;
                         _tower = click.collider.gameObject.GetComponent<Tower>();
                         //_tower.IsSelected(_selected);

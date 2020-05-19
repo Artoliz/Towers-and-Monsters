@@ -1246,7 +1246,7 @@ MonoBehaviour:
   OptionMenuCanvas: {fileID: 3936900085594900452}
   HighScoreMenuCanvas: {fileID: 0}
   QuitGameConfirmationMenuCanvas: {fileID: 726668810}
-  _cursor: {fileID: 2800000, guid: 2e71a8202d3b4a3448ec85ced5a40265, type: 3}
+  _cursor: {fileID: 2800000, guid: 1c24885c7e876a7479ddf08fd2f69018, type: 3}
 --- !u!224 &8912365841703839980 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8728438189397915806, guid: de2ac941ec2f523438328573f5e490bb,
