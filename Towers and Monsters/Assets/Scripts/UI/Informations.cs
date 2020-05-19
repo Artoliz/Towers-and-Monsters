@@ -5,7 +5,8 @@ public class Informations : MonoBehaviour
     [SerializeField] private EnemyInfo _enemyInfo = null;
     [SerializeField] private TowerInfo _towerInfo = null;
 
-    [SerializeField] private GameObject _selected = null;
+    [SerializeField] private GameObject _selectedEnemy = null;
+    [SerializeField] private GameObject _selectedTower = null;
 
     private Camera _camera;
 
@@ -63,7 +64,7 @@ public class Informations : MonoBehaviour
                         ResetSelected();
                         _unitType = Unit.Enemy;
                         _enemy = click.collider.gameObject.GetComponent<Enemy>();
-                        _enemy.IsSelected(_selected);
+                        _enemy.IsSelected(_selectedEnemy);
                         _enemyInfo.gameObject.SetActive(true);
                         _towerInfo.gameObject.SetActive(false);
                     }
@@ -72,7 +73,7 @@ public class Informations : MonoBehaviour
                         ResetSelected();
                         _unitType = Unit.Tower;
                         _tower = click.collider.gameObject.GetComponent<Tower>();
-                        //_tower.IsSelected(_selected);
+                        //_tower.IsSelected(_selectedTower);
                         _towerInfo.gameObject.SetActive(true);
                         _enemyInfo.gameObject.SetActive(false);
                     }
