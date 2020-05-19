@@ -94,6 +94,7 @@
               <e p="Wall.cs" t="Include" />
             </e>
           </e>
+          <e p="CameraRotateAround.cs" t="Include" />
           <e p="Clouds.cs" t="Include" />
           <e p="Enemies" t="Include">
             <e p="Spawner" t="Include">
