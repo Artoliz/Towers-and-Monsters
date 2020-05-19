@@ -59,9 +59,9 @@ public class Informations : MonoBehaviour
 
                 if (Physics.Raycast(ray, out var click, 1000))
                 {
+                    ResetSelected();
                     if (click.collider.gameObject.CompareTag("Enemy"))
                     {
-                        ResetSelected();
                         _unitType = Unit.Enemy;
                         _enemy = click.collider.gameObject.GetComponent<Enemy>();
                         _enemy.IsSelected(_selectedEnemy);
@@ -70,15 +70,12 @@ public class Informations : MonoBehaviour
                     }
                     else if (click.collider.gameObject.CompareTag("Tower"))
                     {
-                        ResetSelected();
                         _unitType = Unit.Tower;
                         _tower = click.collider.gameObject.GetComponent<Tower>();
                         //_tower.IsSelected(_selectedTower);
                         _towerInfo.gameObject.SetActive(true);
                         _enemyInfo.gameObject.SetActive(false);
                     }
-                    else
-                        ResetSelected();
                 }
             }
             if (_unitType == Unit.Enemy && _enemy)
