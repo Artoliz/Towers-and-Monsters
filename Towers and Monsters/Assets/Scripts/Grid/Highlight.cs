@@ -19,7 +19,7 @@ public class Highlight : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (Builder.isBuilding && !Grid.Instance.IsPositionBlocked(this.transform.position))
+        if (!Grid.Instance.IsPositionBlocked(this.transform.position))
             _renderer.material.shader = Shader.Find("Diffuse");
     }
 }
