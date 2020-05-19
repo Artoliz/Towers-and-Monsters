@@ -9,6 +9,8 @@ public class Tower : MonoBehaviour
 
     private bool _isShoot;
     
+    public enum towerType {bullet, effect, aoe};
+
     private Vector3 _particleExplosionPosition;
 
     private static readonly int Attack = Animator.StringToHash("Attack");
@@ -18,10 +20,21 @@ public class Tower : MonoBehaviour
 
     #region PublicVariables
 
-    public int cost = 100;
+    public towerType type;
 
-    public int hp = 20;
-    public int dmg = 10;
+    public int cost;
+
+    public int hp;
+
+    public int maxHp;
+
+    public int dmg;
+
+    public int upgradeCost;
+
+    public int repairCost;
+
+    public int effectDammage;
 
     public float shootDelay;
 
@@ -33,8 +46,15 @@ public class Tower : MonoBehaviour
     public Transform target;
     public Transform lookAtObj;
     public Transform shootElement;
-
+    public GameObject upgradePrefab;
     public Animator anim;
+
+    #endregion
+
+    
+    #region ProtectedVariables
+
+     protected Informations.TowerData TowerData;
 
     #endregion
 
@@ -51,6 +71,7 @@ public class Tower : MonoBehaviour
         lookAtObj = gameObject.transform;
 
         _homeY = lookAtObj.transform.localRotation.eulerAngles.y;
+        SetTowerData();
     }
 
     private void Update()
@@ -136,9 +157,43 @@ public class Tower : MonoBehaviour
         anim.SetBool(Pose, true);
     }
 
+    private void SetTowerData()
+    {
+        TowerData._hp = this.hp;
+        TowerData._repair = this.repairCost;
+        TowerData._upgrade = this.upgradeCost;
+        TowerData._damageToEnemy = this.dmg;
+        TowerData._speedAttack = this.shootDelay;
+
+    }
+
     #endregion
 
     #region PublicMethods
+
+    public void Upgrade()
+    {   
+        if (upgradePrefab != null) {
+            Instantiate(upgradePrefab,transform.position,transform.rotation);
+            Destroy(gameObject);
+        }
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
+
+    public void Repair()
+    {
+        hp = maxHp;
+    }
+
+
+    public Informations.TowerData GetInformations()
+    {
+        return TowerData;
+    }
 
     public void Damage(int damage)
     {
