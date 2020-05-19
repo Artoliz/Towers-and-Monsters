@@ -6192,7 +6192,7 @@ MonoBehaviour:
   _unitUpgrade: {fileID: 889768980386895091}
   _unitDamageToEnemy: {fileID: 7448474746393801677}
   _unitSpeedAttack: {fileID: 3793348433173358250}
-  _unitDestroy: {fileID: 0}
+  _unitDestroy: {fileID: 8901071882880844386}
 --- !u!1 &8544189560056123779
 GameObject:
   m_ObjectHideFlags: 0

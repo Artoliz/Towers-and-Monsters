@@ -21,6 +21,10 @@ public class TowerInfo : MonoBehaviour
 
     public void SetListener(UnityEngine.Events.UnityAction upgradeCall, UnityEngine.Events.UnityAction repairCall, UnityEngine.Events.UnityAction destroyCall)
     {
+        _unitUpgrade.GetComponent<Button>().onClick.RemoveAllListeners();
+        _unitRepair.GetComponent<Button>().onClick.RemoveAllListeners();
+        _unitDestroy.GetComponent<Button>().onClick.RemoveAllListeners();
+
         _unitUpgrade.GetComponent<Button>().onClick.AddListener(upgradeCall);
         _unitRepair.GetComponent<Button>().onClick.AddListener(repairCall);
         _unitDestroy.GetComponent<Button>().onClick.AddListener(destroyCall);
