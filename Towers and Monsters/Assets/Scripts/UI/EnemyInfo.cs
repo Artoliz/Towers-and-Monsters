@@ -12,7 +12,6 @@ public class EnemyInfo : MonoBehaviour
 
     public void SetInformations(Informations.EnemyData data)
     {
-        Debug.Log(data.ToString());
         _unitHealth.GetComponentInChildren<Text>().text = data._hp.ToString();
         _unitGolds.GetComponentInChildren<Text>().text = data._golds.ToString();
         _unitDamageToBase.GetComponentInChildren<Text>().text = data._damageToBase.ToString();
