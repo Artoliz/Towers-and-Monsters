@@ -1040,6 +1040,7 @@ MonoBehaviour:
   destinationReachedPadding: 0.5
   effectOfDeath: {fileID: 229441864205929761, guid: 2dfdc358a980f034fbc554aa1eddf64a,
     type: 3}
+  reward: 10
   enemyHp: 25
   damageToBase: 10
 --- !u!1 &7694341206637198550

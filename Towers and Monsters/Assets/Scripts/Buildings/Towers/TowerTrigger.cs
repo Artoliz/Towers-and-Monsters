@@ -33,7 +33,7 @@ public class TowerTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (curTarget)
             {

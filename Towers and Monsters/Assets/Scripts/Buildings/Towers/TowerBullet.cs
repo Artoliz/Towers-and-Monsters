@@ -26,7 +26,7 @@ public class TowerBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (other.gameObject.transform == target)
             {
@@ -42,7 +42,7 @@ public class TowerBullet : MonoBehaviour
 
     private void Update()
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (target)
             {

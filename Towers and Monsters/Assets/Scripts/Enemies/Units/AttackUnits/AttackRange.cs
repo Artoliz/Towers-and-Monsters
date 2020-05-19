@@ -15,6 +15,7 @@ public class AttackRange : MonoBehaviour
     private AttackUnit _attackUnit;
 
     private static readonly int Run = Animator.StringToHash("Run");
+    private static readonly int Idle = Animator.StringToHash("Idle");
     private static readonly int Attack = Animator.StringToHash("Attack");
 
     #endregion
@@ -34,7 +35,7 @@ public class AttackRange : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (other.CompareTag(_tagToAttack))
             {
@@ -54,7 +55,12 @@ public class AttackRange : MonoBehaviour
 
     private void Update()
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
+        if (PauseMenu.GameIsPaused)
+        {
+            _attackUnit.SetAnimation(Attack, false);
+            _attackUnit.SetAnimation(Idle, true);
+        }
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (!_building && !_updateIsDone)
             {
@@ -67,6 +73,11 @@ public class AttackRange : MonoBehaviour
 
                 //Update is done stop doing it until the enemy stops again
                 _updateIsDone = true;
+            }
+            else if (_building)
+            {
+                _attackUnit.SetAnimation(Attack, true);
+                _attackUnit.SetAnimation(Idle, false);
             }
         }
     }

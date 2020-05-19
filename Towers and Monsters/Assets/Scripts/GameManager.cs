@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             UpdateTimerSinceStart();
         }

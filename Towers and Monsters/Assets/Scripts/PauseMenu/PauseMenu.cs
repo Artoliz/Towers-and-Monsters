@@ -25,7 +25,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (!WavesManager.gameIsFinished && Input.GetKeyDown(KeyCode.Escape))
+        if (!WavesManager.GameIsFinished && Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
                 ResumeGame();

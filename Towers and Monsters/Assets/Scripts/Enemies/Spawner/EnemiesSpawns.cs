@@ -10,7 +10,6 @@ public class EnemiesSpawns : MonoBehaviour
     private readonly List<Transform> _spawns = new List<Transform>();
 
     private readonly List<GameObject> _enemiesToSpawn = new List<GameObject>();
-    private readonly List<GameObject> _enemies = new List<GameObject>();
 
     #endregion
 
@@ -49,7 +48,7 @@ public class EnemiesSpawns : MonoBehaviour
 
     private void Update()
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused && !WavesManager.gameIsBetweenWaves)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused && !WavesManager.GameIsBetweenWaves)
         {
             if (_enemiesNumber == 0)
             {
@@ -65,11 +64,10 @@ public class EnemiesSpawns : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused && !WavesManager.gameIsBetweenWaves &&
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused && !WavesManager.GameIsBetweenWaves &&
             _enemiesToSpawn.Count > 0)
         {
             var enemy = Instantiate(_enemiesToSpawn[0], PositionOfSpawn(), Quaternion.identity);
-            _enemies.Add(enemy);
 
             var enemyController = enemy.GetComponent<Enemy>();
             enemyController.SetPlayerBase(playerBase);
@@ -134,7 +132,6 @@ public class EnemiesSpawns : MonoBehaviour
     public void RemoveEnemy(GameObject enemy)
     {
         _enemiesNumber--;
-        _enemies.Remove(enemy);
         Destroy(enemy);
     }
 

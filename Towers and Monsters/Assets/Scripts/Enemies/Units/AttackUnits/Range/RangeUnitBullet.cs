@@ -26,7 +26,7 @@ public class RangeUnitBullet : MonoBehaviour
 
     private void Update()
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (_target)
             {
@@ -43,7 +43,7 @@ public class RangeUnitBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (other.gameObject.transform == _target)
             {

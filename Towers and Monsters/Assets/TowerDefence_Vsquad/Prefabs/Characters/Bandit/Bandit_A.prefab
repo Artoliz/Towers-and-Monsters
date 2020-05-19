@@ -585,6 +585,8 @@ MonoBehaviour:
   enemyWeight: 7
   waveNumberApparition: 7
   destinationReachedPadding: 0.5
+  effectOfDeath: {fileID: 0}
+  reward: 70
   enemyHp: 100
   damageToBase: 20
 --- !u!1 &9185623120719720633

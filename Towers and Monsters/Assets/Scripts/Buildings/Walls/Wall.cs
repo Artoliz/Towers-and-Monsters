@@ -33,7 +33,7 @@ public class Wall : MonoBehaviour
 
     private void Update()
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused && hp <= 0)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused && hp <= 0)
         {
             Destroy(gameObject);
             destroyParticle = Instantiate(destroyParticle, _particleExplosionPosition, 
