@@ -34,34 +34,40 @@ public class AttackRange : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(_tagToAttack))
+        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
         {
-            _building = other.gameObject;
+            if (other.CompareTag(_tagToAttack))
+            {
+                _building = other.gameObject;
 
-            _attackUnit.SetTarget(_building);
-            _attackUnit.SetIsAttacking(true);
-            _attackUnit.SetIsStopped(true);
-            _attackUnit.SetAnimation(Run, false);
-            _attackUnit.SetAnimation(Attack, true);
+                _attackUnit.SetTarget(_building);
+                _attackUnit.SetIsAttacking(true);
+                _attackUnit.SetIsStopped(true);
+                _attackUnit.SetAnimation(Run, false);
+                _attackUnit.SetAnimation(Attack, true);
 
-            //Reset update is done to be able to re-update the enemy
-            _updateIsDone = false;
+                //Reset update is done to be able to re-update the enemy
+                _updateIsDone = false;
+            }
         }
     }
 
     private void Update()
     {
-        if (!_building && !_updateIsDone)
+        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
         {
-            _attackUnit.SetTarget(_base);
-            _attackUnit.SetBetweenAttack(false);
-            _attackUnit.SetIsAttacking(false);
-            _attackUnit.SetIsStopped(false);
-            _attackUnit.SetAnimation(Attack, false);
-            _attackUnit.SetAnimation(Run, true);
+            if (!_building && !_updateIsDone)
+            {
+                _attackUnit.SetTarget(_base);
+                _attackUnit.SetBetweenAttack(false);
+                _attackUnit.SetIsAttacking(false);
+                _attackUnit.SetIsStopped(false);
+                _attackUnit.SetAnimation(Attack, false);
+                _attackUnit.SetAnimation(Run, true);
 
-            //Update is done stop doing it until the enemy stops again
-            _updateIsDone = true;
+                //Update is done stop doing it until the enemy stops again
+                _updateIsDone = true;
+            }
         }
     }
 

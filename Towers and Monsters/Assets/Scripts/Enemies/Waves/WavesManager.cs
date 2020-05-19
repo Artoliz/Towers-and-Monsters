@@ -73,7 +73,7 @@ public class WavesManager : MonoBehaviour
                 EnableUiDuringWave();
                 RunWave();
             }
-        } else if (!gameIsFinished && Base.instance.IsBaseDestroyed())
+        } else if (!gameIsFinished && !PauseMenu.GameIsPaused && Base.instance.IsBaseDestroyed())
         {
             gameIsFinished = true;
             gameUi.SetActive(false);
@@ -81,7 +81,7 @@ public class WavesManager : MonoBehaviour
             gameOverUi.GetComponent<GameOver>().EndGame(waveNumber, 10);
             GameManager.Instance.EndGame(waveNumber, 10);
         }
-        else if (gameIsFinished)
+        else if (gameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
                 SceneManager.LoadScene("Menu");

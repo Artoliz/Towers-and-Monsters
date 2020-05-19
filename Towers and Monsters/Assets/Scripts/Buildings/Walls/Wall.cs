@@ -19,8 +19,6 @@ public class Wall : MonoBehaviour
 
     public int hp = 20;
 
-    public Vector3 impactNormal;
-
     public GameObject destroyParticle;
 
     #endregion
@@ -35,11 +33,11 @@ public class Wall : MonoBehaviour
 
     private void Update()
     {
-        if (hp <= 0)
+        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused && hp <= 0)
         {
             Destroy(gameObject);
             destroyParticle = Instantiate(destroyParticle, _particleExplosionPosition, 
-                Quaternion.FromToRotation(Vector3.up, impactNormal));
+                Quaternion.FromToRotation(Vector3.up, Vector3.zero));
             Destroy(destroyParticle, 1);
         }
     }

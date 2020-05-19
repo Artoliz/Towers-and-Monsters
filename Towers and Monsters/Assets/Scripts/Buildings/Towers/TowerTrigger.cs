@@ -17,41 +17,50 @@ public class TowerTrigger : MonoBehaviour
     /*
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && !lockE)
+        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
         {
-            var o = other.gameObject;
+            if (other.CompareTag("Enemy") && !lockE)
+            {
+                var o = other.gameObject;
 
-            twr.target = o.transform;
-            curTarget = o;
-            lockE = true;
+                twr.target = o.transform;
+                curTarget = o;
+                lockE = true;
+            }
         }
     }
     */
 
     private void Update()
     {
-        if (curTarget)
+        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
         {
-            if (curTarget.CompareTag($"Dead"))
+            if (curTarget)
+            {
+                if (curTarget.CompareTag($"Dead"))
+                {
+                    lockE = false;
+                    twr.target = null;
+                }
+            }
+
+            if (!curTarget)
             {
                 lockE = false;
-                twr.target = null;
             }
-        }
-
-        if (!curTarget)
-        {
-            lockE = false;
         }
     }
 
     /*
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Enemy") && other.gameObject == curTarget)
+        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
         {
-            lockE = false;
-            twr.target = null;
+            if (other.CompareTag("Enemy") && other.gameObject == curTarget)
+            {
+                lockE = false;
+                twr.target = null;
+            }
         }
     }
     */

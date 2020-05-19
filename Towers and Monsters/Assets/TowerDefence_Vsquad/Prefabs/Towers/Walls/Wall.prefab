@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 234196207134013341}
-  - component: {fileID: 3295234931977826857}
   - component: {fileID: 1063382188404056998}
   - component: {fileID: 1676653221500021827}
   - component: {fileID: 6304268584845419730}
   - component: {fileID: 759802523670420992}
   - component: {fileID: 324067473040913999}
+  - component: {fileID: 3295234931977826857}
   m_Layer: 11
   m_Name: Wall
   m_TagString: Wall
@@ -36,25 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3295234931977826857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234196207133584317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e4cf9ca85d4aa409859cc5ad9874f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wallIntersect: {fileID: 3214166699263150139, guid: f22badf9de03dba4cae5ca290527bee1,
-    type: 3}
-  cost: 1
-  hp: 20
-  impactNormal: {x: 0, y: 0, z: 0}
-  destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
-    type: 3}
 --- !u!33 &1063382188404056998
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -145,3 +126,22 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.149, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &3295234931977826857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234196207133584317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e4cf9ca85d4aa409859cc5ad9874f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallIntersect: {fileID: 3214166699263150139, guid: f22badf9de03dba4cae5ca290527bee1,
+    type: 3}
+  cost: 1
+  hp: 20
+  impactNormal: {x: 0, y: 0, z: 0}
+  destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
+    type: 3}

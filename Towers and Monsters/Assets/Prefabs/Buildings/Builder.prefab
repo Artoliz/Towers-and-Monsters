@@ -43,12 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0525e2494c9eed94e8fbe53647935f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteCrossDuration: 2
   _buildingImages:
   - {fileID: 21300000, guid: 5a9210c797d97e54a926fb022aaf8e5a, type: 3}
   - {fileID: 21300000, guid: a32f8e4654d8e624297a61a0eb363f20, type: 3}
   - {fileID: 21300000, guid: 84ec74ecd91fc5341b0102299ac2ecd3, type: 3}
   - {fileID: 21300000, guid: c9fedbf7784bf30478331b19527b97e8, type: 3}
   _buildingSelected: {fileID: 0}
+  noBuildingPossible: {fileID: 0}
+  errorMessage: {fileID: 0}
   playerBase: {fileID: 0}
   buildingsPrefab:
   - {fileID: 4171413074625168150, guid: fbb836b8f04fba540a64f69db2442d37, type: 3}

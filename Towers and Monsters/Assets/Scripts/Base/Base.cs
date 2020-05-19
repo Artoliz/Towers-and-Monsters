@@ -50,7 +50,7 @@ public class Base : MonoBehaviour
     {
         health.LookAt(mainCamera);
 
-        if (!WavesManager.gameIsFinished && baseHealth <= 0)
+        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused && baseHealth <= 0)
         {
             _isBaseDestroyed = true;
         }

@@ -27,8 +27,6 @@ public class Tower : MonoBehaviour
 
     public bool catcher;
 
-    public Vector3 impactNormal;
-
     public GameObject bullet;
     public GameObject destroyParticle;
 
@@ -57,40 +55,43 @@ public class Tower : MonoBehaviour
 
     private void Update()
     {
-        if (target)
+        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
         {
-            var dir = target.transform.position - lookAtObj.transform.position;
-            dir.y = 0;
-            var rot = Quaternion.LookRotation(dir);
-            lookAtObj.transform.rotation = Quaternion.Slerp(lookAtObj.transform.rotation, rot, 5 * Time.deltaTime);
-        }
-
-        else
-        {
-            var home = new Quaternion(0, _homeY, 0, 1);
-
-            lookAtObj.transform.rotation = Quaternion.Slerp(lookAtObj.transform.rotation, home, Time.deltaTime);
-        }
-
-        if (!_isShoot)
-        {
-            StartCoroutine(Shoot());
-        }
-
-        if (catcher)
-        {
-            if (!target || target.CompareTag("Dead"))
+            if (target)
             {
-                StopCatcherAttack();
+                var dir = target.transform.position - lookAtObj.transform.position;
+                dir.y = 0;
+                var rot = Quaternion.LookRotation(dir);
+                lookAtObj.transform.rotation = Quaternion.Slerp(lookAtObj.transform.rotation, rot, 5 * Time.deltaTime);
             }
-        }
 
-        if (hp <= 0)
-        {
-            Destroy(gameObject);
-            destroyParticle = Instantiate(destroyParticle, _particleExplosionPosition,
-                Quaternion.FromToRotation(Vector3.up, impactNormal));
-            Destroy(destroyParticle, 1);
+            else
+            {
+                var home = new Quaternion(0, _homeY, 0, 1);
+
+                lookAtObj.transform.rotation = Quaternion.Slerp(lookAtObj.transform.rotation, home, Time.deltaTime);
+            }
+
+            if (!_isShoot)
+            {
+                StartCoroutine(Shoot());
+            }
+
+            if (catcher)
+            {
+                if (!target || target.CompareTag("Dead"))
+                {
+                    StopCatcherAttack();
+                }
+            }
+
+            if (hp <= 0)
+            {
+                Destroy(gameObject);
+                destroyParticle = Instantiate(destroyParticle, _particleExplosionPosition,
+                    Quaternion.FromToRotation(Vector3.up, Vector3.zero));
+                Destroy(destroyParticle, 1);
+            }
         }
     }
 

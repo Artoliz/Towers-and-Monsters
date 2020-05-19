@@ -21,6 +21,13 @@ public class Builder : MonoBehaviour
 
     private const int LayerBuildingMask = 1 << 12;
 
+    private float _timeSinceStart;
+    private float _timeWhenPause;
+    private bool _destroyIsPaused;
+    private GameObject _spriteCrossToDelete;
+
+    [SerializeField] private float spriteCrossDuration;
+    
     [SerializeField] private Sprite[] _buildingImages = null;
     [SerializeField] private Image _buildingSelected = null;
     
@@ -90,9 +97,18 @@ public class Builder : MonoBehaviour
                 }
             }
         }
+        if (PauseMenu.GameIsPaused && ! _destroyIsPaused)
+        {
+             _destroyIsPaused = true;
+            _timeWhenPause = Time.unscaledTime - _timeSinceStart;
+            CancelInvoke(nameof(DestroySpriteCross));
+        }
+        if (!PauseMenu.GameIsPaused &&  _destroyIsPaused)
+        {
+             _destroyIsPaused = false;
+            Invoke(nameof(DestroySpriteCross), spriteCrossDuration - _timeWhenPause);
+        }
     }
-
-    
 
     #endregion
 
@@ -212,14 +228,17 @@ public class Builder : MonoBehaviour
 
             if (_path.status == NavMeshPathStatus.PathInvalid || _path.status == NavMeshPathStatus.PathPartial)
             {
-                var spriteCannotBuild = tmpBuilding.transform.position;
+                var position = tmpBuilding.transform.position;
+                
+                var spriteCannotBuild = position;
                 spriteCannotBuild.y = 0.005f;
                 var cannotBuildRotation = Quaternion.Euler(90, 0, 0);
 
-                var spriteToDelete = Instantiate(noBuildingPossible, spriteCannotBuild, cannotBuildRotation);
-                Destroy(spriteToDelete, 2);
+                _spriteCrossToDelete = Instantiate(noBuildingPossible, spriteCannotBuild, cannotBuildRotation);
+                _timeSinceStart = Time.unscaledTime;
+                Invoke(nameof(DestroySpriteCross), spriteCrossDuration);
 
-                _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
+                _gridObject.RemoveElementInGrid(position);
                 Destroy(tmpBuilding);
                 break;
             }
@@ -259,5 +278,10 @@ public class Builder : MonoBehaviour
             Debug.DrawLine(_path.corners[i], _path.corners[i + 1], Color.red);
     }
     
+    private void DestroySpriteCross()
+    {
+        Destroy(_spriteCrossToDelete);
+    }
+
     #endregion
 }
