@@ -4,6 +4,10 @@ public class EffectOfDeath : MonoBehaviour
 {
     #region SerializedVariables
 
+    private float _timeSinceStart;
+    private float _timeWhenPause;
+    private bool _destroyIsPaused;
+    
     private Collider _enemyCollider;
 
     private Enemy _enemy;
@@ -21,35 +25,54 @@ public class EffectOfDeath : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, eodDuration);
+        _timeSinceStart = Time.unscaledTime;
+        Invoke(nameof(DestroyMe), eodDuration);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
-            _enemyCollider = other;
-            _enemy = _enemyCollider.GetComponent<Enemy>();
+            if (other.CompareTag("Enemy"))
+            {
+                _enemyCollider = other;
+                _enemy = _enemyCollider.GetComponent<Enemy>();
 
-            if (boostSpeed && !_enemy.IsSpeedBoosted())
-            {
-                _enemy.SetIsSpeedBoosted(true);
-                BoostSpeed();
+                if (boostSpeed && !_enemy.IsSpeedBoosted())
+                {
+                    _enemy.SetIsSpeedBoosted(true);
+                    BoostSpeed();
+                }
+                else if (boostMaxHp && !_enemy.IsMaxHpBoosted())
+                {
+                    _enemy.SetIsMaxHpBoosted(true);
+                    BoostMaxHp();
+                }
+                else if (boostDamageToBase && !_enemy.IsDamageToBaseBoosted())
+                {
+                    _enemy.SetIsDamageToBaseBoosted(true);
+                    BoostDamageToBase();
+                }
+                else if (boostDamageToBuildings)
+                {
+                    BoostDamageToBuildings();
+                }
             }
-            else if (boostMaxHp && !_enemy.IsMaxHpBoosted())
-            {
-                _enemy.SetIsMaxHpBoosted(true);
-                BoostMaxHp();
-            }
-            else if (boostDamageToBase && !_enemy.IsDamageToBaseBoosted())
-            {
-                _enemy.SetIsDamageToBaseBoosted(true);
-                BoostDamageToBase();
-            }
-            else if (boostDamageToBuildings)
-            {
-                BoostDamageToBuildings();
-            }
+        }
+    }
+
+    private void Update()
+    {
+        if (PauseMenu.GameIsPaused && !_destroyIsPaused)
+        {
+            _destroyIsPaused = true;
+            _timeWhenPause = Time.unscaledTime - _timeSinceStart;
+            CancelInvoke(nameof(DestroyMe));
+        }
+        if (!PauseMenu.GameIsPaused && _destroyIsPaused)
+        {
+            _destroyIsPaused = false;
+            Invoke(nameof(DestroyMe), eodDuration - _timeWhenPause);
         }
     }
 
@@ -57,6 +80,11 @@ public class EffectOfDeath : MonoBehaviour
 
     #region PrivateMethods
 
+    private void DestroyMe()
+    {
+        Destroy(gameObject);
+    }
+    
     private void BoostSpeed()
     {
         var speed = _enemy.GetSpeed();
@@ -90,7 +118,7 @@ public class EffectOfDeath : MonoBehaviour
     private void BoostDamageToBuildings()
     {
         var attackUnit = _enemyCollider.GetComponent<AttackUnit>();
-        if (attackUnit)
+        if (attackUnit && !attackUnit.IsDamageToBuildingsBoosted())
         {
             attackUnit.SetIsDamageToBuildingsBoosted(true);
             var damageToBuildings = attackUnit.GetDamageToBuildings();

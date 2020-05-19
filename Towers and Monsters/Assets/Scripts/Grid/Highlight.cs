@@ -11,13 +11,16 @@ public class Highlight : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (Builder.isBuilding && !Grid.Instance.IsPositionBlocked(this.transform.position))
-            _renderer.material.shader = Shader.Find("Self-Illumin/Outlined Diffuse");
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
+        {
+            if (Builder.isBuilding && !Grid.Instance.IsPositionBlocked(transform.position))
+                _renderer.material.shader = Shader.Find("Self-Illumin/Outlined Diffuse");
+        }
     }
 
     private void OnMouseExit()
     {
-        if (!Grid.Instance.IsPositionBlocked(this.transform.position))
+        if (!Grid.Instance.IsPositionBlocked(transform.position))
             _renderer.material.shader = Shader.Find("Diffuse");
     }
 }

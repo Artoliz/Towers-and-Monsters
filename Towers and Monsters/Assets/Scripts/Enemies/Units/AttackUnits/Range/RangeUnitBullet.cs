@@ -12,16 +12,11 @@ public class RangeUnitBullet : MonoBehaviour
 
     #region SeriazableVariables
 
-    [SerializeField] private float timeBeforeDestroyBullet = 0.05f;
-    [SerializeField] private float particleTime = 1f;
-
     #endregion
 
     #region PublicVariables
 
     public float speed = 2f;
-
-    public Vector3 impactNormal;
 
     public GameObject impactParticle;
 
@@ -31,28 +26,35 @@ public class RangeUnitBullet : MonoBehaviour
 
     private void Update()
     {
-        if (_target)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
-            Transform transformSave;
-            
-            (transformSave = transform).LookAt(_target);
-            transform.position = Vector3.MoveTowards(transformSave.position, _target.position, Time.deltaTime * speed);
+            if (_target)
+            {
+                Transform transformSave;
+
+                (transformSave = transform).LookAt(_target);
+                transform.position =
+                    Vector3.MoveTowards(transformSave.position, _target.position, Time.deltaTime * speed);
+            }
+            else
+                Destroy(gameObject);
         }
-        else
-            Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.transform == _target)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
-            _target.GetComponent<Tower>().Damage(_damage);
-            Destroy(gameObject, timeBeforeDestroyBullet);
+            if (other.gameObject.transform == _target)
+            {
+                _target.GetComponent<Tower>().Damage(_damage);
+                Destroy(gameObject, 0.05f);
 
-            impactParticle = Instantiate(impactParticle, transform.position,
-                Quaternion.FromToRotation(Vector3.up, impactNormal));
-            impactParticle.transform.parent = _target.transform;
-            Destroy(impactParticle, particleTime);
+                impactParticle = Instantiate(impactParticle, transform.position,
+                    Quaternion.FromToRotation(Vector3.up, Vector3.zero));
+                impactParticle.transform.parent = _target.transform;
+                Destroy(impactParticle, 1);
+            }
         }
     }
 

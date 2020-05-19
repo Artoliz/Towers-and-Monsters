@@ -28,37 +28,40 @@ public class AttackUnit : Enemy
 
     protected override void Update()
     {
-        if (PauseMenu.GameIsPaused)
+        if (!gameObject.CompareTag($"Dead"))
         {
-            SetIsStopped(true);
-            SetAnimation(Idle, true);
-            SetAnimation(Run, false);
-        }
-        else if (global::Base.instance.IsBaseDestroyed())
-        {
-            SetIsStopped(true);
-            SetAnimation(Victory, true);
-        }
-        else if (enemyHp <= 0)
-        {
-            StartCoroutine(KillEnemy());
-        }
-        else if (HasReachedBase())
-        {
-            global::Base.instance.LoseHealth(damageToBase);
-            DestroyEnemy();
-        }
-        else if (_isAttacking && Target && Target != Base)
-        {
-            if (!BetweenAttack)
-                StartCoroutine(Attacking());
-        }
-        else
-        {
-            SetIsStopped(false);
-            SetAnimation(Idle, false);
-            SetAnimation(Run, true);
-            Agent.SetDestination(Base.transform.position);
+            if (PauseMenu.GameIsPaused)
+            {
+                SetIsStopped(true);
+                SetAnimation(Idle, true);
+                SetAnimation(Run, false);
+            }
+            else if (global::Base.instance.IsBaseDestroyed())
+            {
+                SetIsStopped(true);
+                SetAnimation(Victory, true);
+            }
+            else if (enemyHp <= 0)
+            {
+                StartCoroutine(KillEnemy());
+            }
+            else if (HasReachedBase())
+            {
+                global::Base.instance.LoseHealth(damageToBase);
+                DestroyEnemy();
+            }
+            else if (_isAttacking && Target && Target != Base)
+            {
+                if (!BetweenAttack)
+                    StartCoroutine(Attacking());
+            }
+            else
+            {
+                SetIsStopped(false);
+                SetAnimation(Idle, false);
+                SetAnimation(Run, true);
+                Agent.SetDestination(Base.transform.position);
+            }
         }
     }
 

@@ -25,7 +25,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (!WavesManager.gameIsFinished && Input.GetKeyDown(KeyCode.Escape))
+        if (!WavesManager.GameIsFinished && Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
                 ResumeGame();
@@ -43,7 +43,6 @@ public class PauseMenu : MonoBehaviour
         gameUi.SetActive(false);
         pauseMenuUi.SetActive(true);
 
-        Time.timeScale = 0;
         GameIsPaused = true;
     }
 

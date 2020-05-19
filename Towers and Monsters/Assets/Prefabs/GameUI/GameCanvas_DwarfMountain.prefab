@@ -4628,7 +4628,7 @@ MonoBehaviour:
   _unitUpgrade: {fileID: 651238717308650578}
   _unitDamageToEnemy: {fileID: 6334482465046070090}
   _unitSpeedAttack: {fileID: 3135501308153748733}
-  _unitDestroy: {fileID: 0}
+  _unitDestroy: {fileID: 8768612351702075819}
 --- !u!1 &6118708325995689484
 GameObject:
   m_ObjectHideFlags: 0
@@ -6817,6 +6817,24 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114710388903682014, guid: 939f195fe52106341a700d56d2097482,
+        type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ef77407b0558dd943af37bcda269a2c7,
+        type: 3}
+    - target: {fileID: 114710388903682014, guid: 939f195fe52106341a700d56d2097482,
+        type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5ce4c7d92b46b6740a8f392b1dca3c3c,
+        type: 3}
+    - target: {fileID: 114710388903682014, guid: 939f195fe52106341a700d56d2097482,
+        type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 576467f6735b90d4d9088e905c043443,
+        type: 3}
     - target: {fileID: 224306927807291752, guid: 939f195fe52106341a700d56d2097482,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6977,6 +6995,24 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 114721936059239414, guid: a08c44c62f698c74f94d95697f0b8f83,
+        type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0d154d158432887499645a157c8fd7bb,
+        type: 3}
+    - target: {fileID: 114721936059239414, guid: a08c44c62f698c74f94d95697f0b8f83,
+        type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1e88d9e0f91b65348aa642b499c7d28c,
+        type: 3}
+    - target: {fileID: 114721936059239414, guid: a08c44c62f698c74f94d95697f0b8f83,
+        type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2d2d19651e238714b9168b08227f1747,
+        type: 3}
     - target: {fileID: 224993813805065734, guid: a08c44c62f698c74f94d95697f0b8f83,
         type: 3}
       propertyPath: m_LocalPosition.x

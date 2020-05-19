@@ -6,11 +6,6 @@ public class TowerBullet : MonoBehaviour
 
     private Vector3 _lastBulletPosition;
 
-    #endregion
-
-    #region SeriazableVariables
-
-    [SerializeField] private float timeBeforeDestroyBullet = 0.05f;
     [SerializeField] private float particleTime = 3;
 
     #endregion
@@ -18,8 +13,6 @@ public class TowerBullet : MonoBehaviour
     #region PublicVariables
 
     public float speed;
-
-    public Vector3 impactNormal;
 
     public GameObject impactParticle;
 
@@ -33,40 +26,47 @@ public class TowerBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.transform == target)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
-            target.GetComponent<Enemy>().Damage(twr.dmg);
-            Destroy(gameObject, timeBeforeDestroyBullet); // destroy bullet
-            impactParticle = Instantiate(impactParticle, target.transform.position,
-                Quaternion.FromToRotation(Vector3.up, impactNormal));
-            impactParticle.transform.parent = target.transform;
-            Destroy(impactParticle, particleTime);
+            if (other.gameObject.transform == target)
+            {
+                target.GetComponent<Enemy>().Damage(twr.dmg);
+                Destroy(gameObject, 0.05f); // destroy bullet
+                impactParticle = Instantiate(impactParticle, target.transform.position,
+                    Quaternion.FromToRotation(Vector3.up, Vector3.zero));
+                impactParticle.transform.parent = target.transform;
+                Destroy(impactParticle, particleTime);
+            }
         }
     }
 
     private void Update()
     {
-        if (target)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
-            Transform transform1;
-            (transform1 = transform).LookAt(target);
-            transform.position = Vector3.MoveTowards(transform1.position, target.position, Time.deltaTime * speed);
-            _lastBulletPosition = target.transform.position;
-        }
-
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, _lastBulletPosition, Time.deltaTime * speed);
-
-            if (transform.position == _lastBulletPosition)
+            if (target)
             {
-                Destroy(gameObject, timeBeforeDestroyBullet);
+                Transform transform1;
+                (transform1 = transform).LookAt(target);
+                transform.position = Vector3.MoveTowards(transform1.position, target.position, Time.deltaTime * speed);
+                _lastBulletPosition = target.transform.position;
+            }
 
-                if (impactParticle != null)
+            else
+            {
+                transform.position =
+                    Vector3.MoveTowards(transform.position, _lastBulletPosition, Time.deltaTime * speed);
+
+                if (transform.position == _lastBulletPosition)
                 {
-                    impactParticle = Instantiate(impactParticle, transform.position,
-                        Quaternion.FromToRotation(Vector3.up, impactNormal));
-                    Destroy(impactParticle, particleTime);
+                    Destroy(gameObject, 0.05f);
+
+                    if (impactParticle != null)
+                    {
+                        impactParticle = Instantiate(impactParticle, transform.position,
+                            Quaternion.FromToRotation(Vector3.up, Vector3.zero));
+                        Destroy(impactParticle, particleTime);
+                    }
                 }
             }
         }
