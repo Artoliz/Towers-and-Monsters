@@ -59,6 +59,13 @@ public class Enemy : MonoBehaviour
         FillEnemyData();
     }
 
+    private void OnMouseDown()
+    {
+        EnemyData._hp = enemyHp;
+
+        Informations.Instance.SetInformations(EnemyData, this);
+    }
+
     #endregion
 
     #region VirtualMethods

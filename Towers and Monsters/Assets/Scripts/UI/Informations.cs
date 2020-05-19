@@ -10,6 +10,8 @@ public class Informations : MonoBehaviour
 
     private Camera _camera;
 
+    public static Informations Instance = null;
+
     public struct EnemyData
     {
         public float _hp;
@@ -47,57 +49,50 @@ public class Informations : MonoBehaviour
         _towerInfo.gameObject.SetActive(false);
         _unitType = Unit.None;
         _camera = Camera.main;
-    }
-
-    private void Update()
-    {
-        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
+        if (Instance != null)
         {
-            if (Input.GetMouseButtonDown(0) && !Builder.isBuilding)
-            {
-                var ray = _camera.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out var click, 1000))
-                {
-                    ResetSelected();
-                    if (click.collider.gameObject.CompareTag("Enemy"))
-                    {
-                        _unitType = Unit.Enemy;
-                        _enemy = click.collider.gameObject.GetComponent<Enemy>();
-                        _enemy.IsSelected(_selectedEnemy);
-                        _enemyInfo.gameObject.SetActive(true);
-                        _towerInfo.gameObject.SetActive(false);
-                    }
-                    else if (click.collider.gameObject.CompareTag("Tower"))
-                    {
-                        _unitType = Unit.Tower;
-                        _tower = click.collider.gameObject.GetComponent<Tower>();
-                        //_tower.IsSelected(_selectedTower);
-                        _towerInfo.gameObject.SetActive(true);
-                        _enemyInfo.gameObject.SetActive(false);
-                    }
-                }
-            }
-            if (_unitType == Unit.Enemy && _enemy)
-                _enemyInfo.SetInformations(_enemy.GetEnemyData());
-            else if (_unitType == Unit.Tower && _tower)
-            {
-                //_towerInfo.SetInformations(_tower.GetInformations());
-                //_towerInfo.SetListener(_tower.Upgrade(), _tower.Repair(), _tower.destroyParticle());
-            }
+            Instance = null;
+            Destroy(this);
         }
+        else
+            Instance = this;
     }
 
-    private void ResetSelected()
+    public void ResetSelected()
     {
         _unitType = Unit.None;
         if (_enemy != null)
             _enemy.IsSelected(null);
-        //if (_tower != null)
-        //    _tower.IsSelected(null);
+        if (_tower != null)
+            _tower.IsSelected(null);
         _enemy = null;
         _tower = null;
         _enemyInfo.gameObject.SetActive(false);
         _towerInfo.gameObject.SetActive(false);
+    }
+
+    public void SetInformations(TowerData data, Tower tower)
+    {
+        ResetSelected();
+
+        _unitType = Unit.Tower;
+        _tower = tower;
+        _tower.IsSelected(_selectedTower);
+        _towerInfo.gameObject.SetActive(true);
+        _enemyInfo.gameObject.SetActive(false);
+        _towerInfo.SetInformations(data);
+        _towerInfo.SetListener(_tower);
+    }
+
+    public void SetInformations(EnemyData data, Enemy enemy)
+    {
+        ResetSelected();
+
+        _unitType = Unit.Enemy;
+        _enemy = enemy;
+        enemy.IsSelected(_selectedEnemy);
+        _enemyInfo.gameObject.SetActive(true);
+        _towerInfo.gameObject.SetActive(false);
+        _enemyInfo.SetInformations(data);
     }
 }

@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     private int _roundEnded = 0;
     private int _enemiesKilled = 0;
 
+    private static GameObject errorMessage;
+
     #endregion
 
     #region MoboBehaviour
@@ -41,6 +43,10 @@ public class GameManager : MonoBehaviour
 
         if (_cursor != null)
             Cursor.SetCursor(_cursor, new Vector2(0, 0), CursorMode.ForceSoftware);
+
+        errorMessage = GameObject.Find("TextError");
+        if (errorMessage != null)
+            errorMessage.SetActive(false);
     }
 
     void Start()
@@ -106,6 +112,18 @@ public class GameManager : MonoBehaviour
         _enemiesKilled = enemiesKilled;
 
         // Save Score in local
+    }
+
+    public static IEnumerator DisplayError(string message)
+    {
+        if (errorMessage != null)
+        {
+            errorMessage.GetComponent<Text>().text = message;
+            errorMessage.SetActive(true);
+            yield return new WaitForSeconds(1.5f);
+            errorMessage.SetActive(false);
+        }
+        yield return new WaitForSeconds(0.0f);
     }
 
     #endregion

@@ -19,14 +19,14 @@ public class TowerInfo : MonoBehaviour
         _unitSpeedAttack.GetComponentInChildren<Text>().text = data._speedAttack.ToString() + "/s";
     }
 
-    public void SetListener(UnityEngine.Events.UnityAction upgradeCall, UnityEngine.Events.UnityAction repairCall, UnityEngine.Events.UnityAction destroyCall)
+    public void SetListener(Tower tower)
     {
         _unitUpgrade.GetComponent<Button>().onClick.RemoveAllListeners();
         _unitRepair.GetComponent<Button>().onClick.RemoveAllListeners();
         _unitDestroy.GetComponent<Button>().onClick.RemoveAllListeners();
 
-        _unitUpgrade.GetComponent<Button>().onClick.AddListener(upgradeCall);
-        _unitRepair.GetComponent<Button>().onClick.AddListener(repairCall);
-        _unitDestroy.GetComponent<Button>().onClick.AddListener(destroyCall);
+        _unitUpgrade.GetComponent<Button>().onClick.AddListener(tower.Upgrade);
+        _unitRepair.GetComponent<Button>().onClick.AddListener(tower.Repair);
+        _unitDestroy.GetComponent<Button>().onClick.AddListener(tower.Destroy);
     }
 }

@@ -14,10 +14,10 @@ public class TowerTrigger : MonoBehaviour
 
     #region MonoBehaviour
 
-    /*
+
     private void OnTriggerEnter(Collider other)
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (other.CompareTag("Enemy") && !lockE)
             {
@@ -29,7 +29,6 @@ public class TowerTrigger : MonoBehaviour
             }
         }
     }
-    */
 
     private void Update()
     {
@@ -51,10 +50,9 @@ public class TowerTrigger : MonoBehaviour
         }
     }
 
-    /*
     private void OnTriggerExit(Collider other)
     {
-        if (!WavesManager.gameIsFinished && !PauseMenu.GameIsPaused)
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (other.CompareTag("Enemy") && other.gameObject == curTarget)
             {
@@ -63,7 +61,7 @@ public class TowerTrigger : MonoBehaviour
             }
         }
     }
-    */
+
 
     #endregion
 }

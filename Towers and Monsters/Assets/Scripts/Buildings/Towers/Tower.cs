@@ -16,6 +16,8 @@ public class Tower : MonoBehaviour
     private static readonly int Attack = Animator.StringToHash("Attack");
     private static readonly int Pose = Animator.StringToHash("T_pose");
 
+    private GameObject _selected;
+
     #endregion
 
     #region PublicVariables
@@ -51,10 +53,11 @@ public class Tower : MonoBehaviour
 
     #endregion
 
-    
     #region ProtectedVariables
 
-     protected Informations.TowerData TowerData;
+    protected Informations.TowerData TowerData;
+
+    protected GameObject ParentGO;
 
     #endregion
 
@@ -72,6 +75,8 @@ public class Tower : MonoBehaviour
 
         _homeY = lookAtObj.transform.localRotation.eulerAngles.y;
         SetTowerData();
+
+        ParentGO = transform.parent.gameObject;
     }
 
     private void Update()
@@ -114,6 +119,13 @@ public class Tower : MonoBehaviour
                 Destroy(destroyParticle, 1);
             }
         }
+    }
+
+    private void OnMouseDown()
+    {
+        TowerData._hp = this.hp;
+
+        Informations.Instance.SetInformations(TowerData, this);
     }
 
     #endregion
@@ -164,7 +176,6 @@ public class Tower : MonoBehaviour
         TowerData._upgrade = this.upgradeCost;
         TowerData._damageToEnemy = this.dmg;
         TowerData._speedAttack = this.shootDelay;
-
     }
 
     #endregion
@@ -172,25 +183,41 @@ public class Tower : MonoBehaviour
     #region PublicMethods
 
     public void Upgrade()
-    {   
-        if (upgradePrefab != null) {
-            Instantiate(upgradePrefab,transform.position,transform.rotation);
-            Destroy(gameObject);
+    {
+        if (upgradePrefab != null)
+        {
+            if (this.upgradeCost <= GameManager.Instance.GetGolds())
+            {
+                GameManager.Instance.RemoveGolds(this.upgradeCost);
+                Instantiate(upgradePrefab, transform.position, transform.rotation);
+                Destroy(ParentGO);
+            }
+            else
+                StartCoroutine(GameManager.DisplayError("Not enough golds !"));
         }
     }
 
     public void Destroy()
     {
-        Destroy(gameObject);
+        Informations.Instance.ResetSelected();
+        Destroy(ParentGO);
     }
 
     public void Repair()
     {
-        hp = maxHp;
+        if (hp < maxHp)
+        {
+            if (this.repairCost <= GameManager.Instance.GetGolds())
+            {
+                GameManager.Instance.RemoveGolds(this.repairCost);
+                hp = maxHp;
+            }
+            else
+                StartCoroutine(GameManager.DisplayError("Not enough golds !"));
+        }
     }
 
-
-    public Informations.TowerData GetInformations()
+    public Informations.TowerData GetTowerData()
     {
         return TowerData;
     }
@@ -198,6 +225,19 @@ public class Tower : MonoBehaviour
     public void Damage(int damage)
     {
         hp -= damage;
+    }
+
+    public void IsSelected(GameObject selected)
+    {
+        if (selected == null)
+        {
+            Destroy(_selected);
+            _selected = null;
+        }
+        else
+        {
+            _selected = Instantiate(selected, this.transform);
+        }
     }
 
     #endregion
