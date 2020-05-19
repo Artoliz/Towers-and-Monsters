@@ -54,6 +54,9 @@
             </e>
           </e>
         </e>
+        <e p="Resources" t="Include">
+          <e p="$self_illuminated_outlined_diffuse_113.shader" t="Include" />
+        </e>
         <e p="Scripts" t="Include">
           <e p="Base" t="Include">
             <e p="Base.cs" t="Include" />
@@ -105,6 +108,7 @@
           <e p="GameManager.cs" t="Include" />
           <e p="Grid" t="Include">
             <e p="Grid.cs" t="Include" />
+            <e p="Highlight.cs" t="Include" />
           </e>
           <e p="Menus" t="Include">
             <e p="MainMenu.cs" t="Include" />
