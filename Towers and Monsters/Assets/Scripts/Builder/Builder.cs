@@ -240,6 +240,7 @@ public class Builder : MonoBehaviour
 
                 _gridObject.RemoveElementInGrid(position);
                 Destroy(tmpBuilding);
+                tmpBuilding = null;
                 break;
             }
         }
