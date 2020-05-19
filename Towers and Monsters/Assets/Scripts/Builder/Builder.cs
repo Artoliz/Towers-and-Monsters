@@ -225,7 +225,6 @@ public class Builder : MonoBehaviour
             }
         }
 
-        //When you can't buy a tower, do something
         if ((tmpBuilding.GetComponent<Tower>() != null && tmpBuilding.GetComponent<Tower>().cost > GameManager.Instance.GetGolds()) ||
             (tmpBuilding.GetComponent<Wall>() != null && tmpBuilding.GetComponent<Wall>().cost > GameManager.Instance.GetGolds()))
         {
