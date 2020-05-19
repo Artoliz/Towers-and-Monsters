@@ -1065,6 +1065,26 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 914631482932197555, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 914631482932197555, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 914631482932197555, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 914631482932197555, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -40
+      objectReference: {fileID: 0}
     - target: {fileID: 2036297093734724285, guid: 08409e93cb0b424418e7de6ff1880103,
         type: 3}
       propertyPath: m_IsActive
@@ -1246,6 +1266,17 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6781025392580815512}
+    - target: {fileID: 3085731395959008731, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: d28ff4be634c50f45ae5dd790f0e9db6,
+        type: 3}
+    - target: {fileID: 3085731395959008731, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_WaitForFirstFrame
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3109435043161081656, guid: 08409e93cb0b424418e7de6ff1880103,
         type: 3}
       propertyPath: m_Name
@@ -1255,6 +1286,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3687059559391419968, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_WaitForFirstFrame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693406258374313241, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: 17ecfe276744fe84aa80d35dcc3a826a,
+        type: 3}
+    - target: {fileID: 3693406258374313241, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_WaitForFirstFrame
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4303960794856958797, guid: 08409e93cb0b424418e7de6ff1880103,
         type: 3}
@@ -1307,6 +1354,26 @@ PrefabInstance:
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 8400000, guid: ae3c4e28606b9754f948d1c6a5acdc94, type: 2}
+    - target: {fileID: 7207940543418912402, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7207940543418912402, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7207940543418912402, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7207940543418912402, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -40
+      objectReference: {fileID: 0}
     - target: {fileID: 7577637987915405497, guid: 08409e93cb0b424418e7de6ff1880103,
         type: 3}
       propertyPath: m_AnchorMin.x
@@ -1346,6 +1413,37 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091393233639599971, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: 191f9ed3a602c194381f5a72d439c3e9,
+        type: 3}
+    - target: {fileID: 8091393233639599971, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_WaitForFirstFrame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841536648772022495, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841536648772022495, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841536648772022495, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841536648772022495, guid: 08409e93cb0b424418e7de6ff1880103,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -40
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2817875482151317853, guid: 08409e93cb0b424418e7de6ff1880103, type: 3}
