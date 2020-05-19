@@ -25,6 +25,7 @@ public class Builder : MonoBehaviour
     [SerializeField] private Image _buildingSelected = null;
     
     [SerializeField] private GameObject noBuildingPossible;
+    [SerializeField] private GameObject errorMessage;
 
     #endregion
 
@@ -54,6 +55,8 @@ public class Builder : MonoBehaviour
         InitBuildings();
 
         _buildingSelected.transform.localScale /= 6;
+
+        errorMessage.SetActive(false);
     }
 
     private void Start()
@@ -226,7 +229,7 @@ public class Builder : MonoBehaviour
         if ((tmpBuilding.GetComponent<Tower>() != null && tmpBuilding.GetComponent<Tower>().cost > GameManager.Instance.GetGolds()) ||
             (tmpBuilding.GetComponent<Wall>() != null && tmpBuilding.GetComponent<Wall>().cost > GameManager.Instance.GetGolds()))
         {
-            Debug.Log("Not enough golds to build.");
+            StartCoroutine(DisplayError("Not enough golds !"));
             _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
             Destroy(tmpBuilding);
         } else
@@ -241,6 +244,14 @@ public class Builder : MonoBehaviour
             foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
                 mesh.enabled = true;
         }
+    }
+
+    IEnumerator DisplayError(string message)
+    {
+        errorMessage.GetComponent<Text>().text = message;
+        errorMessage.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        errorMessage.SetActive(false);
     }
 
     private void DrawPathDebug()

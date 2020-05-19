@@ -34133,6 +34133,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 557605132}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &557605141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3434542470497199144, guid: c147081f3a926cb43836dd9de4260581,
+    type: 3}
+  m_PrefabInstance: {fileID: 557605132}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &558004244
 GameObject:
   m_ObjectHideFlags: 0
@@ -104128,6 +104134,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 102578942f9b13146abbc41679a2e192,
         type: 3}
+    - target: {fileID: 7013651086503724498, guid: c71620a87f665b3469f3f6a68adf8e02,
+        type: 3}
+      propertyPath: errorMessage
+      value: 
+      objectReference: {fileID: 557605141}
     - target: {fileID: 7013651086503724499, guid: c71620a87f665b3469f3f6a68adf8e02,
         type: 3}
       propertyPath: m_Name
