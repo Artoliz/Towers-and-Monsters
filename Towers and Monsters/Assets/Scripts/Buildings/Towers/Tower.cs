@@ -9,6 +9,8 @@ public class Tower : MonoBehaviour
 
     private bool _isShoot;
     
+    public enum towerType {bullet, effect, aoe};
+
     private Vector3 _particleExplosionPosition;
 
     private static readonly int Attack = Animator.StringToHash("Attack");
@@ -18,10 +20,19 @@ public class Tower : MonoBehaviour
 
     #region PublicVariables
 
-    public int cost = 100;
+    public towerType type;
 
-    public int hp = 20;
-    public int dmg = 10;
+    public int cost;
+
+    public int hp;
+
+    public int dmg;
+
+    public int upgradeCost;
+
+    public int repairCost;
+
+    public int effectDammage;
 
     public float shootDelay;
 
@@ -35,7 +46,7 @@ public class Tower : MonoBehaviour
     public Transform target;
     public Transform lookAtObj;
     public Transform shootElement;
-
+    public GameObject upgradePrefab;
     public Animator anim;
 
     #endregion
@@ -138,7 +149,14 @@ public class Tower : MonoBehaviour
     #endregion
 
     #region PublicMethods
-
+     
+    void OnMouseDown()
+    {
+        if (upgradePrefab != null) {
+            Instantiate(upgradePrefab,transform.position,transform.rotation);
+            Destroy(gameObject);
+        }
+    }
     public void Damage(int damage)
     {
         hp -= damage;

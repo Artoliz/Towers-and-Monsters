@@ -92,19 +92,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a682e4e961f99c0498ca12fad03ef8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 100
-  hp: 20
-  dmg: 10
-  shootDelay: 1
+  cost: 0
+  hp: 200
+  dmg: 50
+  upgradeCost: 400
+  repairCost: 150
+  shootDelay: 0.75
   catcher: 0
-  impactNormal2: {x: 0, y: 0, z: 0}
+  impactNormal: {x: 0, y: 0, z: 0}
   bullet: {fileID: 1751001828988230, guid: 84f0393b31eef6f448633f5ed4003405, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4168700509242470}
-  anim2: {fileID: 0}
+  upgradePrefab: {fileID: 1625777184147098, guid: 2ebe581237b6b8049afe7214b88f8b05,
+    type: 3}
+  anim: {fileID: 0}
 --- !u!1 &1138057459549398
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +371,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114155419583281304
 MonoBehaviour:
