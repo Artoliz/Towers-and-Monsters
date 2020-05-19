@@ -21,17 +21,14 @@ public class Builder : MonoBehaviour
 
     private const int LayerBuildingMask = 1 << 12;
 
-    private float _timeSinceStart;
-    private float _timeWhenPause;
-    private bool _destroyIsPaused;
-    private GameObject _spriteCrossToDelete;
-
     [SerializeField] private float spriteCrossDuration;
     
     [SerializeField] private Sprite[] _buildingImages = null;
     [SerializeField] private Image _buildingSelected = null;
     
     [SerializeField] private GameObject noBuildingPossible;
+
+    private Coroutine _checkBeforebuild;
 
     #endregion
 
@@ -93,17 +90,6 @@ public class Builder : MonoBehaviour
                     }
                 }
             }
-        }
-        if (PauseMenu.GameIsPaused && ! _destroyIsPaused)
-        {
-             _destroyIsPaused = true;
-            _timeWhenPause = Time.unscaledTime - _timeSinceStart;
-            CancelInvoke(nameof(DestroySpriteCross));
-        }
-        if (!PauseMenu.GameIsPaused &&  _destroyIsPaused)
-        {
-             _destroyIsPaused = false;
-            Invoke(nameof(DestroySpriteCross), spriteCrossDuration - _timeWhenPause);
         }
     }
 
@@ -210,7 +196,7 @@ public class Builder : MonoBehaviour
             foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
                 mesh.enabled = false;
 
-            StartCoroutine(CheckPathBeforeBuild(tmpBuilding));
+            _checkBeforebuild = StartCoroutine(CheckPathBeforeBuild(tmpBuilding));
         }
     }
 
@@ -231,9 +217,8 @@ public class Builder : MonoBehaviour
                 spriteCannotBuild.y = 0.005f;
                 var cannotBuildRotation = Quaternion.Euler(90, 0, 0);
 
-                _spriteCrossToDelete = Instantiate(noBuildingPossible, spriteCannotBuild, cannotBuildRotation);
-                _timeSinceStart = Time.unscaledTime;
-                Invoke(nameof(DestroySpriteCross), spriteCrossDuration);
+                var spriteCrossDelete = Instantiate(noBuildingPossible, spriteCannotBuild, cannotBuildRotation);
+                Destroy(spriteCrossDelete, spriteCrossDuration);
 
                 _gridObject.RemoveElementInGrid(position);
                 Destroy(tmpBuilding);
@@ -242,23 +227,27 @@ public class Builder : MonoBehaviour
             }
         }
 
-        if ((tmpBuilding.GetComponent<Tower>() != null && tmpBuilding.GetComponent<Tower>().cost > GameManager.Instance.GetGolds()) ||
-            (tmpBuilding.GetComponent<Wall>() != null && tmpBuilding.GetComponent<Wall>().cost > GameManager.Instance.GetGolds()))
+        if (tmpBuilding != null)
         {
-            StartCoroutine(GameManager.DisplayError("Not enough golds !"));
-            _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
-            Destroy(tmpBuilding);
-        } else
-        {
-            if (tmpBuilding.GetComponent<Tower>() != null)
-                GameManager.Instance.RemoveGolds(tmpBuilding.GetComponent<Tower>().cost);
-            else if (tmpBuilding.GetComponent<Wall>() != null)
+            if ((tmpBuilding.GetComponentInChildren<Tower>() != null && tmpBuilding.GetComponentInChildren<Tower>().cost > GameManager.Instance.GetGolds()) ||
+                (tmpBuilding.GetComponent<Wall>() != null && tmpBuilding.GetComponent<Wall>().cost > GameManager.Instance.GetGolds()))
             {
-                GameManager.Instance.RemoveGolds(tmpBuilding.GetComponent<Wall>().cost);
-                tmpBuilding.GetComponent<Wall>().PlaceWallIntersections();
+                StartCoroutine(GameManager.DisplayError("Not enough golds !"));
+                _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
+                Destroy(tmpBuilding);
             }
-            foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
-                mesh.enabled = true;
+            else
+            {
+                if (tmpBuilding != null && tmpBuilding.GetComponentInChildren<Tower>() != null)
+                    GameManager.Instance.RemoveGolds(tmpBuilding.GetComponentInChildren<Tower>().cost);
+                else if (tmpBuilding.GetComponent<Wall>() != null)
+                {
+                    GameManager.Instance.RemoveGolds(tmpBuilding.GetComponent<Wall>().cost);
+                    tmpBuilding.GetComponent<Wall>().PlaceWallIntersections();
+                }
+                foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
+                    mesh.enabled = true;
+            }
         }
     }
 
@@ -266,11 +255,6 @@ public class Builder : MonoBehaviour
     {
         for (int i = 0; i < _path.corners.Length - 1; i++)
             Debug.DrawLine(_path.corners[i], _path.corners[i + 1], Color.red);
-    }
-    
-    private void DestroySpriteCross()
-    {
-        Destroy(_spriteCrossToDelete);
     }
 
     #endregion
