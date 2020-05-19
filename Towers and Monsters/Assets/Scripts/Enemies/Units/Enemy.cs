@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
     
     [SerializeField] private GameObject effectOfDeath;
 
-    private int _reward;
     private int _maxHp;
 
     private float _dyingTime;
@@ -24,14 +23,15 @@ public class Enemy : MonoBehaviour
 
     private static readonly int Death = Animator.StringToHash("Death");
 
-    private GameObject _selected = null;
+    private GameObject _selected;
 
     #endregion
 
     #region ProtectedVariables
 
-    [SerializeField] protected int enemyHp = 100;
-    [SerializeField] protected int damageToBase = 100;
+    [SerializeField] protected int reward;
+    [SerializeField] protected int enemyHp;
+    [SerializeField] protected int damageToBase;
 
     protected GameObject Base;
 
@@ -65,8 +65,6 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Awake()
     {
-        _reward = enemyWeight * 10;
-
         Anim = GetComponent<Animator>();
         SetAnimationsTimes();
 
@@ -123,7 +121,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void FillEnemyData()
     {
-        EnemyData._golds = _reward;
+        EnemyData._golds = reward;
         EnemyData._hp = enemyHp;
         EnemyData._speed = Agent.speed;
         EnemyData._damageToBase = damageToBase;
@@ -264,7 +262,7 @@ public class Enemy : MonoBehaviour
         gameObject.tag = "Dead";
         SetAnimation(Death, true);
 
-        GameManager.Instance.AddGolds(_reward);
+        GameManager.Instance.AddGolds(reward);
 
         if (effectOfDeath)
             Instantiate(effectOfDeath, transform.position, Quaternion.identity);
