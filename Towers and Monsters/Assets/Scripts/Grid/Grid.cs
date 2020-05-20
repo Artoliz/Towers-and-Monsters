@@ -29,6 +29,8 @@ public class Grid : MonoBehaviour
     public GameObject playerBase;
     public GameObject spawns;
 
+    public Pathfinder _pathfinder;
+
     #endregion
 
     #region MonoBehavior
@@ -36,6 +38,8 @@ public class Grid : MonoBehaviour
     private void Awake()
     {
         _grid = new GameObject[gridSizeX, gridSizeZ];
+
+        _pathfinder = new Pathfinder(gridSizeX, gridSizeZ);
 
         GetBlockedPositions();
         BlockPositions();
@@ -72,6 +76,8 @@ public class Grid : MonoBehaviour
             pos.y = Mathf.RoundToInt(childPos.z / gridSpacingOffset);
 
             _blockedPositions.Add(pos);
+
+            _pathfinder.SetBlockedPosition(pos.x, pos.y);
         }
     }
 
@@ -86,6 +92,8 @@ public class Grid : MonoBehaviour
             pos.x = Mathf.RoundToInt(childPos.x / gridSpacingOffset);
             pos.y = Mathf.RoundToInt(childPos.z / gridSpacingOffset);
             _blockedPositions.Add(pos);
+
+            _pathfinder.SetSource(pos.x, pos.y);
 
             Vector2Int tmpPos;
             if (pos.x + 1 < gridSizeX)
@@ -128,6 +136,7 @@ public class Grid : MonoBehaviour
         };
 
         _blockedPositions.Add(pos);
+        _pathfinder.SetDestination(pos.x, pos.y);
 
         Vector2Int tmpPos;
         if (pos.x + 1 < gridSizeX)
@@ -223,7 +232,11 @@ public class Grid : MonoBehaviour
         var xCount = Mathf.RoundToInt(clickPoint.x / gridSpacingOffset);
         var zCount = Mathf.RoundToInt(clickPoint.z / gridSpacingOffset);
 
+        if (xCount < 0 || xCount >= gridSizeX || zCount < 0 || zCount >= gridSizeZ)
+            return;
+
         _grid[xCount, zCount] = null;
+        _pathfinder.RemoveBlockedPosition(xCount, zCount);
     }
 
     public bool AppendElementInGrid(Vector3 clickPoint, GameObject obj)
@@ -231,9 +244,28 @@ public class Grid : MonoBehaviour
         var xCount = Mathf.RoundToInt(clickPoint.x / gridSpacingOffset);
         var zCount = Mathf.RoundToInt(clickPoint.z / gridSpacingOffset);
 
+        if (xCount < 0 || xCount >= gridSizeX || zCount < 0 || zCount >= gridSizeZ)
+            return false;
+
         if (_grid[xCount, zCount] == null)
         {
             _grid[xCount, zCount] = obj;
+            _pathfinder.SetBlockedPosition(xCount, zCount);
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool AppendElementInGrid(Vector2Int position, GameObject obj)
+    {
+        if (position.x < 0 || position.x >= gridSizeX || position.y < 0 || position.y >= gridSizeZ)
+            return false;
+
+            if (_grid[position.x, position.y] == null)
+        {
+            _grid[position.x, position.y] = obj;
+            _pathfinder.SetBlockedPosition(position.x, position.y);
             return true;
         }
 

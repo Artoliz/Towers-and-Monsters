@@ -58,6 +58,8 @@ public class Builder : MonoBehaviour
         InitBuildings();
 
         _buildingSelected.transform.localScale /= 6;
+
+        NavMesh.pathfindingIterationsPerFrame = 500;
     }
 
     private void Start()
@@ -181,73 +183,53 @@ public class Builder : MonoBehaviour
     {
         var gridSpacingOffset = _gridObject.GetGridSpacingOffset();
 
-        if (_gridObject.AppendElementInGrid(clickPoint, buildings[_buildingEnum]))
+        var xCount = Mathf.RoundToInt(clickPoint.x / gridSpacingOffset);
+        var zCount = Mathf.RoundToInt(clickPoint.z / gridSpacingOffset);
+
+        var result = new Vector3(xCount * gridSpacingOffset, 0, zCount * gridSpacingOffset);
+
+        Grid.Instance._pathfinder.SetBlockedPosition(xCount, zCount);
+
+        if (Grid.Instance._pathfinder.AStarSearch())
         {
-            var xCount = Mathf.RoundToInt(clickPoint.x / gridSpacingOffset);
-            var zCount = Mathf.RoundToInt(clickPoint.z / gridSpacingOffset);
-
-            var result = new Vector3(
-                xCount * gridSpacingOffset,
-                0,
-                zCount * gridSpacingOffset);
-
-            var tmpBuilding = Instantiate(buildings[_buildingEnum], result, Quaternion.identity);
-
-            foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
-                mesh.enabled = false;
-
-            _checkBeforebuild = StartCoroutine(CheckPathBeforeBuild(tmpBuilding));
-        }
-    }
-
-    private IEnumerator CheckPathBeforeBuild(GameObject tmpBuilding)
-    {
-        yield return new WaitForSeconds(0);
-
-        foreach (var spawn in _spawns)
-        {
-            
-            NavMesh.CalculatePath(spawn.position, playerBase.transform.position, NavMesh.AllAreas, _path);
-
-            if (_path.status == NavMeshPathStatus.PathInvalid || _path.status == NavMeshPathStatus.PathPartial)
+            if (_gridObject.AppendElementInGrid(clickPoint, buildings[_buildingEnum]))
             {
-                var position = tmpBuilding.transform.position;
-                
-                var spriteCannotBuild = position;
-                spriteCannotBuild.y = 0.005f;
-                var cannotBuildRotation = Quaternion.Euler(90, 0, 0);
+                var tmpBuilding = Instantiate(buildings[_buildingEnum], result, Quaternion.identity);
 
-                var spriteCrossDelete = Instantiate(noBuildingPossible, spriteCannotBuild, cannotBuildRotation);
-                Destroy(spriteCrossDelete, spriteCrossDuration);
-
-                _gridObject.RemoveElementInGrid(position);
-                Destroy(tmpBuilding);
-                tmpBuilding = null;
-                break;
-            }
-        }
-
-        if (tmpBuilding != null)
-        {
-            if ((tmpBuilding.GetComponentInChildren<Tower>() != null && tmpBuilding.GetComponentInChildren<Tower>().cost > GameManager.Instance.GetGolds()) ||
-                (tmpBuilding.GetComponent<Wall>() != null && tmpBuilding.GetComponent<Wall>().cost > GameManager.Instance.GetGolds()))
-            {
-                StartCoroutine(GameManager.DisplayError("Not enough golds !"));
-                _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
-                Destroy(tmpBuilding);
-            }
-            else
-            {
-                if (tmpBuilding != null && tmpBuilding.GetComponentInChildren<Tower>() != null)
-                    GameManager.Instance.RemoveGolds(tmpBuilding.GetComponentInChildren<Tower>().cost);
-                else if (tmpBuilding.GetComponent<Wall>() != null)
+                if (tmpBuilding != null)
                 {
-                    GameManager.Instance.RemoveGolds(tmpBuilding.GetComponent<Wall>().cost);
-                    tmpBuilding.GetComponent<Wall>().PlaceWallIntersections();
+                    if ((tmpBuilding.GetComponentInChildren<Tower>() != null && tmpBuilding.GetComponentInChildren<Tower>().cost > GameManager.Instance.GetGolds()) ||
+                        (tmpBuilding.GetComponent<Wall>() != null && tmpBuilding.GetComponent<Wall>().cost > GameManager.Instance.GetGolds()))
+                    {
+                        StartCoroutine(GameManager.DisplayError("Not enough golds !"));
+                        _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
+                        Destroy(tmpBuilding);
+                    }
+                    else
+                    {
+                        if (tmpBuilding != null && tmpBuilding.GetComponentInChildren<Tower>() != null)
+                            GameManager.Instance.RemoveGolds(tmpBuilding.GetComponentInChildren<Tower>().cost);
+                        else if (tmpBuilding.GetComponent<Wall>() != null)
+                        {
+                            GameManager.Instance.RemoveGolds(tmpBuilding.GetComponent<Wall>().cost);
+                            tmpBuilding.GetComponent<Wall>().PlaceWallIntersections();
+                        }
+                        foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
+                            mesh.enabled = true;
+                    }
                 }
-                foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
-                    mesh.enabled = true;
             }
+        }
+        else
+        {
+            Grid.Instance._pathfinder.RemoveBlockedPosition(xCount, zCount);
+
+            var spriteCannotBuild = result;
+            spriteCannotBuild.y = 0.005f;
+            var cannotBuildRotation = Quaternion.Euler(90, 0, 0);
+
+            var spriteCrossDelete = Instantiate(noBuildingPossible, spriteCannotBuild, cannotBuildRotation);
+            Destroy(spriteCrossDelete, spriteCrossDuration);
         }
     }
 
