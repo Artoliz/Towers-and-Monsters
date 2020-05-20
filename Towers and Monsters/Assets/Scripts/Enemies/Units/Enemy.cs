@@ -264,9 +264,9 @@ public class Enemy : MonoBehaviour
 
     #region Setters
 
-    public void SetSpeed(float speed)
+    public void SetSpeed(float newSpeed)
     {
-        speed = speed;
+        speed = newSpeed;
     }
 
     public void SetMaxHp(int maxHp)
