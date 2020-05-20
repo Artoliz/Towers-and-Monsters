@@ -3,43 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NamedMenu
-{
-    public string Name;
-    public string GameObject;
-}
-
 public class MainMenu : MonoBehaviour
 {
+
     #region PublicMethods
 
-    
-    public GameObject MainMenuCanvas;
-    public GameObject LevelSelectionCanvas;
-    public GameObject OptionMenuCanvas;
-    public GameObject HighScoreMenuCanvas;
-    public GameObject QuitGameConfirmationMenuCanvas;
-    public GameObject HumanValleyLobbyCanvas;
-    public GameObject DwarfMountainLobbyCanvas;
-    public GameObject ElvenForestLobbyCanvas;
+//    
+//    public GameObject MainMenuCanvas;
+//    public GameObject LevelSelectionCanvas;
+//    public GameObject OptionMenuCanvas;
+//    public GameObject HighScoreMenuCanvas;
+//    public GameObject QuitGameConfirmationMenuCanvas;
+//    public GameObject HumanValleyLobbyCanvas;
+//    public GameObject DwarfMountainLobbyCanvas;
+//    public GameObject ElvenForestLobbyCanvas;
     //public GameObject GoblinDesertLobbyCanvas;
 
-    public NamedMenu[] Menus;
-    public Dictionary<String, GameObject> Dictionary;
-    
-    
+    //public List<NamedMenu> menus;
+    public GameObject []Menus;
+
     public Texture2D _cursor = null;
+    #endregion
 
     void Awake()
     {
-        MainMenuCanvas.SetActive(true);
-        LevelSelectionCanvas.SetActive(false);
-        OptionMenuCanvas.SetActive(false);
-        HighScoreMenuCanvas.SetActive(false);
-        QuitGameConfirmationMenuCanvas.SetActive(false);
-
         if (_cursor != null)
             Cursor.SetCursor(_cursor, new Vector2(0, 0), CursorMode.ForceSoftware);
+
+        SelectMainMenu();
     }
 
     public void LaunchLevel(string levelName)
@@ -49,49 +40,99 @@ public class MainMenu : MonoBehaviour
 
     public void SelectLevelSelectionMenu()
     {
-        MainMenuCanvas.SetActive(false);
-        
-        LevelSelectionCanvas.SetActive(true);
+        foreach (GameObject menu in Menus)
+        {
+            if (menu.name == "LevelSelectionMenu")
+                menu.SetActive(true);
+            else
+                menu.SetActive(false);
+        }   
     }
     
     public void SelectOptionMenu()
     {
-        MainMenuCanvas.SetActive(false);
-        
-        OptionMenuCanvas.SetActive(true);
+        foreach (GameObject menu in Menus)
+        {
+            if (menu.name == "OptionMenu")
+                menu.SetActive(true);
+            else
+                menu.SetActive(false);
+        } 
     }
 
     public void SelectHighScoreMenu()
     {
-        MainMenuCanvas.SetActive(false);
-        
-        HighScoreMenuCanvas.SetActive(true);
+        foreach (GameObject menu in Menus)
+        {
+            if (menu.name == "HighScoreMenu")
+                menu.SetActive(true);
+            else
+                menu.SetActive(false);
+        } 
     }
 
-    public void SelectMainMenuFromOptionMenu()
+    public void SelectMainMenu()
     {
-        OptionMenuCanvas.SetActive(false);
-        
-        MainMenuCanvas.SetActive(true);
+        foreach (GameObject menu in Menus)
+        {
+            if (menu.name == "MainMenu")
+                menu.SetActive(true);
+            else
+                menu.SetActive(false);
+        } 
     }
 
-    public void SelectMainMenuFromLevelSelectionMenu()
+    public void SelectHumanValleyLobby()
     {
-        LevelSelectionCanvas.SetActive(false);
-        
-        MainMenuCanvas.SetActive(true);
+        foreach (GameObject menu in Menus)
+        {
+            if (menu.name == "HumanValleyLobby")
+                menu.SetActive(true);
+            else
+                menu.SetActive(false);
+        } 
     }
 
-    public void SelectMainMenuFromHighScoreMenu()
+    public void SelectDwarfMountainLobby()
     {
-        HighScoreMenuCanvas.SetActive(false);
-        
-        MainMenuCanvas.SetActive(true);
+        foreach (GameObject menu in Menus)
+        {
+            if (menu.name == "DwarfMountainLobby")
+                menu.SetActive(true);
+            else
+                menu.SetActive(false);
+        } 
+    }
+
+    public void SelectElvenForestLobby()
+    {
+        foreach (GameObject menu in Menus)
+        {
+            if (menu.name == "ElvenForestLobby")
+                menu.SetActive(true);
+            else
+                menu.SetActive(false);
+        } 
+    }
+
+    public void SelectGoblinDesertLobby()
+    {
+        foreach (GameObject menu in Menus)
+        {
+            if (menu.name == "GoblinDesertLobby")
+                menu.SetActive(true);
+            else
+                menu.SetActive(false);
+        } 
     }
 
     public void QuitGame()
     {
-        QuitGameConfirmationMenuCanvas.SetActive(true);
+        foreach (GameObject menu in Menus)
+        {
+            if (menu.name == "QuitGameConfirmation")
+                menu.SetActive(true);
+        } 
     }
     
     public void QuitGameConfirm()
@@ -101,8 +142,10 @@ public class MainMenu : MonoBehaviour
     
     public void QuitGameCancel()
     {
-        QuitGameConfirmationMenuCanvas.SetActive(false);
+        foreach (GameObject menu in Menus)
+        {
+            if (menu.name == "QuitGameConfirmation")
+                menu.SetActive(false);
+        } 
     }
-
-    #endregion
 }
