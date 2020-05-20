@@ -140,8 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallIntersect: {fileID: 3214166699263150139, guid: f22badf9de03dba4cae5ca290527bee1,
     type: 3}
-  cost: 1
+  cost: 50
   hp: 20
-  impactNormal: {x: 0, y: 0, z: 0}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
