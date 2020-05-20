@@ -107,6 +107,9 @@ public class EnemiesSpawns : MonoBehaviour
 
     public void LaunchSpawns(int waveWeight, int waveNumber)
     {
+        if (waveNumber % 10 == 0 && repeatTimeToSpawn > 1)
+            repeatTimeToSpawn -= 0.1f;
+
         var possibleEnemies = GetEnemiesPossibleInWave(waveNumber);
 
         while (waveWeight > 0)
