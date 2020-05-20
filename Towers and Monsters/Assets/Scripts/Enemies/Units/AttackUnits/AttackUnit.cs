@@ -60,7 +60,25 @@ public class AttackUnit : Enemy
                 SetIsStopped(false);
                 SetAnimation(Idle, false);
                 SetAnimation(Run, true);
-                Agent.SetDestination(Base.transform.position);
+                if (_lastNode != null)
+                {
+                    _nextPos = Grid.Instance.CalculatePositionFromGrid(new Vector2Int(_lastNode.First, _lastNode.Second));
+                    transform.position = Vector3.MoveTowards(transform.position, _nextPos, speed * Time.deltaTime);
+                    transform.LookAt(_nextPos);
+                    if (Vector3.Distance(transform.position, _nextPos) <= 0.1)
+                        _lastNode = null;
+                }
+                else
+                {
+                    _nextPos = Grid.Instance.CalculatePositionFromGrid(new Vector2Int(_nextNode.First, _nextNode.Second));
+                    transform.position = Vector3.MoveTowards(transform.position, _nextPos, speed * Time.deltaTime);
+                    transform.LookAt(_nextPos);
+                    if (Vector3.Distance(transform.position, _nextPos) <= 0.1)
+                    {
+                        if (_path != null && _path.Count > 0)
+                            _nextNode = _path.Pop();
+                    }
+                }
             }
         }
     }

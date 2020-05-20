@@ -1121,7 +1121,6 @@ GameObject:
   - component: {fileID: 95470885471906548}
   - component: {fileID: 54034717036852270}
   - component: {fileID: 65590747253196444}
-  - component: {fileID: 195211478103910898}
   - component: {fileID: 114200658359305504}
   m_Layer: 9
   m_Name: Lizard2_D
@@ -1197,28 +1196,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9132146, y: 1.6323841, z: 1}
   m_Center: {x: 0.016608626, y: 0.7939879, z: 0}
---- !u!195 &195211478103910898
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1947722893885404}
-  m_Enabled: 1
-  m_AgentTypeID: -1372625422
-  m_Radius: 0.3
-  m_Speed: 3
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &114200658359305504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1238,6 +1215,7 @@ MonoBehaviour:
   reward: 60
   enemyHp: 225
   damageToBase: 40
+  speed: 3
   damageToBuildings: 11
 --- !u!1 &1951824574939636
 GameObject:

@@ -216,6 +216,8 @@ public class Builder : MonoBehaviour
                         }
                         foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
                             mesh.enabled = true;
+
+                        GameManager.Instance.ReDrawPathFindingForAll();
                     }
                 }
             }

@@ -459,7 +459,6 @@ GameObject:
   - component: {fileID: 95155773690750240}
   - component: {fileID: 54978210161478218}
   - component: {fileID: 65551697440258918}
-  - component: {fileID: 195192194130499064}
   - component: {fileID: 114584383151556226}
   m_Layer: 9
   m_Name: Jack_D
@@ -533,28 +532,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.89187205, y: 1.6422195, z: 0.7404439}
   m_Center: {x: -0.005205035, y: 0.7719779, z: 0.0015700758}
---- !u!195 &195192194130499064
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415162188089706}
-  m_Enabled: 1
-  m_AgentTypeID: -1372625422
-  m_Radius: 0.3
-  m_Speed: 2
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &114584383151556226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,6 +551,7 @@ MonoBehaviour:
   reward: 40
   enemyHp: 100
   damageToBase: 20
+  speed: 2
   damageToBuildings: 8
   shootElement: {fileID: 4546478581731338}
   bulletPrefab: {fileID: 1240887441953726, guid: c83fcb1db677f7c4e9b31b47f2c81db3,

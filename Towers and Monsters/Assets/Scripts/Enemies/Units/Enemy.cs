@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -32,10 +33,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected int reward;
     [SerializeField] protected int enemyHp;
     [SerializeField] protected int damageToBase;
+    [SerializeField] protected float speed;
 
     protected GameObject Base;
-
-    protected NavMeshAgent Agent;
 
     protected Animator Anim;
 
@@ -44,6 +44,14 @@ public class Enemy : MonoBehaviour
     protected static readonly int Run = Animator.StringToHash("Run");
     protected static readonly int Idle = Animator.StringToHash("Idle");
     protected static readonly int Victory = Animator.StringToHash("Victory");
+
+    protected Pathfinder _pathfinder;
+    protected Stack<Pair<int, int>> _path;
+
+    protected Pair<int, int> _nextNode;
+    protected Pair<int, int> _lastNode;
+
+    protected Vector3 _nextPos;
 
     #endregion
 
@@ -54,9 +62,23 @@ public class Enemy : MonoBehaviour
         _maxHp = enemyHp;
 
         SetIsStopped(false);
-        Agent.SetDestination(Base.transform.position);
 
         FillEnemyData();
+
+        _pathfinder = new Pathfinder(Grid.Instance.GetGridSize().x, Grid.Instance.GetGridSize().y);
+        _pathfinder.SetGrid(Grid.Instance._pathfinder.GetGrid());
+
+        Vector2Int src = Grid.Instance.CalculatePositionInGrid(transform.position);
+        Vector2Int dest = Grid.Instance.CalculatePositionInGrid(Base.transform.position);
+        _pathfinder.SetDestination(dest.x, dest.y);
+        _pathfinder.SetSource(src.x, src.y);
+
+        _path = _pathfinder.Search();
+
+        if (_path != null)
+            _nextNode = _path.Pop();
+
+        GameManager.Instance.AddEnemy(this);
     }
 
     private void OnMouseDown()
@@ -74,8 +96,6 @@ public class Enemy : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         SetAnimationsTimes();
-
-        Agent = GetComponent<NavMeshAgent>();
     }
 
     protected virtual void Update()
@@ -107,7 +127,25 @@ public class Enemy : MonoBehaviour
                 SetIsStopped(false);
                 SetAnimation(Idle, false);
                 SetAnimation(Run, true);
-                Agent.SetDestination(Base.transform.position);
+                if (_lastNode != null)
+                {
+                    _nextPos = Grid.Instance.CalculatePositionFromGrid(new Vector2Int(_lastNode.First, _lastNode.Second));
+                    transform.position = Vector3.MoveTowards(transform.position, _nextPos, speed * Time.deltaTime);
+                    transform.LookAt(_nextPos);
+                    if (Vector3.Distance(transform.position, _nextPos) <= 0.1)
+                        _lastNode = null;
+                }
+                else
+                {
+                    _nextPos = Grid.Instance.CalculatePositionFromGrid(new Vector2Int(_nextNode.First, _nextNode.Second));
+                    transform.position = Vector3.MoveTowards(transform.position, _nextPos, speed * Time.deltaTime);
+                    transform.LookAt(_nextPos);
+                    if (Vector3.Distance(transform.position, _nextPos) <= 0.1)
+                    {
+                        if (_path != null && _path.Count > 0)
+                            _nextNode = _path.Pop();
+                    }
+                }
             }
         }
     }
@@ -130,7 +168,7 @@ public class Enemy : MonoBehaviour
     {
         EnemyData._golds = reward;
         EnemyData._hp = enemyHp;
-        EnemyData._speed = Agent.speed;
+        EnemyData._speed = speed;
         EnemyData._damageToBase = damageToBase;
     }
 
@@ -184,7 +222,7 @@ public class Enemy : MonoBehaviour
 
     public float GetSpeed()
     {
-        return Agent.speed;
+        return speed;
     }
 
     public int GetMaxHp()
@@ -228,7 +266,7 @@ public class Enemy : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
-        Agent.speed = speed;
+        speed = speed;
     }
 
     public void SetMaxHp(int maxHp)
@@ -258,7 +296,7 @@ public class Enemy : MonoBehaviour
 
     public void SetIsStopped(bool isStopped)
     {
-        Agent.isStopped = isStopped;
+        //Agent.isStopped = isStopped;
     }
 
     public void SetIsSpeedBoosted(bool boosted)
@@ -278,8 +316,29 @@ public class Enemy : MonoBehaviour
 
     #endregion
 
+    public void ReDrawPathFinding()
+    {
+        _lastNode = _nextNode;
+
+        _pathfinder.SetGrid(Grid.Instance._pathfinder.GetGrid());
+
+        Vector2Int src = Grid.Instance.CalculatePositionInGrid(transform.position);
+        Vector2Int dest = Grid.Instance.CalculatePositionInGrid(Base.transform.position);
+        _pathfinder.SetDestination(dest.x, dest.y);
+        _pathfinder.SetSource(src.x, src.y);
+
+        _path = _pathfinder.Search();
+
+        if (_path != null)
+        {
+            _path.Pop();
+            _nextNode = _path.Pop();
+        }
+    }
+
     public void DestroyEnemy()
     {
+        GameManager.Instance.RemoveEnemy(this);
         EnemiesSpawns.Instance.RemoveEnemy(gameObject);
     }
 

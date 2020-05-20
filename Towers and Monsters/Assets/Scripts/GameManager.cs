@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     private static GameObject errorMessage;
 
+    private List<Enemy> _enemies = new List<Enemy>();
+
     #endregion
 
     #region MoboBehaviour
@@ -88,6 +90,22 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region PublicFunctions
+
+    public void AddEnemy(Enemy enemy)
+    {
+        _enemies.Add(enemy);
+    }
+
+    public void RemoveEnemy(Enemy enemy)
+    {
+        _enemies.Remove(enemy);
+    }
+
+    public void ReDrawPathFindingForAll()
+    {
+        foreach (Enemy enemy in _enemies)
+            enemy.ReDrawPathFinding();
+    }
 
     public void AddGolds(int golds)
     {

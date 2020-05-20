@@ -123,6 +123,16 @@ public class Grid : MonoBehaviour
                 tmpPos.y -= 1;
                 _blockedPositions.Add(tmpPos);
             }
+
+            if (pos.x - 1 >= 0 && pos.x + 1 < gridSizeX) {
+                _pathfinder.SetBlockedPosition(pos.x - 1, pos.y);
+                _pathfinder.SetBlockedPosition(pos.x + 1, pos.y);
+            }
+            if (pos.y - 1 >= 0 && pos.y + 1 < gridSizeZ)
+            {
+                _pathfinder.SetBlockedPosition(pos.x, pos.y - 1);
+                _pathfinder.SetBlockedPosition(pos.x, pos.y + 1);
+            }
         }
     }
 
@@ -144,6 +154,7 @@ public class Grid : MonoBehaviour
             tmpPos = pos;
             tmpPos.x += 1;
             _blockedPositions.Add(tmpPos);
+            _pathfinder.SetBlockedPosition(tmpPos.x, tmpPos.y);
         }
 
         if (pos.x - 1 >= 0)
@@ -151,6 +162,7 @@ public class Grid : MonoBehaviour
             tmpPos = pos;
             tmpPos.x -= 1;
             _blockedPositions.Add(tmpPos);
+            _pathfinder.SetBlockedPosition(tmpPos.x, tmpPos.y);
         }
 
         if (pos.y + 1 < gridSizeZ)
@@ -158,6 +170,7 @@ public class Grid : MonoBehaviour
             tmpPos = pos;
             tmpPos.y += 1;
             _blockedPositions.Add(tmpPos);
+            _pathfinder.SetBlockedPosition(tmpPos.x, tmpPos.y);
         }
 
         if (pos.y - 1 >= 0)
@@ -165,6 +178,7 @@ public class Grid : MonoBehaviour
             tmpPos = pos;
             tmpPos.y -= 1;
             _blockedPositions.Add(tmpPos);
+            _pathfinder.SetBlockedPosition(tmpPos.x, tmpPos.y);
         }
 
         if (pos.x + 1 < gridSizeX && pos.y + 1 < gridSizeZ)
@@ -173,6 +187,7 @@ public class Grid : MonoBehaviour
             tmpPos.x += 1;
             tmpPos.y += 1;
             _blockedPositions.Add(tmpPos);
+            _pathfinder.SetBlockedPosition(tmpPos.x, tmpPos.y);
         }
 
         if (pos.x - 1 >= 0 && pos.y - 1 >= 0)
@@ -181,6 +196,7 @@ public class Grid : MonoBehaviour
             tmpPos.x -= 1;
             tmpPos.y -= 1;
             _blockedPositions.Add(tmpPos);
+            _pathfinder.SetBlockedPosition(tmpPos.x, tmpPos.y);
         }
 
         if (pos.x + 1 < gridSizeX && pos.y - 1 >= 0)
@@ -189,6 +205,7 @@ public class Grid : MonoBehaviour
             tmpPos.x += 1;
             tmpPos.y -= 1;
             _blockedPositions.Add(tmpPos);
+            _pathfinder.SetBlockedPosition(tmpPos.x, tmpPos.y);
         }
 
         if (pos.x - 1 >= 0 && pos.y + 1 < gridSizeZ)
@@ -197,7 +214,16 @@ public class Grid : MonoBehaviour
             tmpPos.x -= 1;
             tmpPos.y += 1;
             _blockedPositions.Add(tmpPos);
+            _pathfinder.SetBlockedPosition(tmpPos.x, tmpPos.y);
         }
+
+        pos = new Vector2Int
+        {
+            x = Mathf.RoundToInt(playerBase.transform.Find("Gate").position.x / gridSpacingOffset),
+            y = Mathf.RoundToInt(playerBase.transform.Find("Gate").position.z / gridSpacingOffset)
+        };
+
+        _pathfinder.RemoveBlockedPosition(pos.x, pos.y);
     }
 
     private void BlockPositions()
@@ -327,6 +353,22 @@ public class Grid : MonoBehaviour
         return Vector3.zero;
     }
 
+    public Vector3 CalculatePositionFromGrid(Vector2Int position)
+    {
+        if (position.x < 0 || position.x >= gridSizeX || position.y < 0 || position.y >= gridSizeZ)
+            return new Vector3(-1, -1, -1);
+
+        return new Vector3(position.x * gridSpacingOffset, 0, position.y * gridSpacingOffset);
+    }
+
+    public Vector2Int CalculatePositionInGrid(Vector3 position)
+    {
+        var xCount = Mathf.RoundToInt(position.x / gridSpacingOffset);
+        var zCount = Mathf.RoundToInt(position.z / gridSpacingOffset);
+
+        return new Vector2Int(xCount, zCount);
+    }
+
     public bool IsPositionBlocked(Vector3 position)
     {
         var xCount = Mathf.RoundToInt(position.x / gridSpacingOffset);
@@ -338,6 +380,11 @@ public class Grid : MonoBehaviour
     public bool IsPositionBlocked(Vector2Int position)
     {
         return _blockedPositions.Contains(position);
+    }
+
+    public Vector2Int GetGridSize()
+    {
+        return new Vector2Int(gridSizeX, gridSizeZ);
     }
 
     #endregion
