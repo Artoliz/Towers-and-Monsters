@@ -1,17 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+public class NamedMenu
+{
+    public string Name;
+    public string GameObject;
+}
 
 public class MainMenu : MonoBehaviour
 {
     #region PublicMethods
 
+    
     public GameObject MainMenuCanvas;
     public GameObject LevelSelectionCanvas;
     public GameObject OptionMenuCanvas;
     public GameObject HighScoreMenuCanvas;
     public GameObject QuitGameConfirmationMenuCanvas;
+    public GameObject HumanValleyLobbyCanvas;
+    public GameObject DwarfMountainLobbyCanvas;
+    public GameObject ElvenForestLobbyCanvas;
+    //public GameObject GoblinDesertLobbyCanvas;
 
+    public NamedMenu[] Menus;
+    public Dictionary<String, GameObject> Dictionary;
+    
+    
     public Texture2D _cursor = null;
 
     void Awake()
@@ -19,7 +35,7 @@ public class MainMenu : MonoBehaviour
         MainMenuCanvas.SetActive(true);
         LevelSelectionCanvas.SetActive(false);
         OptionMenuCanvas.SetActive(false);
-//        HighScoreMenuCanvas.SetActive(false);
+        HighScoreMenuCanvas.SetActive(false);
         QuitGameConfirmationMenuCanvas.SetActive(false);
 
         if (_cursor != null)
