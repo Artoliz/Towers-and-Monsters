@@ -103,7 +103,6 @@ GameObject:
   - component: {fileID: 54263595357676090}
   - component: {fileID: 33985989043220362}
   - component: {fileID: 23632021395750754}
-  - component: {fileID: 208204328797769200}
   - component: {fileID: 114025190921100858}
   m_Layer: 10
   m_Name: GB_crystal_2
@@ -202,22 +201,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208204328797769200
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452130545284418}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 0
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &114025190921100858
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -71,7 +71,6 @@ GameObject:
   - component: {fileID: 4073448977781232}
   - component: {fileID: 65266698550678684}
   - component: {fileID: 54572549016033092}
-  - component: {fileID: 208002824259734588}
   - component: {fileID: 114480693858383238}
   m_Layer: 10
   m_Name: EL_bat_3
@@ -126,22 +125,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!208 &208002824259734588
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1198054382118418}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 0
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &114480693858383238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,19 +137,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a682e4e961f99c0498ca12fad03ef8fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   cost: 100
   hp: 20
+  maxHp: 0
   dmg: 10
+  upgradeCost: 0
+  repairCost: 0
+  effectDammage: 0
   shootDelay: 1
   catcher: 0
-  impactNormal2: {x: 0, y: 0, z: 0}
   bullet: {fileID: 1717815016859890, guid: a027317d1c5110548aebf55802747df1, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4826577978915484}
-  anim2: {fileID: 0}
+  upgradePrefab: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!1 &1541417236080208
 GameObject:
   m_ObjectHideFlags: 0

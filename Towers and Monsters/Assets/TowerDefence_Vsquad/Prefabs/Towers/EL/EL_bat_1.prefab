@@ -150,7 +150,6 @@ GameObject:
   - component: {fileID: 4838206823148480}
   - component: {fileID: 65439762093470798}
   - component: {fileID: 54216265253102546}
-  - component: {fileID: 208579934873639844}
   - component: {fileID: 114035112682582674}
   m_Layer: 10
   m_Name: EL_bat_1
@@ -204,22 +203,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!208 &208579934873639844
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706160642423718}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 0
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &114035112682582674
 MonoBehaviour:
   m_ObjectHideFlags: 0

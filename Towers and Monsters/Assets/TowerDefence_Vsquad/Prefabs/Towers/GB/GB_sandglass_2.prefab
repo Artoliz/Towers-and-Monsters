@@ -4787,7 +4787,6 @@ GameObject:
   - component: {fileID: 65437035881826142}
   - component: {fileID: 54287871240396058}
   - component: {fileID: 95701525010177684}
-  - component: {fileID: 208133219583070462}
   - component: {fileID: 114225044084120458}
   m_Layer: 10
   m_Name: GB_sandglass_2
@@ -4862,22 +4861,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!208 &208133219583070462
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301670490458978}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 0
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &114225044084120458
 MonoBehaviour:
   m_ObjectHideFlags: 0
