@@ -500,6 +500,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8728438188412359689, guid: de2ac941ec2f523438328573f5e490bb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -200
+      objectReference: {fileID: 0}
     - target: {fileID: 8728438188412359690, guid: de2ac941ec2f523438328573f5e490bb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -518,7 +523,7 @@ PrefabInstance:
     - target: {fileID: 8728438189397915805, guid: de2ac941ec2f523438328573f5e490bb,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8728438189397915806, guid: de2ac941ec2f523438328573f5e490bb,
         type: 3}
@@ -625,16 +630,31 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8728438189752063244, guid: de2ac941ec2f523438328573f5e490bb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8728438189752063246, guid: de2ac941ec2f523438328573f5e490bb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6781025392580815512}
+    - target: {fileID: 8728438190109515976, guid: de2ac941ec2f523438328573f5e490bb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8728438190109515977, guid: de2ac941ec2f523438328573f5e490bb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6781025392580815512}
+    - target: {fileID: 8728438190432759747, guid: de2ac941ec2f523438328573f5e490bb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8728438190432759756, guid: de2ac941ec2f523438328573f5e490bb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -694,7 +714,7 @@ PrefabInstance:
     - target: {fileID: 1757112592405046672, guid: 9448369af03348f4ba6619bcb9ed8cdb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1757112592405046675, guid: 9448369af03348f4ba6619bcb9ed8cdb,
         type: 3}
