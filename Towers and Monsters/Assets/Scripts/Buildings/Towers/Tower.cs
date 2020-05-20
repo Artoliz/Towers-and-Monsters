@@ -237,6 +237,19 @@ public class Tower : MonoBehaviour
         else
         {
             _selected = Instantiate(selected, this.transform);
+            float radius = -1;
+            var childs = GetComponentsInChildren<SphereCollider>();
+            foreach (var child in childs)
+            {
+                if (child.name.Contains("Zone"))
+                {
+                    radius = child.radius;
+                    break;
+                }
+            }
+            if (radius == -1)
+                radius = 5;
+            _selected.transform.localScale = new Vector3(radius * 2, radius * 2, 1);
         }
     }
 
