@@ -80,7 +80,8 @@
           <e p="Clouds.cs" t="Include" />
           <e p="Enemies" t="Include">
             <e p="Spawner" t="Include">
-              <e p="EnemiesSpawns.cs" t="Include" />
+              <e p="EnemySpawn.cs" t="Include" />
+              <e p="SpawnManager.cs" t="Include" />
             </e>
             <e p="Units" t="Include">
               <e p="AttackUnits" t="Include">

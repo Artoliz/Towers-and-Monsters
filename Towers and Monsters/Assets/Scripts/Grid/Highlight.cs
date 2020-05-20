@@ -15,7 +15,7 @@ public class Highlight : MonoBehaviour
     {
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
-            if (Builder.isBuilding && !Grid.Instance.IsPositionBlocked(_pivot.position))
+            if (Builder.IsBuilding && !Grid.Instance.IsPositionBlocked(_pivot.position))
                 _renderer.material.shader = Shader.Find("Self-Illumin/Outlined Diffuse");
         }
     }

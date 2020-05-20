@@ -339,7 +339,7 @@ public class Enemy : MonoBehaviour
     public void DestroyEnemy()
     {
         GameManager.Instance.RemoveEnemy(this);
-        EnemiesSpawns.Instance.RemoveEnemy(gameObject);
+        SpawnManager.Instance.RemoveEnemy(gameObject);
     }
 
     public void Damage(int damage)

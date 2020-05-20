@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -13,8 +12,6 @@ public class Builder : MonoBehaviour
 
     private NavMeshPath _path;
     
-    private List<Transform> _spawns = new List<Transform>();
-    
     private Grid _gridObject;
 
     private Buildings _buildingEnum = Buildings.None;
@@ -23,24 +20,22 @@ public class Builder : MonoBehaviour
 
     [SerializeField] private float spriteCrossDuration;
     
-    [SerializeField] private Sprite[] _buildingImages = null;
-    [SerializeField] private Image _buildingSelected = null;
+    [SerializeField] private Sprite[] buildingImages;
+    [SerializeField] private Image buildingSelected;
     
     [SerializeField] private GameObject noBuildingPossible;
 
-    private Coroutine _checkBeforebuild;
+    private Coroutine _checkBeforeBuild;
 
     #endregion
 
     #region PublicVariables
 
-    public GameObject playerBase;
-    
     public GameObject[] buildingsPrefab;
     
     public Dictionary<Buildings, GameObject> buildings;
 
-    public static bool isBuilding = false;
+    public static bool IsBuilding;
 
     #endregion
 
@@ -57,14 +52,9 @@ public class Builder : MonoBehaviour
 
         InitBuildings();
 
-        _buildingSelected.transform.localScale /= 6;
+        buildingSelected.transform.localScale /= 6;
 
         NavMesh.pathfindingIterationsPerFrame = 500;
-    }
-
-    private void Start()
-    {
-        _spawns = EnemiesSpawns.Instance.GetEnemiesSpawns();
     }
 
     private void Update()
@@ -73,10 +63,7 @@ public class Builder : MonoBehaviour
         {
             SelectedBuilding();
 
-            if (_buildingEnum != Buildings.None)
-                isBuilding = true;
-            else
-                isBuilding = false;
+            IsBuilding = _buildingEnum != Buildings.None;
 
             DisplayBuildingSelected();
 
@@ -103,25 +90,25 @@ public class Builder : MonoBehaviour
     {
         if (_buildingEnum != Buildings.None)
         {
-            if (_buildingSelected.sprite == null || !_buildingSelected.sprite.name.Contains(_buildingEnum.ToString()))
+            if (buildingSelected.sprite == null || !buildingSelected.sprite.name.Contains(_buildingEnum.ToString()))
             {
-                foreach (Sprite building in _buildingImages)
+                foreach (Sprite building in buildingImages)
                 {
                     if (building.name.Contains(_buildingEnum.ToString()))
                     {
-                        _buildingSelected.gameObject.SetActive(true);
-                        _buildingSelected.sprite = building;
-                        _buildingSelected.SetNativeSize();
-                        _buildingSelected.color = new Color(1, 1, 1, 0.3f);
+                        buildingSelected.gameObject.SetActive(true);
+                        buildingSelected.sprite = building;
+                        buildingSelected.SetNativeSize();
+                        buildingSelected.color = new Color(1, 1, 1, 0.3f);
                         break;
                     }
                 }
             }
-            _buildingSelected.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y + (_buildingSelected.sprite.rect.width / 8), 0);
-        } else if (_buildingSelected.sprite != null)
+            buildingSelected.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y + (buildingSelected.sprite.rect.width / 8), 0);
+        } else if (buildingSelected.sprite != null)
         {
-            _buildingSelected.sprite = null;
-            _buildingSelected.gameObject.SetActive(false);
+            buildingSelected.sprite = null;
+            buildingSelected.gameObject.SetActive(false);
         }
     }
 

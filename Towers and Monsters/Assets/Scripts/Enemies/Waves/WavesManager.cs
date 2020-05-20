@@ -37,7 +37,7 @@ public class WavesManager : MonoBehaviour
 
     public Button skipBetweenWavesButton;
 
-    public EnemiesSpawns enemiesSpawns;
+    public SpawnManager spawnManager;
 
     #endregion
 
@@ -132,7 +132,7 @@ public class WavesManager : MonoBehaviour
         SetGameStatus(false);
         SetTimeBetweenWaves(false, 0);
 
-        enemiesSpawns.LaunchSpawns(_waveWeight, waveNumber);
+        spawnManager.LaunchSpawns(_waveWeight, waveNumber);
     }
 
     private void CalculateNewWaveWeight()
