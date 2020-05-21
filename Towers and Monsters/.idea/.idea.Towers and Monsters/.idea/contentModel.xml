@@ -114,6 +114,7 @@
             <e p="Pair.cs" t="Include" />
             <e p="Pathfinder.cs" t="Include" />
           </e>
+          <e p="HighScores.cs" t="Include" />
           <e p="Menus" t="Include">
             <e p="MainMenu.cs" t="Include" />
             <e p="MenuController.cs" t="Include" />
