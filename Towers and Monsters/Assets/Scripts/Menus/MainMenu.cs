@@ -9,7 +9,8 @@ public class MainMenu : MonoBehaviour
 
     #region PublicMethods
 
-    public Animator transition;
+    public Animator introTransition;
+    public Animator fadeTransition;
     public float transitionTime = 2.0f;
 
     //public List<NamedMenu> menus;
@@ -18,9 +19,12 @@ public class MainMenu : MonoBehaviour
     public Texture2D _cursor = null;
     #endregion
 
+    private bool _intro = true;
+    
     void Awake()
     {
-        transition.SetBool("Menu", true);
+        _intro = true;
+        fadeTransition.SetBool("Menu", true);
         
         if (_cursor != null)
             Cursor.SetCursor(_cursor, new Vector2(0, 0), CursorMode.ForceSoftware);
@@ -28,6 +32,15 @@ public class MainMenu : MonoBehaviour
         SelectMainMenu();
     }
 
+    void Update()
+    {
+        if (_intro && Input.GetKeyDown(KeyCode.Space))
+        {
+            introTransition.SetTrigger("Begin");
+            _intro = false;
+        }
+    }
+    
     public void LaunchLevel(string levelName)
     {
         StartCoroutine(LoadLevel(levelName));
@@ -35,7 +48,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator LoadLevel(string levelName)
     {
-        transition.SetTrigger("Start");
+        fadeTransition.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
 
