@@ -57,7 +57,6 @@ public class Tower : MonoBehaviour
 
     protected Informations.TowerData TowerData;
 
-    protected GameObject ParentGO;
 
     #endregion
 
@@ -76,7 +75,6 @@ public class Tower : MonoBehaviour
         _homeY = lookAtObj.transform.localRotation.eulerAngles.y;
         SetTowerData();
 
-        ParentGO = transform.parent.gameObject;
     }
 
     private void Update()
@@ -184,7 +182,7 @@ public class Tower : MonoBehaviour
             {
                 GameManager.Instance.RemoveGolds(this.upgradeCost);
                 Instantiate(upgradePrefab, transform.position, transform.rotation);
-                Destroy(ParentGO);
+                Destroy(this.gameObject);
             }
             else
                 StartCoroutine(GameManager.DisplayError("Not enough golds !"));
@@ -196,7 +194,7 @@ public class Tower : MonoBehaviour
         Informations.Instance.ResetSelected();
         Vector2Int posInGrid = Grid.Instance.CalculatePositionInGrid(this.transform.position);
         Grid.Instance._pathfinder.RemoveBlockedPosition(posInGrid.x, posInGrid.y);
-        Destroy(ParentGO);
+        Destroy(this.gameObject);
         destroyParticle = Instantiate(destroyParticle, _particleExplosionPosition, Quaternion.FromToRotation(Vector3.up, Vector3.zero));
         Destroy(destroyParticle, 1);
     }
