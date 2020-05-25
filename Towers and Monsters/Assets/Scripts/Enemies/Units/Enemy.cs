@@ -127,6 +127,7 @@ public class Enemy : MonoBehaviour
                 SetIsStopped(false);
                 SetAnimation(Idle, false);
                 SetAnimation(Run, true);
+
                 if (_lastNode != null)
                 {
                     _nextPos = Grid.Instance.CalculatePositionFromGrid(new Vector2Int(_lastNode.First, _lastNode.Second));
