@@ -42,6 +42,7 @@ public class HighScores : MonoBehaviour
             PlayerPrefs.SetString(HighScoreListName, json);
             PlayerPrefs.Save();
         }
+        //PlayerPrefs.DeleteKey(HighScoreListName);
     }
 
     public void SaveScore(string name, int score)
@@ -62,6 +63,9 @@ public class HighScores : MonoBehaviour
     {
         string json = PlayerPrefs.GetString(HighScoreListName);
 
+        if (json.Length == 0)
+            return;
+        
         highScoreList = JsonUtility.FromJson<HighScoreList>(json).highScoreList;
     }
 
@@ -70,7 +74,7 @@ public class HighScores : MonoBehaviour
         refreshScoreList();
         int i = 0;
 
-        while (i < highScoreList.Count)
+        while (i < highScoreList.Count && i < entryNames.Count && i < entryScores.Count)
         {
             entryNames[i].text = highScoreList[i].name;
             entryScores[i].text = highScoreList[i].score.ToString();
