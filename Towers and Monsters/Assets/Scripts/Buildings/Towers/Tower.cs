@@ -90,7 +90,6 @@ public class Tower : MonoBehaviour
                 var rot = Quaternion.LookRotation(dir);
                 lookAtObj.transform.rotation = Quaternion.Slerp(lookAtObj.transform.rotation, rot, 5 * Time.deltaTime);
             }
-
             else
             {
                 var home = new Quaternion(0, _homeY, 0, 1);
