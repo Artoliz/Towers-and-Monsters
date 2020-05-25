@@ -14,7 +14,6 @@ public class TowerTrigger : MonoBehaviour
 
     #region MonoBehaviour
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)

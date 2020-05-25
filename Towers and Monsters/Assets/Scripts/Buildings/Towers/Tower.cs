@@ -112,12 +112,7 @@ public class Tower : MonoBehaviour
             }
 
             if (hp <= 0)
-            {
-                Destroy(gameObject);
-                destroyParticle = Instantiate(destroyParticle, _particleExplosionPosition,
-                    Quaternion.FromToRotation(Vector3.up, Vector3.zero));
-                Destroy(destroyParticle, 1);
-            }
+                Destroy();
         }
     }
 
@@ -200,7 +195,11 @@ public class Tower : MonoBehaviour
     public void Destroy()
     {
         Informations.Instance.ResetSelected();
+        Vector2Int posInGrid = Grid.Instance.CalculatePositionInGrid(this.transform.position);
+        Grid.Instance._pathfinder.RemoveBlockedPosition(posInGrid.x, posInGrid.y);
         Destroy(ParentGO);
+        destroyParticle = Instantiate(destroyParticle, _particleExplosionPosition, Quaternion.FromToRotation(Vector3.up, Vector3.zero));
+        Destroy(destroyParticle, 1);
     }
 
     public void Repair()
