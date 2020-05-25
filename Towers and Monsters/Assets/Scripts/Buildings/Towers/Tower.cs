@@ -241,13 +241,17 @@ public class Tower : MonoBehaviour
             {
                 if (child.name.Contains("Zone"))
                 {
-                    radius = child.radius;
+                    radius = child.radius / 4;
                     break;
                 }
             }
-            if (radius == -1)
-                radius = 5;
-            _selected.transform.localScale = new Vector3(radius * 2, radius * 2, 1);
+
+            if (radius <= 0)
+                radius = 1;
+
+            radius = radius / 1.82f / 0.85f;
+
+            _selected.transform.localScale = new Vector3(radius, radius, radius);
         }
     }
 
