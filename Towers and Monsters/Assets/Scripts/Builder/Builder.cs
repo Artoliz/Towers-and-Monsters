@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Builder : MonoBehaviour
@@ -26,6 +27,8 @@ public class Builder : MonoBehaviour
     [SerializeField] private GameObject noBuildingPossible;
 
     private Coroutine _checkBeforeBuild;
+
+    private int _gameObjectID = -1;
 
     #endregion
 
@@ -69,7 +72,7 @@ public class Builder : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && _buildingEnum != Buildings.None)
             {
-                if (_isCameraNotNull)
+                if (_isCameraNotNull && !EventSystem.current.IsPointerOverGameObject(_gameObjectID))
                 {
                     var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
