@@ -28,8 +28,6 @@ public class Builder : MonoBehaviour
 
     private Coroutine _checkBeforeBuild;
 
-    private int _gameObjectID = -1;
-
     #endregion
 
     #region PublicVariables
@@ -72,7 +70,7 @@ public class Builder : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && _buildingEnum != Buildings.None)
             {
-                if (_isCameraNotNull && !EventSystem.current.IsPointerOverGameObject(_gameObjectID))
+                if (_isCameraNotNull && !EventSystem.current.IsPointerOverGameObject(-1))
                 {
                     var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
