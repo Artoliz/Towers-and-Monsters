@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     #region PublicMethods
 
     public Animator transition;
-    public float transitionTime = 1.0f;
+    public float transitionTime = 2.0f;
 
     //public List<NamedMenu> menus;
     public GameObject []Menus;
@@ -20,6 +20,8 @@ public class MainMenu : MonoBehaviour
 
     void Awake()
     {
+        transition.SetBool("Menu", true);
+        
         if (_cursor != null)
             Cursor.SetCursor(_cursor, new Vector2(0, 0), CursorMode.ForceSoftware);
 
@@ -33,11 +35,11 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator LoadLevel(string levelName)
     {
-        SceneManager.LoadSceneAsync(levelName);
-
         transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(levelName);
     }
     
     public void SelectLevelSelectionMenu()
