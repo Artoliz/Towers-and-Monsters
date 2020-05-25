@@ -8,11 +8,22 @@ public class TowerTrigger : MonoBehaviour
 
     public GameObject curTarget;
 
-    public Tower twr;
+    //public Tower twr;
+
+    #endregion
+
+    #region PrivateVariables
+
+    private Tower twr;
 
     #endregion
 
     #region MonoBehaviour
+
+    private void Awake()
+    {
+        twr = GetComponentInParent<Tower>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {

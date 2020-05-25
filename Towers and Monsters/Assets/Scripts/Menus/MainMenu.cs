@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,16 +9,8 @@ public class MainMenu : MonoBehaviour
 
     #region PublicMethods
 
-//    
-//    public GameObject MainMenuCanvas;
-//    public GameObject LevelSelectionCanvas;
-//    public GameObject OptionMenuCanvas;
-//    public GameObject HighScoreMenuCanvas;
-//    public GameObject QuitGameConfirmationMenuCanvas;
-//    public GameObject HumanValleyLobbyCanvas;
-//    public GameObject DwarfMountainLobbyCanvas;
-//    public GameObject ElvenForestLobbyCanvas;
-    //public GameObject GoblinDesertLobbyCanvas;
+    public Animator transition;
+    public float transitionTime = 2.0f;
 
     //public List<NamedMenu> menus;
     public GameObject []Menus;
@@ -27,6 +20,8 @@ public class MainMenu : MonoBehaviour
 
     void Awake()
     {
+        transition.SetBool("Menu", true);
+        
         if (_cursor != null)
             Cursor.SetCursor(_cursor, new Vector2(0, 0), CursorMode.ForceSoftware);
 
@@ -35,9 +30,18 @@ public class MainMenu : MonoBehaviour
 
     public void LaunchLevel(string levelName)
     {
-        SceneManager.LoadScene(levelName);
+        StartCoroutine(LoadLevel(levelName));
     }
 
+    IEnumerator LoadLevel(string levelName)
+    {
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(levelName);
+    }
+    
     public void SelectLevelSelectionMenu()
     {
         foreach (GameObject menu in Menus)
@@ -54,7 +58,10 @@ public class MainMenu : MonoBehaviour
         foreach (GameObject menu in Menus)
         {
             if (menu.name == "OptionMenu")
+            {
                 menu.SetActive(true);
+            }
+                
             else
                 menu.SetActive(false);
         } 
