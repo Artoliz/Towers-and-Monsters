@@ -5,6 +5,16 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    #region PublicVariables
+
+    public bool GameIsFinished = false;
+
+    public GameObject gameOverUi;
+
+    public int _enemiesKilled = 0;
+
+    #endregion
+
     #region PrivateVariables
 
     public static GameManager Instance = null;
@@ -22,11 +32,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _golds = 200;
 
     private int _roundEnded = 0;
-    private int _enemiesKilled = 0;
 
     private static GameObject errorMessage;
 
     private List<Enemy> _enemies = new List<Enemy>();
+
+    [SerializeField] private HighScores _scores = null;
+    [SerializeField] private InputField _username = null;
 
     #endregion
 
@@ -124,12 +136,22 @@ public class GameManager : MonoBehaviour
         return _golds;
     }
 
-    public void EndGame(int wave, int enemiesKilled)
+    public void EndGame(int wave)
     {
         _roundEnded = wave;
-        _enemiesKilled = enemiesKilled;
 
-        // Save Score in local
+        gameOverUi.GetComponent<GameOver>().EndGame(_roundEnded, _enemiesKilled);
+
+        GameIsFinished = true;
+    }
+
+    public void SaveScore()
+    {
+        var name = "User";
+        if (_username.text != "")
+            name = _username.text;
+
+        _scores.SaveScore(name, _roundEnded);
     }
 
     public static IEnumerator DisplayError(string message)

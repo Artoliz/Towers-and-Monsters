@@ -189,6 +189,7 @@ public class Enemy : MonoBehaviour
             Instantiate(effectOfDeath, transform.position, Quaternion.identity);
         
         yield return new WaitForSeconds(_dyingTime);
+        GameManager.Instance._enemiesKilled += 1;
         DestroyEnemy();
     }
 

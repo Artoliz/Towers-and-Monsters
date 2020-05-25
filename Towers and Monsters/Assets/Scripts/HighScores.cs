@@ -61,7 +61,7 @@ public class HighScores : MonoBehaviour
     private void refreshScoreList()
     {
         string json = PlayerPrefs.GetString(HighScoreListName);
-        
+
         highScoreList = JsonUtility.FromJson<HighScoreList>(json).highScoreList;
     }
 
