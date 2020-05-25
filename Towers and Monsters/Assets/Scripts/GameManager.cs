@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     public bool GameIsFinished = false;
 
-    public GameObject gameOverUi;
+    public GameOver gameOverUi;
 
     public int _enemiesKilled = 0;
 
@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
     {
         _roundEnded = wave;
 
-        gameOverUi.GetComponent<GameOver>().EndGame(_roundEnded, _enemiesKilled);
+        gameOverUi.EndGame(_roundEnded, _enemiesKilled);
 
         GameIsFinished = true;
     }
