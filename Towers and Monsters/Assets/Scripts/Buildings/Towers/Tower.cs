@@ -7,7 +7,15 @@ public class Tower : MonoBehaviour
 
     private float _homeY;
 
+    private Camera m_MainCamera;
+
+    private float _maxSizeX;
+
     private bool _isShoot;
+
+    private Vector3 _size;
+
+    private bool _isDamaged;
     
     public enum towerType {bullet, effect, aoe};
 
@@ -17,6 +25,13 @@ public class Tower : MonoBehaviour
     private static readonly int Pose = Animator.StringToHash("T_pose");
 
     private GameObject _selected;
+
+    #endregion
+
+    #region SerializableVariables
+
+    [SerializeField] private Transform health;
+    [SerializeField] private Transform progress;
 
     #endregion
 
@@ -44,6 +59,7 @@ public class Tower : MonoBehaviour
 
     public GameObject bullet;
     public GameObject destroyParticle;
+    public GameObject healthBar;
 
     public Transform target;
     public Transform lookAtObj;
@@ -64,8 +80,17 @@ public class Tower : MonoBehaviour
 
     private void Start()
     {
+        var localScale = progress.transform.localScale;
+
+
+        healthBar = GameObject.Find("Health");
+
         _particleExplosionPosition = transform.position;
         _particleExplosionPosition.y = 1;
+        _isDamaged = true;
+
+        _maxSizeX = localScale.x;
+        _size = localScale;
 
         anim = GetComponent<Animator>();
 
@@ -81,6 +106,19 @@ public class Tower : MonoBehaviour
     {
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
+            if (Input.GetKeyDown("m"))
+        {
+            print("space key was pressed");
+            if (_isDamaged == false) 
+            {
+                _isDamaged = true;
+            }
+            else 
+            {
+                _isDamaged = false;
+            }
+        }
+
             if (target)
             {
                 var dir = target.transform.position - lookAtObj.transform.position;
@@ -106,6 +144,17 @@ public class Tower : MonoBehaviour
                 {
                     StopCatcherAttack();
                 }
+            }
+
+            if (_isDamaged == false) 
+            {
+               healthBar.SetActive(false);
+            }
+
+            if (_isDamaged == true) 
+            {
+                healthBar.SetActive(true);
+                health.LookAt(Camera.main.transform);
             }
 
             if (hp <= 0)
@@ -207,6 +256,7 @@ public class Tower : MonoBehaviour
             {
                 GameManager.Instance.RemoveGolds(this.repairCost);
                 hp = maxHp;
+                _isDamaged = false;
             }
             else
                 StartCoroutine(GameManager.DisplayError("Not enough golds !"));
@@ -220,7 +270,17 @@ public class Tower : MonoBehaviour
 
     public void Damage(int damage)
     {
+
+        if (_isDamaged == false) 
+        {
+            _isDamaged = true;
+        }
         hp -= damage;
+        float currentSizeX = (hp * _maxSizeX) / maxHp;
+        progress.localScale = new Vector3(currentSizeX, _size.y, _size.z);
+
+        float currentPosX = -((_maxSizeX - currentSizeX) / 2.0f);
+        progress.localPosition = new Vector3(currentPosX, 0, 0);
     }
 
     public void IsSelected(GameObject selected)
