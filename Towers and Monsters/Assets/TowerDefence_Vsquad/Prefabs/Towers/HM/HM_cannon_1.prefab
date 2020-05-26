@@ -374,7 +374,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 9120950266349836956}
   progress: {fileID: 7849238388087901445}
-  mainCamera: {fileID: 0}
   type: 0
   cost: 100
   hp: 100
@@ -388,6 +387,7 @@ MonoBehaviour:
   bullet: {fileID: 1240887441953726, guid: 8a976dcd328a4664c85144f33b9c46b0, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
+  healthBar: {fileID: 0}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4574405651562524}
@@ -553,7 +553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9120950266349836956}
-  m_Layer: 14
+  m_Layer: 10
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
