@@ -387,7 +387,7 @@ MonoBehaviour:
   bullet: {fileID: 1240887441953726, guid: 8a976dcd328a4664c85144f33b9c46b0, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 3577466874253599859}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4574405651562524}

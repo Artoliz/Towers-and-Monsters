@@ -82,8 +82,7 @@ public class Tower : MonoBehaviour
     {
         var localScale = progress.transform.localScale;
 
-
-        healthBar = GameObject.Find("Health");
+        healthBar = transform.Find("Health").gameObject;
 
         _particleExplosionPosition = transform.position;
         _particleExplosionPosition.y = 1;
