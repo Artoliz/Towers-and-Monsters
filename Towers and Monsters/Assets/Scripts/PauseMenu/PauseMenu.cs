@@ -22,9 +22,13 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
-        GameIsPaused = true;
 
-        StartCoroutine(UnpauseAfterIntro());
+        GameIsPaused = false;
+        if (transition.gameObject.activeInHierarchy)
+        {
+            GameIsPaused = true;
+            StartCoroutine(UnpauseAfterIntro());
+        }
 
         pauseMenuUi.SetActive(false);
         gameUi.SetActive(true);
@@ -74,9 +78,12 @@ public class PauseMenu : MonoBehaviour
 
     IEnumerator LoadLevel(string levelName)
     {
-        transition.SetTrigger("Start");
+        if (transition.gameObject.activeInHierarchy)
+        {
+            transition.SetTrigger("Start"); 
+            yield return new WaitForSeconds(transitionTime);
+        }
 
-        yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(levelName);
     }
