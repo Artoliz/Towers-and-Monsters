@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Informations : MonoBehaviour
 {
@@ -46,6 +47,23 @@ public class Informations : MonoBehaviour
         }
         else
             Instance = this;
+    }
+
+    private void Update()
+    {
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
+        {
+            if (_camera && !EventSystem.current.IsPointerOverGameObject(-1) && Input.GetMouseButtonDown(0))
+            {
+                var ray = _camera.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out var click, 1000))
+                {
+                    if (!click.collider.CompareTag("Tower") && !click.collider.CompareTag("Enemy"))
+                        ResetSelected();
+                }
+            }
+        }
     }
 
     public void ResetSelected()
