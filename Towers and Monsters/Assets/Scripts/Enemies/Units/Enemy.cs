@@ -347,6 +347,10 @@ public class Enemy : MonoBehaviour
     public void Damage(int damage)
     {
         enemyHp -= damage;
+        EnemyData._hp = enemyHp;
+
+        if (_selected != null)
+            Informations.Instance.SetInformations(EnemyData, this);
     }
 
     public void IsSelected(GameObject selected)
