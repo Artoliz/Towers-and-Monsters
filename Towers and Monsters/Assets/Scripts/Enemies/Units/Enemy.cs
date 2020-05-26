@@ -343,7 +343,8 @@ public class Enemy : MonoBehaviour
 
     public void DestroyEnemy()
     {
-        Informations.Instance.ResetSelected();
+        if (_selected != null)
+            Informations.Instance.ResetSelected();
         GameManager.Instance.RemoveEnemy(this);
         SpawnManager.Instance.RemoveEnemy(gameObject);
     }

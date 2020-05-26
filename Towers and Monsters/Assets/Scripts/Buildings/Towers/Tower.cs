@@ -107,17 +107,17 @@ public class Tower : MonoBehaviour
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (Input.GetKeyDown("m"))
-        {
-            print("space key was pressed");
-            if (_isDamaged == false) 
             {
-                _isDamaged = true;
+                print("space key was pressed");
+                if (_isDamaged == false) 
+                {
+                    _isDamaged = true;
+                }
+                else 
+                {
+                    _isDamaged = false;
+                }
             }
-            else 
-            {
-                _isDamaged = false;
-            }
-        }
 
             if (target)
             {
@@ -165,6 +165,9 @@ public class Tower : MonoBehaviour
     private void OnMouseDown()
     {
         TowerData._hp = this.hp;
+
+        if (TowerData._hp < 0)
+            TowerData._hp = 0;
 
         Informations.Instance.SetInformations(TowerData, this);
     }
@@ -243,6 +246,9 @@ public class Tower : MonoBehaviour
         Informations.Instance.ResetSelected();
         Vector2Int posInGrid = Grid.Instance.CalculatePositionInGrid(this.transform.position);
         Grid.Instance._pathfinder.RemoveBlockedPosition(posInGrid.x, posInGrid.y);
+        Grid.Instance.RemoveElementInGrid(this.transform.position);
+        if (_selected != null)
+            Informations.Instance.ResetSelected();
         Destroy(this.gameObject);
         destroyParticle = Instantiate(destroyParticle, _particleExplosionPosition, Quaternion.FromToRotation(Vector3.up, Vector3.zero));
         Destroy(destroyParticle, 1);
@@ -281,6 +287,12 @@ public class Tower : MonoBehaviour
 
         float currentPosX = -((_maxSizeX - currentSizeX) / 2.0f);
         progress.localPosition = new Vector3(currentPosX, 0, 0);
+
+        if (hp >= 0)
+            TowerData._hp = hp;
+
+        if (_selected != null)
+            Informations.Instance.SetInformations(TowerData, this);
     }
 
     public void IsSelected(GameObject selected)
