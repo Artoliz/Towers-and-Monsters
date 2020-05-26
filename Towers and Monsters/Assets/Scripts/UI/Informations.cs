@@ -31,15 +31,6 @@ public class Informations : MonoBehaviour
         public float _speedAttack;
     };
 
-    private enum Unit
-    {
-        None,
-        Enemy,
-        Tower
-    };
-
-    private Unit _unitType = Unit.None;
-
     private Enemy _enemy = null;
     private Tower _tower = null;
 
@@ -47,7 +38,6 @@ public class Informations : MonoBehaviour
     {
         _enemyInfo.gameObject.SetActive(false);
         _towerInfo.gameObject.SetActive(false);
-        _unitType = Unit.None;
         _camera = Camera.main;
         if (Instance != null)
         {
@@ -60,7 +50,6 @@ public class Informations : MonoBehaviour
 
     public void ResetSelected()
     {
-        _unitType = Unit.None;
         if (_enemy != null)
             _enemy.IsSelected(null);
         if (_tower != null)
@@ -75,7 +64,6 @@ public class Informations : MonoBehaviour
     {
         ResetSelected();
 
-        _unitType = Unit.Tower;
         _tower = tower;
         _tower.IsSelected(_selectedTower);
         _towerInfo.gameObject.SetActive(true);
@@ -88,7 +76,6 @@ public class Informations : MonoBehaviour
     {
         ResetSelected();
 
-        _unitType = Unit.Enemy;
         _enemy = enemy;
         enemy.IsSelected(_selectedEnemy);
         _enemyInfo.gameObject.SetActive(true);

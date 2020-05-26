@@ -12,12 +12,12 @@ public class EffectOfDeath : MonoBehaviour
 
     private Enemy _enemy;
 
-    [SerializeField] private bool boostSpeed;
-    [SerializeField] private bool boostMaxHp;
-    [SerializeField] private bool boostDamageToBase;
-    [SerializeField] private bool boostDamageToBuildings;
+    [SerializeField] private bool boostSpeed = false;
+    [SerializeField] private bool boostMaxHp = false;
+    [SerializeField] private bool boostDamageToBase = false;
+    [SerializeField] private bool boostDamageToBuildings = false;
 
-    [SerializeField] private float eodDuration;
+    [SerializeField] private float eodDuration = 0;
 
     #endregion
 

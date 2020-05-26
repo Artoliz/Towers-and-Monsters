@@ -7,7 +7,7 @@ public class Wall : MonoBehaviour
 
     private Vector3 _particleExplosionPosition;
     
-    [SerializeField] private GameObject wallIntersect;
+    [SerializeField] private GameObject wallIntersect = null;
 
     private readonly List<GameObject> _intersections = new List<GameObject>();
 

@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
 
     private readonly List<EnemySpawn> _enemiesSpawns = new List<EnemySpawn>();
 
-    [SerializeField] private GameObject playerBase;
+    [SerializeField] private GameObject playerBase = null;
 
     #endregion
 

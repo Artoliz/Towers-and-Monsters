@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float destinationReachedPadding = 1.5f;
     
-    [SerializeField] private GameObject effectOfDeath;
+    [SerializeField] private GameObject effectOfDeath = null;
 
     private int _maxHp;
 

@@ -19,12 +19,12 @@ public class Builder : MonoBehaviour
 
     private const int LayerBuildingMask = 1 << 12;
 
-    [SerializeField] private float spriteCrossDuration;
+    [SerializeField] private float spriteCrossDuration = 0.0f;
     
-    [SerializeField] private Sprite[] buildingImages;
-    [SerializeField] private Image buildingSelected;
+    [SerializeField] private Sprite[] buildingImages = null;
+    [SerializeField] private Image buildingSelected = null;
     
-    [SerializeField] private GameObject noBuildingPossible;
+    [SerializeField] private GameObject noBuildingPossible = null;
 
     private Coroutine _checkBeforeBuild;
 

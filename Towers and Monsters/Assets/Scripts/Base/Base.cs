@@ -18,9 +18,9 @@ public class Base : MonoBehaviour
 
     [SerializeField] private int baseHealth = 1000;
 
-    [SerializeField] private Transform health;
-    [SerializeField] private Transform progress;
-    [SerializeField] private Transform mainCamera;
+    [SerializeField] private Transform health = null;
+    [SerializeField] private Transform progress = null;
+    [SerializeField] private Transform mainCamera = null;
 
     #endregion
 
