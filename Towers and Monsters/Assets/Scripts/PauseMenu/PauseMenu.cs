@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
 
     public Animator transition;
     public float transitionTime = 1.0f;
+    public float introTransitionTime = 5f;
     
     #endregion
 
@@ -21,7 +22,9 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
-        GameIsPaused = false;
+        GameIsPaused = true;
+
+        StartCoroutine(UnpauseAfterIntro());
 
         pauseMenuUi.SetActive(false);
         gameUi.SetActive(true);
@@ -83,5 +86,16 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
     }
 
+    #endregion
+    
+    #region PrivateMethods
+    
+    IEnumerator UnpauseAfterIntro()
+    {
+       yield return new WaitForSeconds(introTransitionTime);
+
+       GameIsPaused = false;
+    }
+    
     #endregion
 }

@@ -6,26 +6,32 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
-    #region PublicMethods
+    #region PublicVariables
 
     public Animator introTransition;
     public Animator fadeTransition;
     public float transitionTime = 2.0f;
 
     //public List<NamedMenu> menus;
-    public GameObject []Menus;
+    public GameObject[] Menus;
 
     public Texture2D _cursor = null;
+
     #endregion
 
+    #region Private Variables
+
     private bool _intro = true;
-    
+
+    #endregion
+
+    #region MonoBehaviour
+
     void Awake()
     {
         _intro = true;
         fadeTransition.SetBool("Menu", true);
-        
+
         if (_cursor != null)
             Cursor.SetCursor(_cursor, new Vector2(0, 0), CursorMode.ForceSoftware);
 
@@ -40,11 +46,8 @@ public class MainMenu : MonoBehaviour
             _intro = false;
         }
     }
-    
-    public void LaunchLevel(string levelName)
-    {
-        StartCoroutine(LoadLevel(levelName));
-    }
+
+    #endregion
 
     IEnumerator LoadLevel(string levelName)
     {
@@ -54,7 +57,14 @@ public class MainMenu : MonoBehaviour
 
         SceneManager.LoadScene(levelName);
     }
-    
+
+    #region PublicMethods
+
+    public void LaunchLevel(string levelName)
+    {
+        StartCoroutine(LoadLevel(levelName));
+    }
+
     public void SelectLevelSelectionMenu()
     {
         foreach (GameObject menu in Menus)
@@ -63,9 +73,9 @@ public class MainMenu : MonoBehaviour
                 menu.SetActive(true);
             else
                 menu.SetActive(false);
-        }   
+        }
     }
-    
+
     public void SelectOptionMenu()
     {
         foreach (GameObject menu in Menus)
@@ -74,10 +84,10 @@ public class MainMenu : MonoBehaviour
             {
                 menu.SetActive(true);
             }
-                
+
             else
                 menu.SetActive(false);
-        } 
+        }
     }
 
     public void SelectHighScoreMenu()
@@ -88,7 +98,7 @@ public class MainMenu : MonoBehaviour
                 menu.SetActive(true);
             else
                 menu.SetActive(false);
-        } 
+        }
     }
 
     public void SelectMainMenu()
@@ -99,7 +109,7 @@ public class MainMenu : MonoBehaviour
                 menu.SetActive(true);
             else
                 menu.SetActive(false);
-        } 
+        }
     }
 
     public void SelectHumanValleyLobby()
@@ -110,7 +120,7 @@ public class MainMenu : MonoBehaviour
                 menu.SetActive(true);
             else
                 menu.SetActive(false);
-        } 
+        }
     }
 
     public void SelectDwarfMountainLobby()
@@ -121,7 +131,7 @@ public class MainMenu : MonoBehaviour
                 menu.SetActive(true);
             else
                 menu.SetActive(false);
-        } 
+        }
     }
 
     public void SelectElvenForestLobby()
@@ -132,7 +142,7 @@ public class MainMenu : MonoBehaviour
                 menu.SetActive(true);
             else
                 menu.SetActive(false);
-        } 
+        }
     }
 
     public void SelectGoblinDesertLobby()
@@ -143,7 +153,7 @@ public class MainMenu : MonoBehaviour
                 menu.SetActive(true);
             else
                 menu.SetActive(false);
-        } 
+        }
     }
 
     public void QuitGame()
@@ -152,20 +162,22 @@ public class MainMenu : MonoBehaviour
         {
             if (menu.name == "QuitGameConfirmation")
                 menu.SetActive(true);
-        } 
+        }
     }
-    
+
     public void QuitGameConfirm()
     {
         Application.Quit();
-    }    
-    
+    }
+
     public void QuitGameCancel()
     {
         foreach (GameObject menu in Menus)
         {
             if (menu.name == "QuitGameConfirmation")
                 menu.SetActive(false);
-        } 
+        }
     }
+
+    #endregion
 }
