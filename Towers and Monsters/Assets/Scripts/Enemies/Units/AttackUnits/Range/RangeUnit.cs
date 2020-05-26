@@ -5,8 +5,8 @@ public class RangeUnit : AttackUnit
 {
     #region PrivateVariables
 
-    [SerializeField] private Transform shootElement;
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform shootElement = null;
+    [SerializeField] private GameObject bulletPrefab = null;
 
     #endregion
 

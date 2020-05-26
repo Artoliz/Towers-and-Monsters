@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float destinationReachedPadding = 1.5f;
     
-    [SerializeField] private GameObject effectOfDeath;
+    [SerializeField] private GameObject effectOfDeath = null;
 
     private int _maxHp;
 
@@ -84,6 +84,9 @@ public class Enemy : MonoBehaviour
     private void OnMouseDown()
     {
         EnemyData._hp = enemyHp;
+
+        if (EnemyData._hp < 0)
+            EnemyData._hp = 0;
 
         Informations.Instance.SetInformations(EnemyData, this);
     }
@@ -340,6 +343,7 @@ public class Enemy : MonoBehaviour
 
     public void DestroyEnemy()
     {
+        Informations.Instance.ResetSelected();
         GameManager.Instance.RemoveEnemy(this);
         SpawnManager.Instance.RemoveEnemy(gameObject);
     }
@@ -347,6 +351,12 @@ public class Enemy : MonoBehaviour
     public void Damage(int damage)
     {
         enemyHp -= damage;
+
+        if (enemyHp >= 0)
+            EnemyData._hp = enemyHp;
+
+        if (_selected != null)
+            Informations.Instance.SetInformations(EnemyData, this);
     }
 
     public void IsSelected(GameObject selected)
