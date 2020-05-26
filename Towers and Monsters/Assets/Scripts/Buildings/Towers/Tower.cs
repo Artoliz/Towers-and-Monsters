@@ -233,6 +233,8 @@ public class Tower : MonoBehaviour
             {
                 GameManager.Instance.RemoveGolds(this.upgradeCost);
                 Instantiate(upgradePrefab, transform.position, transform.rotation);
+                if (_selected != null)
+                    Informations.Instance.ResetSelected();
                 Destroy(this.gameObject);
             }
             else
