@@ -85,6 +85,9 @@ public class Enemy : MonoBehaviour
     {
         EnemyData._hp = enemyHp;
 
+        if (EnemyData._hp < 0)
+            EnemyData._hp = 0;
+
         Informations.Instance.SetInformations(EnemyData, this);
     }
 
@@ -340,6 +343,7 @@ public class Enemy : MonoBehaviour
 
     public void DestroyEnemy()
     {
+        Informations.Instance.ResetSelected();
         GameManager.Instance.RemoveEnemy(this);
         SpawnManager.Instance.RemoveEnemy(gameObject);
     }
@@ -347,7 +351,9 @@ public class Enemy : MonoBehaviour
     public void Damage(int damage)
     {
         enemyHp -= damage;
-        EnemyData._hp = enemyHp;
+
+        if (enemyHp >= 0)
+            EnemyData._hp = enemyHp;
 
         if (_selected != null)
             Informations.Instance.SetInformations(EnemyData, this);
