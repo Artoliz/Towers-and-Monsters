@@ -65,7 +65,8 @@ public class TowerTrigger : MonoBehaviour
                     curTarget = null;
                     if (enemies.Count > 0) 
                     {
-                        if (enemies[0]) {
+                        if (enemies[0])
+                        {
                             var o = enemies[0];
                             twr.target = o.transform;
                             curTarget = o;

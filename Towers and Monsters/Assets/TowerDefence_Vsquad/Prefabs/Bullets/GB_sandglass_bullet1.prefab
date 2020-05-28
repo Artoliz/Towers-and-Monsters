@@ -104,10 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807a988a1765edd439007be8fbee2c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeDestroyBullet: 0.05
   particleTime: 3
   speed: 3
-  impactNormal: {x: 0, y: 0, z: 0}
   impactParticle: {fileID: 1691586572612692, guid: 7512ee71d98b7084a8235ca18e8e1770,
     type: 3}
   target: {fileID: 0}

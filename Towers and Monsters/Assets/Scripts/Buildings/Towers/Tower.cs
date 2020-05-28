@@ -98,7 +98,8 @@ public class Tower : MonoBehaviour
     private void Start()
     {
         if (type == Tower.towerType.aoe) {
-            Instantiate(bullet, this.transform);
+            GameObject b = Instantiate(bullet, shootElement.position, Quaternion.identity);
+            b.GetComponent<TowerBullet>().twr = this;
         }
     }
 

@@ -29,10 +29,6 @@ public class TowerBullet : MonoBehaviour
     {  
         speed = 6;
         particleTime = 6;
-
-        if (twr.type == Tower.towerType.aoe) {
-            Instantiate(impactParticle, this.transform);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,11 +44,13 @@ public class TowerBullet : MonoBehaviour
               
                 if (twr.type == Tower.towerType.effect && !enemy.GetOnEffectState())
                 {
+                    enemy.SetOnEffect(true);
                     StartCoroutine(ApplyEffect(enemy, twr.effectDammage));
                 } 
                 else if (twr.type == Tower.towerType.aoe && !enemy.GetOnAOEState()) 
                 {
-
+                    enemy.SetOnAOE(true);
+                    enemy.SetSpeed(enemy.GetSpeed() / 2.0f);
                 } 
                 else 
                 {
@@ -67,6 +65,8 @@ public class TowerBullet : MonoBehaviour
     {
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
+            if (twr.type == Tower.towerType.aoe)
+                return;
             if (target)
             {
                 Transform transform1;
@@ -74,7 +74,6 @@ public class TowerBullet : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform1.position, target.position, Time.deltaTime * speed);
                 _lastBulletPosition = target.transform.position;
             }
-
             else
             {
                 transform.position =
@@ -107,6 +106,7 @@ public class TowerBullet : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
             loop += 1;
         }
+        enemy.SetOnEffect(false);
         DestroyMe();
     }
 
