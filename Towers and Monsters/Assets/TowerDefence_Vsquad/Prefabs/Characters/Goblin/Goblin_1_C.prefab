@@ -1017,10 +1017,12 @@ MonoBehaviour:
   destinationReachedPadding: 0.5
   effectOfDeath: {fileID: 229441864205929761, guid: 2dfdc358a980f034fbc554aa1eddf64a,
     type: 3}
-  reward: 10
-  enemyHp: 25
+  _IsOnEffect: 0
+  _IsOnAOE: 0
+  reward: 20
+  enemyHp: 50
   damageToBase: 10
-  speed: 2
+  speed: 3
 --- !u!1 &7694341206637198550
 GameObject:
   m_ObjectHideFlags: 0

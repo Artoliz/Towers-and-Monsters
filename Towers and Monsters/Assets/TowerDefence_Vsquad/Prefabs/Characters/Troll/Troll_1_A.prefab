@@ -679,15 +679,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276fb7c21c2aae24295def1f47dbfed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyWeight: 8
-  waveNumberApparition: 8
+  enemyWeight: 15
+  waveNumberApparition: 15
   destinationReachedPadding: 0.5
   effectOfDeath: {fileID: 0}
-  reward: 80
-  enemyHp: 500
-  damageToBase: 300
-  speed: 1
-  damageToBuildings: 50
+  _IsOnEffect: 0
+  _IsOnAOE: 0
+  reward: 300
+  enemyHp: 2000
+  damageToBase: 500
+  speed: 2
+  damageToBuildings: 1000
 --- !u!1 &1578170839671386
 GameObject:
   m_ObjectHideFlags: 0
