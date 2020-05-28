@@ -1097,7 +1097,7 @@ MonoBehaviour:
   _IsOnAOE: 0
   reward: 30
   enemyHp: 75
-  damageToBase: 15
+  damageToBase: 20
   speed: 3.5
 --- !u!1 &7731760617728427895
 GameObject:

@@ -1216,7 +1216,7 @@ MonoBehaviour:
   _IsOnAOE: 0
   reward: 55
   enemyHp: 275
-  damageToBase: 40
+  damageToBase: 50
   speed: 3.5
   damageToBuildings: 25
 --- !u!1 &1951824574939636

@@ -552,7 +552,7 @@ MonoBehaviour:
   _IsOnAOE: 0
   reward: 100
   enemyHp: 100
-  damageToBase: 20
+  damageToBase: 75
   speed: 2.5
   damageToBuildings: 10
   shootElement: {fileID: 4546478581731338}
