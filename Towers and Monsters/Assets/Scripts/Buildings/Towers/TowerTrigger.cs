@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class TowerTrigger : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class TowerTrigger : MonoBehaviour
     #region PrivateVariables
 
     private Tower twr;
+    private List<GameObject> enemies = new List<GameObject>();
 
     #endregion
 
@@ -29,13 +31,18 @@ public class TowerTrigger : MonoBehaviour
     {
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
-            if (other.CompareTag("Enemy") && !lockE)
+            if (other.CompareTag("Enemy"))
             {
-                var o = other.gameObject;
-
-                twr.target = o.transform;
-                curTarget = o;
-                lockE = true;
+                enemies.Add(other.gameObject);
+                if (!lockE)
+                {
+                  //  var o = other.gameObject;
+                    var o = enemies[0];
+                    twr.target = o.transform;
+                    curTarget = o;
+                    lockE = true;
+                }
+                
             }
         }
     }
@@ -48,12 +55,20 @@ public class TowerTrigger : MonoBehaviour
             {
                 if (curTarget.CompareTag($"Dead"))
                 {
+                    enemies.Remove(curTarget);
                     lockE = false;
                     twr.target = null;
+                    curTarget = null;
+                    if (enemies.Count > 0) 
+                    {
+                        var o = enemies[0];
+                        twr.target = o.transform;
+                        curTarget = o;
+                        lockE = true;
+                    }
                 }
             }
-
-            if (!curTarget)
+            else
             {
                 lockE = false;
             }
@@ -64,10 +79,22 @@ public class TowerTrigger : MonoBehaviour
     {
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
-            if (other.CompareTag("Enemy") && other.gameObject == curTarget)
+            if (other.CompareTag("Enemy"))
             {
-                lockE = false;
-                twr.target = null;
+                enemies.Remove(other.gameObject);
+                if (other.gameObject == curTarget)
+                {
+                    lockE = false;
+                    twr.target = null;
+                    curTarget = null;
+                    if (enemies.Count > 0) 
+                    {
+                        var o = enemies[0];
+                        twr.target = o.transform;
+                        curTarget = o;
+                        lockE = true;
+                    }
+                }
             }
         }
     }

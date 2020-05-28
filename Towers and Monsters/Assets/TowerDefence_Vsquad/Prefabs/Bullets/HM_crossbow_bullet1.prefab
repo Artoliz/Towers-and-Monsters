@@ -45,10 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807a988a1765edd439007be8fbee2c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeDestroyBullet: 0.05
-  particleTime: 3
-  speed: 3
-  impactNormal: {x: 0, y: 0, z: 0}
+  particleTime: 6
+  speed: 6
   impactParticle: {fileID: 1560704737079254, guid: 3b2712d5ba13b854b91af82e7924f4e5,
     type: 3}
   target: {fileID: 0}

@@ -24,18 +24,38 @@ public class TowerBullet : MonoBehaviour
 
     #region MonoBehaviour
 
+    private void Start()
+    {  
+        if (twr.type ==  Tower.towerType.bullet)
+        {
+            speed = 6;
+            particleTime = 6;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
+           
             if (other.gameObject.transform == target)
             {
-                target.GetComponent<Enemy>().Damage(twr.dmg);
-                Destroy(gameObject, 0.05f); // destroy bullet
-                impactParticle = Instantiate(impactParticle, target.transform.position,
-                    Quaternion.FromToRotation(Vector3.up, Vector3.zero));
-                impactParticle.transform.parent = target.transform;
-                Destroy(impactParticle, particleTime);
+                //float ennemySpeed = target.GetComponent<Enemy>().GetSpeed();
+                var enemy = target.GetComponent<Enemy>();
+
+                enemy.Damage(twr.dmg);
+              
+                if (twr.type == Tower.towerType.effect) // && !enemy.isOnEffect
+                {
+
+                } else if (twr.type == Tower.towerType.aoe) // && !enemy.isOnAOE
+                {
+
+                } else {
+                   DestroyMe();
+                }
+                //target.GetComponent<Enemy>().SetSpeed(ennemySpeed / 2);
+
             }
         }
     }
@@ -70,6 +90,19 @@ public class TowerBullet : MonoBehaviour
                 }
             }
         }
+    }
+
+    #endregion
+
+    #region PrivateFunctions
+    
+    private void DestroyMe()
+    {
+        Destroy(gameObject, 0.05f); // destroy bullet
+        impactParticle = Instantiate(impactParticle, target.transform.position,
+            Quaternion.FromToRotation(Vector3.up, Vector3.zero));
+        impactParticle.transform.parent = target.transform;
+        Destroy(impactParticle, particleTime);
     }
 
     #endregion
