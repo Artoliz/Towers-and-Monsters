@@ -23614,7 +23614,7 @@ MonoBehaviour:
   effectDammage: 10
   shootDelay: 0
   catcher: 0
-  bullet: {fileID: 1855989772293040, guid: 119dcbc7478e5ed40930add5296c367b, type: 3}
+  bullet: {fileID: 1799868092786820, guid: ec2a62e297a992c4e8ff9af53ed82223, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
   healthBar: {fileID: 0}

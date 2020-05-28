@@ -27,18 +27,18 @@ public class TowerBullet : MonoBehaviour
 
     private void Start()
     {  
-        if (twr.type ==  Tower.towerType.bullet)
-        {
-            speed = 6;
-            particleTime = 6;
+        speed = 6;
+        particleTime = 6;
+
+        if (twr.type == Tower.towerType.aoe) {
+            Instantiate(impactParticle, this.transform);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
-        {
-           
+        { 
             if (other.gameObject.transform == target)
             {
                 //float ennemySpeed = target.GetComponent<Enemy>().GetSpeed();
@@ -59,7 +59,6 @@ public class TowerBullet : MonoBehaviour
                    DestroyMe();
                 }
                 //target.GetComponent<Enemy>().SetSpeed(ennemySpeed / 2);
-
             }
         }
     }

@@ -29,6 +29,8 @@ public class TowerTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (twr.type == Tower.towerType.aoe)
+            return;
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (other.CompareTag("Enemy"))
@@ -51,6 +53,8 @@ public class TowerTrigger : MonoBehaviour
     {
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
+            if (twr.type == Tower.towerType.aoe)
+                return;
             if (curTarget)
             {
                 if (curTarget.CompareTag($"Dead"))
@@ -61,10 +65,12 @@ public class TowerTrigger : MonoBehaviour
                     curTarget = null;
                     if (enemies.Count > 0) 
                     {
-                        var o = enemies[0];
-                        twr.target = o.transform;
-                        curTarget = o;
-                        lockE = true;
+                        if (enemies[0]) {
+                            var o = enemies[0];
+                            twr.target = o.transform;
+                            curTarget = o;
+                            lockE = true;
+                        }
                     }
                 }
             }
@@ -77,6 +83,8 @@ public class TowerTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (twr.type == Tower.towerType.aoe)
+            return;
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (other.CompareTag("Enemy"))

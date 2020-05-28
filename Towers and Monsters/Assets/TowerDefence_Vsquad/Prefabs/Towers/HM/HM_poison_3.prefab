@@ -9533,7 +9533,7 @@ MonoBehaviour:
   effectDammage: 0
   shootDelay: 0
   catcher: 0
-  bullet: {fileID: 1473216698478842, guid: 5cbce723b31a42e45ac848afa85ddec2, type: 3}
+  bullet: {fileID: 1992044473791348, guid: 3bc0c9ac423d7f8419c517d4debbf9ce, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
   healthBar: {fileID: 0}

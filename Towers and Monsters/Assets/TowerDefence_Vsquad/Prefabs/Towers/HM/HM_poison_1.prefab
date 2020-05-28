@@ -4791,9 +4791,9 @@ MonoBehaviour:
   upgradeCost: 300
   repairCost: 115
   effectDammage: 5
-  shootDelay: 0
+  shootDelay: 1
   catcher: 0
-  bullet: {fileID: 1887534789471412, guid: 9a8b1f243cc74b1419fca36adc77e05b, type: 3}
+  bullet: {fileID: 1709095781185042, guid: bc9a42dd36a564f4a9908040cd2c22c2, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
   healthBar: {fileID: 0}

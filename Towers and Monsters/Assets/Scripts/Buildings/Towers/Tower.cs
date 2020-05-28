@@ -93,7 +93,13 @@ public class Tower : MonoBehaviour
 
         _homeY = lookAtObj.transform.localRotation.eulerAngles.y;
         SetTowerData();
+    }
 
+    private void Start()
+    {
+        if (type == Tower.towerType.aoe) {
+            Instantiate(bullet, this.transform);
+        }
     }
 
     private void Update()
