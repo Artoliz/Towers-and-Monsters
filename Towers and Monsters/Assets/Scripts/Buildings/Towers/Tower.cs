@@ -67,18 +67,13 @@ public class Tower : MonoBehaviour
     public GameObject upgradePrefab;
     public Animator anim;
 
-    #endregion
-
-    #region ProtectedVariables
-
-    protected Informations.TowerData TowerData;
-
+    public Informations.TowerData TowerData;
 
     #endregion
 
     #region MonoBehaviour
 
-    private void Start()
+    private void Awake()
     {
         var localScale = progress.transform.localScale;
 
@@ -219,9 +214,10 @@ public class Tower : MonoBehaviour
             if (this.upgradeCost <= GameManager.Instance.GetGolds())
             {
                 GameManager.Instance.RemoveGolds(this.upgradeCost);
-                Instantiate(upgradePrefab, transform.position, transform.rotation);
+                GameObject tmp = Instantiate(upgradePrefab, transform.position, transform.rotation);
                 if (_selected != null)
                     Informations.Instance.ResetSelected();
+                Informations.Instance.SetInformations(tmp.GetComponent<Tower>().TowerData, tmp.GetComponent<Tower>());
                 Destroy(this.gameObject);
             }
             else
