@@ -95,14 +95,6 @@ public class Tower : MonoBehaviour
         SetTowerData();
     }
 
-    private void Start()
-    {
-        if (type == Tower.towerType.aoe) {
-            GameObject b = Instantiate(bullet, shootElement.position, Quaternion.identity);
-            b.GetComponent<TowerBullet>().twr = this;
-        }
-    }
-
     private void Update()
     {
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
@@ -121,7 +113,7 @@ public class Tower : MonoBehaviour
                 lookAtObj.transform.rotation = Quaternion.Slerp(lookAtObj.transform.rotation, home, Time.deltaTime);
             }
 
-            if (!_isShoot)
+            if (!_isShoot && type != towerType.aoe)
             {
                 StartCoroutine(Shoot());
             }

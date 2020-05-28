@@ -29,6 +29,10 @@ public class TowerBullet : MonoBehaviour
     {  
         speed = 6;
         particleTime = 6;
+        if (twr.type == Tower.towerType.aoe) {
+            GameObject b = Instantiate(impactParticle, this.transform.position, Quaternion.identity, this.transform);
+            b.transform.localScale = new Vector3(5, 5, 5);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,7 +41,6 @@ public class TowerBullet : MonoBehaviour
         { 
             if (other.gameObject.transform == target)
             {
-                //float ennemySpeed = target.GetComponent<Enemy>().GetSpeed();
                 var enemy = target.GetComponent<Enemy>();
 
                 enemy.Damage(twr.dmg);
@@ -46,17 +49,11 @@ public class TowerBullet : MonoBehaviour
                 {
                     enemy.SetOnEffect(true);
                     StartCoroutine(ApplyEffect(enemy, twr.effectDammage));
-                } 
-                else if (twr.type == Tower.towerType.aoe && !enemy.GetOnAOEState()) 
-                {
-                    enemy.SetOnAOE(true);
-                    enemy.SetSpeed(enemy.GetSpeed() / 2.0f);
-                } 
-                else 
+                }
+                else if (twr.type != Tower.towerType.aoe)
                 {
                    DestroyMe();
                 }
-                //target.GetComponent<Enemy>().SetSpeed(ennemySpeed / 2);
             }
         }
     }
@@ -65,14 +62,14 @@ public class TowerBullet : MonoBehaviour
     {
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
-            if (twr.type == Tower.towerType.aoe)
-                return;
             if (target)
             {
                 Transform transform1;
                 (transform1 = transform).LookAt(target);
-                transform.position = Vector3.MoveTowards(transform1.position, target.position, Time.deltaTime * speed);
-                _lastBulletPosition = target.transform.position;
+                Vector3 targetPosition = target.position;
+                targetPosition.y = 0.7f;
+                transform.position = Vector3.MoveTowards(transform1.position, targetPosition, Time.deltaTime * speed);
+                _lastBulletPosition = targetPosition;
             }
             else
             {
