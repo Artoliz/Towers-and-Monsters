@@ -9529,7 +9529,7 @@ MonoBehaviour:
   maxHp: 600
   dmg: 0
   upgradeCost: 0
-  repairCost: 450
+  repairCost: 675
   effectDammage: 0
   shootDelay: 0
   catcher: 0

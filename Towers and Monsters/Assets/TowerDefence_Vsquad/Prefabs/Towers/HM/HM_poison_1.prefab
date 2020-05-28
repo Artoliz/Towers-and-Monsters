@@ -4784,12 +4784,12 @@ MonoBehaviour:
   health: {fileID: 4715288175752040359}
   progress: {fileID: 2444699927378069714}
   type: 2
-  cost: 150
+  cost: 300
   hp: 150
   maxHp: 150
   dmg: 0
-  upgradeCost: 300
-  repairCost: 115
+  upgradeCost: 600
+  repairCost: 225
   effectDammage: 5
   shootDelay: 1
   catcher: 0

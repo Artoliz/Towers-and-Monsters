@@ -23609,8 +23609,8 @@ MonoBehaviour:
   hp: 300
   maxHp: 300
   dmg: 0
-  upgradeCost: 600
-  repairCost: 225
+  upgradeCost: 900
+  repairCost: 450
   effectDammage: 10
   shootDelay: 0
   catcher: 0
