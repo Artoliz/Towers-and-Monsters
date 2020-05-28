@@ -23696,7 +23696,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4
+  m_Radius: 5.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114869374348502688
 MonoBehaviour:
@@ -24276,7 +24276,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 3
       minScalar: 1
       maxCurve:
         serializedVersion: 2

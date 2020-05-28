@@ -43,7 +43,7 @@ public class TowerTrigger : MonoBehaviour
                     b.GetComponent<TowerBullet>().twr = twr;
                     b.GetComponent<TowerBullet>().target = other.transform;
                     aoeImpacts.Add(b);
-                    other.GetComponent<Enemy>().SetOnAOE(true);
+                    other.GetComponent<Enemy>().SetOnAOE(true);                   
                     other.GetComponent<Enemy>().SetSpeed(other.GetComponent<Enemy>().GetSpeed() / 2.0f);
                 } else if (!lockE)
                 {
@@ -51,6 +51,25 @@ public class TowerTrigger : MonoBehaviour
                     twr.target = o.transform;
                     curTarget = o;
                     lockE = true;
+                }
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                if (twr.type == Tower.towerType.aoe && !other.GetComponent<Enemy>().GetOnAOEState())
+                {
+                    GameObject b = Instantiate(twr.bullet, other.transform.position, Quaternion.identity);
+                    b.GetComponent<TowerBullet>().twr = twr;
+                    b.GetComponent<TowerBullet>().target = other.transform;
+                    aoeImpacts.Add(b);
+                    other.GetComponent<Enemy>().SetOnAOE(true);                   
+                    other.GetComponent<Enemy>().SetSpeed(other.GetComponent<Enemy>().GetSpeed() / 2.0f);
                 }
             }
         }
