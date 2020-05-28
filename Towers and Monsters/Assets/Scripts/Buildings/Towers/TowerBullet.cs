@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class TowerBullet : MonoBehaviour
 {
@@ -45,13 +46,16 @@ public class TowerBullet : MonoBehaviour
 
                 enemy.Damage(twr.dmg);
               
-                if (twr.type == Tower.towerType.effect) // && !enemy.isOnEffect
+                if (twr.type == Tower.towerType.effect && !enemy.GetOnEffectState())
+                {
+                    StartCoroutine(ApplyEffect(enemy, twr.effectDammage));
+                } 
+                else if (twr.type == Tower.towerType.aoe && !enemy.GetOnAOEState()) 
                 {
 
-                } else if (twr.type == Tower.towerType.aoe) // && !enemy.isOnAOE
+                } 
+                else 
                 {
-
-                } else {
                    DestroyMe();
                 }
                 //target.GetComponent<Enemy>().SetSpeed(ennemySpeed / 2);
@@ -96,6 +100,17 @@ public class TowerBullet : MonoBehaviour
 
     #region PrivateFunctions
     
+    IEnumerator ApplyEffect(Enemy enemy, int dmg)
+    {
+        int loop = 0;
+        while (loop < 5) {
+            enemy.Damage(dmg / 5);
+            yield return new WaitForSeconds(1.0f);
+            loop += 1;
+        }
+        DestroyMe();
+    }
+
     private void DestroyMe()
     {
         Destroy(gameObject, 0.05f); // destroy bullet

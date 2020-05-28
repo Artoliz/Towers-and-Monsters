@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
     private bool _isSpeedBoosted;
     private bool _isMaxHpBoosted;
     private bool _isDamageToBaseBoosted;
+    public bool _IsOnEffect;
+    public bool _IsOnAOE;
 
     private static readonly int Death = Animator.StringToHash("Death");
 
@@ -210,6 +212,16 @@ public class Enemy : MonoBehaviour
 
     #region Getters
 
+    public bool GetOnEffectState()
+    {
+        return _IsOnEffect;
+    }
+
+    public bool GetOnAOEState()
+    {
+        return _IsOnAOE;
+    }
+
     public Informations.EnemyData GetEnemyData()
     {
         return EnemyData;
@@ -268,6 +280,17 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region Setters
+
+
+    public void SetOnEffect(bool newEffectState)
+    {
+        _IsOnEffect = newEffectState;
+    }
+
+    public void SetOnAOE(bool newAOEState)
+    {
+        _IsOnAOE = newAOEState;
+    }
 
     public void SetSpeed(float newSpeed)
     {
