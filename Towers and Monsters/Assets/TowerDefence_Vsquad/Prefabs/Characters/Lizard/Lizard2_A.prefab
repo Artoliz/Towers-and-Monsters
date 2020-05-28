@@ -1208,15 +1208,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f426e34c736a6a44cac8fc48d01fb244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyWeight: 6
-  waveNumberApparition: 6
+  enemyWeight: 3
+  waveNumberApparition: 9
   destinationReachedPadding: 0.5
   effectOfDeath: {fileID: 0}
-  reward: 60
-  enemyHp: 225
+  _IsOnEffect: 0
+  _IsOnAOE: 0
+  reward: 55
+  enemyHp: 275
   damageToBase: 40
-  speed: 3
-  damageToBuildings: 11
+  speed: 3.5
+  damageToBuildings: 25
 --- !u!1 &1951824574939636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,6 +1449,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Range
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562366128535251611, guid: 1ca2100cdca28844c9083feb06eae1b7,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ca2100cdca28844c9083feb06eae1b7, type: 3}

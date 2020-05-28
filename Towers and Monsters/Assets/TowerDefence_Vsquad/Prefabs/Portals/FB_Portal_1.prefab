@@ -23586,4 +23586,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBeforeBeginToSpawn: 2
-  repeatTimeToSpawn: 2
+  repeatTimeToSpawn: 1.5
