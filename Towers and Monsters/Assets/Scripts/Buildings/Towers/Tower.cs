@@ -86,7 +86,7 @@ public class Tower : MonoBehaviour
 
         _particleExplosionPosition = transform.position;
         _particleExplosionPosition.y = 1;
-        _isDamaged = true;
+        _isDamaged = false;
 
         _maxSizeX = localScale.x;
         _size = localScale;
@@ -105,19 +105,6 @@ public class Tower : MonoBehaviour
     {
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
-            if (Input.GetKeyDown("m"))
-            {
-                print("space key was pressed");
-                if (_isDamaged == false) 
-                {
-                    _isDamaged = true;
-                }
-                else 
-                {
-                    _isDamaged = false;
-                }
-            }
-
             if (target)
             {
                 var dir = target.transform.position - lookAtObj.transform.position;
@@ -263,6 +250,11 @@ public class Tower : MonoBehaviour
             {
                 GameManager.Instance.RemoveGolds(this.repairCost);
                 hp = maxHp;
+                float currentSizeX = (hp * _maxSizeX) / maxHp;
+                progress.localScale = new Vector3(currentSizeX, _size.y, _size.z);
+
+                float currentPosX = -((_maxSizeX - currentSizeX) / 2.0f);
+                progress.localPosition = new Vector3(currentPosX, 0, 0);
                 _isDamaged = false;
             }
             else
