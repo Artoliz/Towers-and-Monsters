@@ -210,6 +210,17 @@ If you click on a tower:
 - You will also see the range of the selected tower.
 - You will be able to click on 3 diferent icons (from left to right): upgrade tower (E key), repair tower (R key), destroy tower (T key).
 
+Camera Controls:
+- "Z" key allows you to go forward with the camera.
+- "S" key allows you to go backward with the camera.
+- "Q" key allows you to go left with the camera.
+- "D" key allows you to go right with the camera.
+
+- "A" key allows you to move the camera up.
+- "E" key allows you to move the camera down.
+
+- If you click on the mouse wheel you can rotate the camera.
+
 
 
 ### INCOMING FEATURES ###
@@ -219,3 +230,4 @@ If you click on a tower:
 - Music
 - Sounds
 - Optimizations of the towers and enemies
+- Ending screen: number of enemies killed
