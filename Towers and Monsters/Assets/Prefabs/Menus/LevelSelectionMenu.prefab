@@ -79,7 +79,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379987662053815618}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 2eae5edc243a20e48a856a2f28216e46, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: d28ff4be634c50f45ae5dd790f0e9db6, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -940,7 +940,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2391826326487370082}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: SelectDwarfMountainLobby
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2391826326487506329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,8 +1806,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: LaunchLevel
-        m_Mode: 5
+        m_MethodName: SelectHumanValleyLobby
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2134,7 +2145,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2391826327365662240}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: SelectElvenForestLobby
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2391826327393476578
 GameObject:
   m_ObjectHideFlags: 0
@@ -2686,7 +2708,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2391826328109800075}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: SelectGoblinDesertLobby
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2391826328171063362
 GameObject:
   m_ObjectHideFlags: 0
@@ -2781,7 +2814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &273503193202583950
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2885,7 +2918,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5717932685100941590}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 2eae5edc243a20e48a856a2f28216e46, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 191f9ed3a602c194381f5a72d439c3e9, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -3095,7 +3128,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6786932897228268332}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 2eae5edc243a20e48a856a2f28216e46, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 17ecfe276744fe84aa80d35dcc3a826a, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -3140,7 +3173,7 @@ PrefabInstance:
     - target: {fileID: 114213058838077758, guid: 616b9a43be6be9b4a9d546894e2f9c57,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectMainMenuFromLevelSelectionMenu
+      value: SelectMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 114213058838077758, guid: 616b9a43be6be9b4a9d546894e2f9c57,
         type: 3}
