@@ -11,13 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Worlds/HumanValley.unity
     guid: 0c5abf8ca4797304cab7c26076dc21ce
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Worlds/DwarfMountain.unity
     guid: f8ffcc43937d42c4680c9d398853c0eb
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Worlds/ElvenForest.unity
     guid: 544afd71e8dbcf144ae68fa85b4f6d75
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Worlds/GoblinDesert.unity
     guid: 86ef4780b00f13c46814581087eac310
   m_configObjects: {}
