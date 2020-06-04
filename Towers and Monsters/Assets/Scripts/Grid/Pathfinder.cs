@@ -9,7 +9,7 @@ public class Pathfinder
 
     private int[,] grid;
 
-    private Pair<int, int> src;
+    private List<Pair<int, int>> srcs = new List<Pair<int, int>>();
     private Pair<int, int> dest;
 
     private struct Cell
@@ -56,7 +56,13 @@ public class Pathfinder
 
     public void SetSource(int row, int col)
     {
-        src = new Pair<int, int>(row, col);
+        var newSrc = new Pair<int, int>(row, col);
+        srcs.Add(newSrc);
+    }
+
+    public void ClearSources()
+    {
+        srcs.Clear();
     }
 
     public void SetDestination(int row, int col)
@@ -122,11 +128,26 @@ public class Pathfinder
 
     public Stack<Pair<int, int>> Search()
     {
-        if (IsValid(src.First, src.Second) == false)
+        foreach (var src in srcs)
         {
-            Debug.Log("Source: " + src.First + "; " + src.Second);
-            Debug.Log("Source is invalid\n");
-            return null;
+            if (IsValid(src.First, src.Second) == false)
+            {
+                Debug.Log("Source: " + src.First + "; " + src.Second);
+                Debug.Log("Source is invalid\n");
+                return null;
+            }
+
+            if (IsUnBlocked(grid, src.First, src.Second) == false || IsUnBlocked(grid, dest.First, dest.Second) == false)
+            {
+                Debug.Log("Source or the destination is blocked\n");
+                return null;
+            }
+
+            if (IsDestination(src.First, src.Second, dest) == true)
+            {
+                Debug.Log("We are already at the destination\n");
+                return null;
+            }
         }
 
         if (IsValid(dest.First, dest.Second) == false)
@@ -135,301 +156,291 @@ public class Pathfinder
             return null;
         }
 
-        if (IsUnBlocked(grid, src.First, src.Second) == false ||
-                IsUnBlocked(grid, dest.First, dest.Second) == false)
+        foreach (var src in srcs)
         {
-            Debug.Log("Source or the destination is blocked\n");
-            return null;
-        }
+            bool[,] closedList = new bool[ROW, COL];
 
-        if (IsDestination(src.First, src.Second, dest) == true)
-        {
-            Debug.Log("We are already at the destination\n");
-            return null;
-        }
+            Cell[,] cellDetails = new Cell[ROW, COL];
 
-        bool[,] closedList = new bool[ROW, COL];
+            int i, j;
 
-        Cell[,] cellDetails = new Cell[ROW, COL];
-
-        int i, j;
-
-        for (i = 0; i < ROW; i++)
-        {
-            for (j = 0; j < COL; j++)
+            for (i = 0; i < ROW; i++)
             {
-                cellDetails[i, j].f = double.MaxValue;
-                cellDetails[i, j].g = double.MaxValue;
-                cellDetails[i, j].h = double.MaxValue;
-                cellDetails[i, j].parent_i = -1;
-                cellDetails[i, j].parent_j = -1;
-            }
-        }
-
-        i = src.First;
-        j = src.Second;
-        cellDetails[i, j].f = 0.0f;
-        cellDetails[i, j].g = 0.0f;
-        cellDetails[i, j].h = 0.0f;
-        cellDetails[i, j].parent_i = i;
-        cellDetails[i, j].parent_j = j;
-
-        List<Pair<double, Pair<int, int>>> openList = new List<Pair<double, Pair<int, int>>>();
-
-        openList.Add(new Pair<double, Pair<int, int>>(0.0f, new Pair<int, int>(i, j)));
-
-        while (openList.Count != 0)
-        {
-            Pair<double, Pair<int, int>> p = openList[0];
-
-            openList.Remove(openList[0]);
-
-            i = p.Second.First;
-            j = p.Second.Second;
-            closedList[i, j] = true;
-
-            double gNew, hNew, fNew;
-
-            //-----------(North) ------------
-            if (IsValid(i - 1, j) == true)
-            {
-                if (IsDestination(i - 1, j, dest) == true)
+                for (j = 0; j < COL; j++)
                 {
-                    cellDetails[i - 1, j].parent_i = i;
-                    cellDetails[i - 1, j].parent_j = j;
-                    return TracePath(cellDetails, dest);
+                    cellDetails[i, j].f = double.MaxValue;
+                    cellDetails[i, j].g = double.MaxValue;
+                    cellDetails[i, j].h = double.MaxValue;
+                    cellDetails[i, j].parent_i = -1;
+                    cellDetails[i, j].parent_j = -1;
                 }
-                else if (closedList[i - 1, j] == false && IsUnBlocked(grid, i - 1, j) == true)
+            }
+
+            i = src.First;
+            j = src.Second;
+            cellDetails[i, j].f = 0.0f;
+            cellDetails[i, j].g = 0.0f;
+            cellDetails[i, j].h = 0.0f;
+            cellDetails[i, j].parent_i = i;
+            cellDetails[i, j].parent_j = j;
+
+            List<Pair<double, Pair<int, int>>> openList = new List<Pair<double, Pair<int, int>>>();
+
+            openList.Add(new Pair<double, Pair<int, int>>(0.0f, new Pair<int, int>(i, j)));
+
+            while (openList.Count != 0)
+            {
+                Pair<double, Pair<int, int>> p = openList[0];
+
+                openList.Remove(openList[0]);
+
+                i = p.Second.First;
+                j = p.Second.Second;
+                closedList[i, j] = true;
+
+                double gNew, hNew, fNew;
+
+                //-----------(North) ------------
+                if (IsValid(i - 1, j) == true)
                 {
-                    gNew = cellDetails[i, j].g + 1.0;
-                    hNew = CalculateHValue(i - 1, j, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i - 1, j].f == double.MaxValue ||
-                            cellDetails[i - 1, j].f > fNew)
+                    if (IsDestination(i - 1, j, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i - 1, j)));
-
-                        cellDetails[i - 1, j].f = fNew;
-                        cellDetails[i - 1, j].g = gNew;
-                        cellDetails[i - 1, j].h = hNew;
                         cellDetails[i - 1, j].parent_i = i;
                         cellDetails[i - 1, j].parent_j = j;
+                        return TracePath(cellDetails, dest);
+                    }
+                    else if (closedList[i - 1, j] == false && IsUnBlocked(grid, i - 1, j) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.0;
+                        hNew = CalculateHValue(i - 1, j, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i - 1, j].f == double.MaxValue ||
+                                cellDetails[i - 1, j].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i - 1, j)));
+
+                            cellDetails[i - 1, j].f = fNew;
+                            cellDetails[i - 1, j].g = gNew;
+                            cellDetails[i - 1, j].h = hNew;
+                            cellDetails[i - 1, j].parent_i = i;
+                            cellDetails[i - 1, j].parent_j = j;
+                        }
                     }
                 }
-            }
 
-            //-----------(South) ------------
-            if (IsValid(i + 1, j) == true)
-            {
-                if (IsDestination(i + 1, j, dest) == true)
+                //-----------(South) ------------
+                if (IsValid(i + 1, j) == true)
                 {
-                    cellDetails[i + 1, j].parent_i = i;
-                    cellDetails[i + 1, j].parent_j = j;
-                    return TracePath(cellDetails, dest);
-                }
-                else if (closedList[i + 1, j] == false &&
-                         IsUnBlocked(grid, i + 1, j) == true)
-                {
-                    gNew = cellDetails[i, j].g + 1.0;
-                    hNew = CalculateHValue(i + 1, j, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i + 1, j].f == double.MaxValue ||
-                            cellDetails[i + 1, j].f > fNew)
+                    if (IsDestination(i + 1, j, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i + 1, j)));
-                        cellDetails[i + 1, j].f = fNew;
-                        cellDetails[i + 1, j].g = gNew;
-                        cellDetails[i + 1, j].h = hNew;
                         cellDetails[i + 1, j].parent_i = i;
                         cellDetails[i + 1, j].parent_j = j;
+                        return TracePath(cellDetails, dest);
+                    }
+                    else if (closedList[i + 1, j] == false &&
+                             IsUnBlocked(grid, i + 1, j) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.0;
+                        hNew = CalculateHValue(i + 1, j, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i + 1, j].f == double.MaxValue ||
+                                cellDetails[i + 1, j].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i + 1, j)));
+                            cellDetails[i + 1, j].f = fNew;
+                            cellDetails[i + 1, j].g = gNew;
+                            cellDetails[i + 1, j].h = hNew;
+                            cellDetails[i + 1, j].parent_i = i;
+                            cellDetails[i + 1, j].parent_j = j;
+                        }
                     }
                 }
-            }
 
-            //-----------(East) ------------
-            if (IsValid(i, j + 1) == true)
-            {
-                if (IsDestination(i, j + 1, dest) == true)
+                //-----------(East) ------------
+                if (IsValid(i, j + 1) == true)
                 {
-                    cellDetails[i, j + 1].parent_i = i;
-                    cellDetails[i, j + 1].parent_j = j;
-                    return TracePath(cellDetails, dest);
-                }
-
-                else if (closedList[i, j + 1] == false &&
-                         IsUnBlocked(grid, i, j + 1) == true)
-                {
-                    gNew = cellDetails[i, j].g + 1.0;
-                    hNew = CalculateHValue(i, j + 1, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i, j + 1].f == double.MaxValue ||
-                            cellDetails[i, j + 1].f > fNew)
+                    if (IsDestination(i, j + 1, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew,
-                                           new Pair<int, int>(i, j + 1)));
-
-                        cellDetails[i, j + 1].f = fNew;
-                        cellDetails[i, j + 1].g = gNew;
-                        cellDetails[i, j + 1].h = hNew;
                         cellDetails[i, j + 1].parent_i = i;
                         cellDetails[i, j + 1].parent_j = j;
+                        return TracePath(cellDetails, dest);
+                    }
+
+                    else if (closedList[i, j + 1] == false &&
+                             IsUnBlocked(grid, i, j + 1) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.0;
+                        hNew = CalculateHValue(i, j + 1, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i, j + 1].f == double.MaxValue ||
+                                cellDetails[i, j + 1].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew,
+                                               new Pair<int, int>(i, j + 1)));
+
+                            cellDetails[i, j + 1].f = fNew;
+                            cellDetails[i, j + 1].g = gNew;
+                            cellDetails[i, j + 1].h = hNew;
+                            cellDetails[i, j + 1].parent_i = i;
+                            cellDetails[i, j + 1].parent_j = j;
+                        }
                     }
                 }
-            }
 
-            //-----------(West) ------------
-            if (IsValid(i, j - 1) == true)
-            {
-                if (IsDestination(i, j - 1, dest) == true)
+                //-----------(West) ------------
+                if (IsValid(i, j - 1) == true)
                 {
-                    cellDetails[i, j - 1].parent_i = i;
-                    cellDetails[i, j - 1].parent_j = j;
-                    return TracePath(cellDetails, dest);
-                }
-
-                else if (closedList[i, j - 1] == false &&
-                         IsUnBlocked(grid, i, j - 1) == true)
-                {
-                    gNew = cellDetails[i, j].g + 1.0;
-                    hNew = CalculateHValue(i, j - 1, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i, j - 1].f == double.MaxValue ||
-                            cellDetails[i, j - 1].f > fNew)
+                    if (IsDestination(i, j - 1, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i, j - 1)));
-
-                        cellDetails[i, j - 1].f = fNew;
-                        cellDetails[i, j - 1].g = gNew;
-                        cellDetails[i, j - 1].h = hNew;
                         cellDetails[i, j - 1].parent_i = i;
                         cellDetails[i, j - 1].parent_j = j;
+                        return TracePath(cellDetails, dest);
+                    }
+
+                    else if (closedList[i, j - 1] == false &&
+                             IsUnBlocked(grid, i, j - 1) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.0;
+                        hNew = CalculateHValue(i, j - 1, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i, j - 1].f == double.MaxValue ||
+                                cellDetails[i, j - 1].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i, j - 1)));
+
+                            cellDetails[i, j - 1].f = fNew;
+                            cellDetails[i, j - 1].g = gNew;
+                            cellDetails[i, j - 1].h = hNew;
+                            cellDetails[i, j - 1].parent_i = i;
+                            cellDetails[i, j - 1].parent_j = j;
+                        }
                     }
                 }
-            }
 
-            //-----------(North-East) ------------
-            if (IsValid(i - 1, j + 1) == true && !IsBlocked(i - 1, j) && !IsBlocked(i, j + 1))
-            {
-                if (IsDestination(i - 1, j + 1, dest) == true)
-                { 
-                    cellDetails[i - 1, j + 1].parent_i = i;
-                    cellDetails[i - 1, j + 1].parent_j = j;
-                    return TracePath(cellDetails, dest);
-                }
-
-                else if (closedList[i - 1, j + 1] == false &&
-                         IsUnBlocked(grid, i - 1, j + 1) == true)
+                //-----------(North-East) ------------
+                if (IsValid(i - 1, j + 1) == true && !IsBlocked(i - 1, j) && !IsBlocked(i, j + 1))
                 {
-                    gNew = cellDetails[i, j].g + 1.414;
-                    hNew = CalculateHValue(i - 1, j + 1, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i - 1, j + 1].f == double.MaxValue ||
-                            cellDetails[i - 1, j + 1].f > fNew)
+                    if (IsDestination(i - 1, j + 1, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew,
-                                       new Pair<int, int>(i - 1, j + 1)));
-
-                        cellDetails[i - 1, j + 1].f = fNew;
-                        cellDetails[i - 1, j + 1].g = gNew;
-                        cellDetails[i - 1, j + 1].h = hNew;
                         cellDetails[i - 1, j + 1].parent_i = i;
                         cellDetails[i - 1, j + 1].parent_j = j;
+                        return TracePath(cellDetails, dest);
+                    }
+
+                    else if (closedList[i - 1, j + 1] == false &&
+                             IsUnBlocked(grid, i - 1, j + 1) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.414;
+                        hNew = CalculateHValue(i - 1, j + 1, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i - 1, j + 1].f == double.MaxValue ||
+                                cellDetails[i - 1, j + 1].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew,
+                                           new Pair<int, int>(i - 1, j + 1)));
+
+                            cellDetails[i - 1, j + 1].f = fNew;
+                            cellDetails[i - 1, j + 1].g = gNew;
+                            cellDetails[i - 1, j + 1].h = hNew;
+                            cellDetails[i - 1, j + 1].parent_i = i;
+                            cellDetails[i - 1, j + 1].parent_j = j;
+                        }
                     }
                 }
-            }
 
-           //-----------(North-West) ------------
-            if (IsValid(i - 1, j - 1) == true && !IsBlocked(i - 1, j) && !IsBlocked(i, j - 1))
-            {
-                if (IsDestination(i - 1, j - 1, dest) == true)
+                //-----------(North-West) ------------
+                if (IsValid(i - 1, j - 1) == true && !IsBlocked(i - 1, j) && !IsBlocked(i, j - 1))
                 {
-                    cellDetails[i - 1, j - 1].parent_i = i;
-                    cellDetails[i - 1, j - 1].parent_j = j;
-                    return TracePath(cellDetails, dest);
-                }
-                else if (closedList[i - 1, j - 1] == false &&
-                         IsUnBlocked(grid, i - 1, j - 1) == true)
-                {
-                    gNew = cellDetails[i, j].g + 1.414;
-                    hNew = CalculateHValue(i - 1, j - 1, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i - 1, j - 1].f == double.MaxValue ||
-                            cellDetails[i - 1, j - 1].f > fNew)
+                    if (IsDestination(i - 1, j - 1, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i - 1, j - 1)));
-                        cellDetails[i - 1, j - 1].f = fNew;
-                        cellDetails[i - 1, j - 1].g = gNew;
-                        cellDetails[i - 1, j - 1].h = hNew;
                         cellDetails[i - 1, j - 1].parent_i = i;
                         cellDetails[i - 1, j - 1].parent_j = j;
+                        return TracePath(cellDetails, dest);
+                    }
+                    else if (closedList[i - 1, j - 1] == false &&
+                             IsUnBlocked(grid, i - 1, j - 1) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.414;
+                        hNew = CalculateHValue(i - 1, j - 1, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i - 1, j - 1].f == double.MaxValue ||
+                                cellDetails[i - 1, j - 1].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i - 1, j - 1)));
+                            cellDetails[i - 1, j - 1].f = fNew;
+                            cellDetails[i - 1, j - 1].g = gNew;
+                            cellDetails[i - 1, j - 1].h = hNew;
+                            cellDetails[i - 1, j - 1].parent_i = i;
+                            cellDetails[i - 1, j - 1].parent_j = j;
+                        }
                     }
                 }
-            }
 
-           //-----------(South-East) ------------
-            if (IsValid(i + 1, j + 1) == true && !IsBlocked(i + 1, j) && !IsBlocked(i , j + 1))
-            {
-                if (IsDestination(i + 1, j + 1, dest) == true)
+                //-----------(South-East) ------------
+                if (IsValid(i + 1, j + 1) == true && !IsBlocked(i + 1, j) && !IsBlocked(i, j + 1))
                 {
-                    cellDetails[i + 1, j + 1].parent_i = i;
-                    cellDetails[i + 1, j + 1].parent_j = j;
-                    return TracePath(cellDetails, dest);
-                }
-                else if (closedList[i + 1, j + 1] == false &&
-                         IsUnBlocked(grid, i + 1, j + 1) == true)
-                {
-                    gNew = cellDetails[i, j].g + 1.414;
-                    hNew = CalculateHValue(i + 1, j + 1, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i + 1, j + 1].f == double.MaxValue ||
-                            cellDetails[i + 1, j + 1].f > fNew)
+                    if (IsDestination(i + 1, j + 1, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew,
-                                            new Pair<int, int>(i + 1, j + 1)));
-
-                        cellDetails[i + 1, j + 1].f = fNew;
-                        cellDetails[i + 1, j + 1].g = gNew;
-                        cellDetails[i + 1, j + 1].h = hNew;
                         cellDetails[i + 1, j + 1].parent_i = i;
                         cellDetails[i + 1, j + 1].parent_j = j;
+                        return TracePath(cellDetails, dest);
+                    }
+                    else if (closedList[i + 1, j + 1] == false &&
+                             IsUnBlocked(grid, i + 1, j + 1) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.414;
+                        hNew = CalculateHValue(i + 1, j + 1, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i + 1, j + 1].f == double.MaxValue ||
+                                cellDetails[i + 1, j + 1].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew,
+                                                new Pair<int, int>(i + 1, j + 1)));
+
+                            cellDetails[i + 1, j + 1].f = fNew;
+                            cellDetails[i + 1, j + 1].g = gNew;
+                            cellDetails[i + 1, j + 1].h = hNew;
+                            cellDetails[i + 1, j + 1].parent_i = i;
+                            cellDetails[i + 1, j + 1].parent_j = j;
+                        }
                     }
                 }
-            }
 
-           //-----------(South-West) ------------
-            if (IsValid(i + 1, j - 1) == true && !IsBlocked(i + 1, j) && !IsBlocked(i, j - 1))
-            {
-                if (IsDestination(i + 1, j - 1, dest) == true)
+                //-----------(South-West) ------------
+                if (IsValid(i + 1, j - 1) == true && !IsBlocked(i + 1, j) && !IsBlocked(i, j - 1))
                 {
-                    cellDetails[i + 1, j - 1].parent_i = i;
-                    cellDetails[i + 1, j - 1].parent_j = j;
-                    return TracePath(cellDetails, dest);
-                }
-                else if (closedList[i + 1, j - 1] == false &&
-                         IsUnBlocked(grid, i + 1, j - 1) == true)
-                {
-                    gNew = cellDetails[i, j].g + 1.414;
-                    hNew = CalculateHValue(i + 1, j - 1, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i + 1, j - 1].f == double.MaxValue ||
-                            cellDetails[i + 1, j - 1].f > fNew)
+                    if (IsDestination(i + 1, j - 1, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew,
-                                            new Pair<int, int>(i + 1, j - 1)));
-
-                        cellDetails[i + 1, j - 1].f = fNew;
-                        cellDetails[i + 1, j - 1].g = gNew;
-                        cellDetails[i + 1, j - 1].h = hNew;
                         cellDetails[i + 1, j - 1].parent_i = i;
                         cellDetails[i + 1, j - 1].parent_j = j;
+                        return TracePath(cellDetails, dest);
+                    }
+                    else if (closedList[i + 1, j - 1] == false &&
+                             IsUnBlocked(grid, i + 1, j - 1) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.414;
+                        hNew = CalculateHValue(i + 1, j - 1, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i + 1, j - 1].f == double.MaxValue ||
+                                cellDetails[i + 1, j - 1].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew,
+                                                new Pair<int, int>(i + 1, j - 1)));
+
+                            cellDetails[i + 1, j - 1].f = fNew;
+                            cellDetails[i + 1, j - 1].g = gNew;
+                            cellDetails[i + 1, j - 1].h = hNew;
+                            cellDetails[i + 1, j - 1].parent_i = i;
+                            cellDetails[i + 1, j - 1].parent_j = j;
+                        }
                     }
                 }
             }
@@ -439,11 +450,26 @@ public class Pathfinder
 
     public bool AStarSearch()
     {
-        // If the source is out of range 
-        if (IsValid(src.First, src.Second) == false)
+        foreach (var src in srcs)
         {
-            Debug.Log("Source is invalid\n");
-            return false;
+            if (IsValid(src.First, src.Second) == false)
+            {
+                Debug.Log("Source: " + src.First + "; " + src.Second);
+                Debug.Log("Source is invalid\n");
+                return false;
+            }
+
+            if (IsUnBlocked(grid, src.First, src.Second) == false || IsUnBlocked(grid, dest.First, dest.Second) == false)
+            {
+                Debug.Log("Source or the destination is blocked\n");
+                return false;
+            }
+
+            if (IsDestination(src.First, src.Second, dest) == true)
+            {
+                Debug.Log("We are already at the destination\n");
+                return false;
+            }
         }
 
         // If the destination is out of range 
@@ -453,347 +479,336 @@ public class Pathfinder
             return false;
         }
 
-        // Either the source or the destination is blocked 
-        if (IsUnBlocked(grid, src.First, src.Second) == false ||
-                IsUnBlocked(grid, dest.First, dest.Second) == false)
+        foreach (var src in srcs)
         {
-            Debug.Log("Source or the destination is blocked\n");
-            return false;
-        }
+            // Create a closed list and initialise it to false which means 
+            // that no cell has been included yet 
+            // This closed list is implemented as a boolean 2D array 
+            bool[,] closedList = new bool[ROW, COL];
 
-        // If the destination cell is the same as source cell 
-        if (IsDestination(src.First, src.Second, dest) == true)
-        {
-            Debug.Log("We are already at the destination\n");
-            return false;
-        }
+            // Declare a 2D array of structure to hold the details 
+            //of that cell 
+            Cell[,] cellDetails = new Cell[ROW, COL];
 
-        // Create a closed list and initialise it to false which means 
-        // that no cell has been included yet 
-        // This closed list is implemented as a boolean 2D array 
-        bool [,] closedList = new bool[ROW, COL];
+            int i, j;
 
-        // Declare a 2D array of structure to hold the details 
-        //of that cell 
-        Cell[,] cellDetails = new Cell[ROW, COL]; 
-  
-        int i, j; 
-  
-        for (i=0; i<ROW; i++) 
-        { 
-            for (j=0; j<COL; j++) 
-            { 
-                cellDetails[i, j].f = double.MaxValue; 
-                cellDetails[i, j].g = double.MaxValue; 
-                cellDetails[i, j].h = double.MaxValue; 
-                cellDetails[i, j].parent_i = -1; 
-                cellDetails[i, j].parent_j = -1; 
-            } 
-        }
-
-        // Initialising the parameters of the starting node 
-        i = src.First;
-        j = src.Second; 
-        cellDetails[i, j].f = 0.0f; 
-        cellDetails[i, j].g = 0.0f; 
-        cellDetails[i, j].h = 0.0f; 
-        cellDetails[i, j].parent_i = i; 
-        cellDetails[i, j].parent_j = j;
-
-        /* 
-         Create an open list having information as- 
-         <f, <i, j>> 
-         where f = g + h, 
-         and i, j are the row and column index of that cell 
-         Note that 0 <= i <= ROW-1 & 0 <= j <= COL-1 
-         This open list is implenented as a set of pair of pair.*/
-        List<Pair<double, Pair<int, int>>> openList = new List<Pair<double, Pair<int, int>>>();
-
-        // Put the starting cell on the open list and set its 
-        // 'f' as 0
-        openList.Add(new Pair<double, Pair<int, int>>(0.0f, new Pair<int, int>(i, j))); 
-  
-        while (openList.Count != 0) 
-        {
-            Pair<double, Pair<int, int>> p = openList[0];
-
-            // Remove this vertex from the open list 
-            openList.Remove(openList[0]);
-  
-            // Add this vertex to the closed list 
-            i = p.Second.First; 
-            j = p.Second.Second; 
-            closedList[i, j] = true; 
-       
-           /* 
-            Generating all the 8 successor of this cell 
-  
-                N.W   N   N.E 
-                  \   |   / 
-                   \  |  / 
-                W----Cell----E 
-                     / | \ 
-                   /   |  \ 
-                S.W    S   S.E 
-  
-            Cell-->Popped Cell (i, j) 
-            N -->  North       (i-1, j) 
-            S -->  South       (i+1, j) 
-            E -->  East        (i, j+1) 
-            W -->  West           (i, j-1) 
-            N.E--> North-East  (i-1, j+1) 
-            N.W--> North-West  (i-1, j-1) 
-            S.E--> South-East  (i+1, j+1) 
-            S.W--> South-West  (i+1, j-1)*/
-  
-            // To store the 'g', 'h' and 'f' of the 8 successors 
-            double gNew, hNew, fNew;
-
-            //-----------(North) ------------
-            if (IsValid(i - 1, j) == true)
+            for (i = 0; i < ROW; i++)
             {
-                if (IsDestination(i - 1, j, dest) == true)
+                for (j = 0; j < COL; j++)
                 {
-                    cellDetails[i - 1, j].parent_i = i;
-                    cellDetails[i - 1, j].parent_j = j;
-                    return true;
+                    cellDetails[i, j].f = double.MaxValue;
+                    cellDetails[i, j].g = double.MaxValue;
+                    cellDetails[i, j].h = double.MaxValue;
+                    cellDetails[i, j].parent_i = -1;
+                    cellDetails[i, j].parent_j = -1;
                 }
-                else if (closedList[i - 1, j] == false && IsUnBlocked(grid, i - 1, j) == true)
+            }
+
+
+
+            // Initialising the parameters of the starting node 
+            i = src.First;
+            j = src.Second;
+            cellDetails[i, j].f = 0.0f;
+            cellDetails[i, j].g = 0.0f;
+            cellDetails[i, j].h = 0.0f;
+            cellDetails[i, j].parent_i = i;
+            cellDetails[i, j].parent_j = j;
+
+            /* 
+             Create an open list having information as- 
+             <f, <i, j>> 
+             where f = g + h, 
+             and i, j are the row and column index of that cell 
+             Note that 0 <= i <= ROW-1 & 0 <= j <= COL-1 
+             This open list is implenented as a set of pair of pair.*/
+            List<Pair<double, Pair<int, int>>> openList = new List<Pair<double, Pair<int, int>>>();
+
+            // Put the starting cell on the open list and set its 
+            // 'f' as 0
+            openList.Add(new Pair<double, Pair<int, int>>(0.0f, new Pair<int, int>(i, j)));
+
+            while (openList.Count != 0)
+            {
+                Pair<double, Pair<int, int>> p = openList[0];
+
+                // Remove this vertex from the open list 
+                openList.Remove(openList[0]);
+
+                // Add this vertex to the closed list 
+                i = p.Second.First;
+                j = p.Second.Second;
+                closedList[i, j] = true;
+
+                /* 
+                 Generating all the 8 successor of this cell 
+
+                     N.W   N   N.E 
+                       \   |   / 
+                        \  |  / 
+                     W----Cell----E 
+                          / | \ 
+                        /   |  \ 
+                     S.W    S   S.E 
+
+                 Cell-->Popped Cell (i, j) 
+                 N -->  North       (i-1, j) 
+                 S -->  South       (i+1, j) 
+                 E -->  East        (i, j+1) 
+                 W -->  West           (i, j-1) 
+                 N.E--> North-East  (i-1, j+1) 
+                 N.W--> North-West  (i-1, j-1) 
+                 S.E--> South-East  (i+1, j+1) 
+                 S.W--> South-West  (i+1, j-1)*/
+
+                // To store the 'g', 'h' and 'f' of the 8 successors 
+                double gNew, hNew, fNew;
+
+                //-----------(North) ------------
+                if (IsValid(i - 1, j) == true)
                 {
-                    gNew = cellDetails[i, j].g + 1.0;
-                    hNew = CalculateHValue(i - 1, j, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i - 1, j].f == double.MaxValue ||
-                            cellDetails[i - 1, j].f > fNew)
+                    if (IsDestination(i - 1, j, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i - 1, j)));
-
-                        cellDetails[i - 1, j].f = fNew;
-                        cellDetails[i - 1, j].g = gNew;
-                        cellDetails[i - 1, j].h = hNew;
                         cellDetails[i - 1, j].parent_i = i;
                         cellDetails[i - 1, j].parent_j = j;
+                        return true;
+                    }
+                    else if (closedList[i - 1, j] == false && IsUnBlocked(grid, i - 1, j) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.0;
+                        hNew = CalculateHValue(i - 1, j, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i - 1, j].f == double.MaxValue ||
+                                cellDetails[i - 1, j].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i - 1, j)));
+
+                            cellDetails[i - 1, j].f = fNew;
+                            cellDetails[i - 1, j].g = gNew;
+                            cellDetails[i - 1, j].h = hNew;
+                            cellDetails[i - 1, j].parent_i = i;
+                            cellDetails[i - 1, j].parent_j = j;
+                        }
                     }
                 }
-            }
 
-            //-----------(South) ------------
-            if (IsValid(i + 1, j) == true)
-            {
-                if (IsDestination(i + 1, j, dest) == true)
+                //-----------(South) ------------
+                if (IsValid(i + 1, j) == true)
                 {
-                    cellDetails[i + 1, j].parent_i = i;
-                    cellDetails[i + 1, j].parent_j = j;
-                    return true;
-                }
-                else if (closedList[i + 1, j] == false &&
-                         IsUnBlocked(grid, i + 1, j) == true)
-                {
-                    gNew = cellDetails[i, j].g + 1.0;
-                    hNew = CalculateHValue(i + 1, j, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i + 1, j].f == double.MaxValue ||
-                            cellDetails[i + 1, j].f > fNew)
+                    if (IsDestination(i + 1, j, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i + 1, j)));
-                        cellDetails[i + 1, j].f = fNew;
-                        cellDetails[i + 1, j].g = gNew;
-                        cellDetails[i + 1, j].h = hNew;
                         cellDetails[i + 1, j].parent_i = i;
                         cellDetails[i + 1, j].parent_j = j;
+                        return true;
+                    }
+                    else if (closedList[i + 1, j] == false &&
+                             IsUnBlocked(grid, i + 1, j) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.0;
+                        hNew = CalculateHValue(i + 1, j, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i + 1, j].f == double.MaxValue ||
+                                cellDetails[i + 1, j].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i + 1, j)));
+                            cellDetails[i + 1, j].f = fNew;
+                            cellDetails[i + 1, j].g = gNew;
+                            cellDetails[i + 1, j].h = hNew;
+                            cellDetails[i + 1, j].parent_i = i;
+                            cellDetails[i + 1, j].parent_j = j;
+                        }
                     }
                 }
-            }
 
-            //-----------(East) ------------
-            if (IsValid(i, j + 1) == true)
-            {
-                if (IsDestination(i, j + 1, dest) == true)
+                //-----------(East) ------------
+                if (IsValid(i, j + 1) == true)
                 {
-                    cellDetails[i, j + 1].parent_i = i;
-                    cellDetails[i, j + 1].parent_j = j;
-                    return true;
-                }
-
-                else if (closedList[i, j + 1] == false &&
-                         IsUnBlocked(grid, i, j + 1) == true)
-                {
-                    gNew = cellDetails[i, j].g + 1.0;
-                    hNew = CalculateHValue(i, j + 1, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i, j + 1].f == double.MaxValue ||
-                            cellDetails[i, j + 1].f > fNew)
+                    if (IsDestination(i, j + 1, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew,
-                                           new Pair<int, int>(i, j + 1)));
-
-                        cellDetails[i, j + 1].f = fNew;
-                        cellDetails[i, j + 1].g = gNew;
-                        cellDetails[i, j + 1].h = hNew;
                         cellDetails[i, j + 1].parent_i = i;
                         cellDetails[i, j + 1].parent_j = j;
+                        return true;
+                    }
+
+                    else if (closedList[i, j + 1] == false &&
+                             IsUnBlocked(grid, i, j + 1) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.0;
+                        hNew = CalculateHValue(i, j + 1, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i, j + 1].f == double.MaxValue ||
+                                cellDetails[i, j + 1].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew,
+                                               new Pair<int, int>(i, j + 1)));
+
+                            cellDetails[i, j + 1].f = fNew;
+                            cellDetails[i, j + 1].g = gNew;
+                            cellDetails[i, j + 1].h = hNew;
+                            cellDetails[i, j + 1].parent_i = i;
+                            cellDetails[i, j + 1].parent_j = j;
+                        }
                     }
                 }
-            }
 
-            //-----------(West) ------------
-            if (IsValid(i, j - 1) == true)
-            {
-                if (IsDestination(i, j - 1, dest) == true)
+                //-----------(West) ------------
+                if (IsValid(i, j - 1) == true)
                 {
-                    cellDetails[i, j - 1].parent_i = i;
-                    cellDetails[i, j - 1].parent_j = j;
-                    return true;
-                }
-
-                else if (closedList[i, j - 1] == false &&
-                         IsUnBlocked(grid, i, j - 1) == true)
-                {
-                    gNew = cellDetails[i, j].g + 1.0;
-                    hNew = CalculateHValue(i, j - 1, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i, j - 1].f == double.MaxValue ||
-                            cellDetails[i, j - 1].f > fNew)
+                    if (IsDestination(i, j - 1, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i, j - 1)));
-
-                        cellDetails[i, j - 1].f = fNew;
-                        cellDetails[i, j - 1].g = gNew;
-                        cellDetails[i, j - 1].h = hNew;
                         cellDetails[i, j - 1].parent_i = i;
                         cellDetails[i, j - 1].parent_j = j;
+                        return true;
+                    }
+
+                    else if (closedList[i, j - 1] == false &&
+                             IsUnBlocked(grid, i, j - 1) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.0;
+                        hNew = CalculateHValue(i, j - 1, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i, j - 1].f == double.MaxValue ||
+                                cellDetails[i, j - 1].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i, j - 1)));
+
+                            cellDetails[i, j - 1].f = fNew;
+                            cellDetails[i, j - 1].g = gNew;
+                            cellDetails[i, j - 1].h = hNew;
+                            cellDetails[i, j - 1].parent_i = i;
+                            cellDetails[i, j - 1].parent_j = j;
+                        }
                     }
                 }
-            }
 
-            //-----------(North-East) ------------
-            if (IsValid(i - 1, j + 1) == true && !IsBlocked(i - 1, j) && !IsBlocked(i, j + 1))
-            {
-                if (IsDestination(i - 1, j + 1, dest) == true)
+                //-----------(North-East) ------------
+                if (IsValid(i - 1, j + 1) == true && !IsBlocked(i - 1, j) && !IsBlocked(i, j + 1))
                 {
-                    cellDetails[i - 1, j + 1].parent_i = i;
-                    cellDetails[i - 1, j + 1].parent_j = j;
-                    return true;
-                }
-
-                else if (closedList[i - 1, j + 1] == false &&
-                         IsUnBlocked(grid, i - 1, j + 1) == true)
-                {
-                    gNew = cellDetails[i, j].g + 1.414;
-                    hNew = CalculateHValue(i - 1, j + 1, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i - 1, j + 1].f == double.MaxValue ||
-                            cellDetails[i - 1, j + 1].f > fNew)
+                    if (IsDestination(i - 1, j + 1, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew,
-                                       new Pair<int, int>(i - 1, j + 1)));
-
-                        cellDetails[i - 1, j + 1].f = fNew;
-                        cellDetails[i - 1, j + 1].g = gNew;
-                        cellDetails[i - 1, j + 1].h = hNew;
                         cellDetails[i - 1, j + 1].parent_i = i;
                         cellDetails[i - 1, j + 1].parent_j = j;
+                        return true;
+                    }
+
+                    else if (closedList[i - 1, j + 1] == false &&
+                             IsUnBlocked(grid, i - 1, j + 1) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.414;
+                        hNew = CalculateHValue(i - 1, j + 1, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i - 1, j + 1].f == double.MaxValue ||
+                                cellDetails[i - 1, j + 1].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew,
+                                           new Pair<int, int>(i - 1, j + 1)));
+
+                            cellDetails[i - 1, j + 1].f = fNew;
+                            cellDetails[i - 1, j + 1].g = gNew;
+                            cellDetails[i - 1, j + 1].h = hNew;
+                            cellDetails[i - 1, j + 1].parent_i = i;
+                            cellDetails[i - 1, j + 1].parent_j = j;
+                        }
                     }
                 }
-            }
 
-            //-----------(North-West) ------------
-            if (IsValid(i - 1, j - 1) == true && !IsBlocked(i - 1, j) && !IsBlocked(i, j - 1))
-            {
-                if (IsDestination(i - 1, j - 1, dest) == true)
+                //-----------(North-West) ------------
+                if (IsValid(i - 1, j - 1) == true && !IsBlocked(i - 1, j) && !IsBlocked(i, j - 1))
                 {
-                    cellDetails[i - 1, j - 1].parent_i = i;
-                    cellDetails[i - 1, j - 1].parent_j = j;
-                    return true;
-                }
-                else if (closedList[i - 1, j - 1] == false &&
-                         IsUnBlocked(grid, i - 1, j - 1) == true)
-                {
-                    gNew = cellDetails[i, j].g + 1.414;
-                    hNew = CalculateHValue(i - 1, j - 1, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i - 1, j - 1].f == double.MaxValue ||
-                            cellDetails[i - 1, j - 1].f > fNew)
+                    if (IsDestination(i - 1, j - 1, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i - 1, j - 1)));
-                        cellDetails[i - 1, j - 1].f = fNew;
-                        cellDetails[i - 1, j - 1].g = gNew;
-                        cellDetails[i - 1, j - 1].h = hNew;
                         cellDetails[i - 1, j - 1].parent_i = i;
                         cellDetails[i - 1, j - 1].parent_j = j;
+                        return true;
+                    }
+                    else if (closedList[i - 1, j - 1] == false &&
+                             IsUnBlocked(grid, i - 1, j - 1) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.414;
+                        hNew = CalculateHValue(i - 1, j - 1, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i - 1, j - 1].f == double.MaxValue ||
+                                cellDetails[i - 1, j - 1].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew, new Pair<int, int>(i - 1, j - 1)));
+                            cellDetails[i - 1, j - 1].f = fNew;
+                            cellDetails[i - 1, j - 1].g = gNew;
+                            cellDetails[i - 1, j - 1].h = hNew;
+                            cellDetails[i - 1, j - 1].parent_i = i;
+                            cellDetails[i - 1, j - 1].parent_j = j;
+                        }
                     }
                 }
-            }
 
-            //-----------(South-East) ------------
-            if (IsValid(i + 1, j + 1) == true && !IsBlocked(i + 1, j) && !IsBlocked(i, j + 1))
-            {
-                if (IsDestination(i + 1, j + 1, dest) == true)
+                //-----------(South-East) ------------
+                if (IsValid(i + 1, j + 1) == true && !IsBlocked(i + 1, j) && !IsBlocked(i, j + 1))
                 {
-                    cellDetails[i + 1, j + 1].parent_i = i;
-                    cellDetails[i + 1, j + 1].parent_j = j;
-                    return true;
-                }
-                else if (closedList[i + 1, j + 1] == false &&
-                         IsUnBlocked(grid, i + 1, j + 1) == true)
-                {
-                    gNew = cellDetails[i, j].g + 1.414;
-                    hNew = CalculateHValue(i + 1, j + 1, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i + 1, j + 1].f == double.MaxValue ||
-                            cellDetails[i + 1, j + 1].f > fNew)
+                    if (IsDestination(i + 1, j + 1, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew,
-                                            new Pair<int, int>(i + 1, j + 1)));
-
-                        cellDetails[i + 1, j + 1].f = fNew;
-                        cellDetails[i + 1, j + 1].g = gNew;
-                        cellDetails[i + 1, j + 1].h = hNew;
                         cellDetails[i + 1, j + 1].parent_i = i;
                         cellDetails[i + 1, j + 1].parent_j = j;
+                        return true;
+                    }
+                    else if (closedList[i + 1, j + 1] == false &&
+                             IsUnBlocked(grid, i + 1, j + 1) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.414;
+                        hNew = CalculateHValue(i + 1, j + 1, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i + 1, j + 1].f == double.MaxValue ||
+                                cellDetails[i + 1, j + 1].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew,
+                                                new Pair<int, int>(i + 1, j + 1)));
+
+                            cellDetails[i + 1, j + 1].f = fNew;
+                            cellDetails[i + 1, j + 1].g = gNew;
+                            cellDetails[i + 1, j + 1].h = hNew;
+                            cellDetails[i + 1, j + 1].parent_i = i;
+                            cellDetails[i + 1, j + 1].parent_j = j;
+                        }
                     }
                 }
-            }
 
-            //-----------(South-West) ------------
-            if (IsValid(i + 1, j - 1) == true && !IsBlocked(i + 1, j) && !IsBlocked(i, j - 1))
-            {
-                if (IsDestination(i + 1, j - 1, dest) == true)
+                //-----------(South-West) ------------
+                if (IsValid(i + 1, j - 1) == true && !IsBlocked(i + 1, j) && !IsBlocked(i, j - 1))
                 {
-                    cellDetails[i + 1, j - 1].parent_i = i;
-                    cellDetails[i + 1, j - 1].parent_j = j;
-                    return true;
-                }
-                else if (closedList[i + 1, j - 1] == false &&
-                         IsUnBlocked(grid, i + 1, j - 1) == true)
-                {
-                    gNew = cellDetails[i, j].g + 1.414;
-                    hNew = CalculateHValue(i + 1, j - 1, dest);
-                    fNew = gNew + hNew;
-
-                    if (cellDetails[i + 1, j - 1].f == double.MaxValue ||
-                            cellDetails[i + 1, j - 1].f > fNew)
+                    if (IsDestination(i + 1, j - 1, dest) == true)
                     {
-                        openList.Add(new Pair<double, Pair<int, int>>(fNew,
-                                            new Pair<int, int>(i + 1, j - 1)));
-
-                        cellDetails[i + 1, j - 1].f = fNew;
-                        cellDetails[i + 1, j - 1].g = gNew;
-                        cellDetails[i + 1, j - 1].h = hNew;
                         cellDetails[i + 1, j - 1].parent_i = i;
                         cellDetails[i + 1, j - 1].parent_j = j;
+                        return true;
+                    }
+                    else if (closedList[i + 1, j - 1] == false &&
+                             IsUnBlocked(grid, i + 1, j - 1) == true)
+                    {
+                        gNew = cellDetails[i, j].g + 1.414;
+                        hNew = CalculateHValue(i + 1, j - 1, dest);
+                        fNew = gNew + hNew;
+
+                        if (cellDetails[i + 1, j - 1].f == double.MaxValue ||
+                                cellDetails[i + 1, j - 1].f > fNew)
+                        {
+                            openList.Add(new Pair<double, Pair<int, int>>(fNew,
+                                                new Pair<int, int>(i + 1, j - 1)));
+
+                            cellDetails[i + 1, j - 1].f = fNew;
+                            cellDetails[i + 1, j - 1].g = gNew;
+                            cellDetails[i + 1, j - 1].h = hNew;
+                            cellDetails[i + 1, j - 1].parent_i = i;
+                            cellDetails[i + 1, j - 1].parent_j = j;
+                        }
                     }
                 }
             }
-        } 
-  
+        }
         return false; 
     } 
 }

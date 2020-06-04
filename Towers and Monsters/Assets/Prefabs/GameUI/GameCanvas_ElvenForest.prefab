@@ -8191,6 +8191,24 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 114721936059239414, guid: a08c44c62f698c74f94d95697f0b8f83,
+        type: 3}
+      propertyPath: m_SpriteState.m_HighlightedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 69ba39d5c2dc5544aaf8ad697cfb3fcd,
+        type: 3}
+    - target: {fileID: 114721936059239414, guid: a08c44c62f698c74f94d95697f0b8f83,
+        type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 48149561e43fadd47bafce0f9da329c8,
+        type: 3}
+    - target: {fileID: 114721936059239414, guid: a08c44c62f698c74f94d95697f0b8f83,
+        type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: aec8536b66e14f6488d48f30f1dd18c2,
+        type: 3}
     - target: {fileID: 224993813805065734, guid: a08c44c62f698c74f94d95697f0b8f83,
         type: 3}
       propertyPath: m_LocalPosition.x
