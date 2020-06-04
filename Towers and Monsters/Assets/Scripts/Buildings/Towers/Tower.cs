@@ -30,8 +30,8 @@ public class Tower : MonoBehaviour
 
     #region SerializableVariables
 
-    [SerializeField] private Transform health;
-    [SerializeField] private Transform progress;
+    [SerializeField] private Transform health = null;
+    [SerializeField] private Transform progress = null;
 
     #endregion
 

@@ -5,6 +5,7 @@ public class Informations : MonoBehaviour
 {
     [SerializeField] private EnemyInfo _enemyInfo = null;
     [SerializeField] private TowerInfo _towerInfo = null;
+    [SerializeField] private WallInfo _wallInfo = null;
 
     [SerializeField] private GameObject _selectedEnemy = null;
     [SerializeField] private GameObject _selectedTower = null;
@@ -39,13 +40,21 @@ public class Informations : MonoBehaviour
         public bool _isUpgrade;
     };
 
+    public struct WallData
+    {
+        public int _hp;
+        public int _sell;
+    };
+
     private Enemy _enemy = null;
     private Tower _tower = null;
+    private Wall _wall = null;
 
     private void Awake()
     {
         _enemyInfo.gameObject.SetActive(false);
         _towerInfo.gameObject.SetActive(false);
+        _wallInfo.gameObject.SetActive(false);
         _background.SetActive(false);
         _camera = Camera.main;
         if (Instance != null)
@@ -67,7 +76,7 @@ public class Informations : MonoBehaviour
 
                 if (Physics.Raycast(ray, out var click, 1000))
                 {
-                    if (!click.collider.CompareTag("Tower") && !click.collider.CompareTag("Enemy"))
+                    if (!click.collider.CompareTag("Tower") && !click.collider.CompareTag("Enemy") && !click.collider.CompareTag("Wall"))
                         ResetSelected();
                 }
             }
@@ -80,10 +89,14 @@ public class Informations : MonoBehaviour
             _enemy.IsSelected(null);
         if (_tower != null)
             _tower.IsSelected(null);
+        if (_wall != null)
+            _wall.IsSelected = false;
         _enemy = null;
         _tower = null;
+        _wall = null;
         _enemyInfo.gameObject.SetActive(false);
         _towerInfo.gameObject.SetActive(false);
+        _wallInfo.gameObject.SetActive(false);
         _background.SetActive(false);
     }
 
@@ -95,7 +108,6 @@ public class Informations : MonoBehaviour
         _tower.IsSelected(_selectedTower);
         _background.SetActive(true);
         _towerInfo.gameObject.SetActive(true);
-        _enemyInfo.gameObject.SetActive(false);
         _towerInfo.SetInformations(data);
         _towerInfo.SetListener(_tower);
     }
@@ -108,7 +120,18 @@ public class Informations : MonoBehaviour
         enemy.IsSelected(_selectedEnemy);
         _background.SetActive(true);
         _enemyInfo.gameObject.SetActive(true);
-        _towerInfo.gameObject.SetActive(false);
         _enemyInfo.SetInformations(data);
+    }
+
+    public void SetInformations(WallData data, Wall wall)
+    {
+        ResetSelected();
+
+        _wall = wall;
+        _wall.IsSelected = true;
+        _background.SetActive(true);
+        _wallInfo.gameObject.SetActive(true);
+        _wallInfo.SetInformations(data);
+        _wallInfo.SetListener(wall);
     }
 }
