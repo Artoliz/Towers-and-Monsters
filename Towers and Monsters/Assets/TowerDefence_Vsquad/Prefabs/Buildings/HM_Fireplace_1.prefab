@@ -9410,7 +9410,6 @@ GameObject:
   - component: {fileID: 4509488341687696}
   - component: {fileID: 33084879698986256}
   - component: {fileID: 23804236818501550}
-  - component: {fileID: 208793995424684628}
   m_Layer: 0
   m_Name: HM_Fireplace_1
   m_TagString: Untagged
@@ -9479,22 +9478,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208793995424684628
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185192345492324}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.20950003, y: 0.1295, z: 0.2115}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.24000001, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &1245889445470180
 GameObject:
   m_ObjectHideFlags: 0

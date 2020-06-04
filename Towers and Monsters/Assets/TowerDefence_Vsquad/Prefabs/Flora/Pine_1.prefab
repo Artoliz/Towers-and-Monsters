@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4401475785150450}
   - component: {fileID: 33755409136317494}
   - component: {fileID: 23522013619003126}
-  - component: {fileID: 208706210593005778}
   m_Layer: 0
   m_Name: Pine_1
   m_TagString: Untagged
@@ -79,22 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208706210593005778
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065814053898474}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.201, y: 0.846, z: 0.218}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.013, y: 1.692, z: 0.185}
-  m_TimeToStationary: 0.5
 --- !u!1 &3179206595382082820
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4568096586313202}
   - component: {fileID: 33976791060122370}
   - component: {fileID: 23493448277253692}
-  - component: {fileID: 208930926439166212}
   m_Layer: 0
   m_Name: Herb_1
   m_TagString: Untagged
@@ -79,22 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208930926439166212
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784976980060548}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.3385, y: 0.1835, z: 0.3295}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.367, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &5979583244129654496
 GameObject:
   m_ObjectHideFlags: 0

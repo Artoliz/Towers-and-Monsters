@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4097108649076150}
   - component: {fileID: 33831201617585536}
   - component: {fileID: 23193379682783512}
-  - component: {fileID: 208092885533789680}
   m_Layer: 0
   m_Name: Plum_1
   m_TagString: Untagged
@@ -80,22 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208092885533789680
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289622858204024}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.3785, y: 0.7205, z: 0.379}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.34100002, y: 1.4410001, z: -0.068}
-  m_TimeToStationary: 0.5
 --- !u!1 &8857938741689845675
 GameObject:
   m_ObjectHideFlags: 0

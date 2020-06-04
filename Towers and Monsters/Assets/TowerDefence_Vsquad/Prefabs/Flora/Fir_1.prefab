@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4910935252695700}
   - component: {fileID: 33447998614130956}
   - component: {fileID: 23939376970095116}
-  - component: {fileID: 208377890938643402}
   m_Layer: 0
   m_Name: Fir_1
   m_TagString: Untagged
@@ -79,22 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208377890938643402
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614576269982228}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.4015, y: 0.6625, z: 0.4015}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 1.325, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &1262236067763974573
 GameObject:
   m_ObjectHideFlags: 0

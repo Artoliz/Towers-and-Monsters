@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4438059733177026}
   - component: {fileID: 33227568727382300}
   - component: {fileID: 23404536027396582}
-  - component: {fileID: 208496405052263710}
   m_Layer: 0
   m_Name: Palm_2
   m_TagString: Untagged
@@ -79,22 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208496405052263710
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1023326966304850}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5165, y: 0.6985, z: 0.4935}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.031000001, y: 1.396, z: 0.012}
-  m_TimeToStationary: 0.5
 --- !u!1 &7139951919133393172
 GameObject:
   m_ObjectHideFlags: 0

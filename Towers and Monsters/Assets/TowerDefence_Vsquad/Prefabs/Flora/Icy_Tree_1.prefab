@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4229991163287940}
   - component: {fileID: 33783688968574658}
   - component: {fileID: 23841663499357824}
-  - component: {fileID: 208713320235613110}
   m_Layer: 0
   m_Name: Icy_Tree_1
   m_TagString: Untagged
@@ -79,22 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208713320235613110
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731330607122444}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.4185, y: 0.857, z: 0.423}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.044000003, y: 1.7140001, z: 0.042000003}
-  m_TimeToStationary: 0.5
 --- !u!1 &1183738724823643876
 GameObject:
   m_ObjectHideFlags: 0

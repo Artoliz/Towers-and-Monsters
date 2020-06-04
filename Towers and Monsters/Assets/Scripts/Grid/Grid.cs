@@ -61,7 +61,7 @@ public class Grid : MonoBehaviour
     {
         var pos = new Vector2Int();
 
-        foreach (var child in obstacles.GetComponentsInChildren<NavMeshObstacle>())
+        foreach (var child in obstacles.GetComponentsInChildren<MeshRenderer>())
         {
             var pivot = child.gameObject.transform.Find("Pivot");
             if (pivot == null)

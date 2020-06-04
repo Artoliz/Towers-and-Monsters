@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4990005339550246}
   - component: {fileID: 33945895038308854}
   - component: {fileID: 23023865924300874}
-  - component: {fileID: 208322356448699774}
   m_Layer: 0
   m_Name: Cactus_4
   m_TagString: Untagged
@@ -79,22 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208322356448699774
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293421683807582}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.301, y: 0.2435, z: 0.2955}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.48700002, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &2669113326447680890
 GameObject:
   m_ObjectHideFlags: 0

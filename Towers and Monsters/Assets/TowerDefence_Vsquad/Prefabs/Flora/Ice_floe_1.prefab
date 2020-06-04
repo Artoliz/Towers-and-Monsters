@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4723339224500808}
   - component: {fileID: 33253969540698760}
   - component: {fileID: 23948290264751182}
-  - component: {fileID: 208114032639917368}
   m_Layer: 0
   m_Name: Ice_floe_1
   m_TagString: Untagged
@@ -78,19 +77,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208114032639917368
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1500064574077266}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.302, y: 0.2815, z: 0.4795}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.563, z: 0}
-  m_TimeToStationary: 0.5

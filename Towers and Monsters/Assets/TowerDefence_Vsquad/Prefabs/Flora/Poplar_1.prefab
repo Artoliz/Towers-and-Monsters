@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4354419016877256}
   - component: {fileID: 33414567402110972}
   - component: {fileID: 23625583563823408}
-  - component: {fileID: 208126120279099934}
   m_Layer: 0
   m_Name: Poplar_1
   m_TagString: Untagged
@@ -79,22 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208126120279099934
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1231882954553054}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.24900003, y: 0.703, z: 0.24900003}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.007, y: 1.406, z: 0.007}
-  m_TimeToStationary: 0.5
 --- !u!1 &8660566091383823340
 GameObject:
   m_ObjectHideFlags: 0

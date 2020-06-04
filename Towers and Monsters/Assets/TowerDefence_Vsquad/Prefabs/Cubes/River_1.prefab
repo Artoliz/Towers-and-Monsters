@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4486890980582034}
   - component: {fileID: 33751938932725046}
   - component: {fileID: 23233223697007018}
-  - component: {fileID: 6739313822232846949}
   m_Layer: 0
   m_Name: River_1
   m_TagString: Untagged
@@ -79,22 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &6739313822232846949
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045405431152974}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.91200006, y: 0.91200006, z: 0.91200006}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.91200006, y: 0.91200006, z: -0.91200006}
-  m_TimeToStationary: 0.5
 --- !u!1 &867323193572953996
 GameObject:
   m_ObjectHideFlags: 0

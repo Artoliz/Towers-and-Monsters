@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4220053498130008}
   - component: {fileID: 33261329859949912}
   - component: {fileID: 23427865271112306}
-  - component: {fileID: 208813724322066072}
   m_Layer: 0
   m_Name: Fir_snow_1b
   m_TagString: Untagged
@@ -79,22 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208813724322066072
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844892307199256}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.387, y: 0.6745, z: 0.351}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.036000002, y: 1.3490001, z: 0.019000001}
-  m_TimeToStationary: 0.5
 --- !u!1 &4366848750976757953
 GameObject:
   m_ObjectHideFlags: 0

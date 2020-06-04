@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4697145084396800}
   - component: {fileID: 33460568601118670}
   - component: {fileID: 23837704034407682}
-  - component: {fileID: 208370954621191556}
   m_Layer: 0
   m_Name: Logs_1
   m_TagString: Untagged
@@ -79,22 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208370954621191556
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1676385549797320}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.432, y: 0.1095, z: 0.481}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.186, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &7465494898654377787
 GameObject:
   m_ObjectHideFlags: 0

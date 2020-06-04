@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4719947686840408}
   - component: {fileID: 33866756669901328}
   - component: {fileID: 23965162363052772}
-  - component: {fileID: 208643767539492862}
   m_Layer: 0
   m_Name: Fungus_1
   m_TagString: Untagged
@@ -80,22 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208643767539492862
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030426156134270}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.351, y: 0.21, z: 0.349}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.36900002, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &4890584662630193999
 GameObject:
   m_ObjectHideFlags: 0

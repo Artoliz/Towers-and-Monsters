@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4413556822432548}
   - component: {fileID: 33697655486475224}
   - component: {fileID: 23533974716818088}
-  - component: {fileID: 208717602080292936}
   m_Layer: 0
   m_Name: FE_house_2
   m_TagString: Untagged
@@ -79,22 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208717602080292936
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1865263007356452}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.355, y: 0.463, z: 0.5215}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.92600006, z: 0.023000002}
-  m_TimeToStationary: 0.5
 --- !u!1 &3198057726218446431
 GameObject:
   m_ObjectHideFlags: 0

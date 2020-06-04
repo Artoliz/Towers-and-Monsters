@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4257522315091892}
   - component: {fileID: 33114124464282408}
   - component: {fileID: 23181910151280442}
-  - component: {fileID: 208032281865369626}
   m_Layer: 0
   m_Name: Deadwood_1
   m_TagString: Untagged
@@ -79,22 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208032281865369626
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060731535192158}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.2545, y: 0.672, z: 0.278}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 1.3440001, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &3866668890596235197
 GameObject:
   m_ObjectHideFlags: 0

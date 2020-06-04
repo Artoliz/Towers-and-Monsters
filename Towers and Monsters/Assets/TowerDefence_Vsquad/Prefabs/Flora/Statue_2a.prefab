@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4964568973032118}
   - component: {fileID: 33453732651748514}
   - component: {fileID: 23660828687973954}
-  - component: {fileID: 208850034801003372}
   m_Layer: 0
   m_Name: Statue_2a
   m_TagString: Untagged
@@ -79,22 +78,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!208 &208850034801003372
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289665648248026}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.2485, y: 0.581, z: 0.1965}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: -0.42200002, z: 0.354}
-  m_TimeToStationary: 0.5
 --- !u!1 &2874093879534635010
 GameObject:
   m_ObjectHideFlags: 0
