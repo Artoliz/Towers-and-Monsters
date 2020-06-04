@@ -387,5 +387,21 @@ public class Grid : MonoBehaviour
         return new Vector2Int(gridSizeX, gridSizeZ);
     }
 
+    public bool IsEnemyOnGrid(int x, int y)
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in enemies)
+        {
+            var xCount = Mathf.RoundToInt(enemy.transform.position.x / gridSpacingOffset);
+            var zCount = Mathf.RoundToInt(enemy.transform.position.z / gridSpacingOffset);
+
+            if (x == xCount && y == zCount)
+                return true;
+        }
+
+        return false;
+    }
+
     #endregion
 }

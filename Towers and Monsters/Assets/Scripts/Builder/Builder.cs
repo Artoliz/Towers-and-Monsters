@@ -179,6 +179,12 @@ public class Builder : MonoBehaviour
 
         var result = new Vector3(xCount * gridSpacingOffset, 0, zCount * gridSpacingOffset);
 
+        if (Grid.Instance.IsEnemyOnGrid(xCount, zCount))
+        {
+            DrawCannotBuildHere(result);
+            return;
+        }
+
         Grid.Instance._pathfinder.SetBlockedPosition(xCount, zCount);
 
         if (Grid.Instance._pathfinder.AStarSearch())
@@ -217,19 +223,18 @@ public class Builder : MonoBehaviour
         {
             Grid.Instance._pathfinder.RemoveBlockedPosition(xCount, zCount);
 
-            var spriteCannotBuild = result;
-            spriteCannotBuild.y = 0.005f;
-            var cannotBuildRotation = Quaternion.Euler(90, 0, 0);
-
-            var spriteCrossDelete = Instantiate(noBuildingPossible, spriteCannotBuild, cannotBuildRotation);
-            Destroy(spriteCrossDelete, spriteCrossDuration);
+            DrawCannotBuildHere(result);
         }
     }
 
-    private void DrawPathDebug()
+    private void DrawCannotBuildHere(Vector3 pos)
     {
-        for (int i = 0; i < _path.corners.Length - 1; i++)
-            Debug.DrawLine(_path.corners[i], _path.corners[i + 1], Color.red);
+        var spriteCannotBuild = pos;
+        spriteCannotBuild.y = 0.005f;
+        var cannotBuildRotation = Quaternion.Euler(90, 0, 0);
+
+        var spriteCrossDelete = Instantiate(noBuildingPossible, spriteCannotBuild, cannotBuildRotation);
+        Destroy(spriteCrossDelete, spriteCrossDuration);
     }
 
     #endregion
