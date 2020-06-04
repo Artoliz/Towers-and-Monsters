@@ -251,6 +251,9 @@ public class Tower : MonoBehaviour
             {
                 GameManager.Instance.RemoveGolds(this.repairCost);
                 hp = maxHp;
+                SetTowerData();
+                if (_selected != null)
+                    Informations.Instance.ResetSelected();
                 float currentSizeX = (hp * _maxSizeX) / maxHp;
                 progress.localScale = new Vector3(currentSizeX, _size.y, _size.z);
 
