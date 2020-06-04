@@ -28,6 +28,8 @@ public class Base : MonoBehaviour
 
     public static Base instance;
 
+    public Material[] hpColors;
+
     #endregion
 
     #region MonoBehavior
@@ -35,6 +37,7 @@ public class Base : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        progress.GetComponent<Renderer>().material = hpColors[0];
     }
 
     private void Start()
@@ -68,6 +71,13 @@ public class Base : MonoBehaviour
     public void LoseHealth(int damage)
     {
         baseHealth -= damage;
+
+        progress.GetComponent<Renderer>().material = hpColors[1];
+
+        if (_maxHealth / 2 >= baseHealth)
+            progress.GetComponent<Renderer>().material = hpColors[2];
+        if (_maxHealth / 4 >= baseHealth)
+            progress.GetComponent<Renderer>().material = hpColors[3];
 
         float currentSizeX = (baseHealth * _maxSizeX) / _maxHealth;
         progress.localScale = new Vector3(currentSizeX, _size.y, _size.z);
