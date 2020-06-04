@@ -72,7 +72,6 @@ public class Enemy : MonoBehaviour
 
         Vector2Int src = Grid.Instance.CalculatePositionInGrid(transform.position);
         Vector2Int dest = Grid.Instance.CalculatePositionInGrid(Base.transform.position);
-        _pathfinder.ClearSources();
         _pathfinder.SetDestination(dest.x, dest.y);
         _pathfinder.SetSource(src.x, src.y);
 
@@ -353,7 +352,6 @@ public class Enemy : MonoBehaviour
 
         Vector2Int src = Grid.Instance.CalculatePositionInGrid(transform.position);
         Vector2Int dest = Grid.Instance.CalculatePositionInGrid(Base.transform.position);
-        _pathfinder.ClearSources();
         _pathfinder.SetDestination(dest.x, dest.y);
         _pathfinder.SetSource(src.x, src.y);
 

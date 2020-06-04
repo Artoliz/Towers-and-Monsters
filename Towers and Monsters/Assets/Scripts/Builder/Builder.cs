@@ -187,43 +187,50 @@ public class Builder : MonoBehaviour
 
         Grid.Instance._pathfinder.SetBlockedPosition(xCount, zCount);
 
-        if (Grid.Instance._pathfinder.AStarSearch())
+        foreach (Transform spawn in Grid.Instance.spawns.transform)
         {
-            if (_gridObject.AppendElementInGrid(clickPoint, buildings[_buildingEnum]))
+            var childPos = spawn.position;
+
+            var posX = Mathf.RoundToInt(childPos.x / gridSpacingOffset);
+            var posY = Mathf.RoundToInt(childPos.z / gridSpacingOffset);
+
+            if (!Grid.Instance._pathfinder.AStarSearch(posX, posY))
             {
-                var tmpBuilding = Instantiate(buildings[_buildingEnum], result, Quaternion.identity);
+                Grid.Instance._pathfinder.RemoveBlockedPosition(xCount, zCount);
 
-                if (tmpBuilding != null)
-                {
-                    if ((tmpBuilding.GetComponentInChildren<Tower>() != null && tmpBuilding.GetComponentInChildren<Tower>().cost > GameManager.Instance.GetGolds()) ||
-                        (tmpBuilding.GetComponent<Wall>() != null && tmpBuilding.GetComponent<Wall>().cost > GameManager.Instance.GetGolds()))
-                    {
-                        StartCoroutine(GameManager.DisplayError("Not enough golds !"));
-                        _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
-                        Destroy(tmpBuilding);
-                    }
-                    else
-                    {
-                        if (tmpBuilding != null && tmpBuilding.GetComponentInChildren<Tower>() != null)
-                            GameManager.Instance.RemoveGolds(tmpBuilding.GetComponentInChildren<Tower>().cost);
-                        else if (tmpBuilding.GetComponent<Wall>() != null)
-                        {
-                            GameManager.Instance.RemoveGolds(tmpBuilding.GetComponent<Wall>().cost);
-                            tmpBuilding.GetComponent<Wall>().PlaceWallIntersections();
-                        }
-                        foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
-                            mesh.enabled = true;
-
-                        GameManager.Instance.ReDrawPathFindingForAll();
-                    }
-                }
+                DrawCannotBuildHere(result);
+                return;
             }
         }
-        else
-        {
-            Grid.Instance._pathfinder.RemoveBlockedPosition(xCount, zCount);
 
-            DrawCannotBuildHere(result);
+        if (_gridObject.AppendElementInGrid(clickPoint, buildings[_buildingEnum]))
+        {
+            var tmpBuilding = Instantiate(buildings[_buildingEnum], result, Quaternion.identity);
+
+            if (tmpBuilding != null)
+            {
+                if ((tmpBuilding.GetComponentInChildren<Tower>() != null && tmpBuilding.GetComponentInChildren<Tower>().cost > GameManager.Instance.GetGolds()) ||
+                    (tmpBuilding.GetComponent<Wall>() != null && tmpBuilding.GetComponent<Wall>().cost > GameManager.Instance.GetGolds()))
+                {
+                    StartCoroutine(GameManager.DisplayError("Not enough golds !"));
+                    _gridObject.RemoveElementInGrid(tmpBuilding.transform.position);
+                    Destroy(tmpBuilding);
+                }
+                else
+                {
+                    if (tmpBuilding != null && tmpBuilding.GetComponentInChildren<Tower>() != null)
+                        GameManager.Instance.RemoveGolds(tmpBuilding.GetComponentInChildren<Tower>().cost);
+                    else if (tmpBuilding.GetComponent<Wall>() != null)
+                    {
+                        GameManager.Instance.RemoveGolds(tmpBuilding.GetComponent<Wall>().cost);
+                        tmpBuilding.GetComponent<Wall>().PlaceWallIntersections();
+                    }
+                    foreach (var mesh in tmpBuilding.GetComponentsInChildren<MeshRenderer>())
+                        mesh.enabled = true;
+
+                    GameManager.Instance.ReDrawPathFindingForAll();
+                }
+            }
         }
     }
 

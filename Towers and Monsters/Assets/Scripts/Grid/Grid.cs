@@ -93,7 +93,7 @@ public class Grid : MonoBehaviour
             pos.y = Mathf.RoundToInt(childPos.z / gridSpacingOffset);
             _blockedPositions.Add(pos);
 
-            _pathfinder.SetSource(pos.x, pos.y);
+            //_pathfinder.SetSource(pos.x, pos.y);
 
             Vector2Int tmpPos;
             if (pos.x + 1 < gridSizeX)
