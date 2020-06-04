@@ -79,6 +79,9 @@ public class Builder : MonoBehaviour
                         PlaceBuildingOnGrid(click.point);
                     }
                 }
+            } else if (Input.GetMouseButtonDown(1) && _buildingEnum != Buildings.None)
+            {
+                _buildingEnum = Buildings.None;
             }
         }
     }
