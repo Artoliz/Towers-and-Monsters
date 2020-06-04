@@ -53,6 +53,8 @@ public class Tower : MonoBehaviour
 
     public int effectDammage;
 
+    public int sell;
+
     public float shootDelay;
 
     public bool catcher;
@@ -149,6 +151,7 @@ public class Tower : MonoBehaviour
         if (TowerData._hp < 0)
             TowerData._hp = 0;
 
+        SetTowerData();
         Informations.Instance.SetInformations(TowerData, this);
     }
 
@@ -200,6 +203,7 @@ public class Tower : MonoBehaviour
         TowerData._upgrade = this.upgradeCost;
         TowerData._damageToEnemy = this.dmg;
         TowerData._speedAttack = this.shootDelay;
+        TowerData._sell = (this.cost / 2) * (this.hp / this.maxHp);
     }
 
     #endregion
@@ -216,6 +220,7 @@ public class Tower : MonoBehaviour
                 GameObject tmp = Instantiate(upgradePrefab, transform.position, transform.rotation);
                 if (_selected != null)
                     Informations.Instance.ResetSelected();
+                tmp.GetComponent<Tower>().SetTowerData();
                 Informations.Instance.SetInformations(tmp.GetComponent<Tower>().TowerData, tmp.GetComponent<Tower>());
                 Destroy(this.gameObject);
             }
@@ -226,6 +231,7 @@ public class Tower : MonoBehaviour
 
     public void Destroy()
     {
+        GameManager.Instance.AddGolds((this.cost / 2) * (this.hp / this.maxHp));
         Informations.Instance.ResetSelected();
         Vector2Int posInGrid = Grid.Instance.CalculatePositionInGrid(this.transform.position);
         Grid.Instance._pathfinder.RemoveBlockedPosition(posInGrid.x, posInGrid.y);
@@ -280,7 +286,10 @@ public class Tower : MonoBehaviour
             TowerData._hp = hp;
 
         if (_selected != null)
+        {
+            SetTowerData();
             Informations.Instance.SetInformations(TowerData, this);
+        }
     }
 
     public void IsSelected(GameObject selected)

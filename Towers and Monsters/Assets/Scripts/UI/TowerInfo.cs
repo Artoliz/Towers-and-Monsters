@@ -17,6 +17,7 @@ public class TowerInfo : MonoBehaviour
         _unitUpgrade.GetComponentInChildren<Text>().text = data._upgrade.ToString();
         _unitDamageToEnemy.GetComponentInChildren<Text>().text = data._damageToEnemy.ToString();
         _unitSpeedAttack.GetComponentInChildren<Text>().text = data._speedAttack.ToString() + "/s";
+        _unitDestroy.GetComponentInChildren<Text>().text = "+" + data._sell.ToString();
     }
 
     public void SetListener(Tower tower)

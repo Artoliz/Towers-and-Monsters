@@ -9,6 +9,8 @@ public class Informations : MonoBehaviour
     [SerializeField] private GameObject _selectedEnemy = null;
     [SerializeField] private GameObject _selectedTower = null;
 
+    [SerializeField] private GameObject _background = null;
+
     private Camera _camera;
 
     public static Informations Instance = null;
@@ -28,6 +30,7 @@ public class Informations : MonoBehaviour
         public float _hp;
         public float _repair;
         public float _upgrade;
+        public float _sell;
         public float _damageToEnemy;
         public float _speedAttack;
     };
@@ -39,6 +42,7 @@ public class Informations : MonoBehaviour
     {
         _enemyInfo.gameObject.SetActive(false);
         _towerInfo.gameObject.SetActive(false);
+        _background.SetActive(false);
         _camera = Camera.main;
         if (Instance != null)
         {
@@ -76,6 +80,7 @@ public class Informations : MonoBehaviour
         _tower = null;
         _enemyInfo.gameObject.SetActive(false);
         _towerInfo.gameObject.SetActive(false);
+        _background.SetActive(false);
     }
 
     public void SetInformations(TowerData data, Tower tower)
@@ -84,6 +89,7 @@ public class Informations : MonoBehaviour
 
         _tower = tower;
         _tower.IsSelected(_selectedTower);
+        _background.SetActive(true);
         _towerInfo.gameObject.SetActive(true);
         _enemyInfo.gameObject.SetActive(false);
         _towerInfo.SetInformations(data);
@@ -96,6 +102,7 @@ public class Informations : MonoBehaviour
 
         _enemy = enemy;
         enemy.IsSelected(_selectedEnemy);
+        _background.SetActive(true);
         _enemyInfo.gameObject.SetActive(true);
         _towerInfo.gameObject.SetActive(false);
         _enemyInfo.SetInformations(data);
