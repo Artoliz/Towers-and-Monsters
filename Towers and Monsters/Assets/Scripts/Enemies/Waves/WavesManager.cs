@@ -83,7 +83,10 @@ public class WavesManager : MonoBehaviour
         else if (GameIsFinished && !PauseMenu.GameIsPaused)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                GameManager.Instance.SaveScore();
                 SceneManager.LoadScene("Menu");
+            }
         }
         else if (!GameIsFinished && !PauseMenu.GameIsPaused && GameIsBetweenWaves)
         {
