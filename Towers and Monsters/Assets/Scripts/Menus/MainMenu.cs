@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -65,6 +63,17 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(LoadLevel(levelName));
     }
 
+    public void SelectTutorialMenu()
+    {
+        foreach (GameObject menu in Menus)
+        {
+            if (menu.name == "TutorialMenu")
+                menu.SetActive(true);
+            else
+                menu.SetActive(false);
+        }
+    }
+
     public void SelectLevelSelectionMenu()
     {
         foreach (GameObject menu in Menus)
@@ -81,10 +90,7 @@ public class MainMenu : MonoBehaviour
         foreach (GameObject menu in Menus)
         {
             if (menu.name == "OptionMenu")
-            {
                 menu.SetActive(true);
-            }
-
             else
                 menu.SetActive(false);
         }

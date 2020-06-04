@@ -129,6 +129,7 @@
             <e p="GameOver.cs" t="Include" />
             <e p="Informations.cs" t="Include" />
             <e p="TowerInfo.cs" t="Include" />
+            <e p="WallInfo.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">
