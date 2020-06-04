@@ -28,11 +28,15 @@ public class Informations : MonoBehaviour
     public struct TowerData
     {
         public float _hp;
+        public float _maxHp;
         public float _repair;
         public float _upgrade;
         public float _sell;
         public float _damageToEnemy;
+        public float _damageEffect;
         public float _speedAttack;
+        public Tower.towerType _type;
+        public bool _isUpgrade;
     };
 
     private Enemy _enemy = null;

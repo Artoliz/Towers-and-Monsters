@@ -199,11 +199,17 @@ public class Tower : MonoBehaviour
     private void SetTowerData()
     {
         TowerData._hp = this.hp;
+        TowerData._maxHp = this.maxHp;
         TowerData._repair = this.repairCost;
         TowerData._upgrade = this.upgradeCost;
         TowerData._damageToEnemy = this.dmg;
         TowerData._speedAttack = this.shootDelay;
+        TowerData._damageEffect = this.effectDammage;
         TowerData._sell = (this.cost / 2) * (this.hp / this.maxHp);
+        TowerData._type = type;
+        TowerData._isUpgrade = true;
+        if (upgradePrefab == null)
+            TowerData._isUpgrade = false;
     }
 
     #endregion

@@ -9530,7 +9530,8 @@ MonoBehaviour:
   dmg: 0
   upgradeCost: 0
   repairCost: 675
-  effectDammage: 0
+  effectDammage: 20
+  sell: 0
   shootDelay: 0
   catcher: 0
   bullet: {fileID: 1992044473791348, guid: 3bc0c9ac423d7f8419c517d4debbf9ce, type: 3}

@@ -23612,6 +23612,7 @@ MonoBehaviour:
   upgradeCost: 900
   repairCost: 450
   effectDammage: 10
+  sell: 0
   shootDelay: 0
   catcher: 0
   bullet: {fileID: 1799868092786820, guid: ec2a62e297a992c4e8ff9af53ed82223, type: 3}

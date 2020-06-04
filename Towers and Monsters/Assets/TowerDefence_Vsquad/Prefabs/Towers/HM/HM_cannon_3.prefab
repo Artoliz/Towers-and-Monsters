@@ -240,12 +240,13 @@ MonoBehaviour:
   progress: {fileID: 3952868312732378335}
   type: 0
   cost: 0
-  hp: 300
-  maxHp: 300
+  hp: 400
+  maxHp: 400
   dmg: 200
   upgradeCost: 0
   repairCost: 300
   effectDammage: 0
+  sell: 0
   shootDelay: 1.5
   catcher: 0
   bullet: {fileID: 1882907469660978, guid: 1bc4254a63566e247bd1ae61640087ae, type: 3}
