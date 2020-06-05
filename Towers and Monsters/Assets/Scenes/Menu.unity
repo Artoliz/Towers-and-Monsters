@@ -1185,47 +1185,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2085055206}
     m_Modifications:
-    - target: {fileID: 208472968, guid: b7a569ac4d42bf346be1b228931b7d40, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 386468580, guid: b7a569ac4d42bf346be1b228931b7d40, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 590500953, guid: b7a569ac4d42bf346be1b228931b7d40, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 759829451, guid: b7a569ac4d42bf346be1b228931b7d40, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 942661061, guid: b7a569ac4d42bf346be1b228931b7d40, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1184198737, guid: b7a569ac4d42bf346be1b228931b7d40, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1359696474, guid: b7a569ac4d42bf346be1b228931b7d40, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1405245435, guid: b7a569ac4d42bf346be1b228931b7d40, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817144710, guid: b7a569ac4d42bf346be1b228931b7d40, type: 3}
-      propertyPath: m_Navigation.m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1677050779319049310, guid: b7a569ac4d42bf346be1b228931b7d40,
-        type: 3}
-      propertyPath: m_Name
-      value: TutorialButtonsPanel
-      objectReference: {fileID: 0}
     - target: {fileID: 2120150282169150850, guid: b7a569ac4d42bf346be1b228931b7d40,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1331,11 +1290,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 2513530157037211518, guid: b7a569ac4d42bf346be1b228931b7d40,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.39215687
-      objectReference: {fileID: 0}
     - target: {fileID: 3855374250061857588, guid: b7a569ac4d42bf346be1b228931b7d40,
         type: 3}
       propertyPath: m_Name
@@ -1345,11 +1299,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3953234919172779422, guid: b7a569ac4d42bf346be1b228931b7d40,
-        type: 3}
-      propertyPath: m_Name
-      value: HomeButton
       objectReference: {fileID: 0}
     - target: {fileID: 3984202633515504942, guid: b7a569ac4d42bf346be1b228931b7d40,
         type: 3}

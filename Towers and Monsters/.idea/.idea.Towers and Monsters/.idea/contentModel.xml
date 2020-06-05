@@ -117,6 +117,9 @@
           <e p="Menus" t="Include">
             <e p="MainMenu.cs" t="Include" />
             <e p="MenuController.cs" t="Include" />
+            <e p="Tutorial" t="Include">
+              <e p="TutorialSwitchPanels.cs" t="Include" />
+            </e>
           </e>
           <e p="PauseMenu" t="Include">
             <e p="PauseMenu.cs" t="Include" />
