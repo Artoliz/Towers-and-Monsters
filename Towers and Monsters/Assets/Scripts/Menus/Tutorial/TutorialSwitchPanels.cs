@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TutorialSwitchPanels : MonoBehaviour
@@ -23,6 +24,14 @@ public class TutorialSwitchPanels : MonoBehaviour
     private void OnEnable()
     {
         DisableAllPanels();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            DisableAllPanels();
+        }
     }
 
     #endregion
