@@ -7,6 +7,9 @@ public class Enemy : MonoBehaviour
 {
     #region PrivateVariables
 
+    [SerializeField] private GameObject healthBar;
+    [SerializeField] private Transform progress;
+    
     [SerializeField] private int enemyWeight = 1;
     [SerializeField] private int waveNumberApparition = 1;
 
@@ -28,6 +31,9 @@ public class Enemy : MonoBehaviour
 
     private GameObject _selected;
 
+    private float _maxSizeX;
+    private Vector3 _size;
+    
     #endregion
 
     #region ProtectedVariables
@@ -101,6 +107,12 @@ public class Enemy : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         SetAnimationsTimes();
+        
+        var localScale = progress.transform.localScale;
+        _maxSizeX = localScale.x;
+        _size = localScale;
+        
+        healthBar.SetActive(false);
     }
 
     protected virtual void Update()
@@ -152,6 +164,9 @@ public class Enemy : MonoBehaviour
                             _nextNode = _path.Pop();
                     }
                 }
+
+                if (healthBar.activeInHierarchy)
+                    healthBar.transform.LookAt(Camera.main.transform);
             }
         }
     }
@@ -381,6 +396,24 @@ public class Enemy : MonoBehaviour
 
         if (_selected != null)
             Informations.Instance.SetInformations(EnemyData, this);
+        
+        if (enemyHp < _maxHp)
+        {
+            if (healthBar.activeInHierarchy == false)
+                healthBar.SetActive(true);
+            
+            float currentSizeX = (enemyHp * _maxSizeX) / _maxHp;
+            progress.localScale = new Vector3(currentSizeX, _size.y, _size.z);
+
+            float currentPosX = -((_maxSizeX - currentSizeX) / 2.0f);
+            progress.localPosition = new Vector3(currentPosX, 0, 0);
+        }
+
+        if (enemyHp <= 0)
+        {
+            if (healthBar.activeInHierarchy == true)
+                healthBar.SetActive(false);
+        }
     }
 
     public void IsSelected(GameObject selected)
