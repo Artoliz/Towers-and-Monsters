@@ -80,13 +80,13 @@ public class TutorialSwitchPanels : MonoBehaviour
         if (_activePanel == 0)
         {
             _activePanel = tutorialPanels.Count - 1;
-            tutorialPanels[_activePanel].SetActive(true);
         }
         else
         {
             _activePanel -= 1;
-            tutorialPanels[_activePanel].SetActive(true);
         }
+        
+        tutorialPanels[_activePanel].SetActive(true);
     }
 
     public void GoNextPanel()
@@ -96,13 +96,13 @@ public class TutorialSwitchPanels : MonoBehaviour
         if (_activePanel == tutorialPanels.Count - 1)
         {
             _activePanel = 0;
-            tutorialPanels[_activePanel].SetActive(true);
         }
         else
         {
             _activePanel += 1;
-            tutorialPanels[_activePanel].SetActive(true);
         }
+        
+        tutorialPanels[_activePanel].SetActive(true);
     }
 
     #endregion
