@@ -553,7 +553,7 @@ MonoBehaviour:
   effectOfDeath: {fileID: 0}
   _IsOnEffect: 0
   _IsOnAOE: 0
-  reward: 100
+  reward: 50
   enemyHp: 100
   damageToBase: 75
   speed: 2.5

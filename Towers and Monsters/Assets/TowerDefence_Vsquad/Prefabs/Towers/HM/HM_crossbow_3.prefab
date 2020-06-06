@@ -134,7 +134,7 @@ MonoBehaviour:
   maxHp: 400
   dmg: 100
   upgradeCost: 0
-  repairCost: 150
+  repairCost: 300
   effectDammage: 0
   sell: 0
   shootDelay: 0.5
