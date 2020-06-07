@@ -78,6 +78,8 @@ public class Informations : MonoBehaviour
                 {
                     if (!click.collider.CompareTag("Tower") && !click.collider.CompareTag("Enemy") && !click.collider.CompareTag("Wall"))
                         ResetSelected();
+                    else
+                        Builder.Instance.SetBuildingEnum(Buildings.None);
                 }
             }
         }

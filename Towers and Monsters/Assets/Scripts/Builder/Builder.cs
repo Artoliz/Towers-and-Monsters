@@ -38,12 +38,16 @@ public class Builder : MonoBehaviour
 
     public static bool IsBuilding;
 
+    public static Builder Instance = null;
+
     #endregion
 
     #region MonoBehavior
 
     private void Awake()
     {
+        Instance = this;
+
         _camera = Camera.main;
         _isCameraNotNull = _camera != null;
 
@@ -244,5 +248,19 @@ public class Builder : MonoBehaviour
         Destroy(spriteCrossDelete, spriteCrossDuration);
     }
 
+    #endregion
+
+    #region PublicFunctions
+    
+    public void SetBuildingEnum(Buildings building)
+    {
+        _buildingEnum = building;
+    }
+
+    public Buildings GetBuildingEnum()
+    {
+        return _buildingEnum;
+    }
+    
     #endregion
 }
