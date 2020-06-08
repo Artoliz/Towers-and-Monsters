@@ -257,6 +257,7 @@ Transform:
   m_Children:
   - {fileID: 4397848839174146}
   - {fileID: 4608425180534442}
+  - {fileID: 6177257650350671991}
   m_Father: {fileID: 2659113209899780938}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1096,15 +1097,16 @@ MonoBehaviour:
   upgradeCost: 400
   repairCost: 150
   effectDammage: 0
+  sell: 0
   shootDelay: 1.75
   catcher: 0
-  bullet: {fileID: 0}
+  bullet: {fileID: 1768389422192202, guid: 587b566cc7c8c5049b6c73513c182be8, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
   healthBar: {fileID: 0}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
-  shootElement: {fileID: 0}
+  shootElement: {fileID: 6177257650350671991}
   upgradePrefab: {fileID: 1220684490399072, guid: 9d9a9a883afc17b4c8504fe7c8d9d3e3,
     type: 3}
   anim: {fileID: 0}
@@ -1716,6 +1718,36 @@ Transform:
   - {fileID: 4758364514137144}
   m_Father: {fileID: 4653383236461302}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3205765319347098674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6177257650350671991}
+  m_Layer: 10
+  m_Name: shootElement_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6177257650350671991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3205765319347098674}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.4257157, z: 0.597}
+  m_LocalScale: {x: 0.8499999, y: 0.8499999, z: 0.8499999}
+  m_Children: []
+  m_Father: {fileID: 4510662242872862}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3687813864752340474
 GameObject:

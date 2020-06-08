@@ -491,15 +491,16 @@ MonoBehaviour:
   upgradeCost: 200
   repairCost: 75
   effectDammage: 0
+  sell: 0
   shootDelay: 2
   catcher: 0
-  bullet: {fileID: 0}
+  bullet: {fileID: 1768389422192202, guid: 1cddec0a1adbc084a9f2b30bbac3d0ea, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
   healthBar: {fileID: 0}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
-  shootElement: {fileID: 0}
+  shootElement: {fileID: 1090972771373066729}
   upgradePrefab: {fileID: 1601685217413880, guid: 93378b58eee13a848929a8e8099c1329,
     type: 3}
   anim: {fileID: 0}
@@ -704,6 +705,7 @@ Transform:
   - {fileID: 4988362888373852}
   - {fileID: 4600363531593162}
   - {fileID: 4260186042753438}
+  - {fileID: 1090972771373066729}
   m_Father: {fileID: 5786146508823549590}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1226,6 +1228,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7301037010716139441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1090972771373066729}
+  m_Layer: 10
+  m_Name: shootElement_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1090972771373066729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7301037010716139441}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.254, z: 0.2910148}
+  m_LocalScale: {x: 1.0362651, y: 1.0362651, z: 1.0362651}
+  m_Children: []
+  m_Father: {fileID: 4040424570808892}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8227332017860384031
 GameObject:
   m_ObjectHideFlags: 0
