@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour
 {
     #region PrivateVariables
 
-    [SerializeField] private GameObject healthBar = null;
-    [SerializeField] private Transform progress = null;
+    [SerializeField] protected GameObject healthBar;
+    [SerializeField] protected Transform progress;
     
     [SerializeField] private int enemyWeight = 1;
     [SerializeField] private int waveNumberApparition = 1;
@@ -199,7 +199,6 @@ public class Enemy : MonoBehaviour
 
     protected IEnumerator KillEnemy()
     {
-        SoundsManager.Instance.PlaySound(SoundsManager.Audio.Death);
         SetIsStopped(true);
 
         gameObject.tag = "Dead";

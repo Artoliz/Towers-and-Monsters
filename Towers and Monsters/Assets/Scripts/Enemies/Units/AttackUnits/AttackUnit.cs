@@ -80,6 +80,11 @@ public class AttackUnit : Enemy
                     }
                 }
             }
+            
+            
+            if (healthBar.activeInHierarchy)
+                healthBar.transform.LookAt(Camera.main.transform);
+            
         }
     }
 
