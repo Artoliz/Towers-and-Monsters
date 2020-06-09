@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour
 {
     #region PrivateVariables
 
-    [SerializeField] private GameObject healthBar;
-    [SerializeField] private Transform progress;
+    [SerializeField] protected GameObject healthBar;
+    [SerializeField] protected Transform progress;
     
     [SerializeField] private int enemyWeight = 1;
     [SerializeField] private int waveNumberApparition = 1;
