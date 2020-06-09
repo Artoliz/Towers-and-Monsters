@@ -16,6 +16,7 @@ public class MeleeUnit : AttackUnit
         yield return new WaitForSeconds(AttackTime / 2);
         if (Target && Target != Base)
         {
+            SoundsManager.Instance.PlaySound(SoundsManager.Audio.SwordHit);
             Target.GetComponent<Tower>().Damage(damageToBuildings);
 
             yield return new WaitForSeconds(AttackTime / 2);

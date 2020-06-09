@@ -34,6 +34,7 @@ public class RangeUnit : AttackUnit
         yield return new WaitForSeconds(AttackTime / 2);
         if (Target && Target != Base)
         {
+            SoundsManager.Instance.PlaySound(SoundsManager.Audio.CannonShot);
             Shoot();
 
             yield return new WaitForSeconds(AttackTime / 2);

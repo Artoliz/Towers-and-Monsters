@@ -4,22 +4,39 @@ using UnityEngine;
 
 public class SoundsManager : MonoBehaviour
 {
+    #region PublicVariables
+
     public static SoundsManager Instance = null;
 
-    private AudioSource EffectsSource = null;
-    private AudioSource MusicsSource = null;
-
+    [Header("Towers / Walls Sounds Effects")]
     public AudioClip ConstructBuilding = null;
     public AudioClip DestructBuilding = null;
     public AudioClip RepairBuilding = null;
     public AudioClip UpgradeBuilding = null;
+
+    [Header("Enemies Sounds Effects")]
+    public AudioClip Death = null;
+    public AudioClip SwordHit = null;
+    public AudioClip CannonShot = null;
+
+    #endregion
+
+    #region PrivateVariables
+
+    private AudioSource EffectsSource = null;
+    private AudioSource MusicsSource = null;
+
+    #endregion
 
     public enum Audio
     {
         Construct,
         Destruct,
         Repair,
-        Upgrade
+        Upgrade,
+        Death,
+        SwordHit,
+        CannonShot
     }
 
     private void Awake()
@@ -45,5 +62,11 @@ public class SoundsManager : MonoBehaviour
             EffectsSource.PlayOneShot(RepairBuilding);
         else if (audio == Audio.Upgrade)
             EffectsSource.PlayOneShot(UpgradeBuilding);
+        else if (audio == Audio.Death)
+            EffectsSource.PlayOneShot(Death);
+        else if (audio == Audio.SwordHit)
+            EffectsSource.PlayOneShot(SwordHit);
+        else if (audio == Audio.CannonShot)
+            EffectsSource.PlayOneShot(CannonShot);
     }
 }

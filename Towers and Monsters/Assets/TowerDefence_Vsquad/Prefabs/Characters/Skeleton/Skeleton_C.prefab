@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 3448765304002873367}
-  progress: {fileID: 0}
+  progress: {fileID: 7826336833794517781}
   enemyWeight: 3
   waveNumberApparition: 5
   destinationReachedPadding: 0.5

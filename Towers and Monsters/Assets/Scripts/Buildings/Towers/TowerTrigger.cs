@@ -43,14 +43,17 @@ public class TowerTrigger : MonoBehaviour
                     b.GetComponent<TowerBullet>().twr = twr;
                     b.GetComponent<TowerBullet>().target = other.transform;
                     aoeImpacts.Add(b);
-                    other.GetComponent<Enemy>().SetOnAOE(true);                   
+                    other.GetComponent<Enemy>().SetOnAOE(true);
                     other.GetComponent<Enemy>().SetSpeed(other.GetComponent<Enemy>().GetSpeed() / 2.0f);
                 } else if (!lockE)
                 {
                     var o = enemies[0];
-                    twr.target = o.transform;
-                    curTarget = o;
-                    lockE = true;
+                    if (o != null)
+                    {
+                        twr.target = o.transform;
+                        curTarget = o;
+                        lockE = true;
+                    }
                 }
             }
         }
@@ -134,9 +137,12 @@ public class TowerTrigger : MonoBehaviour
                     if (enemies.Count > 0) 
                     {
                         var o = enemies[0];
-                        twr.target = o.transform;
-                        curTarget = o;
-                        lockE = true;
+                        if (o != null)
+                        {
+                            twr.target = o.transform;
+                            curTarget = o;
+                            lockE = true;
+                        }
                     }
                 }
             }
@@ -149,9 +155,13 @@ public class TowerTrigger : MonoBehaviour
         {
             foreach (var item in aoeImpacts)
             {
-                TowerBullet towerBuller = item.GetComponent<TowerBullet>();
-                if (towerBuller.target != null) {
-                    Enemy enemy = towerBuller.target.GetComponent<Enemy>();
+                GameObject current = item;
+                TowerBullet towerBullet = null;
+                if (current != null)
+                    towerBullet = current.GetComponent<TowerBullet>();
+                if (towerBullet != null && towerBullet.target != null)
+                {
+                    Enemy enemy = towerBullet.target.GetComponent<Enemy>();
                     enemy.SetOnAOE(false);
                     enemy.SetSpeed(enemy.GetSpeed() * 2.0f);
                 }

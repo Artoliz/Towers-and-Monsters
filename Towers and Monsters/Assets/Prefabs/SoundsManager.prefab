@@ -243,3 +243,6 @@ MonoBehaviour:
   DestructBuilding: {fileID: 8300000, guid: 046f1d6c8b090f841ba9fbd4b81b4289, type: 3}
   RepairBuilding: {fileID: 8300000, guid: 6231ac5ca8f966d40b5877b78b6b6db6, type: 3}
   UpgradeBuilding: {fileID: 8300000, guid: 6231ac5ca8f966d40b5877b78b6b6db6, type: 3}
+  Death: {fileID: 8300000, guid: 9c522a7397e4260478140c0896f50fa4, type: 3}
+  SwordHit: {fileID: 8300000, guid: ff7eadbe0408f8441ac3fc4530ca76c0, type: 3}
+  CannonShot: {fileID: 8300000, guid: 991605930a74f8c4b94fa84d6a22c7d7, type: 3}
