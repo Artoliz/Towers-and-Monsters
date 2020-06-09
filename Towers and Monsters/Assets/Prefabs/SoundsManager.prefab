@@ -242,6 +242,8 @@ MonoBehaviour:
   MenuFirstScreenTransition: {fileID: 8300000, guid: 902930669d536b54696306676225d951,
     type: 3}
   ButtonUiClick: {fileID: 8300000, guid: 6e2c06ddacb488c4a80bd2d50b7bdec9, type: 3}
+  ButtonUiBack: {fileID: 8300000, guid: 7b4278ac9deb3b241b8f96f1b79f066a, type: 3}
+  ButtonUiValidation: {fileID: 8300000, guid: 1cfd713c945ac34458ef038fecaac442, type: 3}
   ConstructBuilding: {fileID: 8300000, guid: 1a4d01de54af6ec46a615e5aef1e03ac, type: 3}
   DestructBuilding: {fileID: 8300000, guid: 046f1d6c8b090f841ba9fbd4b81b4289, type: 3}
   RepairBuilding: {fileID: 8300000, guid: 6231ac5ca8f966d40b5877b78b6b6db6, type: 3}

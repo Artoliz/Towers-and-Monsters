@@ -133,7 +133,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ButtonUiClick
+          m_StringArgument: ButtonUiBack
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &2120569689852829393
@@ -452,6 +452,6 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ButtonUiClick
+          m_StringArgument: ButtonUiValidation
           m_BoolArgument: 0
         m_CallState: 2

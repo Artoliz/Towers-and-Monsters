@@ -11,6 +11,8 @@ public class SoundsManager : MonoBehaviour
     [Header("Menus Sounds Effects")]
     public AudioClip MenuFirstScreenTransition = null;
     public AudioClip ButtonUiClick = null;
+    public AudioClip ButtonUiBack = null;
+    public AudioClip ButtonUiValidation = null;
 
     [Header("Towers / Walls Sounds Effects")]
     public AudioClip ConstructBuilding = null;
@@ -36,6 +38,8 @@ public class SoundsManager : MonoBehaviour
     {
         MenuFirstScreenTransition,
         ButtonUiClick,
+        ButtonUiBack,
+        ButtonUiValidation,
         Construct,
         Destruct,
         Repair,
@@ -60,10 +64,16 @@ public class SoundsManager : MonoBehaviour
 
     public void PlaySound(Audio audio)
     {
+        //Menus
         if (audio == Audio.MenuFirstScreenTransition)
             EffectsSource.PlayOneShot(MenuFirstScreenTransition);
         else if (audio == Audio.ButtonUiClick)
             EffectsSource.PlayOneShot(ButtonUiClick);
+        else if (audio == Audio.ButtonUiBack)
+            EffectsSource.PlayOneShot(ButtonUiBack);
+        else if (audio == Audio.ButtonUiValidation)
+            EffectsSource.PlayOneShot(ButtonUiValidation);
+        //In Game
         else if (audio == Audio.Construct)
             EffectsSource.PlayOneShot(ConstructBuilding);
         else if (audio == Audio.Destruct)
@@ -79,10 +89,14 @@ public class SoundsManager : MonoBehaviour
         else if (audio == Audio.CannonShot)
             EffectsSource.PlayOneShot(CannonShot);
     }
-    
+
     public void PlaySound(string audio)
     {
         if (audio == Audio.ButtonUiClick.ToString())
             EffectsSource.PlayOneShot(ButtonUiClick);
+        else if (audio == Audio.ButtonUiBack.ToString())
+            EffectsSource.PlayOneShot(ButtonUiBack);
+        else if (audio == Audio.ButtonUiValidation.ToString())
+            EffectsSource.PlayOneShot(ButtonUiValidation);
     }
 }

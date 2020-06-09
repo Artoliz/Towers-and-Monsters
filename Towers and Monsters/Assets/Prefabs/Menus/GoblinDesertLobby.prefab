@@ -4354,7 +4354,7 @@ PrefabInstance:
     - target: {fileID: 114022153851163478, guid: 72b29543ce436f94dab1837bf2560d94,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: ButtonUiClick
+      value: ButtonUiBack
       objectReference: {fileID: 0}
     - target: {fileID: 114022153851163478, guid: 72b29543ce436f94dab1837bf2560d94,
         type: 3}

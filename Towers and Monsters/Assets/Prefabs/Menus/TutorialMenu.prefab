@@ -3148,18 +3148,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ButtonUiClick
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: PlaySound
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: ButtonUiClick
+          m_StringArgument: ButtonUiBack
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1201900781192842156
@@ -3625,7 +3614,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ButtonUiClick
+          m_StringArgument: ButtonUiBack
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1677050779319049310
@@ -4406,7 +4395,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ButtonUiClick
+          m_StringArgument: ButtonUiBack
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &2092728721898389492
@@ -5038,7 +5027,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ButtonUiClick
+          m_StringArgument: ButtonUiBack
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &2368315736141922097
@@ -6192,7 +6181,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ButtonUiClick
+          m_StringArgument: ButtonUiBack
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &3382280547589904527
@@ -7570,7 +7559,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ButtonUiClick
+          m_StringArgument: ButtonUiBack
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &3943312398658813029
@@ -7776,7 +7765,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ButtonUiClick
+          m_StringArgument: ButtonUiBack
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &3978113673458590208
@@ -12450,7 +12439,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ButtonUiClick
+          m_StringArgument: ButtonUiBack
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &7351779870602118915
@@ -13843,7 +13832,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ButtonUiClick
+          m_StringArgument: ButtonUiBack
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &8043770897993898833
@@ -13979,7 +13968,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ButtonUiClick
+          m_StringArgument: ButtonUiBack
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &8134077909431989251
@@ -14556,7 +14545,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ButtonUiClick
+          m_StringArgument: ButtonUiBack
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &8293964870281013125

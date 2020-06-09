@@ -4500,7 +4500,7 @@ PrefabInstance:
     - target: {fileID: 114786651072150030, guid: f13706e9b43bdeb4f9ca2d357906bdc9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: ButtonUiClick
+      value: ButtonUiBack
       objectReference: {fileID: 0}
     - target: {fileID: 114786651072150030, guid: f13706e9b43bdeb4f9ca2d357906bdc9,
         type: 3}
