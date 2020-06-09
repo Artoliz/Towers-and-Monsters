@@ -239,6 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5c6a1724e292e49942c4d5b1cb65ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FirstScreenTransition: {fileID: 8300000, guid: 902930669d536b54696306676225d951,
+    type: 3}
   ConstructBuilding: {fileID: 8300000, guid: 1a4d01de54af6ec46a615e5aef1e03ac, type: 3}
   DestructBuilding: {fileID: 8300000, guid: 046f1d6c8b090f841ba9fbd4b81b4289, type: 3}
   RepairBuilding: {fileID: 8300000, guid: 6231ac5ca8f966d40b5877b78b6b6db6, type: 3}

@@ -8,6 +8,9 @@ public class SoundsManager : MonoBehaviour
 
     public static SoundsManager Instance = null;
 
+    [Header("Menus Sounds Effects")]
+    public AudioClip FirstScreenTransition = null;
+
     [Header("Towers / Walls Sounds Effects")]
     public AudioClip ConstructBuilding = null;
     public AudioClip DestructBuilding = null;
@@ -30,6 +33,7 @@ public class SoundsManager : MonoBehaviour
 
     public enum Audio
     {
+        MenuFirstScreenTransition,
         Construct,
         Destruct,
         Repair,
@@ -54,7 +58,9 @@ public class SoundsManager : MonoBehaviour
 
     public void PlaySound(Audio audio)
     {
-        if (audio == Audio.Construct)
+        if (audio == Audio.MenuFirstScreenTransition)
+            EffectsSource.PlayOneShot(FirstScreenTransition);
+        else if (audio == Audio.Construct)
             EffectsSource.PlayOneShot(ConstructBuilding);
         else if (audio == Audio.Destruct)
             EffectsSource.PlayOneShot(DestructBuilding);

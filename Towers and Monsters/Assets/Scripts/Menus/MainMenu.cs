@@ -40,6 +40,7 @@ public class MainMenu : MonoBehaviour
     {
         if (_intro && Input.GetKeyDown(KeyCode.Space))
         {
+            SoundsManager.Instance.PlaySound(SoundsManager.Audio.MenuFirstScreenTransition);
             introTransition.SetTrigger("Begin");
             _intro = false;
         }
