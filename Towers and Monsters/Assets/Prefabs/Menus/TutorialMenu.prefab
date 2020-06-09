@@ -11742,7 +11742,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'The wall is the only building which is only destrictible by ONE unit: the
+  m_Text: 'The wall is the only building which is only destructible by ONE unit: the
     Troll.
 
     All the other units will avoid them.
