@@ -11742,22 +11742,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Wall: ''1'' OR ''1st Icon''
+  m_Text: 'The wall is the only building which is only destrictible by ONE unit: the
+    Troll.
+
+    All the other units will avoid them.
 
 
-    Close Range Tower: ''2'' OR ''2nd Icon''
-
-
-    Long Range Tower: ''3'' OR ''3rd Icon''
-
-
-    Effect Tower: ''4'' OR ''4th Icon''
-
-
-    Area Of Effect Tower: ''5'' OR ''5th Icon''
-
-
-    NB: You can''t block the path to the base.'
+    Place them well, it''s a good choice to optimize your path.'
 --- !u!1 &7058847627356897175
 GameObject:
   m_ObjectHideFlags: 0
