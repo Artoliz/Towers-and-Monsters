@@ -80,14 +80,6 @@ public class WavesManager : MonoBehaviour
             gameOverUi.SetActive(true);
             GameManager.Instance.EndGame(waveNumber - 1);
         }
-        else if (GameIsFinished && !PauseMenu.GameIsPaused)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                GameManager.Instance.SaveScore();
-                SceneManager.LoadScene("Menu");
-            }
-        }
         else if (!GameIsFinished && !PauseMenu.GameIsPaused && GameIsBetweenWaves)
         {
             EnableUiBetweenWaves();

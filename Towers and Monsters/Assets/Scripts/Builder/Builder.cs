@@ -154,6 +154,9 @@ public class Builder : MonoBehaviour
         {
             _buildingEnum = _buildingEnum == Buildings.AoeShot ? Buildings.None : Buildings.AoeShot;
         }
+
+        if (_buildingEnum != Buildings.None)
+            Informations.Instance.ResetSelected();
     }
 
     private void SelectedBuilding()
@@ -172,6 +175,9 @@ public class Builder : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha5))
             _buildingEnum = _buildingEnum == Buildings.AoeShot ? Buildings.None : Buildings.AoeShot;
+
+        if (_buildingEnum != Buildings.None)
+            Informations.Instance.ResetSelected();
     }
 
     private void PlaceBuildingOnGrid(Vector3 clickPoint)
