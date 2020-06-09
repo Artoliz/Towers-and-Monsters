@@ -73,7 +73,7 @@ public class SoundsManager : MonoBehaviour
             EffectsSource.PlayOneShot(ButtonUiBack);
         else if (audio == Audio.ButtonUiValidation)
             EffectsSource.PlayOneShot(ButtonUiValidation);
-        //In Game
+        //Towers / Walls
         else if (audio == Audio.Construct)
             EffectsSource.PlayOneShot(ConstructBuilding);
         else if (audio == Audio.Destruct)
@@ -82,6 +82,7 @@ public class SoundsManager : MonoBehaviour
             EffectsSource.PlayOneShot(RepairBuilding);
         else if (audio == Audio.Upgrade)
             EffectsSource.PlayOneShot(UpgradeBuilding);
+        // Monsters
         else if (audio == Audio.Death)
             EffectsSource.PlayOneShot(Death);
         else if (audio == Audio.SwordHit)
