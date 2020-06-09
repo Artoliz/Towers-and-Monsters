@@ -199,6 +199,7 @@ public class Enemy : MonoBehaviour
 
     protected IEnumerator KillEnemy()
     {
+        SoundsManager.Instance.PlaySound(SoundsManager.Audio.Death);
         SetIsStopped(true);
 
         gameObject.tag = "Dead";
