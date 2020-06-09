@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Wall : MonoBehaviour
@@ -27,8 +28,6 @@ public class Wall : MonoBehaviour
 
     public bool IsSelected = false;
 
-    private AudioSource DestructSound = null;
-
     #endregion
 
     #region MonoBehaviour
@@ -39,7 +38,7 @@ public class Wall : MonoBehaviour
         _particleExplosionPosition.y = 1;
         maxHp = hp;
 
-        DestructSound = GetComponent<AudioSource>();
+        SoundsManager.Instance.PlaySound(SoundsManager.Audio.Construct);
     }
 
     private void Update()
@@ -86,10 +85,7 @@ public class Wall : MonoBehaviour
 
     private void RemoveWall()
     {
-        if (DestructSound != null)
-        {
-            DestructSound.Play();
-        }
+        SoundsManager.Instance.PlaySound(SoundsManager.Audio.Destruct);
         Vector2Int posInGrid = Grid.Instance.CalculatePositionInGrid(this.transform.position);
         Grid.Instance._pathfinder.RemoveBlockedPosition(posInGrid.x, posInGrid.y);
         Grid.Instance.RemoveElementInGrid(this.transform.position);

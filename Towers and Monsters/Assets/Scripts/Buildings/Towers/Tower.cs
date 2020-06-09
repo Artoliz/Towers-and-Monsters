@@ -97,6 +97,11 @@ public class Tower : MonoBehaviour
         SetTowerData();
     }
 
+    private void Start()
+    {
+        SoundsManager.Instance.PlaySound(SoundsManager.Audio.Construct);
+    }
+
     private void Update()
     {
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
@@ -222,6 +227,7 @@ public class Tower : MonoBehaviour
         {
             if (this.upgradeCost <= GameManager.Instance.GetGolds())
             {
+                SoundsManager.Instance.PlaySound(SoundsManager.Audio.Upgrade);
                 GameManager.Instance.RemoveGolds(this.upgradeCost);
                 GameObject tmp = Instantiate(upgradePrefab, transform.position, transform.rotation);
                 if (_selected != null)
@@ -237,6 +243,7 @@ public class Tower : MonoBehaviour
 
     public void Destroy()
     {
+        SoundsManager.Instance.PlaySound(SoundsManager.Audio.Destruct);
         GameManager.Instance.AddGolds((this.cost / 2) * (this.hp / this.maxHp));
         Informations.Instance.ResetSelected();
         Vector2Int posInGrid = Grid.Instance.CalculatePositionInGrid(this.transform.position);
@@ -255,6 +262,7 @@ public class Tower : MonoBehaviour
         {
             if (this.repairCost <= GameManager.Instance.GetGolds())
             {
+                SoundsManager.Instance.PlaySound(SoundsManager.Audio.Repair);
                 GameManager.Instance.RemoveGolds(this.repairCost);
                 hp = maxHp;
                 SetTowerData();
