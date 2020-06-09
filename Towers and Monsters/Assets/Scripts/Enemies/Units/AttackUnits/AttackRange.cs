@@ -80,6 +80,7 @@ public class AttackRange : MonoBehaviour
                 _attackUnit.SetAnimation(Idle, false);
             }
         }
+        
     }
 
     #endregion

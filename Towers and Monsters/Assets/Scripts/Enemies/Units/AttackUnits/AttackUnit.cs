@@ -62,7 +62,8 @@ public class AttackUnit : Enemy
                 SetAnimation(Run, true);
                 if (_lastNode != null)
                 {
-                    _nextPos = Grid.Instance.CalculatePositionFromGrid(new Vector2Int(_lastNode.First, _lastNode.Second));
+                    _nextPos = Grid.Instance.CalculatePositionFromGrid(
+                        new Vector2Int(_lastNode.First, _lastNode.Second));
                     transform.position = Vector3.MoveTowards(transform.position, _nextPos, speed * Time.deltaTime);
                     transform.LookAt(_nextPos);
                     if (Vector3.Distance(transform.position, _nextPos) <= 0.1)
@@ -70,7 +71,8 @@ public class AttackUnit : Enemy
                 }
                 else
                 {
-                    _nextPos = Grid.Instance.CalculatePositionFromGrid(new Vector2Int(_nextNode.First, _nextNode.Second));
+                    _nextPos = Grid.Instance.CalculatePositionFromGrid(
+                        new Vector2Int(_nextNode.First, _nextNode.Second));
                     transform.position = Vector3.MoveTowards(transform.position, _nextPos, speed * Time.deltaTime);
                     transform.LookAt(_nextPos);
                     if (Vector3.Distance(transform.position, _nextPos) <= 0.1)
@@ -80,8 +82,7 @@ public class AttackUnit : Enemy
                     }
                 }
             }
-            
-            
+
             if (healthBar.activeInHierarchy)
                 healthBar.transform.LookAt(Camera.main.transform);
             
