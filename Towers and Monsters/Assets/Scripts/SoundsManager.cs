@@ -9,7 +9,8 @@ public class SoundsManager : MonoBehaviour
     public static SoundsManager Instance = null;
 
     [Header("Menus Sounds Effects")]
-    public AudioClip FirstScreenTransition = null;
+    public AudioClip MenuFirstScreenTransition = null;
+    public AudioClip ButtonUiClick = null;
 
     [Header("Towers / Walls Sounds Effects")]
     public AudioClip ConstructBuilding = null;
@@ -34,6 +35,7 @@ public class SoundsManager : MonoBehaviour
     public enum Audio
     {
         MenuFirstScreenTransition,
+        ButtonUiClick,
         Construct,
         Destruct,
         Repair,
@@ -59,7 +61,9 @@ public class SoundsManager : MonoBehaviour
     public void PlaySound(Audio audio)
     {
         if (audio == Audio.MenuFirstScreenTransition)
-            EffectsSource.PlayOneShot(FirstScreenTransition);
+            EffectsSource.PlayOneShot(MenuFirstScreenTransition);
+        else if (audio == Audio.ButtonUiClick)
+            EffectsSource.PlayOneShot(ButtonUiClick);
         else if (audio == Audio.Construct)
             EffectsSource.PlayOneShot(ConstructBuilding);
         else if (audio == Audio.Destruct)
@@ -74,5 +78,11 @@ public class SoundsManager : MonoBehaviour
             EffectsSource.PlayOneShot(SwordHit);
         else if (audio == Audio.CannonShot)
             EffectsSource.PlayOneShot(CannonShot);
+    }
+    
+    public void PlaySound(string audio)
+    {
+        if (audio == Audio.ButtonUiClick.ToString())
+            EffectsSource.PlayOneShot(ButtonUiClick);
     }
 }

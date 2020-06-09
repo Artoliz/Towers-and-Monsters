@@ -1426,6 +1426,17 @@ MonoBehaviour:
           m_StringArgument: HumanValley
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ButtonUiClick
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2689561398798590575
 GameObject:
   m_ObjectHideFlags: 0
@@ -2449,13 +2460,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2689561399368836517}
+  - component: {fileID: 2689561398714822492}
   m_Layer: 5
   m_Name: HumanValleyLobby
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2689561399368836517
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2483,6 +2495,31 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2689561398714822492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2689561399368836516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 009e19137dc231a4f85ae3aa939b4892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HighScoreListName: HumanValley_HighScores
+  entryNames:
+  - {fileID: 2689561398906777316}
+  - {fileID: 2689561400287537059}
+  - {fileID: 2689561398338601591}
+  - {fileID: 2689561399821671793}
+  - {fileID: 2689561399068301432}
+  entryScores:
+  - {fileID: 2689561399034444715}
+  - {fileID: 2689561398620926540}
+  - {fileID: 2689561399446284824}
+  - {fileID: 2689561400077393468}
+  - {fileID: 2689561399718982716}
 --- !u!1 &2689561399413121520
 GameObject:
   m_ObjectHideFlags: 0
@@ -4346,6 +4383,56 @@ PrefabInstance:
     - target: {fileID: 1678546290487554, guid: d5426070569ab9c4b8fc2fe249de82b7, type: 3}
       propertyPath: m_Name
       value: Circle Green Left Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 114173156521016146, guid: d5426070569ab9c4b8fc2fe249de82b7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114173156521016146, guid: d5426070569ab9c4b8fc2fe249de82b7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectLevelSelectionMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 114173156521016146, guid: d5426070569ab9c4b8fc2fe249de82b7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114173156521016146, guid: d5426070569ab9c4b8fc2fe249de82b7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114173156521016146, guid: d5426070569ab9c4b8fc2fe249de82b7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114173156521016146, guid: d5426070569ab9c4b8fc2fe249de82b7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlaySound
+      objectReference: {fileID: 0}
+    - target: {fileID: 114173156521016146, guid: d5426070569ab9c4b8fc2fe249de82b7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114173156521016146, guid: d5426070569ab9c4b8fc2fe249de82b7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114173156521016146, guid: d5426070569ab9c4b8fc2fe249de82b7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: ButtonUiClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 114173156521016146, guid: d5426070569ab9c4b8fc2fe249de82b7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224192150913337322, guid: d5426070569ab9c4b8fc2fe249de82b7,
         type: 3}

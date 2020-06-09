@@ -952,6 +952,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ButtonUiClick
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2391826326487506329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,6 +1827,17 @@ MonoBehaviour:
           m_StringArgument: HumanValley
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ButtonUiClick
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2391826327299399390
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,6 +2177,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ButtonUiClick
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &2391826327393476578
@@ -2720,6 +2753,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ButtonUiClick
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2391826328171063362
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,7 +2858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &273503193202583950
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3168,7 +3212,7 @@ PrefabInstance:
     - target: {fileID: 114213058838077758, guid: 616b9a43be6be9b4a9d546894e2f9c57,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114213058838077758, guid: 616b9a43be6be9b4a9d546894e2f9c57,
         type: 3}
@@ -3188,6 +3232,31 @@ PrefabInstance:
     - target: {fileID: 114213058838077758, guid: 616b9a43be6be9b4a9d546894e2f9c57,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114213058838077758, guid: 616b9a43be6be9b4a9d546894e2f9c57,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlaySound
+      objectReference: {fileID: 0}
+    - target: {fileID: 114213058838077758, guid: 616b9a43be6be9b4a9d546894e2f9c57,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114213058838077758, guid: 616b9a43be6be9b4a9d546894e2f9c57,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114213058838077758, guid: 616b9a43be6be9b4a9d546894e2f9c57,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: ButtonUiClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 114213058838077758, guid: 616b9a43be6be9b4a9d546894e2f9c57,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224454622974901786, guid: 616b9a43be6be9b4a9d546894e2f9c57,
