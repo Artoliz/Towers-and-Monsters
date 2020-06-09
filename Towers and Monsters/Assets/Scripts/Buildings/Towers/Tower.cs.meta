@@ -3,7 +3,21 @@ guid: a682e4e961f99c0498ca12fad03ef8fc
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - health: {instanceID: 0}
+  - progress: {instanceID: 0}
+  - bullet: {instanceID: 0}
+  - destroyParticle: {instanceID: 0}
+  - healthBar: {instanceID: 0}
+  - target: {instanceID: 0}
+  - lookAtObj: {instanceID: 0}
+  - shootElement: {instanceID: 0}
+  - upgradePrefab: {instanceID: 0}
+  - anim: {instanceID: 0}
+  - ConstructSound: {fileID: 8300000, guid: 1a4d01de54af6ec46a615e5aef1e03ac, type: 3}
+  - DestructSound: {fileID: 8300000, guid: 046f1d6c8b090f841ba9fbd4b81b4289, type: 3}
+  - UpgradeSound: {fileID: 8300000, guid: 6231ac5ca8f966d40b5877b78b6b6db6, type: 3}
+  - RepairSound: {fileID: 8300000, guid: 6231ac5ca8f966d40b5877b78b6b6db6, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
