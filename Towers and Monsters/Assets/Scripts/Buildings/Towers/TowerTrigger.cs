@@ -120,7 +120,7 @@ public class TowerTrigger : MonoBehaviour
                 {
                     foreach (var item in aoeImpacts)
                     {
-                        if (item.GetComponent<TowerBullet>().target.gameObject == other.transform.gameObject) {
+                        if (item && item.GetComponent<TowerBullet>() && item.GetComponent<TowerBullet>().target && item.GetComponent<TowerBullet>().target.gameObject == other.transform.gameObject) {
                             GameObject b = item;
                             aoeImpacts.Remove(item);
                             Destroy(b);

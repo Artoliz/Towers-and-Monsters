@@ -22,13 +22,12 @@ public class SoundsManager : MonoBehaviour
     public AudioClip LongRange = null;
     public AudioClip Effect = null;
     public AudioClip Bullet = null;
-    public AudioClip AOE = null;
-    public AudioClip AOELoop = null;
 
     [Header("Enemies Sounds Effects")]
     public AudioClip Death = null;
     public AudioClip SwordHit = null;
     public AudioClip CannonShot = null;
+    public AudioClip Run = null;
 
     [Header("Game Sounds Effects")]
     public AudioClip WaveStart = null;
@@ -61,11 +60,10 @@ public class SoundsManager : MonoBehaviour
         LongRange,
         Effect,
         Bullet,
-        AOE,
-        AOELoop,
         WaveStart,
         EndGameLose,
-        EndGameWin
+        EndGameWin,
+        Run
     }
 
     private void Awake()
@@ -108,8 +106,6 @@ public class SoundsManager : MonoBehaviour
             EffectsSource.PlayOneShot(Effect);
         else if (audio == Audio.Bullet)
             EffectsSource.PlayOneShot(Bullet);
-        else if (audio == Audio.AOE)
-            EffectsSource.PlayOneShot(AOE);
         // Monsters
         else if (audio == Audio.Death)
             EffectsSource.PlayOneShot(Death);
@@ -138,10 +134,19 @@ public class SoundsManager : MonoBehaviour
 
     public void PlaySoundLoop(Audio audio)
     {
-        if (audio == Audio.AOELoop)
+        if (audio == Audio.Run)
         {
-            EffectsSourceLoop.clip = AOELoop;
+            EffectsSourceLoop.clip = Run;
             EffectsSourceLoop.Play();
+        }
+    }
+
+    public void StopSoundLoop(Audio audio)
+    {
+        if (audio == Audio.Run)
+        {
+            EffectsSourceLoop.Stop();
+            EffectsSourceLoop.clip = null;
         }
     }
 }

@@ -100,10 +100,8 @@ public class Tower : MonoBehaviour
     private void Start()
     {
         SoundsManager.Instance.PlaySound(SoundsManager.Audio.Construct);
-        if (type == towerType.aoe)
-        {
-            SoundsManager.Instance.PlaySoundLoop(SoundsManager.Audio.AOELoop);
-        }
+        if (type == towerType.aoe && GetComponent<AudioSource>())
+            GetComponent<AudioSource>().Play();
     }
 
     private void Update()
