@@ -140,6 +140,11 @@ public class GameManager : MonoBehaviour
     {
         _roundEnded = wave;
 
+        if (_scores.IsBetterScore(_roundEnded))
+            SoundsManager.Instance.PlaySound(SoundsManager.Audio.EndGameWin);
+        else
+            SoundsManager.Instance.PlaySound(SoundsManager.Audio.EndGameLoose);
+
         gameOverUi.EndGame(_roundEnded, _enemiesKilled);
 
         GameIsFinished = true;

@@ -126,6 +126,8 @@ public class WavesManager : MonoBehaviour
         SetGameStatus(false);
         SetTimeBetweenWaves(false, 0);
 
+        SoundsManager.Instance.PlaySound(SoundsManager.Audio.WaveStart);
+
         spawnManager.LaunchSpawns(_waveWeight, waveNumber);
     }
 

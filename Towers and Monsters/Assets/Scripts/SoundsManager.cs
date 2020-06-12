@@ -30,6 +30,11 @@ public class SoundsManager : MonoBehaviour
     public AudioClip SwordHit = null;
     public AudioClip CannonShot = null;
 
+    [Header("Game Sounds Effects")]
+    public AudioClip WaveStart = null;
+    public AudioClip EndGameLoose = null;
+    public AudioClip EndGameWin = null;
+
     #endregion
 
     #region PrivateVariables
@@ -57,7 +62,10 @@ public class SoundsManager : MonoBehaviour
         Effect,
         Bullet,
         AOE,
-        AOELoop
+        AOELoop,
+        WaveStart,
+        EndGameLoose,
+        EndGameWin
     }
 
     private void Awake()
@@ -109,6 +117,13 @@ public class SoundsManager : MonoBehaviour
             EffectsSource.PlayOneShot(SwordHit);
         else if (audio == Audio.CannonShot)
             EffectsSource.PlayOneShot(CannonShot);
+        // Game
+        else if (audio == Audio.WaveStart)
+            EffectsSource.PlayOneShot(WaveStart);
+        else if (audio == Audio.EndGameLoose)
+            EffectsSource.PlayOneShot(EndGameLoose);
+        else if (audio == Audio.EndGameWin)
+            EffectsSource.PlayOneShot(EndGameWin);
     }
 
     public void PlaySound(string audio)
