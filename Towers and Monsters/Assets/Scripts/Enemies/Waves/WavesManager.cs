@@ -71,6 +71,7 @@ public class WavesManager : MonoBehaviour
             else
             {
                 SoundsManager.Instance.PlaySound(SoundsManager.Audio.WaveStart);
+                SoundsManager.Instance.PlaySoundLoop(SoundsManager.Audio.Run);
                 EnableUiDuringWave();
                 RunWave();
             }
@@ -83,6 +84,7 @@ public class WavesManager : MonoBehaviour
         }
         else if (!GameIsFinished && !PauseMenu.GameIsPaused && GameIsBetweenWaves)
         {
+            SoundsManager.Instance.StopSoundLoop(SoundsManager.Audio.Run);
             EnableUiBetweenWaves();
             SetNextWave();
         }
