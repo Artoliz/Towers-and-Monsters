@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
         if (_scores.IsBetterScore(_roundEnded))
             SoundsManager.Instance.PlaySound(SoundsManager.Audio.EndGameWin);
         else
-            SoundsManager.Instance.PlaySound(SoundsManager.Audio.EndGameLoose);
+            SoundsManager.Instance.PlaySound(SoundsManager.Audio.EndGameLose);
 
         gameOverUi.EndGame(_roundEnded, _enemiesKilled);
 

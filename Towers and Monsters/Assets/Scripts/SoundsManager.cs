@@ -32,7 +32,7 @@ public class SoundsManager : MonoBehaviour
 
     [Header("Game Sounds Effects")]
     public AudioClip WaveStart = null;
-    public AudioClip EndGameLoose = null;
+    public AudioClip EndGameLose = null;
     public AudioClip EndGameWin = null;
 
     #endregion
@@ -64,7 +64,7 @@ public class SoundsManager : MonoBehaviour
         AOE,
         AOELoop,
         WaveStart,
-        EndGameLoose,
+        EndGameLose,
         EndGameWin
     }
 
@@ -120,8 +120,8 @@ public class SoundsManager : MonoBehaviour
         // Game
         else if (audio == Audio.WaveStart)
             EffectsSource.PlayOneShot(WaveStart);
-        else if (audio == Audio.EndGameLoose)
-            EffectsSource.PlayOneShot(EndGameLoose);
+        else if (audio == Audio.EndGameLose)
+            EffectsSource.PlayOneShot(EndGameLose);
         else if (audio == Audio.EndGameWin)
             EffectsSource.PlayOneShot(EndGameWin);
     }

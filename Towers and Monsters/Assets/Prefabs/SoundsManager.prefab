@@ -354,3 +354,6 @@ MonoBehaviour:
   Death: {fileID: 8300000, guid: 9c522a7397e4260478140c0896f50fa4, type: 3}
   SwordHit: {fileID: 8300000, guid: ff7eadbe0408f8441ac3fc4530ca76c0, type: 3}
   CannonShot: {fileID: 8300000, guid: 991605930a74f8c4b94fa84d6a22c7d7, type: 3}
+  WaveStart: {fileID: 8300000, guid: df7015cdb7bbc734c823cf25cd7fef25, type: 3}
+  EndGameLoose: {fileID: 8300000, guid: cc45b792f2002c7499fdc05a94d9e544, type: 3}
+  EndGameWin: {fileID: 8300000, guid: f9e2f4173e6ccd54fb404113b573588e, type: 3}

@@ -70,6 +70,7 @@ public class WavesManager : MonoBehaviour
             }
             else
             {
+                SoundsManager.Instance.PlaySound(SoundsManager.Audio.WaveStart);
                 EnableUiDuringWave();
                 RunWave();
             }
@@ -126,8 +127,6 @@ public class WavesManager : MonoBehaviour
         SetGameStatus(false);
         SetTimeBetweenWaves(false, 0);
 
-        SoundsManager.Instance.PlaySound(SoundsManager.Audio.WaveStart);
-
         spawnManager.LaunchSpawns(_waveWeight, waveNumber);
     }
 
@@ -147,7 +146,7 @@ public class WavesManager : MonoBehaviour
 
     #endregion
 
-    #region PublicVariables
+    #region PublicFunctions
 
     public static void SetGameStatus(bool isBetweenWaves)
     {
