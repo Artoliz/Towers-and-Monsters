@@ -5541,7 +5541,8 @@ MonoBehaviour:
   pauseMenuUi: {fileID: 4422533801090132408}
   transition: {fileID: 0}
   transitionTime: 1
-  introTransitionTime: 5
+  introTransitionTime: 6
+  menuMusic: {fileID: 8300000, guid: c6dc220fccfe6384389615502e56adde, type: 3}
 --- !u!1 &4422533800563810519
 GameObject:
   m_ObjectHideFlags: 0

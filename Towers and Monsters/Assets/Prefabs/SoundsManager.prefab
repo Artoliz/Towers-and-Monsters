@@ -45,9 +45,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243393421482923078, guid: 81bec01113036a54896c86b25c20dd47,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 78cc0e2552848ca4faf9f5bbb1fb28b1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c6dc220fccfe6384389615502e56adde, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1.3
   Loop: 1
   Mute: 0
@@ -144,7 +144,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -241,7 +241,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -337,6 +337,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5c6a1724e292e49942c4d5b1cb65ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 81bec01113036a54896c86b25c20dd47, type: 2}
+  musicsToggle: {fileID: 0}
+  effectsToggle: {fileID: 0}
+  musicsSlider: {fileID: 0}
+  effectsSlider: {fileID: 0}
   MenuFirstScreenTransition: {fileID: 8300000, guid: 902930669d536b54696306676225d951,
     type: 3}
   ButtonUiClick: {fileID: 8300000, guid: 6e2c06ddacb488c4a80bd2d50b7bdec9, type: 3}

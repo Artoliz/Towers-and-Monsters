@@ -129,7 +129,12 @@
           <e p="Player" t="Include">
             <e p="CameraController.cs" t="Include" />
           </e>
-          <e p="SoundsManager.cs" t="Include" />
+          <e p="Sound" t="Include">
+            <e p="LinkSoundUiOnStart.cs" t="Include" />
+            <e p="LoadSound.cs" t="Include" />
+            <e p="SoundSettings.cs" t="Include" />
+            <e p="SoundsManager.cs" t="Include" />
+          </e>
           <e p="UI" t="Include">
             <e p="EnemyInfo.cs" t="Include" />
             <e p="GameOver.cs" t="Include" />

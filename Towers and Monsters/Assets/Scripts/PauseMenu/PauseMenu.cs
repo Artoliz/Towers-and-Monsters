@@ -15,14 +15,13 @@ public class PauseMenu : MonoBehaviour
     public Animator transition;
     public float transitionTime = 1.0f;
     public float introTransitionTime = 5f;
-    
+
     #endregion
 
     #region MonoBehavior
 
     private void Awake()
     {
-
         GameIsPaused = false;
         if (transition.gameObject.activeInHierarchy)
         {
@@ -80,10 +79,9 @@ public class PauseMenu : MonoBehaviour
     {
         if (transition.gameObject.activeInHierarchy)
         {
-            transition.SetTrigger("Start"); 
+            transition.SetTrigger("Start");
             yield return new WaitForSeconds(transitionTime);
         }
-
 
         SceneManager.LoadScene(levelName);
     }
@@ -94,15 +92,15 @@ public class PauseMenu : MonoBehaviour
     }
 
     #endregion
-    
+
     #region PrivateMethods
-    
+
     IEnumerator UnpauseAfterIntro()
     {
-       yield return new WaitForSeconds(introTransitionTime);
+        yield return new WaitForSeconds(introTransitionTime);
 
-       GameIsPaused = false;
+        GameIsPaused = false;
     }
-    
+
     #endregion
 }
