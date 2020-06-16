@@ -19,17 +19,27 @@ public class SoundsManager : MonoBehaviour
     public AudioClip DestructBuilding = null;
     public AudioClip RepairBuilding = null;
     public AudioClip UpgradeBuilding = null;
+    public AudioClip LongRange = null;
+    public AudioClip Effect = null;
+    public AudioClip Bullet = null;
 
     [Header("Enemies Sounds Effects")]
     public AudioClip Death = null;
     public AudioClip SwordHit = null;
     public AudioClip CannonShot = null;
+    public AudioClip Run = null;
+
+    [Header("Game Sounds Effects")]
+    public AudioClip WaveStart = null;
+    public AudioClip EndGameLose = null;
+    public AudioClip EndGameWin = null;
 
     #endregion
 
     #region PrivateVariables
 
     private AudioSource EffectsSource = null;
+    private AudioSource EffectsSourceLoop = null;
     private AudioSource MusicsSource = null;
 
     #endregion
@@ -46,13 +56,21 @@ public class SoundsManager : MonoBehaviour
         Upgrade,
         Death,
         SwordHit,
-        CannonShot
+        CannonShot,
+        LongRange,
+        Effect,
+        Bullet,
+        WaveStart,
+        EndGameLose,
+        EndGameWin,
+        Run
     }
 
     private void Awake()
     {
         MusicsSource = GetComponents<AudioSource>()[0];
         EffectsSource = GetComponents<AudioSource>()[1];
+        EffectsSourceLoop = GetComponents<AudioSource>()[2];
 
         if (Instance != null)
         {
@@ -73,7 +91,7 @@ public class SoundsManager : MonoBehaviour
             EffectsSource.PlayOneShot(ButtonUiBack);
         else if (audio == Audio.ButtonUiValidation)
             EffectsSource.PlayOneShot(ButtonUiValidation);
-        //In Game
+        //Towers / Walls
         else if (audio == Audio.Construct)
             EffectsSource.PlayOneShot(ConstructBuilding);
         else if (audio == Audio.Destruct)
@@ -82,12 +100,26 @@ public class SoundsManager : MonoBehaviour
             EffectsSource.PlayOneShot(RepairBuilding);
         else if (audio == Audio.Upgrade)
             EffectsSource.PlayOneShot(UpgradeBuilding);
+        else if (audio == Audio.LongRange)
+            EffectsSource.PlayOneShot(LongRange);
+        else if (audio == Audio.Effect)
+            EffectsSource.PlayOneShot(Effect);
+        else if (audio == Audio.Bullet)
+            EffectsSource.PlayOneShot(Bullet);
+        // Monsters
         else if (audio == Audio.Death)
             EffectsSource.PlayOneShot(Death);
         else if (audio == Audio.SwordHit)
             EffectsSource.PlayOneShot(SwordHit);
         else if (audio == Audio.CannonShot)
             EffectsSource.PlayOneShot(CannonShot);
+        // Game
+        else if (audio == Audio.WaveStart)
+            EffectsSource.PlayOneShot(WaveStart);
+        else if (audio == Audio.EndGameLose)
+            EffectsSource.PlayOneShot(EndGameLose);
+        else if (audio == Audio.EndGameWin)
+            EffectsSource.PlayOneShot(EndGameWin);
     }
 
     public void PlaySound(string audio)
@@ -98,5 +130,23 @@ public class SoundsManager : MonoBehaviour
             EffectsSource.PlayOneShot(ButtonUiBack);
         else if (audio == Audio.ButtonUiValidation.ToString())
             EffectsSource.PlayOneShot(ButtonUiValidation);
+    }
+
+    public void PlaySoundLoop(Audio audio)
+    {
+        if (audio == Audio.Run)
+        {
+            EffectsSourceLoop.clip = Run;
+            EffectsSourceLoop.Play();
+        }
+    }
+
+    public void StopSoundLoop(Audio audio)
+    {
+        if (audio == Audio.Run)
+        {
+            EffectsSourceLoop.Stop();
+            EffectsSourceLoop.clip = null;
+        }
     }
 }

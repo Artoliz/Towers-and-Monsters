@@ -29,7 +29,8 @@ public class TowerBullet : MonoBehaviour
     {  
         speed = 6;
         particleTime = 6;
-        if (twr.type == Tower.towerType.aoe) {
+        if (twr.type == Tower.towerType.aoe)
+        {
             GameObject b = Instantiate(impactParticle, this.transform.position, Quaternion.identity, this.transform);
             b.transform.localScale = new Vector3(5, 5, 5);
         }

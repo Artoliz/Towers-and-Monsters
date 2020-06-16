@@ -23604,7 +23604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 442477431127445776}
   progress: {fileID: 4884042625270536176}
-  type: 2
+  type: 3
   cost: 0
   hp: 300
   maxHp: 300

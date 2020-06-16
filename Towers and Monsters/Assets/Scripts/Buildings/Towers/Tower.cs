@@ -16,8 +16,6 @@ public class Tower : MonoBehaviour
     private Vector3 _size;
 
     private bool _isDamaged;
-    
-    public enum towerType {bullet, effect, aoe};
 
     private Vector3 _particleExplosionPosition;
 
@@ -36,6 +34,8 @@ public class Tower : MonoBehaviour
     #endregion
 
     #region PublicVariables
+
+    public enum towerType { bullet, longRange, effect, aoe };
 
     public towerType type;
 
@@ -100,6 +100,8 @@ public class Tower : MonoBehaviour
     private void Start()
     {
         SoundsManager.Instance.PlaySound(SoundsManager.Audio.Construct);
+        if (type == towerType.aoe && GetComponent<AudioSource>())
+            GetComponent<AudioSource>().Play();
     }
 
     private void Update()
@@ -179,6 +181,20 @@ public class Tower : MonoBehaviour
 
         if (target && catcher == false)
         {
+            switch (type)
+            {
+                case towerType.longRange:
+                    SoundsManager.Instance.PlaySound(SoundsManager.Audio.LongRange);
+                    break;
+                case towerType.bullet:
+                    SoundsManager.Instance.PlaySound(SoundsManager.Audio.Bullet);
+                    break;
+                case towerType.effect:
+                    SoundsManager.Instance.PlaySound(SoundsManager.Audio.Effect);
+                    break;
+                default:
+                    break;
+            }
             GameObject b = Instantiate(bullet, shootElement.position, Quaternion.identity);
             b.GetComponent<TowerBullet>().target = target;
             b.GetComponent<TowerBullet>().twr = this;

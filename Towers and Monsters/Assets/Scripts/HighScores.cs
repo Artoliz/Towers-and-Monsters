@@ -32,7 +32,6 @@ public class HighScores : MonoBehaviour
 
     private List<HighScore> highScoreList = new List<HighScore>();
     
-    // Start is called before the first frame update
     void Start()
     {
         if (PlayerPrefs.HasKey(HighScoreListName) == false)
@@ -43,6 +42,13 @@ public class HighScores : MonoBehaviour
             PlayerPrefs.Save();
         }
         //PlayerPrefs.DeleteKey(HighScoreListName);
+    }
+
+    public bool IsBetterScore(int score)
+    {
+        if (highScoreList[0].score < score)
+            return true;
+        return false;
     }
 
     public void SaveScore(string name, int score)
