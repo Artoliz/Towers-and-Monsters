@@ -9,6 +9,8 @@ public class WavePreviewManager : MonoBehaviour
     public float moduleSize = 175.0f;
     public float offset = -15.0f;
     
+    public static WavePreviewManager Instance = null;
+    
     #endregion
 
     
@@ -27,7 +29,12 @@ public class WavePreviewManager : MonoBehaviour
 
     
     #region MonoBeaviour
-    
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         
@@ -36,12 +43,7 @@ public class WavePreviewManager : MonoBehaviour
             module.SetActive(false);
         }
 
-        NextWave(15);
-    }
-
-    void Update()
-    {
-        
+        NextWave(1);
     }
 
     #endregion
@@ -70,9 +72,7 @@ public class WavePreviewManager : MonoBehaviour
             content.sizeDelta = new Vector2(600, (moduleSize + 5) * (i + 1) + 10); 
             
             modules[i].SetActive(true);
-            Debug.Log("before : " + modules[i].transform.localPosition);
             modules[i].transform.localPosition = new Vector3(modules[i].transform.localPosition.x, offset - moduleSize * i , modules[i].transform.localPosition.z);
-            Debug.Log("after : " + modules[i].transform.localPosition);
         }
         
     }

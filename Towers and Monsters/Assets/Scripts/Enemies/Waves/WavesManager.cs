@@ -87,6 +87,7 @@ public class WavesManager : MonoBehaviour
             SoundsManager.Instance.StopSoundLoop(SoundsManager.Audio.Run);
             EnableUiBetweenWaves();
             SetNextWave();
+            WavePreviewManager.Instance.NextWave(waveNumber);
         }
     }
 
