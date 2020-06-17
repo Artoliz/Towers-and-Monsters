@@ -533,7 +533,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -708,7 +708,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.7955427, g: 0, b: 1, a: 1}
+      maxColor: {r: 0.50318176, g: 0, b: 0.6320754, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1468,16 +1468,16 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.41220662
-          inSlope: 0.07046442
-          outSlope: 0.07046442
+          value: 0.35113525
+          inSlope: -0.21774498
+          outSlope: -0.21774498
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0.10843372
+          outWeight: 0.21034482
         - serializedVersion: 3
           time: 1
-          value: 1
+          value: 0.8854923
           inSlope: 0.094874576
           outSlope: 0.094874576
           tangentMode: 0
@@ -1789,9 +1789,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.3016572, g: 0, b: 1, a: 0}
-        key1: {r: 0.10829716, g: 0, b: 0.62352943, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0}
+        key0: {r: 0.34546813, g: 0, b: 0.4339623, a: 0}
+        key1: {r: 0.18775442, g: 0, b: 0.23584908, a: 1}
+        key2: {r: 0.79607844, g: 0, b: 1, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -1799,7 +1799,7 @@ ParticleSystem:
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
         ctime1: 65535
-        ctime2: 0
+        ctime2: 65535
         ctime3: 0
         ctime4: 0
         ctime5: 0
