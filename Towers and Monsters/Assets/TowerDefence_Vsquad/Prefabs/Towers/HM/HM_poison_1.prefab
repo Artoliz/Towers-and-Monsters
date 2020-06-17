@@ -4797,7 +4797,6 @@ MonoBehaviour:
   bullet: {fileID: 1709095781185042, guid: bc9a42dd36a564f4a9908040cd2c22c2, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
-  healthBar: {fileID: 0}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4433853845007794}
@@ -19488,7 +19487,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
