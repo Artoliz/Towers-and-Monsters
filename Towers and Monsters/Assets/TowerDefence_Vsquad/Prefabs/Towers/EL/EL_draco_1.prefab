@@ -53,22 +53,23 @@ MonoBehaviour:
   progress: {fileID: 4603173208110364416}
   type: 0
   cost: 100
-  hp: 20
-  maxHp: 0
-  dmg: 10
-  upgradeCost: 0
-  repairCost: 0
+  hp: 100
+  maxHp: 100
+  dmg: 50
+  upgradeCost: 200
+  repairCost: 75
   effectDammage: 0
-  shootDelay: 1
+  sell: 0
+  shootDelay: 2
   catcher: 0
   bullet: {fileID: 1548777328554500, guid: f4a35804dd69d4247ad28805ee11b412, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
-  healthBar: {fileID: 0}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4754256736644798}
-  upgradePrefab: {fileID: 0}
+  upgradePrefab: {fileID: 1097326516334560, guid: 3ea211ea054cb8e488d7e76a6a92d9fd,
+    type: 3}
   anim: {fileID: 0}
 --- !u!65 &2838902520882912059
 BoxCollider:

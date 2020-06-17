@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 23632021395750754}
   - component: {fileID: 114025190921100858}
   m_Layer: 10
-  m_Name: GB_crystal_2
+  m_Name: GB_Crystal_2
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1769450118266885130}
   progress: {fileID: 6828952036914874079}
-  type: 1
+  type: 2
   cost: 0
   hp: 250
   maxHp: 250
@@ -222,12 +222,12 @@ MonoBehaviour:
   upgradeCost: 600
   repairCost: 225
   effectDammage: 80
+  sell: 0
   shootDelay: 1.75
   catcher: 0
   bullet: {fileID: 1399426437590312, guid: 39e16171cc8a97447bc6b6ec100503c1, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
-  healthBar: {fileID: 0}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4546796998513166}

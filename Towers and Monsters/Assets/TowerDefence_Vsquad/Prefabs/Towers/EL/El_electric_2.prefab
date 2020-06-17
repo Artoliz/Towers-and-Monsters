@@ -9650,14 +9650,13 @@ MonoBehaviour:
   dmg: 70
   upgradeCost: 600
   repairCost: 225
-  effectDammage: 70
+  effectDammage: 80
   sell: 0
   shootDelay: 1.75
   catcher: 0
   bullet: {fileID: 1954904005718050, guid: 68aac3673ad0523408d1ebdbf12a1458, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
-  healthBar: {fileID: 0}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4954794653951594}

@@ -78,7 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 616053062478494428}
   progress: {fileID: 4017298801676053388}
-  type: 0
+  type: 1
   cost: 100
   hp: 100
   maxHp: 100
@@ -86,12 +86,12 @@ MonoBehaviour:
   upgradeCost: 200
   repairCost: 75
   effectDammage: 0
+  sell: 0
   shootDelay: 1
   catcher: 0
   bullet: {fileID: 1546313533754510, guid: c195d6464151d83439142e8f59e43fb9, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
-  healthBar: {fileID: 0}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4286957924545820}

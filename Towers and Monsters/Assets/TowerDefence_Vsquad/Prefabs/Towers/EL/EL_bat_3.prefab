@@ -138,20 +138,19 @@ MonoBehaviour:
   health: {fileID: 986905874821442990}
   progress: {fileID: 8636407930930434648}
   type: 1
-  cost: 100
-  hp: 20
-  maxHp: 0
-  dmg: 10
+  cost: 0
+  hp: 400
+  maxHp: 400
+  dmg: 100
   upgradeCost: 0
-  repairCost: 0
+  repairCost: 300
   effectDammage: 0
   sell: 0
-  shootDelay: 1
+  shootDelay: 0.5
   catcher: 0
   bullet: {fileID: 1717815016859890, guid: a027317d1c5110548aebf55802747df1, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
-  healthBar: {fileID: 0}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4826577978915484}

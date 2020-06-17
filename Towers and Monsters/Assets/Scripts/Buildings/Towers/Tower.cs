@@ -24,6 +24,8 @@ public class Tower : MonoBehaviour
 
     private GameObject _selected;
 
+    private GameObject healthBar;
+
     #endregion
 
     #region SerializableVariables
@@ -61,7 +63,6 @@ public class Tower : MonoBehaviour
 
     public GameObject bullet;
     public GameObject destroyParticle;
-    public GameObject healthBar;
 
     public Transform target;
     public Transform lookAtObj;

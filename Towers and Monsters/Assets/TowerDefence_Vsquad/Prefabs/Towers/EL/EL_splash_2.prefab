@@ -4917,8 +4917,8 @@ MonoBehaviour:
   hp: 300
   maxHp: 300
   dmg: 0
-  upgradeCost: 600
-  repairCost: 225
+  upgradeCost: 900
+  repairCost: 450
   effectDammage: 10
   sell: 0
   shootDelay: 0
@@ -4926,7 +4926,6 @@ MonoBehaviour:
   bullet: {fileID: 1375615554881252, guid: 70d00e849a98fc44f8cd0c9f665f571c, type: 3}
   destroyParticle: {fileID: 1842692474500718, guid: faa216e7fb0fe8045ab064f8955a35d0,
     type: 3}
-  healthBar: {fileID: 0}
   target: {fileID: 0}
   lookAtObj: {fileID: 0}
   shootElement: {fileID: 4489216371504334}
