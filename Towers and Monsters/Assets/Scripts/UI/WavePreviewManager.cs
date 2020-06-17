@@ -36,7 +36,7 @@ public class WavePreviewManager : MonoBehaviour
             module.SetActive(false);
         }
 
-        NextWave(10);
+        NextWave(15);
     }
 
     void Update()

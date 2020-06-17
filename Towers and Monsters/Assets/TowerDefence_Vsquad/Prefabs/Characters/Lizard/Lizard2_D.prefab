@@ -1212,7 +1212,7 @@ MonoBehaviour:
   healthBar: {fileID: 5697727766141138692}
   progress: {fileID: 3534987653582564185}
   enemyWeight: 3
-  waveNumberApparition: 9
+  waveNumberApparition: 11
   destinationReachedPadding: 0.5
   effectOfDeath: {fileID: 0}
   _IsOnEffect: 0
