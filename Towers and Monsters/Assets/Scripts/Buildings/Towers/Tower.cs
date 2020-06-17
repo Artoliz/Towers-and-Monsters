@@ -154,13 +154,16 @@ public class Tower : MonoBehaviour
 
     private void OnMouseDown()
     {
-        TowerData._hp = this.hp;
+        if (!PauseMenu.GameIsPaused)
+        {
+            TowerData._hp = this.hp;
 
-        if (TowerData._hp < 0)
-            TowerData._hp = 0;
+            if (TowerData._hp < 0)
+                TowerData._hp = 0;
 
-        SetTowerData();
-        Informations.Instance.SetInformations(TowerData, this);
+            SetTowerData();
+            Informations.Instance.SetInformations(TowerData, this);
+        }
     }
 
     #endregion
