@@ -93,6 +93,24 @@ public class SoundsManager : MonoBehaviour
             Instance = this;
     }
 
+    private bool _loopState = false;
+
+    private void Update()
+    {
+        if (WavesManager.GameIsFinished && EffectsSourceLoop.isPlaying)
+            StopSoundLoop(Audio.Run);
+        if (PauseMenu.GameIsPaused && EffectsSourceLoop.isPlaying)
+        {
+            _loopState = true;
+            StopSoundLoop(Audio.Run);
+        }
+        if (!PauseMenu.GameIsPaused && !EffectsSourceLoop.isPlaying && _loopState)
+        {
+            PlaySoundLoop(Audio.Run);
+            _loopState = false;
+        }
+    }
+
     private void OnEnable()
     {
         if (SceneManager.GetActiveScene().name == "Menu")
