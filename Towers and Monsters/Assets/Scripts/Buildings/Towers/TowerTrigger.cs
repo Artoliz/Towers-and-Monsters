@@ -6,8 +6,6 @@ public class TowerTrigger : MonoBehaviour
 {
     #region PublicVariables
 
-    public bool lockE;
-
     public GameObject curTarget;
 
     //public Tower twr;
@@ -20,6 +18,8 @@ public class TowerTrigger : MonoBehaviour
     private List<GameObject> enemies = new List<GameObject>();
 
     private List<GameObject> aoeImpacts = new List<GameObject>();
+
+    private bool lockE = false;
 
     #endregion
 
@@ -46,15 +46,7 @@ public class TowerTrigger : MonoBehaviour
                     other.GetComponent<Enemy>().SetOnAOE(true);
                     other.GetComponent<Enemy>().SetSpeed(other.GetComponent<Enemy>().GetSpeed() / 2.0f);
                 } else if (!lockE)
-                {
-                    var o = enemies[0];
-                    if (o != null)
-                    {
-                        twr.target = o.transform;
-                        curTarget = o;
-                        lockE = true;
-                    }
-                }
+                    SetNewTarget();
             }
         }
     }
@@ -82,29 +74,48 @@ public class TowerTrigger : MonoBehaviour
     {
         if (!WavesManager.GameIsFinished && !PauseMenu.GameIsPaused)
         {
+            RemoveNotExistingEnemies();
+
             if (curTarget)
             {
                 if (curTarget.CompareTag($"Dead"))
                 {
                     enemies.Remove(curTarget);
-                    lockE = false;
-                    twr.target = null;
-                    curTarget = null;
-                    if (enemies.Count > 0) 
-                    {
-                        if (enemies[0])
-                        {
-                            var o = enemies[0];
-                            twr.target = o.transform;
-                            curTarget = o;
-                            lockE = true;
-                        }
-                    }
+                    SetNewTarget();
                 }
             }
             else
+                SetNewTarget();
+        }
+    }
+
+    private void RemoveNotExistingEnemies()
+    {
+        List<GameObject> toRemove = new List<GameObject>();
+
+        foreach (GameObject enemy in enemies)
+            if (!enemy)
+                toRemove.Add(enemy);
+
+        foreach (GameObject rm in toRemove)
+            enemies.Remove(rm);
+
+        toRemove.Clear();
+    }
+
+    private void SetNewTarget()
+    {
+        lockE = false;
+        twr.target = null;
+        curTarget = null;
+        if (enemies.Count > 0)
+        {
+            if (enemies[0])
             {
-                lockE = false;
+                var o = enemies[0];
+                twr.target = o.transform;
+                curTarget = o;
+                lockE = true;
             }
         }
     }
@@ -115,6 +126,7 @@ public class TowerTrigger : MonoBehaviour
         {
             if (other.CompareTag("Enemy"))
             {
+                Debug.Log("Exit");
                 enemies.Remove(other.gameObject);
                 if (twr.type == Tower.towerType.aoe && other.GetComponent<Enemy>().GetOnAOEState())
                 {
@@ -130,21 +142,7 @@ public class TowerTrigger : MonoBehaviour
                     other.GetComponent<Enemy>().SetOnAOE(false);
                     other.GetComponent<Enemy>().SetSpeed(other.GetComponent<Enemy>().GetSpeed() * 2.0f);
                 } else if (other.gameObject == curTarget)
-                {
-                    lockE = false;
-                    twr.target = null;
-                    curTarget = null;
-                    if (enemies.Count > 0) 
-                    {
-                        var o = enemies[0];
-                        if (o != null)
-                        {
-                            twr.target = o.transform;
-                            curTarget = o;
-                            lockE = true;
-                        }
-                    }
-                }
+                    SetNewTarget();
             }
         }
     }
