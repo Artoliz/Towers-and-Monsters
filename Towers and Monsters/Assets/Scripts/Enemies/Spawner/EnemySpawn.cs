@@ -36,6 +36,11 @@ public class EnemySpawn : MonoBehaviour
                 var enemyController = enemy.GetComponent<Enemy>();
                 enemyController.SetPlayerBase(_playerBase);
 
+                int newHp = (int)(enemyController.GetEnemyHp() * (0.02f * WavesManager.Instance.GetWaveNumber())) + enemyController.GetEnemyHp();
+
+                enemyController.SetMaxHp(newHp);
+                enemyController.SetEnemyHp(newHp);
+
                 _enemiesToSpawn.Remove(_enemiesToSpawn[0]);
             }
         }

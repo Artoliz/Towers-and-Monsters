@@ -63,7 +63,7 @@ public class TowerTrigger : MonoBehaviour
                     b.GetComponent<TowerBullet>().twr = twr;
                     b.GetComponent<TowerBullet>().target = other.transform;
                     aoeImpacts.Add(b);
-                    other.GetComponent<Enemy>().SetOnAOE(true);                   
+                    other.GetComponent<Enemy>().SetOnAOE(true);
                     other.GetComponent<Enemy>().SetSpeed(other.GetComponent<Enemy>().GetSpeed() / 2.0f);
                 }
             }
@@ -126,7 +126,6 @@ public class TowerTrigger : MonoBehaviour
         {
             if (other.CompareTag("Enemy"))
             {
-                Debug.Log("Exit");
                 enemies.Remove(other.gameObject);
                 if (twr.type == Tower.towerType.aoe && other.GetComponent<Enemy>().GetOnAOEState())
                 {

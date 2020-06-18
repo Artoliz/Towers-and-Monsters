@@ -91,6 +91,9 @@ public class Enemy : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (UIOverListenner.isUIOverride)
+            return;
+
         EnemyData._hp = enemyHp;
 
         if (EnemyData._hp < 0)

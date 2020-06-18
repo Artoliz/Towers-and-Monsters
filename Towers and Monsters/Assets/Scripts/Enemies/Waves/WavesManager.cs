@@ -26,6 +26,8 @@ public class WavesManager : MonoBehaviour
 
     #region PublicVariables
 
+    public static WavesManager Instance = null;
+
     public static bool GameIsBetweenWaves;
     public static bool GameIsFinished;
 
@@ -45,6 +47,8 @@ public class WavesManager : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         GameIsFinished = false;
 
         gameOverUi.SetActive(false);
@@ -150,6 +154,11 @@ public class WavesManager : MonoBehaviour
     #endregion
 
     #region PublicFunctions
+
+    public int GetWaveNumber()
+    {
+        return waveNumber;
+    }
 
     public static void SetGameStatus(bool isBetweenWaves)
     {

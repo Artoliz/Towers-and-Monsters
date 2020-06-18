@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4991168337049708773}
   - component: {fileID: 4991168337049708774}
+  - component: {fileID: 114135102298696996}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -43,6 +44,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6c38d21e6422749be59bd6b4d43ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameIsFinished: 0
+  gameOverUi: {fileID: 0}
+  _enemiesKilled: 0
   _timerSinceStart: {fileID: 0}
+  _cursor: {fileID: 0}
   _goldsText: {fileID: 0}
   _golds: 250
+  _scores: {fileID: 0}
+  _username: {fileID: 0}
+--- !u!114 &114135102298696996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4991168337049708772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d8e710e2606ac843aa2ff055f64ff58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

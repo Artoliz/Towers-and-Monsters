@@ -65,12 +65,17 @@ public class TowerBullet : MonoBehaviour
         {
             if (target)
             {
-                Transform transform1;
-                (transform1 = transform).LookAt(target);
-                Vector3 targetPosition = target.position;
-                targetPosition.y = 0.7f;
-                transform.position = Vector3.MoveTowards(transform1.position, targetPosition, Time.deltaTime * speed);
-                _lastBulletPosition = targetPosition;
+                if (target.CompareTag($"Dead"))
+                    Destroy(gameObject, 0.5f);
+                else
+                {
+                    Transform transform1;
+                    (transform1 = transform).LookAt(target);
+                    Vector3 targetPosition = target.position;
+                    targetPosition.y = 0.7f;
+                    transform.position = Vector3.MoveTowards(transform1.position, targetPosition, Time.deltaTime * speed);
+                    _lastBulletPosition = targetPosition;
+                }
             }
             else
             {

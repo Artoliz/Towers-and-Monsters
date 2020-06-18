@@ -56,6 +56,9 @@ public class Wall : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (UIOverListenner.isUIOverride)
+            return;
+
         SetWallData();
         Informations.Instance.SetInformations(WallData, this);
     }

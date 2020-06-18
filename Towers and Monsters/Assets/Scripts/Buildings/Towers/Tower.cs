@@ -154,6 +154,9 @@ public class Tower : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (UIOverListenner.isUIOverride)
+            return;
+
         if (!PauseMenu.GameIsPaused)
         {
             TowerData._hp = this.hp;
