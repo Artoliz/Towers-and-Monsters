@@ -46,6 +46,8 @@ public class HighScores : MonoBehaviour
 
     public bool IsBetterScore(int score)
     {
+        if (highScoreList.Count <= 0)
+            return true;
         if (highScoreList[0].score < score)
             return true;
         return false;
